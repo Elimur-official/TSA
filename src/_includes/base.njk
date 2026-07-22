@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title or "elimur — интимные товары для взрослых" }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div id="age-gate" class="age-gate">
+  <div class="age-gate__box">
+    <div class="age-gate__logo">elimur</div>
+    <h1>Вам уже есть 18 лет?</h1>
+    <p>Здесь товары для взрослых 18+. Заходя, вы подтверждаете свой возраст.</p>
+    <button id="age-yes" class="btn btn--primary btn--full">Да, мне есть 18</button>
+    <button id="age-no" class="btn btn--ghost btn--full">Нет, мне ещё нет</button>
+    <p id="age-denied" class="age-gate__denied" hidden>Извините, доступ разрешён только совершеннолетним.</p>
+  </div>
+</div>
+
+<header class="site-header">
+  <a href="/" class="logo">elimur</a>
+  <nav>
+    <a href="/">Каталог</a>
+    <a href="/articles/">Гайды</a>
+    <a href="/reviews/">Отзывы</a>
+    <a href="/about/">О нас</a>
+    <a href="/faq/">Помощь</a>
+  </nav>
+</header>
+
+<main>
+{{ content | safe }}
+</main>
+
+<script>window.YM_ID = {{ site.yandexMetrikaId }};</script>
+<script src="/js/age-gate.js"></script>
+</body>
+</html>
