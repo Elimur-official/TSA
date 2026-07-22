@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #0C0604; }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0C0604"/><text x="50" y="58" font-family="sans-serif" font-weight="800" font-size="19" fill="#E0A93A" text-anchor="middle">elimur</text></svg></template>
+
+<div style="position:relative;min-height:100vh;background:#0C0604;font-family:'Manrope',sans-serif">
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}">
+    <dc-import name="Elimur" hint-size="100%,900px"></dc-import>
+  </sc-if>
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ false }}">
+    <dc-import name="Elimur Desktop" hint-size="100%,900px"></dc-import>
+  </sc-if>
+
+  <!-- floating version switcher -->
+  <div style="position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:99999;display:flex;gap:4px;padding:5px;border-radius:16px;background:rgba(20,10,7,.92);backdrop-filter:blur(14px);border:1px solid rgba(214,166,64,.3);box-shadow:0 16px 40px -8px rgba(0,0,0,.7)">
+    <button onClick="{{ showMobile }}" style="{{ mobileBtn }}">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+      Мобильная
+    </button>
+    <button onClick="{{ showDesktop }}" style="{{ desktopBtn }}">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      Десктоп
+    </button>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { view: 'mobile' };
+  renderVals() {
+    const on = this.state.view;
+    const btn = (active) => `display:flex;align-items:center;gap:7px;height:40px;padding:0 18px;border:none;border-radius:12px;cursor:pointer;font-family:'Unbounded';font-weight:600;font-size:13px;transition:background .2s,color .2s;background:${active ? 'linear-gradient(180deg,#EBC15A,#C6902B)' : 'transparent'};color:${active ? '#241205' : '#C7B5A6'}`;
+    return {
+      isMobile: on === 'mobile',
+      isDesktop: on === 'desktop',
+      showMobile: () => this.setState({ view: 'mobile' }),
+      showDesktop: () => this.setState({ view: 'desktop' }),
+      mobileBtn: btn(on === 'mobile'),
+      desktopBtn: btn(on === 'desktop'),
+    };
+  }
+}
+</script>
+</body>
+</html>
