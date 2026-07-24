@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Проверяет, что netlify.toml — валидный TOML. Запускать из site/."""
-import sys
 import tomllib
 from pathlib import Path
 
