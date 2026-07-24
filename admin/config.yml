@@ -15,6 +15,12 @@ collections:
         fields:
           - { label: Заголовок, name: title, widget: string }
           - { label: Фото, name: heroImage, widget: image }
+          - label: Статистика
+            name: stats
+            widget: list
+            fields:
+              - { label: Значение, name: value, widget: string }
+              - { label: Подпись, name: label, widget: string }
           - label: Реквизиты
             name: legal
             widget: list
