@@ -79,3 +79,12 @@ main { padding: 0 18px 40px; }
 .legal-row { display: flex; justify-content: space-between; gap: 14px; padding: 12px 14px; border-bottom: 1px solid rgba(214,166,64,.08); font-size: 12.5px; }
 .faq-item { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); padding: 15px; margin-bottom: 10px; }
 .faq-item summary { font-weight: 700; cursor: pointer; }
+@media (min-width: 1280px) {
+  body { max-width: 1280px; }
+  main { padding: 0 40px 80px; }
+  .site-header { max-width: 1280px; margin: 0 auto; padding: 22px 40px; }
+  .product-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .trust-strip { padding: 20px 28px; }
+  .stat-grid, .article-list { grid-template-columns: repeat(3, 1fr); }
+  .product-detail { display: grid; grid-template-columns: minmax(0, 560px) 1fr; gap: 56px; align-items: start; }
+}
