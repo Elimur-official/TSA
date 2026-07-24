@@ -16,3 +16,7 @@ test("desktop breakpoint widens the product grid to 4 columns", () => {
   const desktopBlock = css.split("@media (min-width: 1280px)")[1];
   assert.match(desktopBlock, /\.product-grid\s*{\s*grid-template-columns:\s*repeat\(4,\s*1fr\)/);
 });
+
+test(".article-list is actually a grid container, so its desktop column rule applies", () => {
+  assert.match(css, /\.article-list\s*{\s*display:\s*grid/);
+});

@@ -70,7 +70,8 @@ main { padding: 0 18px 40px; }
 .product-detail__cta-note { font-size: 12px; color: var(--color-muted); text-align: center; }
 .review-card { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; padding: 14px; background: var(--color-surface); margin-bottom: 12px; }
 .review-card__head { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; }
-.article-tile { display: flex; gap: 12px; border: 1px solid rgba(214,166,64,.14); border-radius: 18px; overflow: hidden; background: var(--color-surface); text-decoration: none; color: inherit; margin-bottom: 14px; }
+.article-list { display: grid; gap: 14px; }
+.article-tile { display: flex; gap: 12px; border: 1px solid rgba(214,166,64,.14); border-radius: 18px; overflow: hidden; background: var(--color-surface); text-decoration: none; color: inherit; }
 .article-tile img { width: 96px; object-fit: cover; }
 .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
 .stat-card { border: 1px solid rgba(214,166,64,.16); border-radius: 16px; padding: 16px; background: var(--color-surface); }
