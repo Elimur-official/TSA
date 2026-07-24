@@ -28,6 +28,8 @@ collections:
               - { label: Поле, name: key, widget: string }
               - { label: Значение, name: value, widget: string }
           - { label: Текст, name: body, widget: markdown }
+          - { label: Макет, name: layout, widget: hidden, default: "layouts/about.njk" }
+          - { label: Ссылка, name: permalink, widget: hidden, default: "/about/" }
 
   - name: reviews
     label: Отзывы
