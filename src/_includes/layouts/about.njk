@@ -1,0 +1,21 @@
+---
+layout: base.njk
+---
+<h1>{{ title }}</h1>
+<img src="{{ heroImage }}" alt="" class="about-hero">
+<div class="about-body">{{ content | safe }}</div>
+
+{% if stats.length %}
+<div class="stat-grid">
+  {% for stat in stats %}
+  <div class="stat-card"><div class="stat-card__value">{{ stat.value }}</div><div class="stat-card__label">{{ stat.label }}</div></div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<h3>Юридические реквизиты</h3>
+<div class="legal-table">
+  {% for row in legal %}
+  <div class="legal-row"><span>{{ row.key }}</span><span>{{ row.value }}</span></div>
+  {% endfor %}
+</div>

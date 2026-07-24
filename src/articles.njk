@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: Гайды — elimur
+permalink: /articles/
+---
+<h1>Гайды</h1>
+<p>Честно и без стеснения — о том, что важно знать.</p>
+<div class="article-list">
+  {% for article in collections.articles %}
+  <a class="article-tile" href="{{ article.url }}">
+    <img src="{{ article.data.cover }}" alt="">
+    <div>
+      <span class="article-tile__tag">{{ article.data.readTime }}</span>
+      <span class="article-tile__title">{{ article.data.title }}</span>
+    </div>
+  </a>
+  {% endfor %}
+</div>

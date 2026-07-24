@@ -1,0 +1,71 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: about
+    label: О бренде
+    files:
+      - file: src/about.md
+        label: Страница «О бренде»
+        name: about
+        fields:
+          - { label: Заголовок, name: title, widget: string }
+          - { label: Фото, name: heroImage, widget: image }
+          - label: Реквизиты
+            name: legal
+            widget: list
+            fields:
+              - { label: Поле, name: key, widget: string }
+              - { label: Значение, name: value, widget: string }
+          - { label: Текст, name: body, widget: markdown }
+
+  - name: reviews
+    label: Отзывы
+    folder: src/content/reviews
+    create: true
+    fields:
+      - { label: Имя, name: name, widget: string }
+      - { label: "Оценка (1-5)", name: rating, widget: number, min: 1, max: 5 }
+      - { label: Дата, name: date, widget: datetime }
+      - { label: Текст отзыва, name: body, widget: markdown }
+      - { label: Теги, name: tags, widget: hidden, default: reviews }
+      - { label: "Без отдельной страницы", name: permalink, widget: hidden, default: false }
+
+  - name: articles
+    label: Гайды
+    folder: src/content/articles
+    create: true
+    fields:
+      - { label: Заголовок, name: title, widget: string }
+      - { label: "Время чтения", name: readTime, widget: string, default: "5 мин" }
+      - { label: Обложка, name: cover, widget: image }
+      - { label: "Текст статьи", name: body, widget: markdown }
+      - { label: Макет, name: layout, widget: hidden, default: "layouts/article.njk" }
+      - { label: Теги, name: tags, widget: hidden, default: articles }
+      - { label: Ссылка, name: permalink, widget: hidden, default: "/articles/{{ page.fileSlug }}/" }
+
+  - name: faq
+    label: "FAQ и промо"
+    files:
+      - file: src/_data/faq.json
+        label: "Вопросы и промокод"
+        name: faq
+        format: json
+        fields:
+          - label: Вопросы
+            name: items
+            widget: list
+            fields:
+              - { label: Вопрос, name: question, widget: string }
+              - { label: Ответ, name: answer, widget: text }
+          - label: "WB-промо"
+            name: wbPromo
+            widget: object
+            fields:
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст, name: text, widget: string }
+              - { label: Бейдж, name: code, widget: string }
