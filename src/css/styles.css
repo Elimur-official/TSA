@@ -48,6 +48,8 @@ a { color: var(--color-accent); }
 .site-header nav { display: flex; gap: 12px; font-size: 12px; flex-wrap: wrap; }
 .site-header nav a { color: var(--color-muted); text-decoration: none; }
 main { padding: 0 18px 40px; }
+.hero { padding: 8px 0 20px; }
+.hero p { color: var(--color-muted); margin: 10px 0 0; line-height: 1.5; }
 .trust-strip, .wb-promo, .product-grid, .category-filter { margin-bottom: 20px; }
 .category-filter { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
 .chip { flex: 0 0 auto; padding: 9px 16px; border-radius: 20px; font-family: var(--font-heading); font-weight: 600; font-size: 13px; cursor: pointer; border: 1px solid rgba(214,166,64,.22); background: transparent; color: var(--color-muted); }
