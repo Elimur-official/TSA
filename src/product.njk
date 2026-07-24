@@ -32,7 +32,7 @@ eleventyComputed:
     <div class="review-card">
       <div class="review-card__head">
         <span>{{ review.data.name }}</span>
-        <span>{{ "★" * review.data.rating }}</span>
+        <span>{{ review.data.rating | stars }}</span>
       </div>
       <p>{{ review.templateContent | safe }}</p>
     </div>

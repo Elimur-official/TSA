@@ -10,6 +10,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
 
+  eleventyConfig.addFilter("stars", (rating) => "★".repeat(Number(rating) || 0));
+
   return {
     dir: {
       input: "src",
