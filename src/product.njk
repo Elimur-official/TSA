@@ -1,0 +1,42 @@
+---
+pagination:
+  data: products
+  size: 1
+  alias: product
+permalink: "/product/{{ product.id }}/"
+layout: base.njk
+eleventyComputed:
+  title: "{{ product.name }} — elimur"
+---
+<a href="/" class="back-link">← Каталог</a>
+
+<div class="product-detail">
+  <img src="{{ product.image }}" alt="{{ product.name }}" class="product-detail__photo">
+  <span class="product-detail__category">{{ product.category }}</span>
+  <h1>{{ product.name }}</h1>
+  <div class="product-detail__price">{{ product.price }} ₽</div>
+  <p class="product-detail__description">{{ product.description }}</p>
+
+  <a
+    href="https://t.me/{{ site.telegramBotUsername }}?start=product_{{ product.id }}"
+    class="btn btn--primary btn--full"
+    data-analytics="order-click"
+    data-product-id="{{ product.id }}"
+  >Заказать в 1 клик</a>
+  <p class="product-detail__cta-note">Откроется чат в Telegram с менеджером —<br>оформление за 2 минуты, без звонков</p>
+
+  {% if collections.reviews.length %}
+  <section class="product-detail__reviews">
+    <h3>Что говорят покупатели</h3>
+    {% for review in collections.reviews | limit(2) %}
+    <div class="review-card">
+      <div class="review-card__head">
+        <span>{{ review.data.name }}</span>
+        <span>{{ "★" * review.data.rating }}</span>
+      </div>
+      <p>{{ review.templateContent | safe }}</p>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+</div>
