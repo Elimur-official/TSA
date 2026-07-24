@@ -2,4 +2,42 @@
 layout: base.njk
 title: elimur — каталог для взрослых
 ---
-<p>Каталог скоро здесь появится.</p>
+<section class="hero">
+  <h1>Удовольствие без лишних слов</h1>
+  <p>Анонимно, аккуратно и по-взрослому. Выбирайте — остальное сделаем мы.</p>
+</section>
+
+<div class="category-filter" id="category-filter">
+  <button class="chip chip--active" data-category="all">Всё</button>
+  {% for category in products | categories %}
+  <button class="chip" data-category="{{ category }}">{{ category }}</button>
+  {% endfor %}
+</div>
+
+<div class="trust-strip">
+  <div>📦<br>Анонимная доставка</div>
+  <div>🔒<br>Полная конфиденциальность</div>
+  <div>🎁<br>Нейтральная упаковка</div>
+</div>
+
+<div class="wb-promo">
+  <span class="badge">Промокод −15%</span>
+  <h3>Уже покупали на Wildberries?</h3>
+  <p>Перейдите к нам напрямую и заберите скидку на первый заказ.</p>
+  <a href="/faq/#wb-promo" class="btn btn--primary">Забрать промокод →</a>
+</div>
+
+<div class="product-grid" id="product-grid">
+  {% for product in products %}
+  <a class="product-card" href="/product/{{ product.id }}/" data-category="{{ product.category }}">
+    <img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy">
+    <div class="product-card__body">
+      <span class="product-card__name">{{ product.name }}</span>
+      <span class="product-card__category">{{ product.category }}</span>
+      <span class="product-card__price">{{ product.price }} ₽</span>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+<script src="/js/catalog-filter.js"></script>
