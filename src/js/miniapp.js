@@ -16,7 +16,11 @@ if (typeof document !== "undefined") {
       .forEach((button) => {
         button.addEventListener("click", (event) => {
           event.preventDefault();
-          tg.sendData(buildOrderPayload(button.dataset.productId));
+          try {
+            tg.sendData(buildOrderPayload(button.dataset.productId));
+          } catch (err) {
+            window.location.href = button.href;
+          }
         });
       });
   }
