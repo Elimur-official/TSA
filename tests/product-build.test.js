@@ -20,7 +20,7 @@ test("product page shows name, price and deep link with correct id", () => {
   const html = readProductPage(1);
   assert.match(html, /Вибратор «Полночь»/);
   assert.match(html, /3890 ₽/);
-  assert.match(html, /https:\/\/t\.me\/elimur_bot\?start=product_1/);
+  assert.match(html, /https:\/\/t\.me\/elimurbot\?start=product_1/);
 });
 
 test("product page CTA carries the product id for analytics", () => {
