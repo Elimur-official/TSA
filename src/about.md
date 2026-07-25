@@ -6,8 +6,8 @@ heroImage: /images/products/placeholder.svg
 stats:
   - value: "100 000+"
     label: покупателей на Wildberries
-  - value: "4.5★"
-    label: средняя оценка (3200+ отзывов)
+  - value: "4.8★"
+    label: средняя оценка (20 000+ отзывов)
 legal:
   - key: ОГРНИП
     value: "324330000025894"
