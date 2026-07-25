@@ -28,8 +28,8 @@ test("reviews page renders seeded reviews", () => {
     path.join(__dirname, "..", "_site", "reviews", "index.html"),
     "utf8"
   );
-  assert.match(html, /Аня К\./);
-  assert.match(html, /Дмитрий/);
+  assert.match(html, /Ксения/);
+  assert.match(html, /Наталья/);
 });
 
 test("articles list links to the individual article page", () => {
@@ -45,7 +45,7 @@ test("product page now shows a real review snippet", () => {
     path.join(__dirname, "..", "_site", "product", "1", "index.html"),
     "utf8"
   );
-  assert.match(html, /Аня К\./);
+  assert.match(html, /Гульнара/);
 });
 
 test("faq page renders questions and the WB promo block", () => {

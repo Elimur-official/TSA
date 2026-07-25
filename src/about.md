@@ -4,8 +4,10 @@ title: О бренде elimur
 permalink: /about/
 heroImage: /images/products/placeholder.svg
 stats:
-  - value: "elimur"
-    label: бренд на Wildberries
+  - value: "100 000+"
+    label: покупателей на Wildberries
+  - value: "4.5★"
+    label: средняя оценка (3200+ отзывов)
 legal:
   - key: ОГРНИП
     value: "324330000025894"
