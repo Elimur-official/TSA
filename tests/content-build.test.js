@@ -56,3 +56,13 @@ test("faq page renders questions and the WB promo block", () => {
   assert.match(html, /Как оформить заказ/);
   assert.match(html, /Промокод −15%/);
 });
+
+test("every page carries the footer with legal details", () => {
+  for (const page of ["index.html", "faq/index.html", "about/index.html", "product/1/index.html"]) {
+    const pageHtml = fs.readFileSync(path.join(__dirname, "..", "_site", page), "utf8");
+    assert.match(pageHtml, /site-footer/, page);
+    assert.match(pageHtml, /324330000025894/, page);
+    assert.match(pageHtml, /332713750222/, page);
+    assert.match(pageHtml, /18\+/, page);
+  }
+});

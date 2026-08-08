@@ -94,6 +94,13 @@ main { padding: 0 18px 40px; }
 .legal-row { display: flex; justify-content: space-between; gap: 14px; padding: 12px 14px; border-bottom: 1px solid rgba(214,166,64,.08); font-size: 12.5px; }
 .faq-item { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); padding: 15px; margin-bottom: 10px; }
 .faq-item summary { font-weight: 700; cursor: pointer; }
+.site-footer { margin-top: 48px; padding: 24px 18px 32px; border-top: 1px solid rgba(214,166,64,.14); font-size: 12.5px; }
+.site-footer__cols { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 18px; }
+.site-footer__col { display: flex; flex-direction: column; gap: 7px; }
+.site-footer__col h4 { margin: 0 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-muted); }
+.site-footer__col a { color: var(--color-text); text-decoration: none; }
+.site-footer__col span { color: var(--color-muted); }
+.site-footer__bottom { color: var(--color-muted); margin: 0; }
 @media (min-width: 1280px) {
   body { max-width: 1280px; }
   main { padding: 0 40px 80px; }

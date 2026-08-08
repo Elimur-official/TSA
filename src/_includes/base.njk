@@ -53,6 +53,25 @@
 {{ content | safe }}
 </main>
 
+<footer class="site-footer">
+  <div class="site-footer__cols">
+    <div class="site-footer__col">
+      <h4>Покупателям</h4>
+      <a href="/faq/">Доставка и оплата</a>
+      <a href="/faq/">Возврат и гарантия</a>
+      <a href="/faq/">Анонимность</a>
+      <a href="https://t.me/{{ site.telegramBotUsername }}">Написать в Telegram</a>
+    </div>
+    <div class="site-footer__col">
+      <h4>Реквизиты</h4>
+      <span>{{ site.legal.form }}</span>
+      <span>ОГРНИП {{ site.legal.ogrnip }}</span>
+      <span>ИНН {{ site.legal.inn }}</span>
+    </div>
+  </div>
+  <p class="site-footer__bottom">© elimur · Только для взрослых 18+</p>
+</footer>
+
 <script>window.YM_ID = {{ site.yandexMetrikaId }};</script>
 <script src="/js/age-gate.js"></script>
 <script src="/js/analytics.js"></script>

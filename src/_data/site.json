@@ -1,4 +1,9 @@
 {
   "telegramBotUsername": "elimurbot",
-  "yandexMetrikaId": 0
+  "yandexMetrikaId": 0,
+  "legal": {
+    "form": "ИП",
+    "ogrnip": "324330000025894",
+    "inn": "332713750222"
+  }
 }
