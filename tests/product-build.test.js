@@ -28,3 +28,19 @@ test("product page CTA carries the product id for analytics", () => {
   assert.match(html, /data-analytics="order-click"/);
   assert.match(html, /data-product-id="2"/);
 });
+
+const html = readProductPage(1);
+
+test("product page shows stock line above CTA", () => {
+  assert.match(html, /В наличии · отправка 1–3 дня/);
+});
+
+test("product page shows the anonymity trust line under CTA", () => {
+  assert.match(html, /Анонимная отправка 1–3 дня\. Нейтральная коробка — без названия магазина и намёка на содержимое\./);
+});
+
+test("product page renders specs when present", () => {
+  assert.match(html, /<h3>Характеристики<\/h3>/);
+  assert.match(html, /Материал/);
+  assert.match(html, /силикон/);
+});
