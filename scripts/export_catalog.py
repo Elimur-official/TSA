@@ -74,7 +74,7 @@ def main() -> None:
     parser.add_argument(
         "--wb-discount",
         action="store_true",
-        help="записать oldPrice = цена/0,85 (скидка −15% от цены WB); по умолчанию поле не пишется",
+        help="записать oldPrice = цена/0,85 (скидка −15%% от цены WB); по умолчанию поле не пишется",
     )
     args = parser.parse_args()
 
