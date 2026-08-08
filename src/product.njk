@@ -72,7 +72,8 @@ eleventyComputed:
         <span>{{ review.data.name }}</span>
         <span>{{ review.data.rating | stars }}</span>
       </div>
-      <p>{{ review.templateContent | safe }}</p>
+      <p class="review-card__meta">{{ review.date | ruDate }}{% if review.data.city %} · {{ review.data.city }}{% endif %} · <span class="review-card__wb">покупка на Wildberries</span></p>
+      <div class="review-card__text">{{ review.templateContent | safe }}</div>
     </div>
     {% endfor %}
   </section>

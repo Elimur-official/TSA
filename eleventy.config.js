@@ -18,6 +18,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("stars", (rating) => "★".repeat(Number(rating) || 0));
 
+  eleventyConfig.addFilter("ruDate", (d) =>
+    new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric" })
+      .format(d instanceof Date ? d : new Date(d))
+      .replace(/\s?г\.$/, "")
+  );
+
   return {
     dir: {
       input: "src",

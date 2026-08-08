@@ -65,6 +65,12 @@ test("promo code WB15 is visible on home and faq with a copy button", () => {
   }
 });
 
+test("reviews page shows dates and the WB purchase badge", () => {
+  const reviewsHtml = fs.readFileSync(path.join(__dirname, "..", "_site", "reviews", "index.html"), "utf8");
+  assert.match(reviewsHtml, /11 июля 2026/);
+  assert.match(reviewsHtml, /покупка на Wildberries/);
+});
+
 test("every page carries the footer with legal details", () => {
   for (const page of ["index.html", "faq/index.html", "about/index.html", "product/1/index.html"]) {
     const pageHtml = fs.readFileSync(path.join(__dirname, "..", "_site", page), "utf8");
