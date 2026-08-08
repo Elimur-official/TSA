@@ -4,23 +4,40 @@
     "name": "Вибратор «Полночь»",
     "description": "Тихий мотор и мягкий силикон, 5 уровней мощности.",
     "price": 3890,
+    "oldPrice": 4580,
     "category": "Вибраторы",
-    "image": "/images/products/placeholder.svg"
+    "image": "/images/products/placeholder.svg",
+    "inStock": true,
+    "specs": [
+      { "key": "Материал", "value": "силикон" },
+      { "key": "Режимы", "value": "5 уровней мощности" }
+    ]
   },
   {
     "id": 2,
     "name": "Массажёр «Шёлк»",
     "description": "Продуманная эргономика, водонепроницаемый корпус.",
     "price": 4590,
+    "oldPrice": 5400,
     "category": "Массажёры",
-    "image": "/images/products/placeholder.svg"
+    "image": "/images/products/placeholder.svg",
+    "inStock": true,
+    "specs": [
+      { "key": "Водонепроницаемость", "value": "да" }
+    ]
   },
   {
     "id": 3,
     "name": "Смазка «Гладь»",
     "description": "На водной основе, гипоаллергенно.",
     "price": 690,
+    "oldPrice": 810,
     "category": "Смазки",
-    "image": "/images/products/placeholder.svg"
+    "image": "/images/products/placeholder.svg",
+    "inStock": true,
+    "specs": [
+      { "key": "Основа", "value": "водная" },
+      { "key": "Гипоаллергенно", "value": "да" }
+    ]
   }
 ]

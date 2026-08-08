@@ -54,6 +54,8 @@ def export_catalog(
                 "description": product["description"],
                 "price": product["price"],
                 "category": product["category"],
+                "oldPrice": round(product["price"] / 0.85 / 10) * 10,
+                "inStock": True,
                 "image": f"/images/products/{image_name}",
             }
         )
