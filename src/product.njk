@@ -15,7 +15,12 @@ eleventyComputed:
   <div class="product-detail__info">
     <span class="product-detail__category">{{ product.category }}</span>
     <h1>{{ product.name }}</h1>
-    <div class="product-detail__price">{{ product.price }} ₽</div>
+    {% if product.rating and product.reviewsCount %}
+    <p class="product-detail__rating">★ {{ product.rating }} · {{ product.reviewsCount }} отзывов на Wildberries</p>
+    {% endif %}
+    <div class="product-detail__price">
+      {% if product.oldPrice and product.oldPrice > product.price %}<s class="price-old">{{ product.oldPrice }} ₽</s> {% endif %}{{ product.price }} ₽{% if product.oldPrice and product.oldPrice > product.price %} <span class="badge badge--discount">−{{ ((1 - product.price / product.oldPrice) * 100) | round }}%</span>{% endif %}
+    </div>
     <p class="product-detail__description">{{ product.description }}</p>
 
     {% if product.inStock %}<p class="product-detail__stock">В наличии · отправка 1–3 дня</p>{% endif %}

@@ -34,7 +34,8 @@ title: elimur — каталог для взрослых
     <div class="product-card__body">
       <span class="product-card__name">{{ product.name }}</span>
       <span class="product-card__category">{{ product.category }}</span>
-      <span class="product-card__price">{{ product.price }} ₽</span>
+      <span class="product-card__price">{% if product.oldPrice and product.oldPrice > product.price %}<s class="price-old">{{ product.oldPrice }} ₽</s> {% endif %}{{ product.price }} ₽</span>
+      {% if product.rating %}<span class="product-card__rating">★ {{ product.rating }}</span>{% endif %}
     </div>
   </a>
   {% endfor %}

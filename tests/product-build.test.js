@@ -44,3 +44,12 @@ test("product page renders specs when present", () => {
   assert.match(html, /Материал/);
   assert.match(html, /силикон/);
 });
+
+test("product page shows struck old price and computed discount badge", () => {
+  assert.match(html, /<s class="price-old">4580 ₽<\/s>/);
+  assert.match(html, /−15%/);
+});
+
+test("product page hides rating block when product has no rating", () => {
+  assert.doesNotMatch(html, /product-detail__rating/);
+});

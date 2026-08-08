@@ -67,6 +67,10 @@ main { padding: 0 18px 40px; }
 .product-card__price { font-family: var(--font-heading); font-weight: 700; color: var(--color-accent); }
 .product-detail__photo { width: 100%; border-radius: 24px; aspect-ratio: 1/1; object-fit: cover; background: #241512; }
 .product-detail__price { font-family: var(--font-heading); font-weight: 800; font-size: 26px; color: var(--color-accent); margin: 10px 0; }
+.price-old { color: var(--color-muted); font-size: 0.62em; font-weight: 500; margin-right: 6px; }
+.badge--discount { font-size: 11px; font-weight: 800; color: #FBE9DF; background: #D8451A; padding: 3px 8px; border-radius: 12px; vertical-align: middle; }
+.product-detail__rating { font-size: 13px; color: var(--color-accent); margin: 4px 0 0; }
+.product-card__rating { font-size: 12px; color: var(--color-accent); }
 .product-detail__cta-note { font-size: 12px; color: var(--color-muted); text-align: center; }
 .product-detail__stock { font-size: 13px; font-weight: 700; color: var(--color-accent); margin: 0 0 10px; }
 .product-detail__trust { font-size: 12px; color: var(--color-muted); text-align: center; margin-top: 6px; }

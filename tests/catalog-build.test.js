@@ -21,3 +21,7 @@ test("catalog page shows the WB migration banner", () => {
 test("catalog page links each product card to its detail page", () => {
   assert.match(html, /href="\/product\/1\/"/);
 });
+
+test("catalog tile shows struck old price", () => {
+  assert.match(html, /<s class="price-old">4580 ₽<\/s>/);
+});
