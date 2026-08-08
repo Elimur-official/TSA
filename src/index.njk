@@ -24,7 +24,15 @@ title: elimur — каталог для взрослых
   <span class="badge">Промокод −15%</span>
   <h3>Уже покупали на Wildberries?</h3>
   <p>Перейдите к нам напрямую и заберите скидку на первый заказ.</p>
+  {% if site.wbPromoCode %}
+  <div class="promo-code-row">
+    <code class="promo-code">{{ site.wbPromoCode }}</code>
+    <button class="btn btn--primary" data-copy="{{ site.wbPromoCode }}">Скопировать</button>
+  </div>
+  <p class="promo-note">Назовите код менеджеру в чате — скидка −15% на первый заказ</p>
+  {% else %}
   <a href="/faq/#wb-promo" class="btn btn--primary">Забрать промокод →</a>
+  {% endif %}
 </div>
 
 <div class="product-grid" id="product-grid">

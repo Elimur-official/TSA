@@ -58,6 +58,9 @@ main { padding: 0 18px 40px; }
 .trust-strip div { flex: 1; text-align: center; font-size: 11px; font-weight: 600; }
 .wb-promo { padding: 18px; border-radius: 20px; background: linear-gradient(120deg, var(--color-accent-deep-1), var(--color-accent-deep-2)); border: 1px solid rgba(214,166,64,.2); }
 .wb-promo .badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #FBE9DF; background: #D8451A; padding: 4px 9px; border-radius: 20px; margin-bottom: 10px; }
+.promo-code-row { display: flex; gap: 10px; align-items: stretch; margin: 12px 0 6px; }
+.promo-code { flex: 1; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 800; font-size: 20px; letter-spacing: 3px; color: var(--color-accent-strong); border: 1.5px dashed rgba(214,166,64,.45); border-radius: 14px; padding: 10px; }
+.promo-note { font-size: 12px; color: var(--color-muted); margin: 0; }
 .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .product-card { border: 1px solid rgba(214,166,64,.14); border-radius: 18px; background: var(--color-surface); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
 .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #241512; }

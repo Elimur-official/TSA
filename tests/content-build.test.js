@@ -57,6 +57,14 @@ test("faq page renders questions and the WB promo block", () => {
   assert.match(html, /Промокод −15%/);
 });
 
+test("promo code WB15 is visible on home and faq with a copy button", () => {
+  for (const page of ["index.html", "faq/index.html"]) {
+    const pageHtml = fs.readFileSync(path.join(__dirname, "..", "_site", page), "utf8");
+    assert.match(pageHtml, /WB15/, page);
+    assert.match(pageHtml, /data-copy="WB15"/, page);
+  }
+});
+
 test("every page carries the footer with legal details", () => {
   for (const page of ["index.html", "faq/index.html", "about/index.html", "product/1/index.html"]) {
     const pageHtml = fs.readFileSync(path.join(__dirname, "..", "_site", page), "utf8");

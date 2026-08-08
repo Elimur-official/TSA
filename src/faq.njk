@@ -14,8 +14,15 @@ permalink: /faq/
 </div>
 
 <section id="wb-promo" class="wb-promo">
-  <span class="badge">{{ faq.wbPromo.code }}</span>
+  <span class="badge">Промокод −15%</span>
   <h3>{{ faq.wbPromo.title }}</h3>
   <p>{{ faq.wbPromo.text }}</p>
-  <a href="https://t.me/{{ site.telegramBotUsername }}" class="btn btn--primary">Написать нам</a>
+  {% if site.wbPromoCode %}
+  <div class="promo-code-row">
+    <code class="promo-code">{{ site.wbPromoCode }}</code>
+    <button class="btn btn--primary" data-copy="{{ site.wbPromoCode }}">Скопировать</button>
+  </div>
+  <p class="promo-note">Назовите код менеджеру в чате</p>
+  {% endif %}
+  <a href="https://t.me/{{ site.telegramBotUsername }}" class="btn btn--ghost">Написать нам</a>
 </section>
