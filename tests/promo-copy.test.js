@@ -21,3 +21,13 @@ test("click copies the code and gives feedback", async () => {
   assert.deepEqual(copied, ["WB15"]);
   assert.equal(btn.textContent, "Скопировано ✓");
 });
+
+test("when the clipboard write rejects, the button falls back to showing the raw code", async () => {
+  const btn = fakeButton("WB15");
+  wireCopyButtons({ querySelectorAll: () => [btn] }, async () => {
+    throw new Error("clipboard write denied");
+  });
+  btn.click();
+  await new Promise((r) => setImmediate(r));
+  assert.equal(btn.textContent, "WB15");
+});

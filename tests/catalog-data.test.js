@@ -15,6 +15,7 @@ test("every demo product is in stock", () => {
 });
 
 test("specs, when present, are key/value pairs", () => {
+  assert.ok(products.some((p) => p.specs), "at least one product must carry specs");
   for (const p of products) {
     if (!p.specs) continue;
     for (const s of p.specs) {
