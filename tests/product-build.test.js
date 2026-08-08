@@ -53,3 +53,9 @@ test("product page shows struck old price and computed discount badge", () => {
 test("product page hides rating block when product has no rating", () => {
   assert.doesNotMatch(html, /product-detail__rating/);
 });
+
+test("product page embeds a mini-FAQ from faq.json", () => {
+  assert.match(html, /Доставка правда анонимная\?/);
+  assert.match(html, /Сколько идёт доставка\?/);
+  assert.match(html, /Можно ли вернуть товар\?/);
+});

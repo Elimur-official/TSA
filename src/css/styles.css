@@ -74,6 +74,7 @@ main { padding: 0 18px 40px; }
 .product-detail__cta-note { font-size: 12px; color: var(--color-muted); text-align: center; }
 .product-detail__stock { font-size: 13px; font-weight: 700; color: var(--color-accent); margin: 0 0 10px; }
 .product-detail__trust { font-size: 12px; color: var(--color-muted); text-align: center; margin-top: 6px; }
+.product-detail__faq { margin-top: 22px; }
 .product-specs { margin-top: 22px; }
 .product-specs h3 { margin-bottom: 10px; }
 .product-specs dl { margin: 0; border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); overflow: hidden; }

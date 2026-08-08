@@ -48,6 +48,19 @@ eleventyComputed:
       </dl>
     </section>
     {% endif %}
+
+    {% set miniFaq = faq.items | faqPick(["Доставка правда анонимная?", "Сколько идёт доставка?", "Можно ли вернуть товар?"]) %}
+    {% if miniFaq.length %}
+    <section class="product-detail__faq">
+      <h3>Частые вопросы</h3>
+      {% for item in miniFaq %}
+      <details class="faq-item">
+        <summary>{{ item.question }}</summary>
+        <p>{{ item.answer }}</p>
+      </details>
+      {% endfor %}
+    </section>
+    {% endif %}
   </div>
 
   {% if collections.reviews.length %}

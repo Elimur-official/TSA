@@ -10,6 +10,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
 
+  eleventyConfig.addFilter("faqPick", (items, questions) =>
+    (questions || [])
+      .map((q) => (items || []).find((i) => i.question === q))
+      .filter(Boolean)
+  );
+
   eleventyConfig.addFilter("stars", (rating) => "★".repeat(Number(rating) || 0));
 
   return {
