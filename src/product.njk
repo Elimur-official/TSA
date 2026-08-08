@@ -12,18 +12,20 @@ eleventyComputed:
 
 <div class="product-detail">
   <img src="{{ product.image }}" alt="{{ product.name }}" class="product-detail__photo">
-  <span class="product-detail__category">{{ product.category }}</span>
-  <h1>{{ product.name }}</h1>
-  <div class="product-detail__price">{{ product.price }} ₽</div>
-  <p class="product-detail__description">{{ product.description }}</p>
+  <div class="product-detail__info">
+    <span class="product-detail__category">{{ product.category }}</span>
+    <h1>{{ product.name }}</h1>
+    <div class="product-detail__price">{{ product.price }} ₽</div>
+    <p class="product-detail__description">{{ product.description }}</p>
 
-  <a
-    href="https://t.me/{{ site.telegramBotUsername }}?start=product_{{ product.id }}"
-    class="btn btn--primary btn--full"
-    data-analytics="order-click"
-    data-product-id="{{ product.id }}"
-  >Заказать в 1 клик</a>
-  <p class="product-detail__cta-note">Откроется чат в Telegram с менеджером —<br>оформление за 2 минуты, без звонков</p>
+    <a
+      href="https://t.me/{{ site.telegramBotUsername }}?start=product_{{ product.id }}"
+      class="btn btn--primary btn--full"
+      data-analytics="order-click"
+      data-product-id="{{ product.id }}"
+    >Заказать в 1 клик</a>
+    <p class="product-detail__cta-note">Откроется чат в Telegram с менеджером —<br>оформление за 2 минуты, без звонков</p>
+  </div>
 
   {% if collections.reviews.length %}
   <section class="product-detail__reviews">

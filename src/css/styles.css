@@ -88,4 +88,5 @@ main { padding: 0 18px 40px; }
   .trust-strip { padding: 20px 28px; }
   .stat-grid, .article-list { grid-template-columns: repeat(3, 1fr); }
   .product-detail { display: grid; grid-template-columns: minmax(0, 560px) 1fr; gap: 56px; align-items: start; }
+  .product-detail__reviews { grid-column: 1 / -1; }
 }
