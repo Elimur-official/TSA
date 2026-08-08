@@ -38,6 +38,7 @@ def export_catalog(
     images_dir: Path,
     data_file: Path,
     downloader: TelegramDownloader = download_telegram_photo,
+    wb_discount: bool = False,
 ) -> list[dict]:
     images_dir.mkdir(parents=True, exist_ok=True)
     data_file.parent.mkdir(parents=True, exist_ok=True)
@@ -47,18 +48,18 @@ def export_catalog(
         image_name = f"{product['id']}.jpg"
         dest_path = images_dir / image_name
         downloader(bot_token, product["photo_file_id"], dest_path)
-        catalog.append(
-            {
-                "id": product["id"],
-                "name": product["name"],
-                "description": product["description"],
-                "price": product["price"],
-                "category": product["category"],
-                "oldPrice": round(product["price"] / 0.85 / 10) * 10,
-                "inStock": True,
-                "image": f"/images/products/{image_name}",
-            }
-        )
+        entry = {
+            "id": product["id"],
+            "name": product["name"],
+            "description": product["description"],
+            "price": product["price"],
+            "category": product["category"],
+            "inStock": True,
+            "image": f"/images/products/{image_name}",
+        }
+        if wb_discount:
+            entry["oldPrice"] = round(product["price"] / 0.85 / 10) * 10
+        catalog.append(entry)
 
     data_file.write_text(json.dumps(catalog, ensure_ascii=False, indent=2))
     return catalog
@@ -70,12 +71,21 @@ def main() -> None:
     parser.add_argument("--bot-token", required=True)
     parser.add_argument("--images-dir", default="../src/images/products")
     parser.add_argument("--data-file", default="../src/_data/products.json")
+    parser.add_argument(
+        "--wb-discount",
+        action="store_true",
+        help="записать oldPrice = цена/0,85 (скидка −15% от цены WB); по умолчанию поле не пишется",
+    )
     args = parser.parse_args()
 
     conn = sqlite3.connect(args.db_path)
     conn.row_factory = sqlite3.Row
     catalog = export_catalog(
-        conn, args.bot_token, Path(args.images_dir), Path(args.data_file)
+        conn,
+        args.bot_token,
+        Path(args.images_dir),
+        Path(args.data_file),
+        wb_discount=args.wb_discount,
     )
     print(f"Экспортировано товаров: {len(catalog)}")
 
