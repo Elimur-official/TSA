@@ -80,3 +80,12 @@ test("every page carries the footer with legal details", () => {
     assert.match(pageHtml, /18\+/, page);
   }
 });
+
+test("pages link the favicon and carry og tags", () => {
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  assert.match(home, /rel="icon"[^>]+favicon\.svg/);
+  assert.match(home, /property="og:title"/);
+  const productPage = fs.readFileSync(path.join(__dirname, "..", "_site", "product", "1", "index.html"), "utf8");
+  assert.match(productPage, /property="og:title" content="Вибратор «Полночь» — elimur"/);
+  assert.match(productPage, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/products\/placeholder\.svg"/);
+});

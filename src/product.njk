@@ -7,6 +7,8 @@ permalink: "/product/{{ product.id }}/"
 layout: base.njk
 eleventyComputed:
   title: "{{ product.name }} — elimur"
+  description: "{{ product.description }}"
+  ogImage: "{{ product.image }}"
 ---
 <a href="/" class="back-link">← Каталог</a>
 
