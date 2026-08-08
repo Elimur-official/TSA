@@ -89,3 +89,10 @@ test("pages link the favicon and carry og tags", () => {
   assert.match(productPage, /property="og:title" content="Вибратор «Полночь» — elimur"/);
   assert.match(productPage, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/products\/placeholder\.svg"/);
 });
+
+test("home page falls back to the raster default og:image, not the SVG placeholder", () => {
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  assert.match(home, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/og-default\.png"/);
+  assert.match(home, /property="og:image:width" content="1200"/);
+  assert.match(home, /property="og:image:height" content="630"/);
+});

@@ -25,7 +25,7 @@ title: elimur — каталог для взрослых
       <span class="product-card__name">{{ product.name }}</span>
       <span class="product-card__category">{{ product.category }}</span>
       <span class="product-card__price">{% if product.oldPrice and product.oldPrice > product.price %}<s class="price-old">{{ product.oldPrice }} ₽</s> {% endif %}{{ product.price }} ₽</span>
-      {% if product.rating %}<span class="product-card__rating">★ {{ product.rating }}</span>{% endif %}
+      {% if product.rating and product.reviewsCount %}<span class="product-card__rating">★ {{ product.rating }}</span>{% endif %}
     </div>
   </a>
   {% endfor %}
