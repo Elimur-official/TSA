@@ -50,8 +50,13 @@ a { color: var(--color-accent); }
 main { padding: 0 18px 40px; }
 .hero { padding: 8px 0 20px; }
 .hero p { color: var(--color-muted); margin: 10px 0 0; line-height: 1.5; }
-.trust-strip, .wb-promo, .product-grid, .category-filter { margin-bottom: 20px; }
-.category-filter { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.hero__proof { font-size: 12.5px; font-weight: 700; color: var(--color-accent); margin: 8px 0 0; }
+.trust-strip, .wb-promo, .product-grid { margin-bottom: 20px; }
+.chips-wrap { position: relative; margin-bottom: 20px; }
+.chips-wrap::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 28px; background: linear-gradient(90deg, transparent, var(--color-bg)); pointer-events: none; }
+.category-filter { display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap; padding: 2px 24px 6px 2px; scrollbar-width: none; }
+.category-filter::-webkit-scrollbar { display: none; }
+.category-filter .chip { flex-shrink: 0; }
 .chip { flex: 0 0 auto; padding: 9px 16px; border-radius: 20px; font-family: var(--font-heading); font-weight: 600; font-size: 13px; cursor: pointer; border: 1px solid rgba(214,166,64,.22); background: transparent; color: var(--color-muted); }
 .chip--active { border-color: transparent; background: linear-gradient(180deg, var(--color-accent-strong), #C6902B); color: #241205; }
 .trust-strip { display: flex; justify-content: space-between; gap: 6px; padding: 16px 14px; border: 1px solid rgba(214,166,64,.16); border-radius: 20px; background: linear-gradient(180deg, rgba(214,166,64,.06), rgba(214,166,64,.02)); }

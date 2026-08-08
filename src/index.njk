@@ -5,12 +5,29 @@ title: elimur — каталог для взрослых
 <section class="hero">
   <h1>Удовольствие без лишних слов</h1>
   <p>Анонимно, аккуратно и по-взрослому. Выбирайте — остальное сделаем мы.</p>
+  <p class="hero__proof">100 000+ покупателей на Wildberries</p>
 </section>
 
-<div class="category-filter" id="category-filter">
-  <button class="chip chip--active" data-category="all">Всё</button>
-  {% for category in products | categories %}
-  <button class="chip" data-category="{{ category }}">{{ category }}</button>
+<div class="chips-wrap">
+  <div class="category-filter" id="category-filter">
+    <button class="chip chip--active" data-category="all">Всё</button>
+    {% for category in products | categories %}
+    <button class="chip" data-category="{{ category }}">{{ category }}</button>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="product-grid" id="product-grid">
+  {% for product in products %}
+  <a class="product-card" href="/product/{{ product.id }}/" data-category="{{ product.category }}">
+    <img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy">
+    <div class="product-card__body">
+      <span class="product-card__name">{{ product.name }}</span>
+      <span class="product-card__category">{{ product.category }}</span>
+      <span class="product-card__price">{% if product.oldPrice and product.oldPrice > product.price %}<s class="price-old">{{ product.oldPrice }} ₽</s> {% endif %}{{ product.price }} ₽</span>
+      {% if product.rating %}<span class="product-card__rating">★ {{ product.rating }}</span>{% endif %}
+    </div>
+  </a>
   {% endfor %}
 </div>
 
@@ -33,20 +50,6 @@ title: elimur — каталог для взрослых
   {% else %}
   <a href="/faq/#wb-promo" class="btn btn--primary">Забрать промокод →</a>
   {% endif %}
-</div>
-
-<div class="product-grid" id="product-grid">
-  {% for product in products %}
-  <a class="product-card" href="/product/{{ product.id }}/" data-category="{{ product.category }}">
-    <img src="{{ product.image }}" alt="{{ product.name }}" loading="lazy">
-    <div class="product-card__body">
-      <span class="product-card__name">{{ product.name }}</span>
-      <span class="product-card__category">{{ product.category }}</span>
-      <span class="product-card__price">{% if product.oldPrice and product.oldPrice > product.price %}<s class="price-old">{{ product.oldPrice }} ₽</s> {% endif %}{{ product.price }} ₽</span>
-      {% if product.rating %}<span class="product-card__rating">★ {{ product.rating }}</span>{% endif %}
-    </div>
-  </a>
-  {% endfor %}
 </div>
 
 <script src="/js/catalog-filter.js"></script>
