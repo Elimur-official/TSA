@@ -59,3 +59,13 @@ test("product page embeds a mini-FAQ from faq.json", () => {
   assert.match(html, /Сколько идёт доставка\?/);
   assert.match(html, /Можно ли вернуть товар\?/);
 });
+
+test("product page shows the related-products block", () => {
+  assert.match(html, /С этим берут/);
+  assert.match(html, /href="\/product\/3\/"/);
+});
+
+test("product page links its guide article", () => {
+  assert.match(html, /Полезно почитать/);
+  assert.match(html, /href="\/articles\/s-chego-nachat\/"/);
+});

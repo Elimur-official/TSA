@@ -24,6 +24,16 @@ module.exports = function (eleventyConfig) {
       .replace(/\s?г\.$/, "")
   );
 
+  eleventyConfig.addFilter("pickProducts", (products, ids) =>
+    (ids || [])
+      .map((id) => (products || []).find((p) => p.id === id))
+      .filter(Boolean)
+  );
+
+  eleventyConfig.addFilter("articleBySlug", (coll, slug) =>
+    (coll || []).find((a) => a.fileSlug === slug) || null
+  );
+
   return {
     dir: {
       input: "src",

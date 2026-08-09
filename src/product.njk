@@ -51,6 +51,22 @@ eleventyComputed:
     </section>
     {% endif %}
 
+    {% set miniItems = products | pickProducts(product.related) %}
+    {% if miniItems.length %}
+    <section class="product-related">
+      <h3>С этим берут</h3>
+      {% include "mini-grid.njk" %}
+    </section>
+    {% endif %}
+
+    {% set guideArticle = collections.articles | articleBySlug(product.guide) %}
+    {% if guideArticle %}
+    <section class="product-guide">
+      <h3>Полезно почитать</h3>
+      <a class="guide-link" href="{{ guideArticle.url }}">{{ guideArticle.data.title }} →</a>
+    </section>
+    {% endif %}
+
     {% set miniFaq = faq.items | faqPick(["Доставка правда анонимная?", "Сколько идёт доставка?", "Можно ли вернуть товар?"]) %}
     {% if miniFaq.length %}
     <section class="product-detail__faq">
