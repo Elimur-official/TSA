@@ -69,3 +69,15 @@ test("product page links its guide article", () => {
   assert.match(html, /Полезно почитать/);
   assert.match(html, /href="\/articles\/s-chego-nachat\/"/);
 });
+
+test("product page carries valid JSON-LD without invented rating", () => {
+  const m = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  assert.ok(m, "JSON-LD script must be present");
+  const ld = JSON.parse(m[1]);
+  assert.equal(ld["@type"], "Product");
+  assert.equal(ld.offers.price, 3890);
+  assert.equal(ld.offers.priceCurrency, "RUB");
+  assert.match(ld.offers.availability, /InStock/);
+  assert.match(ld.image, /^https:\/\//);
+  assert.equal(ld.aggregateRating, undefined);
+});

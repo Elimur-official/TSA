@@ -97,3 +97,20 @@ eleventyComputed:
   </section>
   {% endif %}
 </div>
+
+{% set ldProduct = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "image": site.baseUrl + product.image,
+  "offers": {
+    "@type": "Offer",
+    "price": product.price,
+    "priceCurrency": "RUB",
+    "availability": ("https://schema.org/InStock" if product.inStock else "https://schema.org/OutOfStock"),
+    "url": site.baseUrl + "/product/" + product.id + "/"
+  }
+} %}
+{% set ldProduct = ldProduct | withRating(product.rating, product.reviewsCount) %}
+<script type="application/ld+json">{{ ldProduct | dump | safe }}</script>

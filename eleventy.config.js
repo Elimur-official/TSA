@@ -18,6 +18,14 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("stars", (rating) => "★".repeat(Number(rating) || 0));
 
+  eleventyConfig.addFilter("withRating", (ld, rating, count) =>
+    rating && count
+      ? Object.assign({}, ld, {
+          aggregateRating: { "@type": "AggregateRating", ratingValue: rating, reviewCount: count },
+        })
+      : ld
+  );
+
   eleventyConfig.addFilter("ruDate", (d) =>
     new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric" })
       .format(d instanceof Date ? d : new Date(d))
