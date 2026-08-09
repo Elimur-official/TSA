@@ -1,6 +1,7 @@
 ---
 layout: layouts/about.njk
 title: О бренде elimur
+description: О бренде elimur — кто мы и почему покупателям можно доверять. Официальные реквизиты ИП, более 100 000 покупателей и оценка 4.8★ на Wildberries.
 permalink: /about/
 heroImage: /images/products/placeholder.svg
 stats:

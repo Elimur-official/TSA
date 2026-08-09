@@ -42,6 +42,10 @@ module.exports = function (eleventyConfig) {
     (coll || []).find((a) => a.fileSlug === slug) || null
   );
 
+  eleventyConfig.addFilter("ruSitemapDate", (d) =>
+    (d instanceof Date ? d : new Date(d || Date.now())).toISOString().slice(0, 10)
+  );
+
   return {
     dir: {
       input: "src",

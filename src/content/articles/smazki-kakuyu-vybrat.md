@@ -2,6 +2,7 @@
 tags: articles
 title: Смазки — на какой основе выбрать и почему это важно
 readTime: 5 мин
+description: Смазка на водной, силиконовой или масляной основе — какую выбрать, с чем сочетается силикон и почему основа важна.
 cover: /images/products/placeholder.svg
 layout: layouts/article.njk
 permalink: "/articles/{{ page.fileSlug }}/"

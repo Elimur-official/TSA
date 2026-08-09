@@ -2,6 +2,7 @@
 tags: articles
 title: Как ухаживать за игрушками, чтобы служили дольше
 readTime: 4 мин
+description: Как ухаживать за интимными игрушками, чтобы они служили дольше — мытьё, сушка и хранение простыми словами.
 cover: /images/products/placeholder.svg
 layout: layouts/article.njk
 permalink: "/articles/{{ page.fileSlug }}/"

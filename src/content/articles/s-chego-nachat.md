@@ -2,6 +2,7 @@
 tags: articles
 title: С чего начать — гид для тех, кто впервые
 readTime: 6 мин
+description: Как выбрать первую интимную игрушку — цель, материал, уровень шума. Простой гид для тех, кто пробует впервые.
 cover: /images/products/placeholder.svg
 layout: layouts/article.njk
 permalink: "/articles/{{ page.fileSlug }}/"

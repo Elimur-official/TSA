@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ title or "elimur — интимные товары для взрослых" }}</title>
+<meta name="description" content="{{ description or site.defaultDescription }}">
+{% if site.yandexVerification %}<meta name="yandex-verification" content="{{ site.yandexVerification }}">{% endif %}
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="elimur">
