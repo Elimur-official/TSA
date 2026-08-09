@@ -117,7 +117,7 @@ main { padding: 0 18px 40px; }
 .legal-table { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); overflow: hidden; }
 .legal-row { display: flex; justify-content: space-between; gap: 14px; padding: 12px 14px; border-bottom: 1px solid rgba(214,166,64,.08); font-size: 12.5px; }
 .faq-item { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); padding: 15px; margin-bottom: 10px; }
-.faq-item summary { font-weight: 700; cursor: pointer; }
+.faq-item summary { font-weight: 700; cursor: pointer; list-style: none; position: relative; padding-right: 22px; }
 .anonymity { display: grid; gap: 12px; margin: 18px 0 22px; }
 .anonymity__intro { color: var(--color-muted); }
 .anonymity__section { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); padding: 15px; }
@@ -150,3 +150,47 @@ main { padding: 0 18px 40px; }
 .sticky-order .btn { padding: 12px 22px; }
 body:has(.sticky-order--visible) { padding-bottom: 72px; }
 @media (min-width: 1280px) { .sticky-order { display: none; } }
+
+/* — полировка: состояния и движение — */
+.product-card, .mini-card { transition: transform 160ms ease, filter 160ms ease; }
+.btn { transition: filter 120ms ease, transform 80ms ease; }
+.chip { transition: background 120ms ease, border-color 120ms ease, color 120ms ease; }
+.btn--primary:active { transform: translateY(1px); }
+
+@media (hover: hover) {
+  .product-card:hover, .mini-card:hover { transform: translateY(-2px); filter: brightness(1.05); }
+  .btn--primary:hover { filter: brightness(1.06); }
+  .chip:hover { border-color: rgba(214,166,64,.5); }
+}
+
+.btn:focus-visible, .chip:focus-visible, a:focus-visible, summary:focus-visible, .gallery__thumb:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.product-detail__price, .product-card__price, .mini-card__price, .sticky-order__price { font-variant-numeric: tabular-nums; }
+
+/* золотая нить — подпись стиля */
+.product-detail__info h3::after, .anonymity__section h3::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  margin-top: 6px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  transition: width 200ms ease;
+}
+@media (hover: hover) {
+  .product-detail__info section:hover h3::after, .anonymity__section:hover h3::after { width: 56px; }
+}
+
+/* аккордеон FAQ */
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "›"; position: absolute; right: 2px; top: 0; color: var(--color-accent); font-size: 18px; line-height: 1; transform: rotate(90deg); transition: transform 150ms ease; }
+.faq-item[open] summary::after { transform: rotate(-90deg); }
+@keyframes faq-fade { from { opacity: 0; } to { opacity: 1; } }
+.faq-item[open] > p { animation: faq-fade 150ms ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
