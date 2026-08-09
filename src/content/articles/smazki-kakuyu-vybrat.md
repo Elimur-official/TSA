@@ -5,6 +5,7 @@ readTime: 5 мин
 cover: /images/products/placeholder.svg
 layout: layouts/article.njk
 permalink: "/articles/{{ page.fileSlug }}/"
+relatedProducts: [3]
 ---
 Смазка — не второстепенная покупка, а вопрос комфорта и безопасности.
 Основа имеет значение, особенно если вы используете игрушки из силикона.

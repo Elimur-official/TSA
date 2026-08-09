@@ -11,7 +11,9 @@
     "specs": [
       { "key": "Материал", "value": "силикон" },
       { "key": "Режимы", "value": "5 уровней мощности" }
-    ]
+    ],
+    "related": [3],
+    "guide": "s-chego-nachat"
   },
   {
     "id": 2,
@@ -24,7 +26,9 @@
     "inStock": true,
     "specs": [
       { "key": "Водонепроницаемость", "value": "да" }
-    ]
+    ],
+    "related": [3],
+    "guide": "uhod-za-igrushkami"
   },
   {
     "id": 3,
@@ -38,6 +42,8 @@
     "specs": [
       { "key": "Основа", "value": "водная" },
       { "key": "Гипоаллергенно", "value": "да" }
-    ]
+    ],
+    "related": [1],
+    "guide": "smazki-kakuyu-vybrat"
   }
 ]

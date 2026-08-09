@@ -31,3 +31,25 @@ test("demo products must not carry invented ratings", () => {
     assert.equal(p.reviewsCount, undefined);
   }
 });
+
+test("related ids reference existing products", () => {
+  const ids = new Set(products.map((p) => p.id));
+  for (const p of products) {
+    for (const rid of p.related || []) {
+      assert.ok(ids.has(rid), `${p.name}: related id ${rid} must exist`);
+      assert.notEqual(rid, p.id, `${p.name}: must not relate to itself`);
+    }
+  }
+  assert.ok(products.some((p) => p.related && p.related.length), "demo data must exercise related");
+});
+
+test("every demo product points to a guide article", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const p of products) {
+    if (!p.guide) continue;
+    const md = path.join(__dirname, "..", "src", "content", "articles", `${p.guide}.md`);
+    assert.ok(fs.existsSync(md), `${p.name}: guide article ${p.guide}.md must exist`);
+  }
+  assert.ok(products.some((p) => p.guide), "demo data must exercise guide");
+});

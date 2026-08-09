@@ -5,6 +5,7 @@ readTime: 4 мин
 cover: /images/products/placeholder.svg
 layout: layouts/article.njk
 permalink: "/articles/{{ page.fileSlug }}/"
+relatedProducts: [2]
 ---
 Простой уход продлевает жизнь игрушке в разы. Несколько правил, которые
 стоит взять за привычку.
