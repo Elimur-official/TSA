@@ -18,7 +18,7 @@ eleventyComputed:
     <img src="{{ product.images[0] }}" alt="{{ product.name }}" class="product-detail__photo" id="gallery-main">
     <div class="gallery__thumbs">
       {% for img in product.images %}
-      <button class="gallery__thumb{% if loop.first %} gallery__thumb--active{% endif %}" data-src="{{ img }}" type="button">
+      <button class="gallery__thumb{% if loop.first %} gallery__thumb--active{% endif %}" data-src="{{ img }}" type="button" aria-label="Фото {{ loop.index }}">
         <img src="{{ img }}" alt="" loading="lazy">
       </button>
       {% endfor %}
