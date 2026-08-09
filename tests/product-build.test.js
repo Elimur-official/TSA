@@ -88,3 +88,8 @@ test("product page carries valid JSON-LD without invented rating", () => {
   assert.match(ld.image, /^https:\/\//);
   assert.equal(ld.aggregateRating, undefined);
 });
+
+test("demo products render a single photo, no gallery thumbs", () => {
+  assert.doesNotMatch(html, /gallery__thumbs/);
+  assert.match(html, /product-detail__photo/);
+});

@@ -13,7 +13,20 @@ eleventyComputed:
 <a href="/" class="back-link">← Каталог</a>
 
 <div class="product-detail">
+  {% if product.images and product.images.length > 1 %}
+  <div class="gallery">
+    <img src="{{ product.images[0] }}" alt="{{ product.name }}" class="product-detail__photo" id="gallery-main">
+    <div class="gallery__thumbs">
+      {% for img in product.images %}
+      <button class="gallery__thumb{% if loop.first %} gallery__thumb--active{% endif %}" data-src="{{ img }}" type="button">
+        <img src="{{ img }}" alt="" loading="lazy">
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
   <img src="{{ product.image }}" alt="{{ product.name }}" class="product-detail__photo">
+  {% endif %}
   <div class="product-detail__info">
     <span class="product-detail__category">{{ product.category }}</span>
     <h1>{{ product.name }}</h1>
