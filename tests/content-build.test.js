@@ -11,7 +11,7 @@ test("CMS config is valid YAML with expected collections", () => {
   );
   const config = yaml.load(raw);
   const names = config.collections.map((c) => c.name);
-  assert.deepEqual(names.sort(), ["about", "articles", "faq", "reviews"]);
+  assert.deepEqual(names.sort(), ["about", "anonymity", "articles", "faq", "reviews"]);
 });
 
 test("about page renders real legal details", () => {
@@ -104,4 +104,16 @@ test("article page shows related products from the catalog", () => {
   );
   assert.match(articleHtml, /Из каталога/);
   assert.match(articleHtml, /href="\/product\/1\/"/);
+});
+
+test("anonymity page is built with its four promises", () => {
+  const anonHtml = fs.readFileSync(path.join(__dirname, "..", "_site", "anonymity", "index.html"), "utf8");
+  assert.match(anonHtml, /Что видит курьер/);
+  assert.match(anonHtml, /Что написано в документах/);
+  assert.match(anonHtml, /обезличенное название/);
+});
+
+test("footer anonymity link points to the anonymity page", () => {
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  assert.match(home, /<a href="\/anonymity\/">Анонимность<\/a>/);
 });

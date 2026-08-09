@@ -31,6 +31,31 @@ collections:
           - { label: Макет, name: layout, widget: hidden, default: "layouts/about.njk" }
           - { label: Ссылка, name: permalink, widget: hidden, default: "/about/" }
 
+  - name: anonymity
+    label: Анонимность
+    files:
+      - file: src/anonymity.md
+        label: Страница «Анонимность»
+        name: anonymity
+        fields:
+          - { label: Layout, name: layout, widget: hidden, default: layouts/anonymity.njk }
+          - { label: Permalink, name: permalink, widget: hidden, default: /anonymity/ }
+          - { label: Title, name: title, widget: hidden, default: Анонимность — elimur }
+          - { label: Заголовок, name: heading, widget: string }
+          - { label: Подводка, name: intro, widget: text }
+          - label: Секции
+            name: sections
+            widget: list
+            fields:
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст, name: body, widget: text }
+          - label: Фото посылки
+            name: photos
+            widget: list
+            required: false
+            field: { label: Фото, name: photo, widget: image }
+          - { label: Текст, name: body, widget: hidden, default: "" }
+
   - name: reviews
     label: Отзывы
     folder: src/content/reviews

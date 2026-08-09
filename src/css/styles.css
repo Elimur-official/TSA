@@ -118,6 +118,13 @@ main { padding: 0 18px 40px; }
 .legal-row { display: flex; justify-content: space-between; gap: 14px; padding: 12px 14px; border-bottom: 1px solid rgba(214,166,64,.08); font-size: 12.5px; }
 .faq-item { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); padding: 15px; margin-bottom: 10px; }
 .faq-item summary { font-weight: 700; cursor: pointer; }
+.anonymity { display: grid; gap: 12px; margin: 18px 0 22px; }
+.anonymity__intro { color: var(--color-muted); }
+.anonymity__section { border: 1px solid rgba(214,166,64,.14); border-radius: 16px; background: var(--color-surface); padding: 15px; }
+.anonymity__section h3 { margin: 0 0 6px; }
+.anonymity__section p { margin: 0; color: var(--color-muted); }
+.anonymity__photos { display: flex; gap: 10px; margin-bottom: 22px; }
+.anonymity__photos img { max-width: 32%; border-radius: 14px; }
 .site-footer { margin-top: 48px; padding: 24px 18px 32px; border-top: 1px solid rgba(214,166,64,.14); font-size: 12.5px; }
 .site-footer__cols { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 18px; }
 .site-footer__col { display: flex; flex-direction: column; gap: 7px; }
