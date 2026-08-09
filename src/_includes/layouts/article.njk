@@ -7,3 +7,11 @@ layout: base.njk
   <h1>{{ title }}</h1>
   <div class="article__body">{{ content | safe }}</div>
 </article>
+
+{% set miniItems = products | pickProducts(relatedProducts) %}
+{% if miniItems.length %}
+<section class="article-products">
+  <h3>Из каталога</h3>
+  {% include "mini-grid.njk" %}
+</section>
+{% endif %}

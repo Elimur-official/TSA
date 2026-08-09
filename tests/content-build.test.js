@@ -96,3 +96,12 @@ test("home page falls back to the raster default og:image, not the SVG placehold
   assert.match(home, /property="og:image:width" content="1200"/);
   assert.match(home, /property="og:image:height" content="630"/);
 });
+
+test("article page shows related products from the catalog", () => {
+  const articleHtml = fs.readFileSync(
+    path.join(__dirname, "..", "_site", "articles", "s-chego-nachat", "index.html"),
+    "utf8"
+  );
+  assert.match(articleHtml, /Из каталога/);
+  assert.match(articleHtml, /href="\/product\/1\/"/);
+});

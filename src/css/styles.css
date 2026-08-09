@@ -91,6 +91,7 @@ main { padding: 0 18px 40px; }
 .product-specs dt { color: var(--color-muted); }
 .product-specs dd { margin: 0; font-weight: 600; }
 .product-related, .product-guide { margin-top: 22px; }
+.article-products { margin-top: 28px; }
 .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 .mini-card { display: flex; flex-direction: column; gap: 4px; border: 1px solid rgba(214,166,64,.14); border-radius: 14px; padding: 10px; background: var(--color-surface); text-decoration: none; color: inherit; font-size: 12.5px; }
 .mini-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px; background: #241512; }
