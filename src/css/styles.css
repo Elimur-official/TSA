@@ -31,6 +31,7 @@ a { color: var(--color-accent); }
   display: inline-block;
   text-decoration: none;
   text-align: center;
+  transition: filter 120ms ease, transform 80ms ease;
 }
 .btn--full { display: block; width: 100%; }
 .btn--primary { background: linear-gradient(180deg, var(--color-accent-strong), #C6902B); color: #241205; }
@@ -56,7 +57,7 @@ main { padding: 0 18px 40px; }
 .chips-wrap::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 28px; background: linear-gradient(90deg, transparent, var(--color-bg)); pointer-events: none; }
 .category-filter { display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap; padding: 2px 24px 6px 2px; scrollbar-width: none; }
 .category-filter::-webkit-scrollbar { display: none; }
-.chip { flex: 0 0 auto; padding: 9px 16px; border-radius: 20px; font-family: var(--font-heading); font-weight: 600; font-size: 13px; cursor: pointer; border: 1px solid rgba(214,166,64,.22); background: transparent; color: var(--color-muted); }
+.chip { flex: 0 0 auto; padding: 9px 16px; border-radius: 20px; font-family: var(--font-heading); font-weight: 600; font-size: 13px; cursor: pointer; border: 1px solid rgba(214,166,64,.22); background: transparent; color: var(--color-muted); transition: background 120ms ease, border-color 120ms ease, color 120ms ease; }
 .chip--active { border-color: transparent; background: linear-gradient(180deg, var(--color-accent-strong), #C6902B); color: #241205; }
 .trust-strip { display: flex; justify-content: space-between; gap: 6px; padding: 16px 14px; border: 1px solid rgba(214,166,64,.16); border-radius: 20px; background: linear-gradient(180deg, rgba(214,166,64,.06), rgba(214,166,64,.02)); }
 .trust-strip div { flex: 1; text-align: center; font-size: 11px; font-weight: 600; }
@@ -143,24 +144,25 @@ main { padding: 0 18px 40px; }
   .product-detail__reviews { grid-column: 1 / -1; }
   .site-footer { padding: 24px 40px 32px; }
   .chips-wrap::after { display: none; }
+  .sticky-order { display: none; }
 }
-.sticky-order { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 18px calc(10px + env(safe-area-inset-bottom)); background: var(--color-surface); border-top: 1px solid rgba(214,166,64,.2); transform: translateY(110%); transition: transform 200ms ease; }
-.sticky-order--visible { transform: translateY(0); }
+.sticky-order { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 18px calc(10px + env(safe-area-inset-bottom)); background: var(--color-surface); border-top: 1px solid rgba(214,166,64,.2); max-width: 480px; margin-inline: auto; transform: translateY(110%); visibility: hidden; transition: transform 200ms ease, visibility 0s linear 200ms; }
+.sticky-order--visible { transform: translateY(0); visibility: visible; transition-delay: 0s; }
 .sticky-order__price { font-family: var(--font-heading); font-weight: 800; font-size: 18px; color: var(--color-accent); white-space: nowrap; }
 .sticky-order .btn { padding: 12px 22px; }
-body:has(.sticky-order--visible) { padding-bottom: 72px; }
-@media (min-width: 1280px) { .sticky-order { display: none; } }
+@media (max-width: 1279px) {
+  body:has(.sticky-order--visible) { padding-bottom: 72px; }
+}
 
 /* — полировка: состояния и движение — */
 .product-card, .mini-card { transition: transform 160ms ease, filter 160ms ease; }
-.btn { transition: filter 120ms ease, transform 80ms ease; }
-.chip { transition: background 120ms ease, border-color 120ms ease, color 120ms ease; }
 .btn--primary:active { transform: translateY(1px); }
 
 @media (hover: hover) {
   .product-card:hover, .mini-card:hover { transform: translateY(-2px); filter: brightness(1.05); }
   .btn--primary:hover { filter: brightness(1.06); }
   .chip:hover { border-color: rgba(214,166,64,.5); }
+  .product-detail__info section:hover h3::after, .anonymity__section:hover h3::after { width: 56px; }
 }
 
 .btn:focus-visible, .chip:focus-visible, a:focus-visible, summary:focus-visible, .gallery__thumb:focus-visible {
@@ -179,9 +181,6 @@ body:has(.sticky-order--visible) { padding-bottom: 72px; }
   margin-top: 6px;
   background: linear-gradient(90deg, var(--color-accent), transparent);
   transition: width 200ms ease;
-}
-@media (hover: hover) {
-  .product-detail__info section:hover h3::after, .anonymity__section:hover h3::after { width: 56px; }
 }
 
 /* аккордеон FAQ */
