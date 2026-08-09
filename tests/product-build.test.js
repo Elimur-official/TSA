@@ -70,6 +70,13 @@ test("product page links its guide article", () => {
   assert.match(html, /href="\/articles\/s-chego-nachat\/"/);
 });
 
+test("product page carries the sticky order bar with the standard order markup", () => {
+  assert.match(html, /id="sticky-order"/);
+  const afterBar = html.split('id="sticky-order"')[1];
+  assert.match(afterBar, /data-analytics="order-click"/);
+  assert.match(afterBar, /start=product_1/);
+});
+
 test("product page carries valid JSON-LD without invented rating", () => {
   const m = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
   assert.ok(m, "JSON-LD script must be present");

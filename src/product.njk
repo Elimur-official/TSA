@@ -98,6 +98,16 @@ eleventyComputed:
   {% endif %}
 </div>
 
+<div class="sticky-order" id="sticky-order">
+  <span class="sticky-order__price">{% if product.oldPrice and product.oldPrice > product.price %}<s class="price-old">{{ product.oldPrice }} ₽</s> {% endif %}{{ product.price }} ₽</span>
+  <a
+    href="https://t.me/{{ site.telegramBotUsername }}?start=product_{{ product.id }}"
+    class="btn btn--primary"
+    data-analytics="order-click"
+    data-product-id="{{ product.id }}"
+  >Заказать</a>
+</div>
+
 {% set ldProduct = {
   "@context": "https://schema.org",
   "@type": "Product",
