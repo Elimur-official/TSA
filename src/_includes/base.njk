@@ -84,6 +84,18 @@
 </footer>
 
 <script>window.YM_ID = {{ site.yandexMetrikaId }};</script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 <script src="/js/age-gate.js"></script>
 <script src="/js/analytics.js"></script>
 <script src="/js/promo-copy.js"></script>

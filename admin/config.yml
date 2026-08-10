@@ -6,6 +6,71 @@ media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: products
+    label: Товары
+    label_singular: Товар
+    folder: src/content/products
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: "{{fields.id}}"
+    identifier_field: name
+    summary: "№{{fields.id}} · {{name}} · {{price}} ₽"
+    fields:
+      - label: "Номер товара"
+        name: id
+        widget: number
+        value_type: int
+        min: 1
+        hint: "Уникальный номер. После публикации не менять — он зашит в ссылки и QR-коды на упаковке."
+      - { label: Название, name: name, widget: string }
+      - label: Категория
+        name: category
+        widget: string
+        hint: "Например: Вибраторы, Массажёры, Смазки. Одинаковые названия объединяются в один фильтр на сайте."
+      - { label: "Цена, ₽", name: price, widget: number, value_type: int, min: 0 }
+      - label: "Старая цена, ₽"
+        name: oldPrice
+        widget: number
+        value_type: int
+        required: false
+        hint: "Если заполнить — на сайте появится зачёркнутая цена и бейдж скидки. Указывайте только цену, по которой товар действительно продавался."
+      - label: Фото
+        name: image
+        widget: image
+        hint: "Квадратное фото, лучше от 800×800. Его же увидят в боте."
+      - { label: Описание, name: description, widget: text }
+      - label: "В наличии"
+        name: inStock
+        widget: boolean
+        default: true
+        required: false
+      - label: Характеристики
+        name: specs
+        widget: list
+        required: false
+        fields:
+          - { label: Название, name: key, widget: string }
+          - { label: Значение, name: value, widget: string }
+      - label: "С этим берут"
+        name: related
+        widget: list
+        required: false
+        field: { label: "Номер товара", name: related_id, widget: number, value_type: int }
+        hint: "Номера сопутствующих товаров — покажутся блоком в карточке."
+      - label: "Ссылка на гайд"
+        name: guide
+        widget: string
+        required: false
+        hint: "Адрес статьи без слэшей, например: s-chego-nachat. Оставьте пустым, если гайда нет."
+      - label: "Доп. фото"
+        name: images
+        widget: list
+        required: false
+        field: { label: Фото, name: photo, widget: image }
+        hint: "Если добавить два и больше — в карточке появится галерея с миниатюрами."
+
   - name: about
     label: О бренде
     files:

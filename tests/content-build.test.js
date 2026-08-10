@@ -11,7 +11,7 @@ test("CMS config is valid YAML with expected collections", () => {
   );
   const config = yaml.load(raw);
   const names = config.collections.map((c) => c.name);
-  assert.deepEqual(names.sort(), ["about", "anonymity", "articles", "faq", "reviews"]);
+  assert.deepEqual(names.sort(), ["about", "anonymity", "articles", "faq", "products", "reviews"]);
 });
 
 test("about page renders real legal details", () => {
@@ -116,4 +116,35 @@ test("anonymity page is built with its four promises", () => {
 test("footer anonymity link points to the anonymity page", () => {
   const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
   assert.match(home, /<a href="\/anonymity\/">Анонимность<\/a>/);
+});
+
+test("CMS has a products collection writing per-item JSON files", () => {
+  const raw = fs.readFileSync(path.join(__dirname, "..", "admin", "config.yml"), "utf8");
+  const config = yaml.load(raw);
+  const names = config.collections.map((c) => c.name);
+  assert.deepEqual(names.sort(), ["about", "anonymity", "articles", "faq", "products", "reviews"]);
+
+  const products = config.collections.find((c) => c.name === "products");
+  assert.equal(products.folder, "src/content/products");
+  assert.equal(products.extension, "json");
+  assert.equal(products.format, "json");
+  assert.equal(products.create, true);
+  assert.equal(products.slug, "{{fields.id}}");
+
+  // поля, которые уже используются на сайте, обязаны быть в CMS —
+  // иначе сохранение товара их молча сотрёт
+  const fieldNames = products.fields.map((f) => f.name);
+  for (const required of ["id", "name", "description", "price", "category", "image", "inStock", "oldPrice", "specs", "related", "guide"]) {
+    assert.ok(fieldNames.includes(required), `CMS must expose the ${required} field`);
+  }
+});
+
+test("admin page loads the identity widget, otherwise nobody can log in", () => {
+  const adminHtml = fs.readFileSync(path.join(__dirname, "..", "_site", "admin", "index.html"), "utf8");
+  assert.match(adminHtml, /netlify-identity-widget\.js/);
+});
+
+test("site pages carry the identity invite handler", () => {
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  assert.match(home, /netlify-identity-widget\.js/);
 });
