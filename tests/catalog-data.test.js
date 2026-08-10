@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const products = require("../src/_data/products.json");
+const products = require("../src/_data/products.js")();
 
 test("every demo product has oldPrice ≈ price/0.85 rounded to 10", () => {
   for (const p of products) {

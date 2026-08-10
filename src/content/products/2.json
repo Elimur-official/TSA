@@ -1,0 +1,15 @@
+{
+  "id": 2,
+  "name": "Массажёр «Шёлк»",
+  "description": "Продуманная эргономика, водонепроницаемый корпус.",
+  "price": 4590,
+  "oldPrice": 5400,
+  "category": "Массажёры",
+  "image": "/images/products/placeholder.svg",
+  "inStock": true,
+  "specs": [
+    { "key": "Водонепроницаемость", "value": "да" }
+  ],
+  "related": [3],
+  "guide": "uhod-za-igrushkami"
+}
