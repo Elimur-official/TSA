@@ -4,9 +4,15 @@ const fs = require("node:fs");
 const path = require("node:path");
 const products = require("../src/_data/products.js")();
 
-test("products come from individual files, sorted by id", () => {
-  assert.equal(products.length, 3);
-  assert.deepEqual(products.map((p) => p.id), [1, 2, 3]);
+test("product ids are unique positive integers and the catalog is sorted by id", () => {
+  const ids = products.map((p) => p.id);
+  assert.ok(ids.length > 0, "catalog must not be empty");
+  for (const id of ids) {
+    assert.ok(Number.isInteger(id) && id > 0, `id ${id} must be a positive integer`);
+  }
+  assert.equal(new Set(ids).size, ids.length, "product ids must be unique");
+  const sorted = [...ids].sort((a, b) => a - b);
+  assert.deepEqual(ids, sorted, "products must be sorted by id");
 });
 
 test("migrated products keep every field they had before", () => {

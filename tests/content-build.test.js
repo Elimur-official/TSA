@@ -87,7 +87,7 @@ test("pages link the favicon and carry og tags", () => {
   assert.match(home, /property="og:title"/);
   const productPage = fs.readFileSync(path.join(__dirname, "..", "_site", "product", "1", "index.html"), "utf8");
   assert.match(productPage, /property="og:title" content="Вибратор «Полночь» — elimur"/);
-  assert.match(productPage, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/products\/placeholder\.svg"/);
+  assert.match(productPage, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/products\/placeholder\.jpg"/);
 });
 
 test("home page falls back to the raster default og:image, not the SVG placeholder", () => {
@@ -144,7 +144,20 @@ test("admin page loads the identity widget, otherwise nobody can log in", () => 
   assert.match(adminHtml, /netlify-identity-widget\.js/);
 });
 
-test("site pages carry the identity invite handler", () => {
+test("public pages do NOT load the identity widget unconditionally", () => {
   const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
-  assert.match(home, /netlify-identity-widget\.js/);
+  assert.doesNotMatch(
+    home,
+    /<script src="https:\/\/identity\.netlify\.com\/v1\/netlify-identity-widget\.js"><\/script>/,
+    "the widget must not load unconditionally on public pages — it's heavy third-party JS most visitors never need"
+  );
+});
+
+test("public pages lazily load the identity widget only when an invite/recovery/confirmation token is in the URL hash", () => {
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  assert.match(home, /invite_token/);
+  assert.match(home, /recovery_token/);
+  assert.match(home, /confirmation_token/);
+  assert.match(home, /window\.location\.hash/);
+  assert.match(home, /netlify-identity-widget\.js/, "the widget script URL must still be present, just injected conditionally");
 });

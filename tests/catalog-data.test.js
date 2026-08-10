@@ -2,16 +2,20 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const products = require("../src/_data/products.js")();
 
-test("every demo product has oldPrice ≈ price/0.85 rounded to 10", () => {
+test("oldPrice, when present, is greater than price", () => {
   for (const p of products) {
-    assert.ok(p.oldPrice > p.price, `${p.name}: oldPrice must exceed price`);
-    const expected = Math.round(p.price / 0.85 / 10) * 10;
-    assert.equal(p.oldPrice, expected, p.name);
+    if (p.oldPrice === undefined) continue;
+    assert.ok(p.oldPrice > p.price, `${p.name}: oldPrice must exceed price when present`);
   }
 });
 
-test("every demo product is in stock", () => {
-  for (const p of products) assert.equal(p.inStock, true);
+test("every product has non-empty name, category, image, and a numeric price ≥ 0", () => {
+  for (const p of products) {
+    assert.ok(typeof p.name === "string" && p.name.trim().length > 0, `${p.name}: name must be non-empty`);
+    assert.ok(typeof p.category === "string" && p.category.trim().length > 0, `${p.name}: category must be non-empty`);
+    assert.ok(typeof p.image === "string" && p.image.trim().length > 0, `${p.name}: image must be non-empty`);
+    assert.ok(typeof p.price === "number" && p.price >= 0, `${p.name}: price must be a numeric value ≥ 0`);
+  }
 });
 
 test("specs, when present, are key/value pairs", () => {

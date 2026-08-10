@@ -84,16 +84,26 @@
 </footer>
 
 <script>window.YM_ID = {{ site.yandexMetrikaId }};</script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", (user) => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
+  // The Netlify Identity widget is heavy third-party JS with no business
+  // being on every visitor's page load of a privacy-focused 18+ catalog.
+  // It exists only to catch the owner's invite/recovery/confirmation link,
+  // so load it lazily and only when that link is what brought us here.
+  if (/(?:invite_token|recovery_token|confirmation_token)=/.test(window.location.hash)) {
+    var identityScript = document.createElement("script");
+    identityScript.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+    identityScript.onload = function () {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
         });
       }
-    });
+    };
+    document.head.appendChild(identityScript);
   }
 </script>
 <script src="/js/age-gate.js"></script>
