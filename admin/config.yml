@@ -2,6 +2,9 @@ backend:
   name: git-gateway
   branch: main
 
+# интерфейс админки на русском (кнопки, меню, подсказки)
+locale: ru
+
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
 

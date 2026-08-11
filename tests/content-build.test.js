@@ -161,3 +161,9 @@ test("public pages lazily load the identity widget only when an invite/recovery/
   assert.match(home, /window\.location\.hash/);
   assert.match(home, /netlify-identity-widget\.js/, "the widget script URL must still be present, just injected conditionally");
 });
+
+test("CMS interface is set to Russian", () => {
+  const raw = fs.readFileSync(path.join(__dirname, "..", "admin", "config.yml"), "utf8");
+  const config = yaml.load(raw);
+  assert.equal(config.locale, "ru", "админка должна открываться на русском");
+});
