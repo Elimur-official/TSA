@@ -9,15 +9,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Golos+Text:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
 <style>
 :root{
-  --velvet:#241019; --velvet-2:#1b0c13; --surface:#32161f; --surface-2:#3d1c27;
-  --line:rgba(255,232,240,.14); --line-soft:rgba(255,232,240,.08);
-  --ink:#FFF0F4; --mute:#B79AA6; --mute-2:#8d7480;
-  --candy:#FF6B8F; --candy-deep:#E6537A;
+  --velvet:#FFEBF2; --velvet-2:#FFE0EB; --surface:#FFFFFF; --surface-2:#FFF6F9;
+  --line:rgba(196,64,116,.20); --line-soft:rgba(196,64,116,.11);
+  --ink:#44112B; --mute:#96617B; --mute-2:#BB8AA1;
+  --candy:#FF4D8D; --candy-deep:#E8397A;
   --marker:#FFD84D; --marker-ink:#3d2c04;
-  --sage:#8FBFA8; --sage-ink:#0e2b1f;
-  --calm-bg:#F7F1F3; --calm-ink:#241019; --calm-mute:#6b5560; --calm-line:#e2d5da;
+  --sage:#5FA886; --sage-ink:#0e2b1f;
+  --calm-bg:#FAF7F6; --calm-ink:#2E1220; --calm-mute:#77606B; --calm-line:#E9DDE2;
   --r-s:10px; --r-m:18px; --r-l:26px;
-  --shadow:0 24px 60px rgba(0,0,0,.5);
+  --shadow:0 22px 52px rgba(200,60,120,.16);
   --ease:cubic-bezier(.22,.9,.3,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -47,15 +47,16 @@ a{text-decoration:none;color:inherit}
 /* ── бархат-фон ── */
 .velvet-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(90vw 50vh at 10% -5%, rgba(255,107,143,.13), transparent 60%),
-    radial-gradient(70vw 45vh at 95% 30%, rgba(201,150,245,.10), transparent 60%),
-    radial-gradient(60vw 40vh at 30% 90%, rgba(143,191,168,.07), transparent 60%),
-    linear-gradient(180deg,var(--velvet-2),var(--velvet) 30%,var(--velvet-2));}
+    radial-gradient(90vw 55vh at 12% -5%, rgba(255,77,141,.14), transparent 62%),
+    radial-gradient(75vw 48vh at 96% 28%, rgba(196,150,255,.16), transparent 62%),
+    radial-gradient(65vw 42vh at 25% 95%, rgba(255,216,77,.12), transparent 60%),
+    radial-gradient(50vw 35vh at 75% 75%, rgba(120,220,180,.10), transparent 60%),
+    linear-gradient(180deg,var(--velvet-2),var(--velvet) 35%,var(--velvet-2));}
 main{position:relative;z-index:1}
 
 /* ── шапка ── */
 header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
-  background:rgba(27,12,19,.82);border-bottom:1px solid var(--line-soft)}
+  background:rgba(255,235,242,.86);border-bottom:1px solid var(--line-soft)}
 .bar{display:flex;align-items:center;gap:10px;padding:11px 20px;max-width:1080px;margin:0 auto}
 .logo{font-family:Oranienbaum,serif;font-size:23px;letter-spacing:.02em}
 .logo .dot{color:var(--candy)}
@@ -69,7 +70,7 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
   border:1px solid var(--line);border-radius:99px;padding:8px 15px;transition:all .15s ease;white-space:nowrap}
 .cart-btn:hover{border-color:var(--candy)}
 .cart-btn .cnt{position:absolute;top:-6px;right:-4px;min-width:19px;height:19px;border-radius:99px;
-  background:var(--candy);color:#2b0a14;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px;
+  background:var(--candy);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px;
   transform:scale(0);transition:transform .25s var(--ease)}
 .cart-btn .cnt.show{transform:scale(1)}
 .cart-btn .cnt.pop{animation:pop .3s var(--ease)}
@@ -77,24 +78,24 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 
 /* ── первый экран ── */
 .hero{padding:clamp(40px,7vw,80px) 0 26px;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,4vw,50px);align-items:center}
-.hero .kick{font-family:Caveat,cursive;font-size:27px;color:var(--marker);transform:rotate(-2deg);display:inline-block;margin-bottom:10px}
+.hero .kick{font-family:Caveat,cursive;font-size:27px;color:var(--candy-deep);transform:rotate(-2deg);display:inline-block;margin-bottom:10px}
 .hero h1{font-family:Oranienbaum,serif;font-size:clamp(44px,8.5vw,84px);line-height:.98;letter-spacing:-.01em}
 .hero h1 em{font-style:normal;color:var(--candy)}
 .hero p.sub{margin-top:18px;font-size:clamp(16px,2vw,18.5px);color:var(--mute);max-width:30em}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;border-radius:99px;padding:14px 24px;transition:transform .15s ease,box-shadow .15s ease}
-.btn-main{background:var(--candy);color:#2b0a14;box-shadow:0 14px 34px rgba(255,107,143,.3)}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(255,107,143,.42)}
+.btn-main{background:var(--candy);color:#fff;box-shadow:0 14px 34px rgba(255,77,141,.35)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(255,77,141,.45)}
 .btn-ghost{border:1px solid var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--candy);transform:translateY(-2px)}
 .scroll-hint{margin-top:30px;font-family:Caveat,cursive;font-size:21px;color:var(--mute);display:flex;align-items:center;gap:10px}
 .scroll-hint .arr{display:inline-block;animation:bob 2.2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 .hero-photo{position:relative;transform:rotate(2deg)}
-.hero-photo img{border-radius:var(--r-l);border:1px solid rgba(255,242,226,.2);box-shadow:var(--shadow);aspect-ratio:4/4.4;object-fit:cover;width:100%}
+.hero-photo img{border-radius:var(--r-l);border:4px solid #fff;box-shadow:var(--shadow);aspect-ratio:3/4;object-fit:cover;width:100%}
 .hero-photo .note{position:absolute;bottom:-14px;left:-10px;background:var(--marker);color:var(--marker-ink);
   font-family:Caveat,cursive;font-size:19px;line-height:1.15;padding:10px 14px;border-radius:3px;transform:rotate(-3deg);
-  box-shadow:0 12px 26px rgba(0,0,0,.4);max-width:220px}
+  box-shadow:0 12px 26px rgba(160,110,20,.3);max-width:220px}
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 .hero > div > *{animation:rise .8s var(--ease) backwards}
 .hero .kick{animation-delay:.05s}.hero h1{animation-delay:.15s}.hero .sub{animation-delay:.3s}
@@ -102,14 +103,14 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .hero-photo{animation:rise .9s var(--ease) .35s backwards}
 
 /* ── фильтры ── */
-.filters{position:sticky;top:57px;z-index:50;background:rgba(27,12,19,.9);backdrop-filter:blur(12px);
+.filters{position:sticky;top:57px;z-index:50;background:rgba(255,235,242,.92);backdrop-filter:blur(12px);
   margin:14px -20px 0;padding:12px 20px;border-bottom:1px solid var(--line-soft)}
 .filters .row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .filters .row::-webkit-scrollbar{display:none}
 .fchip{flex:0 0 auto;font-size:13.5px;font-weight:500;border:1px solid var(--line);border-radius:99px;
   padding:8px 15px;color:var(--mute);transition:all .15s ease;white-space:nowrap}
 .fchip:hover{border-color:var(--candy);color:var(--ink)}
-.fchip.on{background:var(--candy);border-color:var(--candy);color:#2b0a14;font-weight:600}
+.fchip.on{background:var(--candy);border-color:var(--candy);color:#fff;font-weight:600}
 .fcount{font-size:12px;color:var(--mute-2);margin-top:8px}
 
 /* ── станция ── */
@@ -124,9 +125,9 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .item{position:relative;text-align:left;width:100%;cursor:pointer;transition:transform .25s var(--ease),opacity .25s ease}
 .item:hover{transform:translateY(-6px) rotate(var(--tilt,0deg))}
 .item.off{opacity:.22;filter:saturate(.4);pointer-events:none}
-.item .pad{position:relative;border-radius:var(--r-m);overflow:hidden;
-  border:1px solid var(--line-soft);aspect-ratio:4/5;background:var(--surface);
-  box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.item .pad{display:block;position:relative;border-radius:var(--r-m);overflow:hidden;
+  border:1px solid var(--line-soft);aspect-ratio:3/4;background:var(--surface);
+  box-shadow:0 12px 26px rgba(200,60,120,.14)}
 .item .pad img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .item:hover .pad img{transform:scale(1.06)}
 .item .badge{position:absolute;top:9px;left:9px;font-size:10.5px;font-weight:700;letter-spacing:.05em;
@@ -134,10 +135,10 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .item .badge.sage{background:var(--sage);color:var(--sage-ink)}
 .item .badge.loud{background:#f0a58e;color:#4a1d0e}
 .add-mini{position:absolute;right:9px;bottom:9px;z-index:2;width:37px;height:37px;border-radius:50%;
-  background:rgba(27,12,19,.75);backdrop-filter:blur(6px);border:1px solid var(--line);
+  background:rgba(255,255,255,.9);backdrop-filter:blur(6px);border:1px solid var(--line);
   display:grid;place-items:center;font-size:19px;line-height:1;color:var(--ink);
   transition:all .2s var(--ease)}
-.add-mini:hover{background:var(--candy);color:#2b0a14;border-color:var(--candy);transform:scale(1.1)}
+.add-mini:hover{background:var(--candy);color:#fff;border-color:var(--candy);transform:scale(1.1)}
 .item h3{font-size:14.5px;font-weight:600;margin-top:11px;line-height:1.3}
 .item .meta{display:flex;align-items:baseline;gap:8px;margin-top:6px;flex-wrap:wrap}
 .item .price{font-weight:700;font-size:15px;font-variant-numeric:tabular-nums}
@@ -156,13 +157,13 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 @media (max-width:900px){.nav{display:none}}
 .recent-row{display:flex;gap:12px;overflow-x:auto;padding:14px 2px;scrollbar-width:none}
 .recent-row::-webkit-scrollbar{display:none}
-.rc{flex:0 0 150px;cursor:pointer;transition:transform .2s var(--ease)}
+.rc{flex:0 0 135px;cursor:pointer;transition:transform .2s var(--ease)}
 .rc:hover{transform:translateY(-4px)}
-.rc img{width:150px;height:110px;object-fit:cover;border-radius:12px;border:1px solid var(--line-soft)}
+.rc img{width:135px;height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--line-soft)}
 .rc .nm{font-size:12px;font-weight:600;margin-top:7px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rc .pr{font-size:12px;color:var(--mute);margin-top:3px}
 .fav-mini{position:absolute;right:9px;top:9px;z-index:2;width:33px;height:33px;border-radius:50%;
-  background:rgba(27,12,19,.72);backdrop-filter:blur(6px);border:1px solid var(--line);
+  background:rgba(255,255,255,.9);backdrop-filter:blur(6px);border:1px solid var(--line);
   display:grid;place-items:center;font-size:15px;color:var(--mute);transition:all .2s var(--ease)}
 .fav-mini:hover{transform:scale(1.12)}
 .fav-mini.on{color:#fff;background:var(--candy-deep);border-color:var(--candy-deep)}
@@ -185,7 +186,7 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 
 /* стикер-подсказка */
 .sticker{position:relative;background:var(--marker);color:var(--marker-ink);
-  border-radius:3px;padding:15px 17px;max-width:300px;box-shadow:0 14px 30px rgba(0,0,0,.4);
+  border-radius:3px;padding:15px 17px;max-width:300px;box-shadow:0 12px 26px rgba(160,110,20,.28);
   font-family:Caveat,cursive;font-size:20.5px;line-height:1.25;transform:rotate(var(--rot,-1.6deg));
   align-self:center;justify-self:start}
 .sticker::after{content:"";position:absolute;top:-7px;left:50%;width:52px;height:15px;transform:translateX(-50%) rotate(-2deg);
@@ -195,8 +196,23 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .sticker.rvl.in{transform:rotate(var(--rot,-1.6deg))}
 
 /* ── квиз ── */
-.quiz-wrap{margin:40px 0 10px;background:linear-gradient(155deg,var(--surface-2),var(--surface));
+.quiz-wrap{margin:40px 0 10px;background:linear-gradient(155deg,#fff,var(--surface-2));
   border:1px solid var(--line);border-radius:var(--r-l);padding:clamp(24px,4vw,40px);box-shadow:var(--shadow)}
+.quiz-grid{display:grid;grid-template-columns:minmax(210px,270px) 1fr;gap:clamp(18px,3.5vw,40px);align-items:start}
+.quiz-photos{display:flex;flex-direction:column;gap:26px;padding-top:8px}
+.qp{position:relative;margin:0}
+.qp img{width:100%;border-radius:var(--r-m);border:4px solid #fff;box-shadow:0 14px 34px rgba(200,60,120,.22);aspect-ratio:3/4;object-fit:cover}
+.qp1{transform:rotate(-2.5deg)}
+.qp2{transform:rotate(2deg);width:82%;align-self:flex-end;margin-top:-10px}
+.qp figcaption{position:absolute;bottom:-12px;left:8px;background:var(--marker);color:var(--marker-ink);
+  font-family:Caveat,cursive;font-size:17px;padding:5px 11px;border-radius:3px;transform:rotate(-2deg);
+  box-shadow:0 8px 18px rgba(160,110,20,.3);white-space:nowrap}
+.qp2 figcaption{left:auto;right:6px;transform:rotate(1.5deg)}
+@media (max-width:700px){
+  .quiz-grid{grid-template-columns:1fr}
+  .quiz-photos{flex-direction:row;gap:14px;padding-top:0;margin-bottom:8px}
+  .qp1,.qp2{width:48%;margin-top:0}
+}
 .quiz-wrap h2{font-family:Oranienbaum,serif;font-size:clamp(27px,4.6vw,38px);line-height:1.08}
 .quiz-progress{display:flex;gap:6px;margin:18px 0 22px}
 .quiz-progress span{height:4px;flex:1;border-radius:99px;background:var(--line);transition:background .3s ease}
@@ -205,18 +221,18 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .opts{display:grid;gap:10px;max-width:520px}
 .opt{text-align:left;border:1px solid var(--line);border-radius:var(--r-m);padding:14px 17px;font-size:15.5px;
   transition:border-color .15s ease,background .15s ease,transform .15s ease}
-.opt:hover{border-color:var(--candy);background:rgba(255,107,143,.09);transform:translateX(4px)}
-.q-note{margin-top:16px;font-family:Caveat,cursive;font-size:19px;color:var(--marker)}
+.opt:hover{border-color:var(--candy);background:rgba(255,77,141,.07);transform:translateX(4px)}
+.q-note{margin-top:16px;font-family:Caveat,cursive;font-size:19px;color:#D19A10}
 .quiz-result{display:none}
 .quiz-result.on{display:block;animation:rise .5s var(--ease)}
 .result-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0}
-.tg-btn{display:inline-flex;align-items:center;gap:9px;background:var(--candy);color:#2b0a14;
+.tg-btn{display:inline-flex;align-items:center;gap:9px;background:var(--candy);color:#fff;
   font-weight:700;border-radius:99px;padding:14px 24px;font-size:15px}
 
 /* ── отзывы ── */
 .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:26px}
-.rev{background:rgba(255,240,244,.05);border:1px solid var(--line-soft);border-radius:var(--r-m);padding:19px}
-.rev .stars{color:var(--marker);font-size:13px;letter-spacing:2px}
+.rev{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-m);padding:19px}
+.rev .stars{color:#E8A91D;font-size:13px;letter-spacing:2px}
 .rev p{margin-top:9px;font-size:15px}
 .rev .who{margin-top:11px;font-size:12.5px;color:var(--mute-2)}
 
@@ -235,13 +251,21 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .panel p{color:var(--calm-mute);font-size:15.5px}
 .parcel{display:flex;gap:18px;align-items:center;margin-top:16px;flex-wrap:wrap}
 .parcel img{width:150px;border-radius:var(--r-s);box-shadow:0 10px 24px rgba(36,16,25,.14)}
+.panel .parcel img{width:210px;border-radius:var(--r-s);box-shadow:0 10px 24px rgba(46,18,32,.12)}
+.bank-mock{margin-top:16px;max-width:420px}
+.bank-row{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--calm-line);border-radius:14px;padding:13px 15px}
+.bank-ic{width:38px;height:38px;border-radius:10px;background:#F0EAED;display:grid;place-items:center;font-size:18px}
+.bank-row span:nth-child(2){flex:1;font-size:14px;line-height:1.3}
+.bank-row small{color:var(--calm-mute);font-size:12px}
+.bank-sum{font-weight:700;font-variant-numeric:tabular-nums}
+.bank-cap{font-size:11.5px;color:var(--calm-mute);margin-top:7px}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:24px}
 .fact{border-top:2px solid var(--calm-ink);padding-top:11px}
 .fact b{display:block;font-size:15px;margin-bottom:3px}
 .fact span{font-size:13.5px;color:var(--calm-mute)}
 
 /* ── карточка товара (зона 2) ── */
-.sheet-bg{position:fixed;inset:0;z-index:90;background:rgba(15,6,10,.72);backdrop-filter:blur(5px);
+.sheet-bg{position:fixed;inset:0;z-index:90;background:rgba(70,12,38,.5);backdrop-filter:blur(5px);
   display:flex;align-items:flex-end;justify-content:center;
   opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
 .sheet-bg.on{opacity:1;visibility:visible}
@@ -250,8 +274,13 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
   transform:translateY(60px);transition:transform .35s var(--ease)}
 .sheet-bg.on .sheet{transform:none}
 .sheet .grab{width:44px;height:4px;border-radius:99px;background:var(--calm-line);margin:0 auto 18px}
-.sheet .photo{border-radius:var(--r-m);overflow:hidden;aspect-ratio:16/10;margin-bottom:18px;border:1px solid var(--calm-line)}
+.sheet .photo{border-radius:var(--r-m);overflow:hidden;aspect-ratio:3/4;height:min(54vh,470px);margin:0 auto 12px;border:1px solid var(--calm-line)}
 .sheet .photo img{width:100%;height:100%;object-fit:cover}
+.gal{display:flex;gap:8px;justify-content:center;margin-bottom:16px}
+.gal button{width:56px;height:74px;border-radius:10px;overflow:hidden;border:2px solid var(--calm-line);padding:0;transition:border-color .15s ease,transform .15s ease}
+.gal button:hover{transform:translateY(-2px)}
+.gal button.on{border-color:var(--candy)}
+.gal img{width:100%;height:100%;object-fit:cover;display:block}
 .sheet h3{font-family:Oranienbaum,serif;font-size:27px;line-height:1.12}
 .sheet .price-row{display:flex;align-items:baseline;gap:12px;margin-top:10px}
 .sheet .price-row b{font-size:24px;font-variant-numeric:tabular-nums}
@@ -274,11 +303,11 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
   border:1px solid rgba(143,191,168,.5);font-size:13px;color:#39604f}
 
 /* ── корзина ── */
-.cart-bg{position:fixed;inset:0;z-index:95;background:rgba(15,6,10,.6);backdrop-filter:blur(3px);
+.cart-bg{position:fixed;inset:0;z-index:95;background:rgba(70,12,38,.42);backdrop-filter:blur(3px);
   opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s}
 .cart-bg.on{opacity:1;visibility:visible}
 .cart{position:fixed;top:0;right:0;bottom:0;z-index:96;width:min(400px,92vw);
-  background:var(--velvet-2);border-left:1px solid var(--line);box-shadow:var(--shadow);
+  background:#fff;border-left:1px solid var(--line);box-shadow:var(--shadow);
   display:flex;flex-direction:column;
   transform:translateX(105%);transition:transform .38s var(--ease)}
 .cart.on{transform:none}
@@ -289,7 +318,7 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .cart-empty{padding:40px 10px;text-align:center;color:var(--mute)}
 .cart-empty .big{font-family:Caveat,cursive;font-size:27px;color:var(--marker);margin-bottom:8px}
 .ci{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line-soft);animation:rise .3s var(--ease)}
-.ci img{width:58px;height:70px;object-fit:cover;border-radius:9px;border:1px solid var(--line-soft);flex:0 0 auto}
+.ci img{width:54px;height:72px;object-fit:cover;border-radius:9px;border:1px solid var(--line-soft);flex:0 0 auto}
 .ci .nm{font-size:13.5px;font-weight:600;line-height:1.3}
 .ci .pr{font-size:13px;color:var(--mute);margin-top:3px;font-variant-numeric:tabular-nums}
 .ci .qty{display:inline-flex;align-items:center;gap:10px;margin-top:7px;border:1px solid var(--line);border-radius:99px;padding:3px 10px}
@@ -300,15 +329,15 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .cart-total{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:13px}
 .cart-total span{color:var(--mute);font-size:14px}
 .cart-total b{font-size:21px;font-variant-numeric:tabular-nums}
-.cart-go{width:100%;background:var(--candy);color:#2b0a14;font-weight:700;font-size:15px;border-radius:99px;padding:15px;
-  box-shadow:0 12px 30px rgba(255,107,143,.3);transition:transform .15s ease}
+.cart-go{width:100%;background:var(--candy);color:#fff;font-weight:700;font-size:15px;border-radius:99px;padding:15px;
+  box-shadow:0 12px 30px rgba(255,77,141,.35);transition:transform .15s ease}
 .cart-go:hover{transform:translateY(-2px)}
 .cart-foot .hint{font-size:11.5px;color:var(--mute-2);text-align:center;margin-top:10px}
 
 /* тост */
 .toast{position:fixed;left:50%;bottom:86px;transform:translate(-50%,20px);z-index:120;
   background:var(--marker);color:var(--marker-ink);font-weight:600;font-size:14px;
-  border-radius:99px;padding:11px 20px;box-shadow:0 14px 34px rgba(0,0,0,.45);
+  border-radius:99px;padding:11px 20px;box-shadow:0 14px 30px rgba(160,110,20,.3);
   opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -328,8 +357,8 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 
 /* ── липкая кнопка ── */
 .sticky-cta{position:fixed;left:50%;transform:translateX(-50%) translateY(8px);bottom:18px;z-index:70;
-  display:flex;gap:9px;align-items:center;background:var(--candy);color:#2b0a14;font-weight:700;font-size:15px;
-  border-radius:99px;padding:15px 26px;box-shadow:0 16px 38px rgba(255,107,143,.4);
+  display:flex;gap:9px;align-items:center;background:var(--candy);color:#fff;font-weight:700;font-size:15px;
+  border-radius:99px;padding:15px 26px;box-shadow:0 16px 38px rgba(255,77,141,.4);
   opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s var(--ease)}
 .sticky-cta.show{opacity:1;pointer-events:auto;transform:translateX(-50%)}
 
@@ -422,7 +451,7 @@ footer b{color:var(--mute)}
     </div>
     <div class="cat-chips rvl" id="catChips" style="--d:.18s"></div>
     <div class="table" id="catGrid"></div>
-    <div style="text-align:center;margin-top:22px"><button class="btn btn-ghost" id="moreBtn" onclick="catShown+=24;renderCatalog()">Показать ещё</button></div>
+    <div style="text-align:center;margin-top:22px"><button class="btn btn-ghost" id="moreBtn" onclick="catShown+=CAT_PAGE;renderCatalog()">Показать ещё</button></div>
   </section>
   </div><!-- /shopZone -->
 
@@ -434,9 +463,15 @@ footer b{color:var(--mute)}
 
   <!-- КВИЗ -->
   <section class="quiz-wrap rvl" id="kviz">
+    <div class="quiz-grid">
+    <div class="quiz-photos" aria-hidden="true">
+      <figure class="qp qp1"><img src="img/quiz-her.jpg" alt=""><figcaption>«так… а мне вообще что?»</figcaption></figure>
+      <figure class="qp qp2"><img src="img/quiz-him.jpg" alt=""><figcaption>«а что дарят-то?!»</figcaption></figure>
+    </div>
+    <div class="quiz-body">
     <span class="zone-tag">зона 1 · голос дерзкий</span>
     <h2 class="display">Глаза разбежались?</h2>
-    <p style="color:var(--mute);margin-top:8px;max-width:34em">Три вопроса, без единого термина. В конце — три штуки, которые тебе подойдут, и они придут в Telegram, а не на почту, которую ты не открываешь.</p>
+    <p style="color:var(--mute);margin-top:8px;max-width:34em">Это нормально: тут сто позиций. Три вопроса без единого термина — и мы сузим до трёх твоих. Результат придёт в Telegram, а не на почту, которую ты не открываешь.</p>
     <div class="quiz-progress"><span class="on" id="pg0"></span><span id="pg1"></span><span id="pg2"></span></div>
     <div id="quizBody">
       <p class="q-text" id="qText"></p>
@@ -450,6 +485,8 @@ footer b{color:var(--mute)}
         <button class="tg-btn" onclick="alert('В прототипе кнопка не подключена.\n\nВ бою: результат уходит в Telegram-бота, гостья становится подписчицей — это и есть уход от ВБ в свои каналы.')">✈️ Забрать подборку в Telegram</button>
         <button class="btn btn-ghost" onclick="resetQuiz()">Пройти заново</button>
       </div>
+    </div>
+    </div>
     </div>
   </section>
 
@@ -480,17 +517,25 @@ footer b{color:var(--mute)}
         <h3>Коричневый картон без единой надписи</h3>
         <p>Ни бренда, ни картинки, ни слова о содержимом. Скотч обычный, прозрачный. Ни сосед, ни курьер по коробке ничего не поймут.</p>
         <div class="parcel">
-          <img src="img/box.jpg" alt="Обычная коричневая коробка без надписей">
-          <p style="flex:1;min-width:200px;font-size:14.5px;color:var(--calm-mute)">Вот так выглядит посылка. Внутри — заводская упаковка товара, она тоже в пакете без прозрачных окон. Вскрывать при получении не требуется.</p>
+          <img src="img/pack.jpg" alt="Коробка без надписей и чёрный непрозрачный пакет">
+          <p style="flex:1;min-width:200px;font-size:14.5px;color:var(--calm-mute)">Два варианта упаковки: коричневая коробка или чёрный непрозрачный пакет — что попросишь при заказе. Внутри — заводская упаковка товара, она тоже в пакете без прозрачных окон. Вскрывать при получении не требуется.</p>
         </div>
       </div>
       <div class="panel" id="pn1">
         <h3>В накладной написано «Товары для дома»</h3>
         <p>Сотрудник пункта выдачи видит только номер заказа, вес и эту строчку. Категория товара в документах не печатается.</p>
+        <div class="parcel">
+          <img src="img/courier.jpg" alt="Курьер пожимает плечами с обычной коробкой в руках">
+          <p style="flex:1;min-width:200px;font-size:14.5px;color:var(--calm-mute)">Курьеру и сотруднику ПВЗ действительно всё равно: через их руки проходят сотни одинаковых коробок в день. Твоя ничем не выделяется — в этом и смысл.</p>
+        </div>
       </div>
       <div class="panel" id="pn2">
         <h3>В выписке — нейтральное название</h3>
         <p>В истории операций по карте отображается юридическое лицо, без слов о категории. Ни в SMS, ни в приложении банка ничего лишнего не появится.</p>
+        <div class="bank-mock">
+          <div class="bank-row"><span class="bank-ic">🏪</span><span><b>ООО «Торговый дом»</b><br><small>Покупки · сегодня 14:02</small></span><span class="bank-sum">−3 290 ₽</span></div>
+          <p class="bank-cap">так строчка выглядит в приложении банка — макет</p>
+        </div>
       </div>
       <div class="facts">
         <div class="fact"><b>1–3 дня</b><span>доставка по России</span></div>
@@ -505,7 +550,7 @@ footer b{color:var(--mute)}
     <footer>
       <p><b>Это прототип, а не магазин.</b> Имя «Тумбочка», логотип и цены — заглушки: ребрендинг ещё не закрыт, поэтому дизайн намеренно бренд-агностичный.</p>
       <p style="margin-top:10px">В магазине <b>100 позиций</b>: 62 — настоящие названия из годового отчёта ВБ (13.07.2025–13.07.2026), 38 — условные, добиты до сотни и помечены в карточке. Цены — заглушки. Отзывы настоящие, из выгрузки 3 243 отзывов, имена убраны.</p>
-      <p style="margin-top:10px"><b>Фотографии сгенерированы ИИ</b> (Nano Banana) и стоят как заглушки — одно фото может повторяться у нескольких товаров. Громкость в каталоге проставлена условно; в бою замеряем каждую позицию. Перед боем всё меняется на студийную съёмку и замеры.</p>
+      <p style="margin-top:10px"><b>Фотографии и все ракурсы в карточках сгенерированы ИИ</b> (Nano Banana) и стоят как заглушки — одно фото может повторяться у нескольких товаров. Громкость в каталоге проставлена условно; в бою замеряем каждую позицию. Перед боем всё меняется на студийную съёмку и замеры.</p>
       <p style="margin-top:10px">Тон собран по утверждённой карте зон от 18.08.2026: <b>дерзко</b> на витрине и в квизе, <b>ровно</b> в карточке товара, <b>тихо</b> в блоке про доставку и оплату.</p>
     </footer>
   </div>
@@ -516,6 +561,7 @@ footer b{color:var(--mute)}
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cardTitle">
     <div class="grab"></div>
     <div class="photo"><img id="cardPhoto" src="" alt=""></div>
+    <div class="gal" id="cardGal"></div>
     <span class="zone-tag calm">зона 2 · голос ровный</span>
     <h3 class="display" id="cardTitle">—</h3>
     <div class="price-row"><b id="cardPrice">—</b><s id="cardOld"></s></div>
@@ -633,6 +679,7 @@ const ITEMS = [
   size:"16 см · диаметр 3,5 см", hand:"Мотора нет — шуметь нечему.", box:"Игрушка, мешочек", charge:CHARGE_NONE}
 ];
 const rub = v => v.toLocaleString('ru-RU') + ' ₽';
+const GAL_OK = new Set(["p0", "p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10", "p11", "p12", "p13", "p14", "p15", "p16", "p17"]);
 
 /* категории и заказы рукописных 18 (по годовому отчёту) */
 const HAND_META = [
@@ -814,7 +861,8 @@ function renderFilters(){
 /* каталог */
 const CATS = ["Все","Вибраторы","Виброяйца","Фаллоимитаторы","Для него","Пробки","Наборы","Косметика","Разное","Для двоих+","Мебель 18+"];
 let catState = {q:"", cat:"Все", sort:"pop", price:"all"};
-let catShown = 24;
+const CAT_PAGE = matchMedia('(max-width:640px)').matches ? 20 : 24;
+let catShown = CAT_PAGE;
 let curFeature = "all";
 function renderCatChips(){
   const box = document.getElementById('catChips');
@@ -830,7 +878,7 @@ function renderCatChips(){
   });
 }
 function renderCatalog(resetShown){
-  if(resetShown) catShown = 24;
+  if(resetShown) catShown = CAT_PAGE;
   let list = CATALOG.map((it,i)=>({it,i}));
   if(catState.cat!=="Все") list = list.filter(x=>x.it.cat===catState.cat);
   if(catState.q) list = list.filter(x=>x.it.t.toLowerCase().includes(catState.q));
@@ -847,7 +895,7 @@ function renderCatalog(resetShown){
     : `<div class="cat-empty"><div class="big">Ничего не нашлось.</div>Попробуй короче — например «яйцо» вместо «виброяйцо с пультом».</div>`;
   const more = document.getElementById('moreBtn');
   more.style.display = list.length > catShown ? '' : 'none';
-  more.textContent = `Показать ещё ${Math.min(24, list.length - catShown)} из ${list.length - catShown}`;
+  more.textContent = `Дальше · ещё ${Math.min(CAT_PAGE, list.length - catShown)} из ${list.length - catShown}`;
   document.getElementById('catCount').textContent = `${list.length} из ${CATALOG.length}`;
   observeReveals();
   applyFeatureToNodes();
@@ -858,8 +906,17 @@ let cardIdx = null;
 function openCard(i){
   cardIdx = i;
   const c = CATALOG[i];
-  document.getElementById('cardPhoto').src = `img/${c.ph}.jpg`;
+  const shots = [ `img/${c.ph}.jpg` ].concat(
+    (GAL_OK.has(c.ph) ? ['a','b','c'].map(v=>`img/${c.ph}-${v}.jpg`) : []));
+  document.getElementById('cardPhoto').src = shots[0];
   document.getElementById('cardPhoto').alt = c.t;
+  const galBox = document.getElementById('cardGal');
+  galBox.style.display = shots.length > 1 ? '' : 'none';
+  galBox.innerHTML = shots.map((s,k)=>
+    `<button class="${k===0?'on':''}" aria-label="Фото ${k+1}" onclick="
+      document.getElementById('cardPhoto').src='${s}';
+      this.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
+      this.classList.add('on')"><img src="${s}" alt="" loading="lazy"></button>`).join('');
   document.getElementById('cardTitle').textContent = c.t;
   document.getElementById('cardPrice').textContent = rub(c.n);
   document.getElementById('cardOld').textContent = c.old ? rub(c.old) : '';
