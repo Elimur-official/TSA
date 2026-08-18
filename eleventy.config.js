@@ -3,6 +3,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("admin");
+  eleventyConfig.addPassthroughCopy("prototip");
 
   eleventyConfig.addFilter("categories", (products) => {
     return [...new Set((products || []).map((p) => p.category))].sort();
