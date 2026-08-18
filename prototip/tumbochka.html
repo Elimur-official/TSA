@@ -33,6 +33,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 a{text-decoration:none;color:inherit}
 :focus-visible{outline:2.5px solid var(--marker); outline-offset:3px; border-radius:4px}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+#kviz,#stol,#katalog,#dostavka{scroll-margin-top:132px}
 .display{font-family:Oranienbaum,Georgia,serif;font-weight:400;letter-spacing:.005em;text-wrap:balance}
 
 /* появление при скролле */
@@ -148,6 +149,29 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
 .tags span{font-size:10px;letter-spacing:.04em;color:var(--mute);border:1px solid var(--line-soft);
   border-radius:4px;padding:2px 6px}
+
+.nav{display:flex;gap:16px;font-size:13.5px;color:var(--mute);margin-left:14px}
+.nav a{transition:color .15s ease}
+.nav a:hover{color:var(--candy)}
+@media (max-width:900px){.nav{display:none}}
+.recent-row{display:flex;gap:12px;overflow-x:auto;padding:14px 2px;scrollbar-width:none}
+.recent-row::-webkit-scrollbar{display:none}
+.rc{flex:0 0 150px;cursor:pointer;transition:transform .2s var(--ease)}
+.rc:hover{transform:translateY(-4px)}
+.rc img{width:150px;height:110px;object-fit:cover;border-radius:12px;border:1px solid var(--line-soft)}
+.rc .nm{font-size:12px;font-weight:600;margin-top:7px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rc .pr{font-size:12px;color:var(--mute);margin-top:3px}
+.fav-mini{position:absolute;right:9px;top:9px;z-index:2;width:33px;height:33px;border-radius:50%;
+  background:rgba(27,12,19,.72);backdrop-filter:blur(6px);border:1px solid var(--line);
+  display:grid;place-items:center;font-size:15px;color:var(--mute);transition:all .2s var(--ease)}
+.fav-mini:hover{transform:scale(1.12)}
+.fav-mini.on{color:#fff;background:var(--candy-deep);border-color:var(--candy-deep)}
+.alt-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.alt{display:flex;align-items:center;gap:10px;border:1px solid var(--calm-line);background:#fff;border-radius:14px;padding:9px 13px;flex:1;min-width:210px;text-align:left;transition:border-color .15s ease}
+.alt:hover{border-color:var(--calm-ink)}
+.alt img{width:42px;height:42px;object-fit:cover;border-radius:9px}
+.alt .lb{font-size:11px;color:var(--calm-mute);letter-spacing:.05em;text-transform:uppercase}
+.alt .tt{font-size:12.5px;font-weight:600;line-height:1.25}
 
 /* каталог */
 .cat-controls{display:flex;gap:10px;margin:20px 0 12px;flex-wrap:wrap}
@@ -340,6 +364,7 @@ footer b{color:var(--mute)}
   <div class="bar">
     <span class="logo">Тумбочка<span class="dot">.</span></span>
     <span class="stub">имя и логотип — заглушки</span>
+    <nav class="nav"><a href="#stol">полки</a><a href="#katalog">каталог</a><a href="#kviz">подбор</a><a href="#dostavka">доставка</a></nav>
     <span class="sp"></span>
     <button class="cart-btn" onclick="cartOpen(true)">🛍 <span class="lbl">Корзина</span><span class="cnt" id="cartCnt">0</span></button>
     <button class="hide-btn" onclick="curtain(true)">🙈 <span class="lbl">Шторка</span></button>
@@ -367,7 +392,8 @@ footer b{color:var(--mute)}
     </div>
   </section>
 
-  <!-- ФИЛЬТРЫ -->
+  <!-- ТОВАРНАЯ ЗОНА: липкие фильтры живут только здесь -->
+  <div id="shopZone">
   <div class="filters" id="stol">
     <div class="row" id="filterRow"></div>
     <p class="fcount" id="fcount"></p>
@@ -381,15 +407,29 @@ footer b{color:var(--mute)}
     <div class="station-head rvl"><h2 class="display">Каталог целиком</h2><span class="count" id="catCount"></span></div>
     <p class="station-sub rvl" style="--d:.06s">Полки выше — витрина с подсказками. Здесь — всё подряд: сотня позиций, как в настоящем магазине. Ищи, фильтруй, складывай в корзину.</p>
     <div class="cat-controls rvl" style="--d:.12s">
-      <input class="search" id="catSearch" type="search" placeholder="поиск: «яйцо», «пульт», «подогрев»…" oninput="catState.q=this.value.trim().toLowerCase();renderCatalog()">
+      <input class="search" id="catSearch" type="search" placeholder="поиск: «яйцо», «пульт», «подогрев»…" oninput="catState.q=this.value.trim().toLowerCase();renderCatalog(true)">
       <select class="sort" id="catSort" onchange="catState.sort=this.value;renderCatalog()" aria-label="Сортировка">
         <option value="pop">сначала популярные</option>
         <option value="cheap">сначала дешевле</option>
         <option value="exp">сначала дороже</option>
       </select>
+      <select class="sort" id="catPrice" onchange="catState.price=this.value;renderCatalog()" aria-label="Цена">
+        <option value="all">цена: любая</option>
+        <option value="low">до 2 000 ₽</option>
+        <option value="mid">2–5 тыс ₽</option>
+        <option value="high">дороже 5 тыс ₽</option>
+      </select>
     </div>
     <div class="cat-chips rvl" id="catChips" style="--d:.18s"></div>
     <div class="table" id="catGrid"></div>
+    <div style="text-align:center;margin-top:22px"><button class="btn btn-ghost" id="moreBtn" onclick="catShown+=24;renderCatalog()">Показать ещё</button></div>
+  </section>
+  </div><!-- /shopZone -->
+
+  <!-- НЕДАВНО СМОТРЕЛА -->
+  <section class="station" id="recentSec" style="display:none;padding-top:26px">
+    <div class="station-head"><h2 class="display" style="font-size:clamp(22px,3.6vw,30px)">Недавно смотрела</h2></div>
+    <div class="recent-row" id="recentRow"></div>
   </section>
 
   <!-- КВИЗ -->
@@ -426,7 +466,7 @@ footer b{color:var(--mute)}
 </div>
 
   <!-- ЗОНА 3 · ТИХО -->
-  <section class="calm">
+  <section class="calm" id="dostavka">
     <div class="wrap">
       <span class="zone-tag calm">зона 3 · голос тихий, шуток нет</span>
       <h2 class="display">Что увидит курьер</h2>
@@ -499,6 +539,7 @@ footer b{color:var(--mute)}
       <tr><td>Что в коробке</td><td id="cardBox">—</td></tr>
       <tr><td>Зарядка</td><td id="cardCharge">—</td></tr>
     </table>
+    <div class="alt-row" id="altRow"></div>
     <div class="sheet-cta">
       <button class="buy" id="cardBuy">В корзину</button>
       <button class="close" onclick="closeCard()">Закрыть</button>
@@ -640,9 +681,43 @@ const FILTERS = [
   {id:"подогрев", label:"с подогревом"},
   {id:"пульт", label:"с пультом"},
   {id:"quiet", label:"🤫 тише шёпота"},
+  {id:"fallo", label:"фаллоимитаторы"},
+  {id:"real", label:"реалистичные"},
   {id:"без мотора", label:"без мотора"},
-  {id:"loud", label:"мощные и шумные"}
+  {id:"loud", label:"мощные и шумные"},
+  {id:"favs", label:"♥ избранное"}
 ];
+
+/* избранное */
+let FAVS = new Set();
+try{ FAVS = new Set(JSON.parse(localStorage.getItem('tumbochka-favs')||'[]')) }catch(e){}
+function toggleFav(i, el){
+  if(FAVS.has(i)){ FAVS.delete(i); toast('Убрали из избранного'); }
+  else{ FAVS.add(i); toast('В избранном: ' + CATALOG[i].t); }
+  try{ localStorage.setItem('tumbochka-favs', JSON.stringify([...FAVS])) }catch(e){}
+  document.querySelectorAll(`.item[data-i="${i}"] .fav-mini`).forEach(b=>{
+    b.classList.toggle('on', FAVS.has(i)); b.textContent = FAVS.has(i)?'♥':'♡';
+  });
+  if(curFeature==='favs') applyFeatureToNodes();
+}
+
+/* недавно смотрела */
+let RECENT = [];
+try{ RECENT = JSON.parse(localStorage.getItem('tumbochka-recent')||'[]') }catch(e){}
+function pushRecent(i){
+  RECENT = [i].concat(RECENT.filter(x=>x!==i)).slice(0,8);
+  try{ localStorage.setItem('tumbochka-recent', JSON.stringify(RECENT)) }catch(e){}
+  renderRecent();
+}
+function renderRecent(){
+  const sec = document.getElementById('recentSec');
+  if(!RECENT.length){ sec.style.display='none'; return; }
+  sec.style.display='';
+  document.getElementById('recentRow').innerHTML = RECENT.map(i=>{
+    const it = CATALOG[i];
+    return `<div class="rc" onclick="openCard(${i})"><img src="img/${it.ph}.jpg" alt=""><div class="nm">${it.t}</div><div class="pr">${rub(it.n)}</div></div>`;
+  }).join('');
+}
 
 /* плитка товара — общая для полок и каталога */
 function tileHTML(i, k){
@@ -653,6 +728,7 @@ function tileHTML(i, k){
   return `<div class="item rvl" role="button" tabindex="0" data-i="${i}" style="--tilt:${tilt.toFixed(2)}deg;--d:${((k%8)*0.07).toFixed(2)}s"
     onclick="openCard(${i})" onkeydown="if(event.key==='Enter')openCard(${i})">
     <span class="pad"><img src="img/${it.ph}.jpg" alt="${it.t}" loading="lazy">${badge}
+      <button class="fav-mini${FAVS.has(i)?' on':''}" aria-label="В избранное" onclick="event.stopPropagation();toggleFav(${i},this)">${FAVS.has(i)?'♥':'♡'}</button>
       <button class="add-mini" aria-label="В корзину" onclick="event.stopPropagation();addToCart(${i})">+</button></span>
     <h3>${it.t}</h3>
     <div class="meta"><span class="price">${rub(it.n)}</span><span class="noise">${NOISE[it.noise].t} <span class="dots">${dots}</span></span></div>
@@ -700,6 +776,9 @@ function matches(it, f){
   if(f==='all') return true;
   if(f==='quiet') return it.noise <= 1;
   if(f==='loud') return it.noise >= 3;
+  if(f==='fallo') return it.cat === "Фаллоимитаторы" || /фаллоимитатор|дилдо/.test(it.t.toLowerCase());
+  if(f==='favs') return FAVS.has(CATALOG.indexOf(it));
+  if(f==='real') return /реалист/.test(it.t.toLowerCase());
   return it.tags.includes(f);
 }
 function applyFeatureToNodes(){
@@ -734,7 +813,8 @@ function renderFilters(){
 
 /* каталог */
 const CATS = ["Все","Вибраторы","Виброяйца","Фаллоимитаторы","Для него","Пробки","Наборы","Косметика","Разное","Для двоих+","Мебель 18+"];
-let catState = {q:"", cat:"Все", sort:"pop"};
+let catState = {q:"", cat:"Все", sort:"pop", price:"all"};
+let catShown = 24;
 let curFeature = "all";
 function renderCatChips(){
   const box = document.getElementById('catChips');
@@ -745,21 +825,29 @@ function renderCatChips(){
     const b = document.createElement('button');
     b.className = 'fchip' + (catState.cat===c?' on':'');
     b.textContent = c==="Все" ? `все · ${cnt}` : `${c.toLowerCase()} · ${cnt}`;
-    b.onclick = ()=>{ catState.cat = c; renderCatChips(); renderCatalog(); };
+    b.onclick = ()=>{ catState.cat = c; renderCatChips(); renderCatalog(true); };
     box.appendChild(b);
   });
 }
-function renderCatalog(){
+function renderCatalog(resetShown){
+  if(resetShown) catShown = 24;
   let list = CATALOG.map((it,i)=>({it,i}));
   if(catState.cat!=="Все") list = list.filter(x=>x.it.cat===catState.cat);
   if(catState.q) list = list.filter(x=>x.it.t.toLowerCase().includes(catState.q));
+  if(catState.price==="low") list = list.filter(x=>x.it.n<2000);
+  else if(catState.price==="mid") list = list.filter(x=>x.it.n>=2000&&x.it.n<=5000);
+  else if(catState.price==="high") list = list.filter(x=>x.it.n>5000);
   if(catState.sort==="cheap") list.sort((a,b)=>a.it.n-b.it.n);
   else if(catState.sort==="exp") list.sort((a,b)=>b.it.n-a.it.n);
   else list.sort((a,b)=>(b.it.orders||0)-(a.it.orders||0) || a.it.n-b.it.n);
   const grid = document.getElementById('catGrid');
-  grid.innerHTML = list.length
-    ? list.map((x,k)=>tileHTML(x.i,k)).join('')
+  const page = list.slice(0, catShown);
+  grid.innerHTML = page.length
+    ? page.map((x,k)=>tileHTML(x.i,k)).join('')
     : `<div class="cat-empty"><div class="big">Ничего не нашлось.</div>Попробуй короче — например «яйцо» вместо «виброяйцо с пультом».</div>`;
+  const more = document.getElementById('moreBtn');
+  more.style.display = list.length > catShown ? '' : 'none';
+  more.textContent = `Показать ещё ${Math.min(24, list.length - catShown)} из ${list.length - catShown}`;
   document.getElementById('catCount').textContent = `${list.length} из ${CATALOG.length}`;
   observeReveals();
   applyFeatureToNodes();
@@ -782,6 +870,16 @@ function openCard(i){
   document.getElementById('cardCharge').textContent = c.charge || 'USB-магнит, полный заряд — 1,5 часа работы';
   document.getElementById('cardNoiseText').textContent = NOISE[c.noise].t + '. ' + NOISE[c.noise].s;
   document.getElementById('condNote').style.display = c.real === false ? '' : 'none';
+  const quieter = CATALOG.map((x,j)=>({x,j})).filter(o=>o.x.cat===c.cat&&o.x.noise<c.noise&&o.j!==i)
+    .sort((a,b)=>Math.abs(a.x.n-c.n)-Math.abs(b.x.n-c.n))[0];
+  const cheaper = CATALOG.map((x,j)=>({x,j})).filter(o=>o.x.cat===c.cat&&o.x.n<c.n&&o.j!==i)
+    .sort((a,b)=>(b.x.orders||0)-(a.x.orders||0))[0];
+  const alt = [];
+  if(quieter) alt.push(`<button class="alt" onclick="openCard(${quieter.j})"><img src="img/${quieter.x.ph}.jpg" alt=""><span><span class="lb">похожий, но тише</span><br><span class="tt">${quieter.x.t.slice(0,44)}${quieter.x.t.length>44?'…':''} · ${rub(quieter.x.n)}</span></span></button>`);
+  if(cheaper) alt.push(`<button class="alt" onclick="openCard(${cheaper.j})"><img src="img/${cheaper.x.ph}.jpg" alt=""><span><span class="lb">похожий дешевле</span><br><span class="tt">${cheaper.x.t.slice(0,44)}${cheaper.x.t.length>44?'…':''} · ${rub(cheaper.x.n)}</span></span></button>`);
+  document.getElementById('altRow').innerHTML = alt.join('');
+  document.getElementById('altRow').style.display = alt.length ? '' : 'none';
+  pushRecent(i);
   document.querySelectorAll('#cardNoise i').forEach((el,k)=>{
     el.className = (k < c.noise) ? ('on' + (c.noise===3?' loud':'')) : '';
   });
@@ -930,6 +1028,7 @@ addEventListener('keydown', e=>{
 
 render();
 renderFilters();
+renderRecent();
 renderCatChips();
 renderCatalog();
 renderQ();
