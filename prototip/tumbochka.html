@@ -1183,8 +1183,7 @@ renderCart();
 .t-lilac{color:#B79BE8}
 .t-coral{color:#FF7A66}
 .t-sun{color:#FFCF4A}
-@media (max-width:1180px){ .fl-wide{display:none} }
-@media (max-width:760px){ .fl{opacity:calc(var(--op,.6) * .7)} .fl-mid{display:none} }
+@media (max-width:760px){ .fl{opacity:calc(var(--op,.6) * .78)} }
 @media (prefers-reduced-motion:reduce){ .fl>svg{animation:none;transform:rotate(var(--rot,0deg))} }
 </style>
 
@@ -1252,10 +1251,21 @@ renderCart();
     pageH = document.documentElement.scrollHeight;
     layer.style.height = pageH + 'px';
     var w = innerWidth;
-    nodes.forEach(function(n){
+    /* мельче на узких экранах и прореживаем, чтобы не рябило */
+    var k = w <= 420 ? .60 : w <= 620 ? .68 : w <= 900 ? .78 : w <= 1180 ? .88 : 1;
+    var skip = w <= 620 ? 2 : w <= 900 ? 2 : 1;   /* 2 = оставляем каждый второй */
+    nodes.forEach(function(n, idx){
+      if(skip > 1 && idx % skip !== 0){ n.el.style.display = 'none'; n.off = true; return; }
+      n.el.style.display = ''; n.off = false;
+      var size = Math.round(n.cfg.w * k);
+      n.el.style.width = size + 'px';
+      n.el.style.height = size + 'px';
       n.base = Math.round(pageH * n.cfg.y);
       n.el.style.top = n.base + 'px';
-      n.el.style.left = Math.round(w * n.cfg.x - n.cfg.w / 2) + 'px';
+      /* держим предмет в пределах экрана: край видно, но не срезает целиком */
+      var left = Math.round(w * n.cfg.x - size / 2);
+      var minL = Math.round(-size * .30), maxL = Math.round(w - size * .70);
+      n.el.style.left = Math.max(minL, Math.min(maxL, left)) + 'px';
     });
     move();
   }
@@ -1264,6 +1274,7 @@ renderCart();
   function move(){
     var y = scrollY;
     nodes.forEach(function(n){
+      if(n.off) return;
       var shift = still ? 0 : -(y - n.base + innerHeight / 2) * n.cfg.d;
       n.el.style.transform = 'translate3d(0,' + shift.toFixed(1) + 'px,0)';
     });
