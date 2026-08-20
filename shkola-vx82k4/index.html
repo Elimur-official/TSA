@@ -86,13 +86,21 @@ button{font-family:var(--ft)}
 .progress-fill{position:absolute;inset:0 auto 0 0;width:0%;min-width:0;border-radius:99px;
   background:linear-gradient(90deg,var(--accent),var(--amber));transition:width .35s ease}
 .progress-note{margin:0;font-size:11.5px;color:var(--muted)}
+/* переключатель школ: две вкладки, активная подсвечена */
+.school-switch{display:flex;gap:6px;flex-wrap:wrap}
+.switch-tab{display:inline-flex;align-items:center;padding:4px 12px;border:1px solid var(--line);
+  border-radius:99px;background:var(--card);font-size:12.5px;font-weight:700;color:var(--muted);
+  text-decoration:none;white-space:nowrap;transition:border-color .15s,color .15s}
+a.switch-tab:hover{border-color:var(--accent);color:var(--accent)}
+.switch-tab.now{border-color:var(--accent);background:var(--accent-wash);color:var(--accent)}
 @media (min-width:1000px){
   .site-head{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
-  .head-inner{grid-template-columns:auto minmax(220px,1fr) auto;align-items:center;gap:8px 22px;padding:13px 24px}
+  .head-inner{grid-template-columns:auto auto minmax(200px,1fr) auto;align-items:center;gap:8px 18px;padding:13px 24px}
   .brandline{display:contents}
   .course-name{grid-column:1;grid-row:1}
-  .progress-track{grid-column:2;grid-row:1}
-  .progress-label{grid-column:3;grid-row:1}
+  .school-switch{grid-column:2;grid-row:1}
+  .progress-track{grid-column:3;grid-row:1}
+  .progress-label{grid-column:4;grid-row:1}
   .progress-note{grid-column:1 / -1;margin-top:-4px}
 }
 
@@ -301,6 +309,10 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       <p class="course-name">Школа <b>автоматизаций</b></p>
       <p class="progress-label" id="progress-label">пройдено 0 из 11 модулей</p>
     </div>
+    <nav class="school-switch" aria-label="Выбор школы">
+      <span class="switch-tab now" aria-current="page">Автоматизации</span>
+      <a class="switch-tab" href="golova/index.html">Говорящая голова</a>
+    </nav>
     <div class="progress-track" role="progressbar" aria-label="Прогресс по курсу"
          aria-valuemin="0" aria-valuemax="11" aria-valuenow="0">
       <div class="progress-fill" id="progress-fill"></div>
@@ -3009,6 +3021,69 @@ function initRoi(root){
   update();
 }
 
+/* ---------- калькулятор школы-2: месяц роликов руками против подписки ---------- */
+function initRoiGolova(root){
+  var names = {
+    "roi-videos": "роликов в месяц",
+    "roi-min": "минут руками на один ролик",
+    "roi-rate": "цена часа",
+    "roi-sub-cost": "подписка в месяц"
+  };
+  var ids = ["roi-videos", "roi-min", "roi-rate", "roi-sub-cost"];
+  var inputs = ids.map(function(id){ return root.querySelector("#" + id); });
+  var hint = root.querySelector("#roi-hint");
+  var res = root.querySelector("#roi-res");
+  var fmt = function(n){ return Math.round(n).toLocaleString("ru-RU"); };
+
+  function parse(el){
+    var t = el.value.trim().replace(/\s+/g, "").replace(",", ".");
+    if(t === "") return {empty:true};
+    var n = Number(t);
+    if(!isFinite(n) || n < 0) return {bad:true};
+    return {n:n};
+  }
+  function showHint(text){ hint.hidden = false; hint.textContent = text; res.hidden = true; }
+
+  function update(){
+    var v = {}, i;
+    for(i = 0; i < ids.length; i++){
+      v[ids[i]] = parse(inputs[i]);
+      if(v[ids[i]].bad){
+        showHint("В поле «" + names[ids[i]] + "» нужно число — например 10 или 5000.");
+        return;
+      }
+    }
+    if(v["roi-videos"].empty){ showHint("Начни с числа роликов в месяц — остальное я посчитаю сам."); return; }
+    if(v["roi-min"].empty){ showHint("Впиши, сколько минут уходит на один ролик руками — съёмка и монтаж вместе."); return; }
+    if(v["roi-rate"].empty){ showHint("Впиши цену своего часа в рублях — без неё выгоду не посчитать."); return; }
+
+    var videos = v["roi-videos"].n, min = v["roi-min"].n, rate = v["roi-rate"].n;
+    var sub = v["roi-sub-cost"].empty ? 0 : v["roi-sub-cost"].n;
+    if(videos === 0){ showHint("Ноль роликов — считать нечего. Впиши, сколько роликов в месяц хочешь выпускать."); return; }
+    var rukami = videos * (min / 60) * rate;
+    var gain = rukami - sub;
+
+    hint.hidden = true; res.hidden = false;
+    root.querySelector("#roi-gain").textContent = fmt(gain);
+    root.querySelector("#roi-per-video").textContent =
+      "ролик руками ≈ " + fmt(min / 60 * rate) + " ₽ · ролик на подписке ≈ " + fmt(sub / videos) + " ₽";
+    var verdict = root.querySelector("#roi-verdict");
+
+    if(gain <= 0){
+      verdict.textContent = "Пока невыгодно: подписка дороже ручной работы — добавь роликов в месяц или пересмотри тариф.";
+      return;
+    }
+    if(sub <= 0){
+      verdict.textContent = "Подписка не вписана — вся разница твоя. Для честного счёта впиши её стоимость.";
+      return;
+    }
+    if(rukami / sub >= 2) verdict.textContent = "Подписка окупается с запасом: руками тот же месяц стоил бы " + fmt(rukami) + " ₽.";
+    else verdict.textContent = "Подписка окупается — запускай и раз в месяц сверяй темп роликов.";
+  }
+  inputs.forEach(function(el){ el.addEventListener("input", update); });
+  update();
+}
+
 (function insertRoi(){
   var tpl = document.getElementById("roi-calc-tpl");
   var host = document.querySelector("main") || document.body;
@@ -3019,7 +3094,7 @@ function initRoi(root){
     if(c.nodeValue.replace(/\s/g, "") === "ROI-CALC"){
       c.parentNode.replaceChild(tpl.content.cloneNode(true), c);
       var el = document.getElementById("roi-calc");
-      if(el) initRoi(el);
+      if(el) (el.getAttribute("data-roi") === "golova" ? initRoiGolova : initRoi)(el);
       break;
     }
   }

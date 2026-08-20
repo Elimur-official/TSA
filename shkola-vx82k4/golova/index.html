@@ -1,0 +1,2654 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Школа говорящей головы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ токены: «дорогая рабочая тетрадь» ============ */
+:root{
+  --paper:#F7F1E6;        /* тёплая бумага */
+  --paper-glass:rgba(247,241,230,.9);
+  --card:#FFFDF8;         /* лист-карточка */
+  --ink:#25203A;          /* чернила */
+  --muted:#6E6883;        /* карандашная помета */
+  --accent:#4A36C4;       /* глубокий сине-фиолетовый */
+  --accent-wash:#ECE8FB;
+  --on-accent:#FFFCF5;
+  --amber:#E39A2D;        /* янтарь */
+  --amber-ink:#8F5D10;
+  --amber-wash:#F8ECD3;
+  --deep:#2A2153;         /* «мысль на вынос» */
+  --on-deep:#F1EDFF;
+  --line:#E5DCC9;         /* линовка тетради */
+  --dot:#DCD2BE;          /* клетка миллиметровки */
+  --num:#ECE7FB;          /* цифра-ориентир модуля */
+  --shadow:0 14px 34px rgba(37,32,58,.09), 0 2px 8px rgba(37,32,58,.05);
+  --fd:'Unbounded','Arial Black','Arial',sans-serif;
+  --ft:'Manrope','Segoe UI','Verdana',system-ui,sans-serif;
+  --r:20px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#161320;
+    --paper-glass:rgba(22,19,32,.9);
+    --card:#211D2E;
+    --ink:#EDEAF7;
+    --muted:#9C95B2;
+    --accent:#A08FFF;
+    --accent-wash:#2B2549;
+    --on-accent:#171225;
+    --amber:#E8AC4A;
+    --amber-ink:#E8AC4A;
+    --amber-wash:#382E1B;
+    --deep:#272047;
+    --on-deep:#F1EDFF;
+    --line:#332E44;
+    --dot:#2E2940;
+    --num:#2C2745;
+    --shadow:0 14px 34px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.3);
+  }
+}
+
+/* ============ база ============ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--ft);font-size:16.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,svg{max-width:100%}
+a{color:var(--accent)}
+button{font-family:var(--ft)}
+:focus-visible{outline:2.5px solid var(--amber);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--accent);color:var(--on-accent);padding:10px 16px;border-radius:10px;text-decoration:none}
+.skip:focus{left:8px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+
+/* ============ шапка ============ */
+.site-head{border-bottom:1px solid var(--line);background:var(--paper-glass)}
+.head-inner{max-width:1160px;margin:0 auto;padding:14px 16px 12px;display:grid;gap:7px}
+.brandline{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.course-name{margin:0;font-family:var(--fd);font-weight:700;font-size:15px;letter-spacing:.02em}
+.course-name b{color:var(--accent);font-weight:800}
+.progress-label{margin:0;font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+.progress-track{position:relative;height:8px;border-radius:99px;
+  background-image:radial-gradient(circle, var(--dot) 1.6px, transparent 1.9px);
+  background-size:11px 8px;background-position:0 50%;background-repeat:repeat-x}
+.progress-fill{position:absolute;inset:0 auto 0 0;width:0%;min-width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--accent),var(--amber));transition:width .35s ease}
+.progress-note{margin:0;font-size:11.5px;color:var(--muted)}
+/* переключатель школ: две вкладки, активная подсвечена */
+.school-switch{display:flex;gap:6px;flex-wrap:wrap}
+.switch-tab{display:inline-flex;align-items:center;padding:4px 12px;border:1px solid var(--line);
+  border-radius:99px;background:var(--card);font-size:12.5px;font-weight:700;color:var(--muted);
+  text-decoration:none;white-space:nowrap;transition:border-color .15s,color .15s}
+a.switch-tab:hover{border-color:var(--accent);color:var(--accent)}
+.switch-tab.now{border-color:var(--accent);background:var(--accent-wash);color:var(--accent)}
+@media (min-width:1000px){
+  .site-head{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
+  .head-inner{grid-template-columns:auto auto minmax(200px,1fr) auto;align-items:center;gap:8px 18px;padding:13px 24px}
+  .brandline{display:contents}
+  .course-name{grid-column:1;grid-row:1}
+  .school-switch{grid-column:2;grid-row:1}
+  .progress-track{grid-column:3;grid-row:1}
+  .progress-label{grid-column:4;grid-row:1}
+  .progress-note{grid-column:1 / -1;margin-top:-4px}
+}
+
+/* ============ раскладка: оглавление + тетрадь ============ */
+.layout{max-width:1160px;margin:0 auto;padding:0 16px}
+main{min-width:0;max-width:820px;padding:26px 0 10px}
+main > p.vvod{color:var(--muted);max-width:64ch}
+
+/* оглавление: на телефоне — липкая лента, на широком — липкая колонка */
+.toc{position:sticky;top:0;z-index:40;background:var(--paper-glass);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:0 -16px}
+.toc-inner{display:flex;align-items:center;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+.toc-inner::-webkit-scrollbar{display:none}
+.toc-block{display:contents}
+.toc-cap{flex:none;margin:0 2px 0 8px;font-family:var(--fd);font-size:10.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;color:var(--muted);display:flex;align-items:center;gap:6px}
+.toc-cap b{color:var(--accent);font-weight:700}
+.toc-cap span{display:none;font-family:var(--ft);font-weight:700;text-transform:none;letter-spacing:0}
+.toc-link{flex:none;display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 8px;
+  border:1px solid var(--line);border-radius:99px;background:var(--card);
+  font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;transition:border-color .15s, background .15s}
+.toc-num{width:22px;height:22px;flex:none;display:grid;place-items:center;border-radius:8px;
+  background:var(--accent-wash);color:var(--accent);font-family:var(--fd);font-size:10.5px;font-weight:700}
+.toc-link:hover{border-color:var(--accent)}
+.toc-link.now{border-color:var(--accent);background:var(--accent-wash)}
+.toc-link.done .toc-num{background:var(--amber);font-size:0}
+.toc-link.done .toc-num::after{content:"✓";font-size:12px;font-family:var(--ft);font-weight:800;color:#241A05}
+@media (min-width:1000px){
+  .layout{display:grid;grid-template-columns:264px minmax(0,1fr);gap:44px;padding:0 24px}
+  .toc{position:sticky;top:76px;z-index:10;align-self:start;margin:26px 0 0;border:0;background:none;backdrop-filter:none;
+    max-height:calc(100vh - 100px);overflow-y:auto}
+  .toc-inner{display:block;overflow:visible;padding:0}
+  .toc-block{display:block}
+  .toc-cap{margin:20px 0 8px;justify-content:space-between}
+  .toc-block:first-child .toc-cap{margin-top:4px}
+  .toc-cap span{display:inline;color:var(--muted)}
+  .toc-link{display:flex;border:0;background:none;border-radius:10px;padding:6px 8px;margin:2px 0}
+  .toc-link:hover{background:var(--accent-wash)}
+  .toc-link.now{background:var(--accent-wash);box-shadow:inset 3px 0 0 var(--amber)}
+}
+
+/* ============ модуль-лист ============ */
+main{counter-reset:mod -1}
+.module{position:relative;counter-increment:mod;overflow:hidden;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);
+  padding:clamp(20px,4.5vw,44px);margin:0 0 clamp(28px,5vw,52px);scroll-margin-top:84px}
+.module::before{ /* крупная цифра-ориентир */
+  content:counter(mod);position:absolute;top:-6px;right:10px;z-index:0;pointer-events:none;
+  font-family:var(--fd);font-weight:800;font-size:clamp(64px,13vw,118px);line-height:1.1;color:var(--num)}
+.module > *{position:relative;z-index:1}
+.module p{margin:12px 0}
+.module h3{font-family:var(--fd);font-weight:700;font-size:clamp(17px,3vw,21px);line-height:1.3;margin:28px 0 10px}
+.module ul{padding-left:22px}
+.module li{margin:5px 0}
+
+.module-head{margin:0 0 22px;padding-right:clamp(76px,15vw,140px)}
+.module-head::before{display:inline-block;font-family:var(--fd);font-size:10.5px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:99px;margin-bottom:12px}
+.module[data-block="A"] .module-head::before{content:"Блок А · Понять";color:var(--accent);background:var(--accent-wash)}
+.module[data-block="B"] .module-head::before{content:"Блок Б · Собрать";color:var(--amber-ink);background:var(--amber-wash)}
+.module[data-block="V"] .module-head::before{content:"Блок В · Управлять";color:var(--on-deep);background:var(--deep)}
+.module-head h2{font-family:var(--fd);font-weight:700;font-size:clamp(21px,4.6vw,33px);line-height:1.18;margin:2px 0 10px}
+.module-head p{margin:4px 0;color:var(--muted);font-size:15px}
+
+/* зачем · где применишь · как контролировать */
+.why,.apply,.control{border-radius:14px;padding:15px 18px 13px;margin:16px 0}
+.why::before,.apply::before,.control::before{display:block;font-family:var(--fd);font-size:10.5px;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.why{background:var(--accent-wash)}
+.why::before{content:"Зачем это тебе";color:var(--accent)}
+.apply{background:var(--amber-wash)}
+.apply::before{content:"Где применишь";color:var(--amber-ink)}
+.control{border:1.5px dashed var(--muted)}
+.control::before{content:"Как это контролировать";color:var(--muted)}
+.why p,.apply p,.control p{margin:6px 0}
+
+/* живые примеры */
+.example{position:relative;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--amber);
+  border-radius:12px;padding:14px 16px 12px;margin:16px 0}
+.example::before{content:"живой пример";display:inline-block;font-family:var(--fd);font-size:10px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--amber-ink);background:var(--amber-wash);
+  padding:3px 9px;border-radius:99px;margin-bottom:8px}
+.example.case-m{border-left-color:var(--accent)}
+.example.case-m::before{content:"магазин М.";color:var(--on-accent);background:var(--accent)}
+.example p{margin:6px 0}
+
+/* словарь-раскрывашки */
+details.term{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+details.term summary{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;
+  list-style:none;font-weight:800;color:var(--accent)}
+details.term summary::-webkit-details-marker{display:none}
+details.term summary::before{content:"а·б";flex:none;font-family:var(--fd);font-size:9.5px;font-weight:700;
+  width:26px;height:22px;display:grid;place-items:center;border-radius:7px;
+  background:var(--accent-wash);color:var(--accent)}
+details.term summary::after{content:"+";margin-left:auto;font-weight:400;font-size:19px;color:var(--muted);
+  transition:transform .2s}
+details.term[open] summary::after{transform:rotate(45deg)}
+details.term[open]{background:var(--accent-wash);border-color:transparent}
+details.term > *:not(summary){margin:0;padding:0 14px 12px 50px}
+
+/* шаги практики */
+ol.steps{list-style:none;counter-reset:step;margin:18px 0;padding:0}
+ol.steps > li{counter-increment:step;position:relative;margin:8px 0;padding:11px 14px 11px 54px;
+  background:var(--card);border:1px solid var(--line);border-radius:12px}
+ol.steps > li::before{content:counter(step);position:absolute;left:12px;top:9px;width:29px;height:29px;
+  display:grid;place-items:center;border-radius:9px;background:var(--accent);color:var(--on-accent);
+  font-family:var(--fd);font-size:12px;font-weight:700}
+ol.steps > li.step-check{cursor:pointer;transition:border-color .15s}
+ol.steps > li.step-check::before{content:"";background:var(--card);border:2px solid var(--accent)}
+ol.steps > li.step-check:hover{border-color:var(--accent)}
+ol.steps > li.step-check::after{content:"отметь, когда сделаешь";position:absolute;right:14px;top:12px;
+  font-size:11px;color:var(--muted);opacity:0;transition:opacity .15s}
+ol.steps > li.step-check:hover::after{opacity:1}
+ol.steps > li.step-check.done{border-color:var(--amber);background:var(--amber-wash)}
+ol.steps > li.step-check.done::before{content:"✓";background:var(--amber);border-color:var(--amber);
+  color:#241A05;font-family:var(--ft);font-size:15px;font-weight:800}
+ol.steps > li.step-check.done::after{content:"сделано";opacity:1;color:var(--amber-ink)}
+@media (max-width:520px){ol.steps > li.step-check::after{display:none}}
+
+/* схемы: миллиметровка */
+figure.scheme{margin:22px 0;padding:18px 18px 14px;border:1px solid var(--line);border-radius:16px;
+  background-color:var(--card);
+  background-image:radial-gradient(circle, var(--dot) 1px, transparent 1.25px);
+  background-size:16px 16px;overflow-x:auto}
+figure.scheme svg{display:block;width:100%;height:auto;min-width:300px;margin:0 auto}
+figure.scheme figcaption{min-width:300px;margin-top:10px;font-size:13px;color:var(--muted)}
+figure.scheme figcaption::before{content:"— ";color:var(--amber)}
+
+/* самопроверка */
+.quiz{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;margin:22px 0}
+.quiz::before{content:"проверь себя";display:inline-block;font-family:var(--fd);font-size:10px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-wash);
+  padding:3px 9px;border-radius:99px}
+.quiz-q{font-weight:800;margin:10px 0 12px}
+.quiz button{display:block;width:100%;text-align:left;font-size:15.5px;font-weight:600;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0;
+  cursor:pointer;transition:border-color .15s}
+.quiz button:hover:not(:disabled){border-color:var(--accent)}
+.quiz button:disabled{cursor:default;opacity:1;color:var(--muted)}
+.quiz button.yes{border-color:var(--accent);background:var(--accent-wash);color:var(--ink);font-weight:800}
+.quiz button.yes::after{content:"верно";float:right;color:var(--accent);font-weight:800}
+.quiz button.no{border-color:var(--amber)}
+.quiz button.no::after{content:"мимо";float:right;color:var(--amber-ink);font-weight:800}
+.quiz-x{display:none;margin:12px 0 0;padding:12px 14px;font-size:15px;
+  border-left:3px solid var(--amber);background:var(--amber-wash);border-radius:0 10px 10px 0}
+.quiz.answered .quiz-x{display:block}
+
+/* внешняя цифра с датой */
+.dated{font-weight:800;color:var(--accent);border-bottom:2px dotted var(--amber)}
+.dated::after{content:" · " attr(data-src);font-size:.72em;font-weight:600;color:var(--muted)}
+
+/* мысль на вынос */
+.takeaway{background:var(--deep);color:var(--on-deep);border-radius:16px;padding:20px 22px;margin:26px 0 4px}
+.takeaway::before{content:"мысль на вынос";display:block;font-family:var(--fd);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.takeaway p{margin:0;font-size:17px;font-weight:600;line-height:1.55}
+.takeaway p + p{margin-top:8px}
+
+/* таблицы-сравнения */
+.module table{display:block;overflow-x:auto;border-collapse:collapse;margin:20px 0;font-size:15px}
+.module th{font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+  text-align:left;padding:8px 14px;border-bottom:2px solid var(--accent)}
+.module td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.module th:first-child,.module td:first-child{padding-left:0}
+
+/* «модуль пройден» (кнопку добавляет движок) */
+.module-done{margin-top:26px;padding-top:18px;border-top:1.5px dashed var(--line);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.module-done button{font-size:15px;font-weight:800;color:var(--on-accent);background:var(--accent);
+  border:1.5px solid var(--accent);border-radius:12px;padding:11px 20px;cursor:pointer;transition:filter .15s}
+.module-done button:hover{filter:brightness(1.08)}
+.module.is-done .module-done button{color:var(--amber-ink);background:var(--amber-wash);border-color:var(--amber);filter:none}
+.module-done .done-note{font-size:13px;color:var(--muted)}
+
+/* ============ калькулятор окупаемости ============ */
+#roi-calc{background:var(--card);border:2px solid var(--accent);border-radius:var(--r);
+  padding:clamp(18px,4vw,32px);margin:26px 0}
+#roi-calc h3{margin-top:0}
+#roi-calc .roi-sub{color:var(--muted);font-size:15px;margin-top:-4px}
+.roi-grid{display:grid;gap:14px;margin:18px 0}
+@media (min-width:640px){.roi-grid{grid-template-columns:1fr 1fr}}
+.roi-grid label{display:grid;gap:6px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.roi-grid input{width:100%;font-family:var(--ft);font-size:16.5px;font-weight:700;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px}
+.roi-grid input:focus{border-color:var(--accent);outline:2px solid var(--accent-wash)}
+.roi-out{background:var(--accent-wash);border-radius:14px;padding:16px 18px}
+.roi-hint{margin:0;font-weight:700;color:var(--amber-ink)}
+.roi-line{margin:4px 0}
+.roi-big{font-family:var(--fd);font-weight:800;font-size:clamp(22px,5vw,32px);color:var(--accent)}
+.roi-verdict{margin:10px 0 0;font-weight:800}
+.roi-note{font-size:12.5px;color:var(--muted);margin:12px 0 0}
+
+/* ============ подвал ============ */
+.site-foot{border-top:1px solid var(--line);margin-top:56px;padding:28px 16px 42px;
+  text-align:center;font-size:14px;color:var(--muted)}
+.site-foot b{color:var(--ink)}
+.site-foot p{margin:4px 0}
+</style>
+</head>
+<body>
+<a class="skip" href="#m0">Сразу к первому модулю</a>
+
+<header class="site-head">
+  <div class="head-inner">
+    <div class="brandline">
+      <p class="course-name">Школа <b>говорящей головы</b></p>
+      <p class="progress-label" id="progress-label">пройдено 0 из 11 модулей</p>
+    </div>
+    <nav class="school-switch" aria-label="Выбор школы">
+      <a class="switch-tab" href="../index.html">Автоматизации</a>
+      <span class="switch-tab now" aria-current="page">Говорящая голова</span>
+    </nav>
+    <div class="progress-track" role="progressbar" aria-label="Прогресс по курсу"
+         aria-valuemin="0" aria-valuemax="11" aria-valuenow="0">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <p class="progress-note">прогресс хранится в этом браузере · курс на 3 захода по 2–3 часа</p>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Оглавление курса">
+    <div class="toc-inner">
+      <div class="toc-block">
+        <p class="toc-cap"><b>А · Понять</b><span>≈2 ч</span></p>
+        <a class="toc-link" href="#m0"><span class="toc-num">0</span>Цель</a>
+        <a class="toc-link" href="#m1"><span class="toc-num">1</span>Как ИИ делает видео</a>
+        <a class="toc-link" href="#m2"><span class="toc-num">2</span>Твой Higgsfield</a>
+      </div>
+      <div class="toc-block">
+        <p class="toc-cap"><b>Б · Собрать</b><span>≈3 ч</span></p>
+        <a class="toc-link" href="#m3"><span class="toc-num">3</span>Лицо ведущей</a>
+        <a class="toc-link" href="#m4"><span class="toc-num">4</span>Голос ведущей</a>
+        <a class="toc-link" href="#m5"><span class="toc-num">5</span>Сценарий ролика</a>
+        <a class="toc-link" href="#m6"><span class="toc-num">6</span>Первый ролик</a>
+      </div>
+      <div class="toc-block">
+        <p class="toc-cap"><b>В · Управлять</b><span>≈2,5 ч</span></p>
+        <a class="toc-link" href="#m7"><span class="toc-num">7</span>Конвейер на поток</a>
+        <a class="toc-link" href="#m8"><span class="toc-num">8</span>Окупаемость роликов</a>
+        <a class="toc-link" href="#m9"><span class="toc-num">9</span>Право и честность</a>
+        <a class="toc-link" href="#m10"><span class="toc-num">10</span>Экзамен и три ролика</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="soderzhanie">
+    <section class="module" id="m0" data-title="Цель" data-block="A">
+  <header class="module-head">
+    <p>М0 · Блок А «Понять» · ≈25 мин</p>
+    <h2>Цель: конвейер, а не ролик</h2>
+    <p>Один ролик — удача. Конвейер — станок, который выдаёт ролики каждую неделю.</p>
+  </header>
+
+  <p>У этого курса одна цель, и она на первом экране.</p>
+  <p><strong>Собрать конвейер роликов с цифровой ведущей — и управлять им.</strong></p>
+  <p>Не «сделать один красивый ролик».</p>
+  <p>Ролик — расходник. Конвейер — актив.</p>
+
+  <h3>Три критерия успеха</h3>
+  <p>Курс сдан, когда честно отметишь все три. Дословно, как на экзамене в М10:</p>
+  <ul>
+    <li><strong>Конвейер собран — 3 ролика за неделю руками владельца с замером времени.</strong></li>
+    <li><strong>Понимаю каждый шаг настолько, что могу его проверить.</strong></li>
+    <li><strong>Ставлю задачи ИИ и людям письменным ТЗ.</strong> ТЗ — задача, записанная словами: что сделать и как проверить.</li>
+  </ul>
+  <p>Владелец здесь — ты. Не подрядчик и не монтажёр.</p>
+
+  <details class="term">
+    <summary>Цифровая ведущая</summary>
+    <p>Аватар живого человека: лицо и голос настоящие, снятые один раз. Ролики дальше генерирует ИИ.</p>
+    <p>В этом курсе в кадре — ведущая М. Ты — продюсер за кадром.</p>
+  </details>
+  <details class="term">
+    <summary>Конвейер</summary>
+    <p>Процесс, который выдаёт ролики регулярно: тема → сценарий → генерация → публикация.</p>
+    <p>Противоположность «сделали один ролик и выдохлись».</p>
+  </details>
+  <details class="term">
+    <summary>Продакшен</summary>
+    <p>Производство видео по-старому: студия, оператор, свет, монтажёр.</p>
+    <p>Мы не ругаем продакшен — мы перестаём от него зависеть.</p>
+  </details>
+
+  <div class="why">
+    <p>Старое правило «видео — это студия и монтажёр» умерло.</p>
+    <p>Минута маркетингового видео руками стоила <span class="dated" data-src="adwave.com, 20.08.2026">~$4 500, с ИИ — ~$400: минус 91%</span>.</p>
+    <p>60-секундный ролик делали <span class="dated" data-src="adwave.com, 20.08.2026">13 дней; ИИ выдаёт за 27 минут</span>.</p>
+    <p>В Москве короткий ролик «под ключ» — <span class="dated" data-src="profi.ru, mosvideo.org, 20.08.2026">от 25–50 тыс ₽</span>.</p>
+    <p>У тебя уже куплена годовая подписка ИИ-видео — ~60 тыс ₽/год.</p>
+    <p>Пока она не печёт ролики — это расход. Конвейер превращает её в станок.</p>
+  </div>
+
+  <div class="apply">
+    <p>Кружки и ролики в твой Telegram-канал — 2–3 в неделю, без студии.</p>
+    <p>Ролики про товар — в карточки и на сайт.</p>
+    <p>Экспертные ролики твоей головой — доверие, которое рекламой не покупается.</p>
+  </div>
+
+  <div class="example">
+    <p>Аналогия из кухни: хлеб можно покупать по буханке, а можно один раз купить хлебопечку.</p>
+    <p>Заказ ролика у продакшена — буханка за буханкой, каждая за отдельные деньги.</p>
+    <p>Подписка — хлебопечка. Она уже стоит на твоей кухне и оплачена на год вперёд.</p>
+    <p>Курс учит не «испечь один хлеб», а печь каждую неделю — и знать рецепт наизусть.</p>
+  </div>
+
+  <h3>Зачем магазину М. цифровая ведущая</h3>
+
+  <div class="example case-m">
+    <p>Тот же магазин на маркетплейсе, что и в первой школе: оборот ~25 млн ₽ в месяц, хозяин — не разработчик.</p>
+    <p>Он посчитал живой продакшен: короткий ролик «под ключ» в Москве — <span class="dated" data-src="profi.ru, mosvideo.org, 20.08.2026">от 25 тыс ₽</span>.</p>
+    <p>При темпе 2–3 ролика в неделю выходит около десятка в месяц. Прикидка: четверть миллиона и больше — каждый месяц. Подставь свои цифры.</p>
+    <p>Решение: завести цифровую ведущую. Лицом роликов становится ведущая М. — живой человек рядом, а не актриса с биржи.</p>
+    <p>Подписка ИИ-видео уже оплачена — ~60 тыс ₽ за год. Весь курс — путь от подписки до конвейера.</p>
+  </div>
+
+  <h3>Карта пути</h3>
+  <p>Три блока — три захода. Каждый кончается результатом, который можно потрогать.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 660 235" role="img" aria-label="Карта пути: три блока курса">
+      <rect x="15" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="110" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок А · ≈2 ч</text>
+      <text x="110" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Понять</text>
+      <text x="110" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М0–М2: цель, устройство</text>
+      <text x="110" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">ИИ-видео, твой Higgsfield</text>
+      <path d="M205 105 H231" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M224 98 L232 105 L224 112" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="235" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="330" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок Б · ≈3 ч</text>
+      <text x="330" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Собрать</text>
+      <text x="330" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М3–М6: лицо, голос,</text>
+      <text x="330" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">сценарий, первый ролик</text>
+      <path d="M425 105 H451" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M444 98 L452 105 L444 112" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="455" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="550" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок В · ≈2,5 ч</text>
+      <text x="550" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Управлять</text>
+      <text x="550" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М7–М10: поток, деньги,</text>
+      <text x="550" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">право, экзамен</text>
+      <text x="330" y="215" text-anchor="middle" font-size="15" font-weight="600" fill="var(--amber)">в конце блока Б — первый ролик с твоей ведущей</text>
+    </svg>
+    <figcaption>Дорога курса: понять → собрать → управлять. Возвращаться можно в любой модуль — прогресс сохраняется.</figcaption>
+  </figure>
+
+  <h3>Станок целиком: пять станций</h3>
+  <p>Вот конвейер, который ты соберёшь. Две станции настраиваются один раз, три крутятся каждую неделю.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 660 500" role="img" aria-label="Конвейер из пяти станций">
+      <rect x="110" y="16" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="330" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">1 · Тема и сценарий</text>
+      <text x="330" y="68" text-anchor="middle" font-size="14" fill="var(--muted)">каждую неделю · М5</text>
+      <path d="M330 84 V104" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M323 97 L330 105 L337 97" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="110" y="112" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="330" y="140" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">2 · Лицо ведущей</text>
+      <text x="330" y="164" text-anchor="middle" font-size="14" fill="var(--muted)">настраивается один раз · М3</text>
+      <path d="M330 180 V200" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M323 193 L330 201 L337 193" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="110" y="208" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="330" y="236" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">3 · Голос ведущей</text>
+      <text x="330" y="260" text-anchor="middle" font-size="14" fill="var(--muted)">клонируется один раз · М4</text>
+      <path d="M330 276 V296" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M323 289 L330 297 L337 289" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="110" y="304" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="330" y="332" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">4 · Генерация ролика</text>
+      <text x="330" y="356" text-anchor="middle" font-size="14" fill="var(--muted)">минуты на штуку · М6</text>
+      <path d="M330 372 V392" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M323 385 L330 393 L337 385" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="110" y="400" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="330" y="428" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">5 · Проверка и публикация</text>
+      <text x="330" y="452" text-anchor="middle" font-size="14" fill="var(--amber)">твоя приёмка · М7 и М9</text>
+      <text x="330" y="490" text-anchor="middle" font-size="14" fill="var(--muted)">станции 2 и 3 — разовые, остальные — еженедельные</text>
+    </svg>
+    <figcaption>Пять станций конвейера. Лицо и голос снимаются один раз, дальше работают на каждый ролик.</figcaption>
+  </figure>
+
+  <h3>Быстрая победа</h3>
+  <p>Первая проверка — 10-секундный ролик с русской речью, самый первый шаг М4.</p>
+  <p>Первый полный ролик с ведущей — М6, конец блока Б.</p>
+  <p>Дальше станок разгоняется до темпа 2–3 ролика в неделю.</p>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m0-s1">Прочитай три критерия ещё раз и поставь себе честную оценку «сейчас» по каждому.</li>
+    <li class="step-check" data-step="m0-s2">Запиши, куда пойдут первые ролики: канал магазина, карточки товара, сайт.</li>
+    <li class="step-check" data-step="m0-s3">Поставь в календарь два окна по 3 часа — под блоки Б и В.</li>
+  </ol>
+
+  <div class="control">
+    <p>Своё обучение веди как проект.</p>
+    <p>После каждого блока возвращайся к трём критериям и отвечай честно: могу или нет.</p>
+    <p>Критерий первый требует замера времени — заведи привычку засекать с самого первого ролика.</p>
+    <p>Просело — вернись в модуль, где просело, а не беги дальше.</p>
+  </div>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">Что считается результатом этого курса?</p>
+    <button>один идеальный ролик про магазин</button>
+    <button>работающий конвейер: 3 ролика за неделю твоими руками, с замером времени</button>
+    <button>подписки на все ИИ-сервисы, какие есть</button>
+    <p class="quiz-x">Один ролик — проба. Результат — система, которая выдаёт ролики каждую неделю, и ты понимаешь каждый её шаг.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Цель — конвейер, а не ролик.</p>
+    <p>Три критерия: конвейер собран, каждый шаг проверяем, задачи — письменным ТЗ.</p>
+    <p>Подписка уже куплена. Курс превращает её из расхода в станок.</p>
+  </div>
+</section>
+    <section class="module" id="m1" data-title="Как ИИ делает видео" data-block="A">
+  <header class="module-head">
+    <p>М1 · Блок А «Понять» · ≈45 мин</p>
+    <h2>Как ИИ делает видео — без магии</h2>
+    <p>Семь слов и одна схема. После них продавец «волшебной кнопки» тебе ничего не продаст.</p>
+  </header>
+
+  <p>Чтобы управлять конвейером, не нужно знать формулы.</p>
+  <p>Нужен словарь из семи слов и одна схема из четырёх шагов.</p>
+  <p>Раскрывашки ниже — это и есть материал модуля. Открой каждую.</p>
+
+  <details class="term">
+    <summary>Генерация</summary>
+    <p>ИИ создаёт картинку, звук или видео из твоего описания.</p>
+    <p>Каждая генерация — попытка. Не каждая удачная: брак — нормальная часть процесса.</p>
+  </details>
+  <details class="term">
+    <summary>Промпт</summary>
+    <p>Задание для ИИ обычными словами: кто в кадре, что происходит, что говорит.</p>
+    <p>Хороший промпт похож на ТЗ подрядчику: точный, короткий, проверяемый.</p>
+  </details>
+  <details class="term">
+    <summary>Аватар</summary>
+    <p>Цифровой двойник человека. Лицо настоящее — картинку рисует ИИ.</p>
+    <p>Твоя ведущая в роликах — аватар: она не снимается каждый раз. Она снялась один раз.</p>
+  </details>
+  <details class="term">
+    <summary>Липсинк</summary>
+    <p>Губы двигаются в такт словам. По-английски lip sync — «синхронизация губ».</p>
+    <p>Это сердце говорящей головы: без липсинка аватар — просто фото.</p>
+  </details>
+  <details class="term">
+    <summary>Клон голоса</summary>
+    <p>ИИ выучивает голос по записи и потом озвучивает этим голосом любой текст.</p>
+    <p>Записали полчаса чистой речи — дальше ведущая «читает» твои сценарии сама.</p>
+  </details>
+  <details class="term">
+    <summary>Кредиты</summary>
+    <p>Внутренняя валюта генераций. Подписка выдаёт мешок кредитов на месяц.</p>
+    <p>Каждый ролик и каждый брак-дубль списывают кредиты. Кредиты — это деньги, считай их.</p>
+  </details>
+  <details class="term">
+    <summary>C2PA-метка</summary>
+    <p>Невидимая машиночитаемая отметка «сделано ИИ» внутри файла.</p>
+    <p>Площадки читают её автоматически. Вырезать не пытайся — про честность будет М9.</p>
+  </details>
+
+  <h3>Одна схема: текст → картинка → движение → речь</h3>
+  <p>Любой ролик с говорящей ведущей собирается в четыре шага.</p>
+  <p>Твои — первый шаг и приёмка последнего. Середину делает машина.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 660 230" role="img" aria-label="Схема: текст, картинка, движение, речь">
+      <rect x="10" y="30" width="150" height="96" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="85" y="62" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Текст</text>
+      <text x="85" y="88" text-anchor="middle" font-size="14" fill="var(--muted)">промпт +</text>
+      <text x="85" y="108" text-anchor="middle" font-size="14" fill="var(--muted)">сценарий</text>
+      <path d="M160 78 H186" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M179 71 L187 78 L179 85" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="175" y="30" width="150" height="96" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="250" y="62" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Картинка</text>
+      <text x="250" y="88" text-anchor="middle" font-size="14" fill="var(--muted)">кадр</text>
+      <text x="250" y="108" text-anchor="middle" font-size="14" fill="var(--muted)">с ведущей</text>
+      <path d="M325 78 H351" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M344 71 L352 78 L344 85" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="340" y="30" width="150" height="96" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="415" y="62" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Движение</text>
+      <text x="415" y="88" text-anchor="middle" font-size="14" fill="var(--muted)">голова, мимика,</text>
+      <text x="415" y="108" text-anchor="middle" font-size="14" fill="var(--muted)">жесты</text>
+      <path d="M490 78 H516" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M509 71 L517 78 L509 85" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="505" y="30" width="150" height="96" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="580" y="62" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Речь</text>
+      <text x="580" y="88" text-anchor="middle" font-size="14" fill="var(--muted)">клон голоса +</text>
+      <text x="580" y="108" text-anchor="middle" font-size="14" fill="var(--muted)">липсинк</text>
+      <text x="330" y="170" text-anchor="middle" font-size="15" font-weight="600" fill="var(--amber)">жёлтый шаг пишешь ты — остальное генерирует ИИ</text>
+      <text x="330" y="202" text-anchor="middle" font-size="14" fill="var(--muted)">в Higgsfield все четыре шага живут в одном окне</text>
+    </svg>
+    <figcaption>Четыре шага любого ролика. У каждой стрелки — своя ИИ-модель, но тебе они видны как одно окно.</figcaption>
+  </figure>
+
+  <p>Как это работает внутри — на пальцах.</p>
+  <ul>
+    <li>ИИ учился на огромной куче чужих видео и знает, «как выглядит мир».</li>
+    <li>Ты описываешь кадр словами — он рисует свой вариант.</li>
+    <li>Модель движения оживляет кадр: поворот головы, моргание, жесты.</li>
+    <li>Модель речи кладёт звук на губы — это и есть липсинк.</li>
+  </ul>
+
+  <h3>Где ИИ силён, а где слаб</h3>
+  <p>Честная таблица. Она же — твой чек-лист приёмки на весь курс.</p>
+  <table>
+    <thead>
+      <tr><th>Силён</th><th>Слаб</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Говорящая голова в статичной сцене</td><td>Руки и пальцы: лишние, кривые</td></tr>
+      <tr><td>Короткие планы на несколько секунд</td><td>Длинные планы: лицо начинает «плыть»</td></tr>
+      <tr><td>Смена фона, света, одежды за секунды</td><td>Точные надписи в кадре: буквы коверкает</td></tr>
+      <tr><td>Много вариантов за один вечер</td><td>Точные движения с товаром в руках</td></tr>
+    </tbody>
+  </table>
+  <p>Хорошая новость: твой формат — говорящая голова — сидит ровно в сильной зоне.</p>
+  <p>Слабые руки лечатся просто: план по грудь, товар — отдельным кадром.</p>
+
+  <div class="why">
+    <p>Без словаря ты не примешь работу у собственного конвейера.</p>
+    <p>Не отличишь брак от нормы. Не поймёшь, куда делись кредиты.</p>
+    <p>И поверишь любому «это невозможно» или «нужен дорогой специалист».</p>
+    <p>Рынок ИИ-видео в 2026 году — <span class="dated" data-src="openpr.com, 20.08.2026">$3,8 млрд, прогноз к 2033 — $28,2 млрд</span>.</p>
+    <p>Агентства с ИИ выпускают <span class="dated" data-src="adwave.com, autofaceless.ai, 20.08.2026">в 11 раз больше роликов теми же людьми</span>.</p>
+    <p>Эти люди не умнее тебя. Они выучили те же семь слов.</p>
+  </div>
+
+  <div class="apply">
+    <p>В М2 — сверить тариф и кредиты, уже понимая, что это такое.</p>
+    <p>В блоке Б — снять сет для аватара и записать голос для клона.</p>
+    <p>В любом разговоре «сделаем ролики под ключ» — теперь слышно, где пугают магией.</p>
+  </div>
+
+  <div class="example">
+    <p>Разберём один кружок «обзор новинки» по схеме.</p>
+    <p>Текст: сценарий на 30 слов и промпт «ведущая у полки, тёплый свет, смотрит в камеру».</p>
+    <p>Картинка: ИИ рисует кадр — лицо настоящее, сцена нарисована.</p>
+    <p>Движение: кадр оживает — лёгкий поворот головы, моргание.</p>
+    <p>Речь: клон голоса читает сценарий, липсинк кладёт слова на губы.</p>
+    <p>Ты написал 30 слов. Остальное сделала машина за минуты.</p>
+  </div>
+
+  <div class="example case-m">
+    <p>Хозяин магазина М. начинал с мысли «ИИ-видео — кнопка "сделай красиво"».</p>
+    <p>Первый тест на библиотечном аватаре: из трёх дублей один ушёл в брак — руки.</p>
+    <p>Раньше он решил бы «сервис сломан». Со словарём — «слабое место генерации, делаем дубль».</p>
+    <p>Вывод он записал себе так: брак — не авария, а строка расхода. Дубли и кредиты закладываем заранее.</p>
+    <p>Свою ведущую он строит по шагам блока Б, а не «на глазок» — чтобы каждый шаг можно было проверить.</p>
+  </div>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m1-s1">Открой все семь раскрывашек и перескажи каждое слово вслух — своими словами, без подглядывания.</li>
+    <li class="step-check" data-step="m1-s2">Найди в любой ленте два ролика, где подозреваешь ИИ. Проверь по слабым местам: руки, надписи, длинные планы.</li>
+    <li class="step-check" data-step="m1-s3">Распиши свой будущий первый кружок по схеме «текст → картинка → движение → речь» — одной строкой на каждый шаг.</li>
+  </ol>
+
+  <div class="control">
+    <p>Принимай генерации, как принимаешь товар: по чек-листу слабых мест.</p>
+    <p>Смотри руки, надписи, длинные планы — брак живёт там.</p>
+    <p>Считай долю брака: три дубля из десяти — норма, восемь из десяти — меняй промпт.</p>
+    <p>И помни: каждый дубль — кредиты, а кредиты — деньги.</p>
+  </div>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">ИИ сгенерировал ролик, где у ведущей шесть пальцев. Что это значит?</p>
+    <button>сервис сломан, пора менять платформу</button>
+    <button>обычный брак генерации: руки — слабое место, делаем дубль</button>
+    <button>ведущая не подходит, нужен другой человек</button>
+    <p class="quiz-x">Руки — известное слабое место генерации. Дубль-другой — нормальная цена конвейера, поэтому кредиты закладываются с запасом.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Видео = текст → картинка → движение → речь. Семь слов выучены — магия кончилась.</p>
+    <p>Твой формат сидит в сильной зоне ИИ: говорящая голова, короткие планы.</p>
+    <p>Проверяй слабые места: руки, надписи, длинные планы. Брак — расход, а не авария.</p>
+  </div>
+</section>
+    <section class="module" id="m2" data-title="Твой Higgsfield" data-block="A">
+  <header class="module-head">
+    <p>М2 · Блок А «Понять» · ≈50 мин</p>
+    <h2>Твой Higgsfield: что уже куплено</h2>
+    <p>Ты платишь за комбайн. Узнай, что в нём есть, и сверь тариф своими глазами.</p>
+  </header>
+
+  <p>Higgsfield — платформа, где будет жить твой конвейер.</p>
+  <p>Подписка уже оплачена. Осталось ответить на два вопроса.</p>
+  <p>Первый: что вообще входит в эту подписку.</p>
+  <p>Второй: какой именно у тебя план. Не «вроде бы», а по кабинету.</p>
+
+  <h3>Что это за сервис</h3>
+  <p>Higgsfield — агрегатор: собирает чужие топ-модели видео и фото в одно окно и добавляет свои инструменты.</p>
+  <p>Сервис не однодневка: <span class="dated" data-src="techcrunch.com, 17.08.2026">30+ млн пользователей; в августе 2026 привлёк $400 млн при оценке $5,4 млрд</span>.</p>
+  <p>Но платформа чужая: цены и правила меняются без спроса. Поэтому ниже — аудит, а не вера на слово.</p>
+
+  <h3>Карта функций: четыре ветки</h3>
+  <ul>
+    <li><strong>Speak 2.0</strong> — говорящая голова: кадр с ведущей плюс звук — и ведущая говорит. Есть <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">только на планах Plus и Ultra</span>.</li>
+    <li><strong>Soul ID</strong> — постоянное лицо: загружаешь <span class="dated" data-src="higgsfield.ai, справка Soul ID, 20.08.2026">20+ фото, тренировка 3–5 минут</span> — дальше ведущая узнаваема в любой сцене.</li>
+    <li><strong>Marketing Studio и UGC-сборщик</strong> — вставляешь ссылку на товар, платформа сама тянет фото и описание и собирает ролик-обзор. Тоже <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">только Plus и Ultra</span>.</li>
+    <li><strong>Библиотека моделей</strong> — <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">Sora 2, Veo 3.1, Kling 3.0, Minimax Hailuo, Seedance, Nano Banana и другие</span> — движки на все случаи.</li>
+  </ul>
+  <p>Про язык. У говорящих аватаров заявлено <span class="dated" data-src="higgsfield.ai/ai-talking-avatar, 20.08.2026">74+ языков</span>.</p>
+  <p>Но прямого подтверждения «русский работает именно в Speak» нет — говорю честно.</p>
+  <p>Поэтому первая практика М4 — русская фраза на 10 секунд. Проверим, а не поверим.</p>
+
+  <details class="term">
+    <summary>Sora, Veo, Kling — что это</summary>
+    <p>Флагманские видеомодели больших ИИ-компаний: Sora — OpenAI, Veo — Google, Kling — Kuaishou.</p>
+    <p>По отдельности у каждой свой сайт и подписка. Higgsfield продаёт доступ ко всем из одного окна — за кредиты.</p>
+  </details>
+  <details class="term">
+    <summary>UGC</summary>
+    <p>User Generated Content — контент «как от живого покупателя»: снято будто на телефон, без студийного лоска.</p>
+    <p>Такая подача смотрится как совет, а не как реклама. Цифры, почему она работает, — в М8.</p>
+  </details>
+  <details class="term">
+    <summary>Водяной знак</summary>
+    <p>Видимая плашка сервиса поверх видео — «сделано там-то».</p>
+    <p>Не путай с C2PA-меткой из М1: та невидимая и остаётся всегда, даже на платном плане.</p>
+  </details>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 660 420" role="img" aria-label="Карта функций Higgsfield">
+      <rect x="180" y="10" width="300" height="70" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="330" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="var(--ink)">Higgsfield</text>
+      <text x="330" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">твоя подписка · валюта — кредиты</text>
+      <path d="M330 80 V104" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M165 104 H495" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M165 104 V122" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M495 104 V122" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="15" y="122" width="300" height="88" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="165" y="152" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Speak 2.0</text>
+      <text x="165" y="176" text-anchor="middle" font-size="14" fill="var(--muted)">говорящая голова</text>
+      <text x="165" y="196" text-anchor="middle" font-size="14" fill="var(--amber)">только Plus и выше</text>
+      <rect x="345" y="122" width="300" height="88" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="495" y="152" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Soul ID</text>
+      <text x="495" y="176" text-anchor="middle" font-size="14" fill="var(--muted)">постоянное лицо ведущей</text>
+      <text x="495" y="196" text-anchor="middle" font-size="14" fill="var(--muted)">настраивается один раз</text>
+      <path d="M165 210 V232" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M495 210 V232" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="15" y="232" width="300" height="88" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="165" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Marketing Studio</text>
+      <text x="165" y="286" text-anchor="middle" font-size="14" fill="var(--muted)">ролик из ссылки на товар</text>
+      <text x="165" y="306" text-anchor="middle" font-size="14" fill="var(--amber)">только Plus и выше</text>
+      <rect x="345" y="232" width="300" height="88" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="495" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Библиотека моделей</text>
+      <text x="495" y="286" text-anchor="middle" font-size="14" fill="var(--muted)">Sora 2 · Veo 3.1 · Kling 3.0</text>
+      <text x="495" y="306" text-anchor="middle" font-size="14" fill="var(--muted)">и другие движки</text>
+      <text x="330" y="360" text-anchor="middle" font-size="15" font-weight="600" fill="var(--amber)">кредиты — общий кошелёк всех четырёх веток</text>
+      <text x="330" y="392" text-anchor="middle" font-size="14" fill="var(--muted)">нет плана Plus — ветки говорящей головы и товарных роликов закрыты</text>
+    </svg>
+    <figcaption>Четыре ветки одной подписки. Кошелёк общий — кредиты; жёлтые ветки открываются с плана Plus.</figcaption>
+  </figure>
+
+  <h3>Тарифная лестница</h3>
+  <p>Снято с живой страницы цен <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">20.08.2026 — действовало промо «30% OFF»</span>.</p>
+  <p>Цены без налога — он добавится при оплате.</p>
+  <table>
+    <thead>
+      <tr><th>План</th><th>Кредиты/мес</th><th>Цена</th><th>Говорящая голова</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Free</td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">0</span></td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">$0</span></td>
+        <td>нет; и коммерческого использования нет</td>
+      </tr>
+      <tr>
+        <td>Starter</td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">270</span></td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">$19/мес</span></td>
+        <td>нет</td>
+      </tr>
+      <tr>
+        <td>Plus</td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">1 200</span></td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">$59/мес; годовая — $47/мес, $564/год</span></td>
+        <td>да</td>
+      </tr>
+      <tr>
+        <td>Ultra</td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">3 000</span></td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">$129/мес; годовая — $99/мес, $1 188/год</span></td>
+        <td>да</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Вывод: конвейеру курса нужен минимум Plus.</strong> Ниже нет говорящей головы.</p>
+
+  <h3>Аудит тарифа: открой кабинет и сверь</h3>
+  <p>Курс не знает твой тариф. И не должен: факт живёт в кабинете, а не в конспекте.</p>
+  <ol class="steps">
+    <li class="step-check" data-step="m2-s1">Зайди на сайт платформы под своим аккаунтом и открой раздел подписки: профиль → Subscription или Billing.</li>
+    <li class="step-check" data-step="m2-s2">Выпиши план — Free, Starter, Plus или Ultra — и дату следующего списания.</li>
+    <li class="step-check" data-step="m2-s3">Выпиши кредиты: сколько даёт план в месяц и сколько осталось сейчас.</li>
+    <li class="step-check" data-step="m2-s4">Проверь строку Speak: доступна ли говорящая голова на твоём плане. Без неё блок Б не поедет.</li>
+    <li class="step-check" data-step="m2-s5">Сверь списанную сумму с прикидкой ниже. Кабинет сейчас не открывается — не беда: иди по курсу дальше, а эту галочку закрой до начала М3.</li>
+  </ol>
+
+  <h3>Прикидка: на что похожи ~60 тыс ₽ в год</h3>
+  <p>Известна одна твоя цифра: подписка ИИ-видео — ~60 тыс ₽ в год.</p>
+  <p>По курсу <span class="dated" data-src="ЦБ РФ, 20.08.2026">85,13 ₽ за доллар</span> это примерно <span class="dated" data-src="прикидка по курсу ЦБ РФ, 20.08.2026">$700–730</span>.</p>
+  <p>Годовой Plus — <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">$564 в год</span>; с налогом выходит <span class="dated" data-src="higgsfield.ai/pricing и курс ЦБ РФ, прикидка, 20.08.2026">около 57–58 тыс ₽</span>.</p>
+  <p>Plus по цене до промо — <span class="dated" data-src="higgsfield.ai/pricing и курс ЦБ РФ, прикидка, 20.08.2026">$708 в год ≈ 60 тыс ₽</span> — совпадение почти точное.</p>
+  <p>Годовой Ultra — <span class="dated" data-src="higgsfield.ai/pricing и курс ЦБ РФ, прикидка, 20.08.2026">$1 188 ≈ 101 тыс ₽</span> — заметно дороже твоей цифры.</p>
+  <p>Starter — <span class="dated" data-src="higgsfield.ai/pricing и курс ЦБ РФ, прикидка, 20.08.2026">$228 ≈ 19 тыс ₽</span> — дешевле, и говорящей головы там нет.</p>
+  <p><strong>Итого: похоже на Plus с годовой оплатой. Это оценка, не факт — сверь в кабинете</strong> или по письму об оплате.</p>
+
+  <h3>Честное сравнение: комбайн и специалисты</h3>
+  <table>
+    <thead>
+      <tr><th>Сервис</th><th>Сильная сторона</th><th>Вход с говорящим аватаром</th><th>Когда брать</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Higgsfield</td>
+        <td>комбайн: модели + голова + товарные ролики</td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">Plus $59/мес, годовая $47/мес</span></td>
+        <td>одна подписка на весь конвейер — твой случай</td>
+      </tr>
+      <tr>
+        <td>HeyGen</td>
+        <td>цифровой двойник, перевод видео на <span class="dated" data-src="heygen.com/pricing, 20.08.2026">175 языков, ролики до 30 мин</span></td>
+        <td><span class="dated" data-src="heygen.com/pricing, 20.08.2026">Creator $29/мес, годовая $24/мес</span></td>
+        <td>нужен именно двойник себя и дубляж</td>
+      </tr>
+      <tr>
+        <td>Synthesia</td>
+        <td>«офисное» видео по сценарию, <span class="dated" data-src="synthesia.io/pricing, 20.08.2026">140+ языков</span></td>
+        <td><span class="dated" data-src="synthesia.io/pricing, 20.08.2026">Starter $29/мес, годовая $18/мес, 120 мин/год</span></td>
+        <td>инструкции и обучение персонала</td>
+      </tr>
+      <tr>
+        <td>D-ID</td>
+        <td>оживление фото, аватары-чаты на сайте</td>
+        <td><span class="dated" data-src="top50aitools.com, d-id.com, 20.08.2026">Lite $5.90/мес за 10 мин; Pro $29.90 за 15 мин</span></td>
+        <td>самый дешёвый вход, качество ниже</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>У комбайна нет пер-минутных гарантий и публичного API — интеграции через MCP и CLI, о них в М7.</p>
+  <p>Менять платформу не нужно: подписка уже оплачена.</p>
+  <p>Альтернативы держи в голове, чтобы не быть заложником одного сервиса.</p>
+
+  <h3>Водяные знаки и метка «сделано ИИ»</h3>
+  <ul>
+    <li>Видимый водяной знак — <span class="dated" data-src="higgsfield.ai, справка, 20.08.2026">только на Free; любой платный план — без него</span>.</li>
+    <li>Ролики с Free задним числом не очищаются — <span class="dated" data-src="higgsfield.ai, справка, 20.08.2026">их перегенерируют уже на платном плане</span>.</li>
+    <li>Невидимая C2PA-метка остаётся всегда. Помнишь из М1: площадки читают её сами.</li>
+    <li>Коммерческое использование — <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">на всех платных планах; на Free его нет</span>.</li>
+  </ul>
+  <p>Вырезать метку не пытайся. Честная маркировка — тема М9, и она работает на тебя.</p>
+
+  <div class="why">
+    <p>Это твой станок за твои деньги.</p>
+    <p>Не зная карту функций — платишь за комбайн, а пользуешься одной кнопкой.</p>
+    <p>Не зная тариф — не посчитаешь себестоимость ролика в М8.</p>
+    <p>И не заметишь, если план сменится или спишется чужая сумма.</p>
+  </div>
+
+  <div class="apply">
+    <p>Чек-лист аудита — прямо сейчас: пять галочек выше.</p>
+    <p>Карта функций — при сборке: Soul ID ждёт в М3, Speak — в М6, товарные ролики — в М7.</p>
+    <p>Таблица сравнения — когда кто-то скажет «бросай всё, есть сервис лучше».</p>
+  </div>
+
+  <div class="control">
+    <p>Раз в месяц — минута в кабинете: план, кредиты, дата списания.</p>
+    <p>Цены сервисов живут неделями. Перед любым апгрейдом открой страницу цен заново.</p>
+    <p>Скринам и конспектам — включая этот курс — не верь на слово: сверяй по живому кабинету.</p>
+  </div>
+
+  <div class="example case-m">
+    <p>Хозяин магазина М. прошёл аудит за десять минут.</p>
+    <p>В кабинете нашёл план и кредиты, проверил строку про говорящую голову.</p>
+    <p>Сумма из письма об оплате легла рядом с прикидкой «годовой Plus» — похоже.</p>
+    <p>Но в заметку он записал не «у меня Plus», а «похоже на Plus; сверено по кабинету, дата такая-то».</p>
+    <p>Прикидка не становится фактом от того, что она удобная. Факт — это дата и место проверки.</p>
+  </div>
+
+  <div class="example">
+    <p>Условная прикидка, подставь свои цифры: пусть конвейеру нужно десять роликов в месяц.</p>
+    <p>У сервисов с помесячными минутами входной тариф — <span class="dated" data-src="synthesia.io/pricing, 20.08.2026">120 минут в год</span>: это про обучающие фильмы, не про поток коротких роликов.</p>
+    <p>У комбайна валюта — кредиты на всё сразу: ролики, картинки, дубли.</p>
+    <p>Поэтому в М8 мы посчитаем не «сколько стоит сервис», а «сколько стоит твой ролик».</p>
+  </div>
+
+  <div class="quiz" data-a="3">
+    <p class="quiz-q">Без какого плана конвейер этого курса не поедет — и почему?</p>
+    <button>Free: там всё есть, только с водяным знаком</button>
+    <button>Starter: кредитов мало, но говорящая голова есть</button>
+    <button>Plus: ниже него нет Speak, а без говорящей головы нет ведущей</button>
+    <p class="quiz-x">Speak включается только с Plus; на Free вдобавок нет коммерческих прав. Поэтому аудит тарифа — обязательный шаг модуля.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Higgsfield — комбайн: чужие топ-модели плюс Speak, Soul ID и товарные ролики. Валюта одна — кредиты.</p>
+    <p>Конвейеру нужен минимум Plus: ниже говорящей головы нет.</p>
+    <p>Твой тариф — «похоже, годовой Plus». Это оценка. Фактом её делает только кабинет.</p>
+  </div>
+</section>
+    <section class="module" id="m3" data-title="Лицо ведущей" data-block="B">
+  <header class="module-head">
+    <p>М3 · Блок Б «Собрать» · ≈45 мин</p>
+    <h2>Лицо ведущей</h2>
+    <p>Один вечер — и у магазина есть цифровое лицо: согласие подписано, сет отснят, персонаж обучен.</p>
+  </header>
+
+  <div class="why">
+    <p>Всё, что дальше в курсе, стоит на этом модуле: каждый ролик и каждая обложка — это лицо ведущей.</p>
+    <p>Сет снимается один раз. Хороший сет — ведущая живёт годами и выглядит одинаково в любом ролике. Плохой — каждый ролик выходит «чуть другой человек», и доверие зрителя рассыпается.</p>
+    <p>А согласие — один лист бумаги, который закрывает юридический вопрос до того, как он возник.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Сегодня: подписать согласие, снять сет за вечер, обучить персонажа в Soul ID.</li>
+      <li>Дальше по курсу: голос (М4), первый ролик (М6), конвейер (М7) — все берут ведущую из этого модуля.</li>
+      <li>Вторая дорожка — твоё собственное лицо для экспертных роликов: экзамен в М10 попросит хотя бы один такой ролик.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Бумага: подписанное согласие лежит в папке документов магазина. Проверка — один взгляд; в М9 этот вопрос встретится снова.</li>
+      <li>Сет: принимается по чек-листу ниже. Тем же списком примешь работу, если снимать будешь не ты.</li>
+      <li>Персонаж: три тестовые генерации в разных сценах. Лицо «поплыло» — пересобрать сет, а не мириться.</li>
+    </ul>
+  </div>
+
+  <h3>Один вечер — три результата</h3>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 230">
+      <rect x="20" y="60" width="160" height="110" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="100" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Согласие</text>
+      <text x="100" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">один лист</text>
+      <text x="100" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">≈5 минут</text>
+      <text x="100" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">бумага</text>
+
+      <line x1="180" y1="115" x2="203" y2="115" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="213,115 201,109 201,121" fill="var(--ink)"/>
+
+      <rect x="213" y="60" width="160" height="110" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="293" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Сет</text>
+      <text x="293" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">видео 2–3 мин</text>
+      <text x="293" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">20–30 фото</text>
+      <text x="293" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">съёмка</text>
+
+      <line x1="373" y1="115" x2="396" y2="115" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="406,115 394,109 394,121" fill="var(--ink)"/>
+
+      <rect x="406" y="60" width="160" height="110" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="486" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Soul ID</text>
+      <text x="486" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">тренировка</text>
+      <text x="486" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">3–5 минут</text>
+      <text x="486" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">обучение</text>
+
+      <line x1="566" y1="115" x2="589" y2="115" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="599,115 587,109 587,121" fill="var(--ink)"/>
+
+      <rect x="599" y="60" width="145" height="110" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="671" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Ведущая</text>
+      <text x="671" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">любая сцена,</text>
+      <text x="671" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">любой свет</text>
+      <text x="671" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">результат</text>
+    </svg>
+    <figcaption>Один вечер работы — дальше лицо генерируется без съёмок: меняются только сцены и тексты.</figcaption>
+  </figure>
+
+  <h3>Шаг 1. Согласие — до первого кадра</h3>
+  <p>По закону использовать изображение человека можно только с его согласия — это <span class="dated" data-src="Гражданский кодекс РФ, статья 152.1, проверено 20.08.2026">ст. 152.1 ГК РФ</span>. Для рекламы согласие обязательно.</p>
+  <p>Цифровая ведущая — коммерческое использование внешности. Даже если ведущая — близкий человек, бумага нужна: она защищает вас обоих и снимает вопросы площадок и партнёров.</p>
+  <p>Сразу впиши в согласие и голос: клонировать его будем в М4, а бумага пусть закроет всё одним разом.</p>
+
+  <details class="term">
+    <summary>Ст. 152.1 ГК РФ</summary>
+    <p>Статья Гражданского кодекса об охране изображения гражданина: обнародовать и использовать фото и видео человека можно только с его согласия, в рекламе — строго обязательно. Письменная форма проще всего доказывается, поэтому подписываем лист, а не договариваемся на словах.</p>
+  </details>
+
+  <div class="example">
+    <p><strong>Бытовая аналогия.</strong> Доверенность на машину оформляют бумагой даже между близкими людьми — не из недоверия, а чтобы ни у одного проверяющего не было вопросов. Согласие на образ — та же доверенность, только на лицо и голос.</p>
+  </div>
+
+  <p>Ниже — готовый шаблон. Это <strong>шаблон, а не юридическое заключение</strong>: для съёмки с близким человеком его достаточно, а нестандартный случай — ведущая не из близкого круга, оплата за съёмку, договор с агентством — покажи юристу.</p>
+
+  <table>
+    <tr>
+      <td>
+        <p><strong>СОГЛАСИЕ на использование изображения и голоса</strong></p>
+        <p>Я, (фамилия, имя, отчество ведущей полностью), даю согласие (фамилия, имя, отчество получателя — того, на кого оформлен магазин) на безвозмездное использование:</p>
+        <ul>
+          <li>моих фотографий и видеозаписей, снятых для магазина;</li>
+          <li>цифрового образа (ИИ-аватара), созданного на их основе;</li>
+          <li>записей моего голоса и его цифровой копии.</li>
+        </ul>
+        <p>Разрешаю использовать перечисленное в роликах и видео магазина, в его рекламе, в обложках и оформлении его каналов, сайтов и страниц.</p>
+        <p>Срок действия согласия: ____ лет с даты подписания.</p>
+        <p>Я могу отозвать согласие письменным заявлением. После отзыва новые материалы с моим изображением и голосом не создаются и не публикуются; уже опубликованные снимаются в согласованный разумный срок.</p>
+        <p>Составлено с учётом статьи 152.1 Гражданского кодекса РФ.</p>
+        <p>Дата: «__» ________ 20__ г. · Подпись: ____________ / фамилия и инициалы</p>
+      </td>
+    </tr>
+  </table>
+
+  <p>Что подставить в поля:</p>
+  <ul>
+    <li><strong>Кто</strong> — ведущая: ФИО полностью; хочешь точнее — добавь дату рождения или паспортные данные.</li>
+    <li><strong>Кому</strong> — ты: то имя, на которое ведётся магазин.</li>
+    <li><strong>На что</strong> — ролики, реклама, обложки уже перечислены; лишнее вычеркни, недостающее допиши.</li>
+    <li><strong>Срок</strong> — обычно 3–5 лет: продлить проще, чем спорить о бессрочном.</li>
+    <li><strong>Отзыв</strong> — этот пункт защищает ведущую: согласие — не кабала, и это честно.</li>
+  </ul>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m3-s1">Скопируй шаблон, заполни поля и распечатай — на всё уходит пять минут.</li>
+    <li class="step-check" data-step="m3-s2">Подпишите два экземпляра: один — в папку документов магазина, второй — ведущей.</li>
+    <li class="step-check" data-step="m3-s3">Сфотографируй подписанный лист и положи скан в облако рядом с исходниками: чек-лист «перед публикацией» в М9 спросит, где согласие.</li>
+  </ol>
+
+  <h3>Шаг 2. Сет — вечер у окна</h3>
+  <p>Сет — материал, на котором учится цифровой двойник. Стандарт индустрии для видеодвойников — <span class="dated" data-src="памятка HeyGen по съёмке цифрового двойника, проверено 20.08.2026">минимум 2 минуты непрерывной речи на камеру в качестве от 1080p</span>. Мы снимаем 2–3 минуты — с запасом.</p>
+
+  <details class="term">
+    <summary>Сет</summary>
+    <p>Набор исходников для обучения аватара: одно непрерывное видео плюс пачка фотографий. Чем ровнее свет и естественнее эмоции, тем стабильнее лицо в генерациях.</p>
+  </details>
+  <details class="term">
+    <summary>1080p и 4K</summary>
+    <p>Разрешение видео. 1080p (Full HD) — стандарт чёткости, 4K — вчетверо детальнее. Для сета достаточно честного 1080p; 4K даёт запас на крупные планы. Оба умеет любой смартфон последних лет.</p>
+  </details>
+
+  <p>Что понадобится: смартфон, штатив (сойдёт и стопка книг), окно с дневным светом, тихая комната, однотонная одежда — мелкая клетка и полоска рябят на видео.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 320">
+      <rect x="20" y="40" width="36" height="200" rx="8" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="20" y="268" font-size="14" fill="var(--muted)">окно — дневной свет</text>
+
+      <line x1="56" y1="70" x2="470" y2="120" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/>
+      <line x1="56" y1="250" x2="470" y2="190" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/>
+      <text x="150" y="55" font-size="14" fill="var(--muted)">мягкий свет спереди</text>
+
+      <rect x="200" y="115" width="170" height="80" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="285" y="148" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">смартфон</text>
+      <text x="285" y="172" text-anchor="middle" font-size="14" fill="var(--muted)">штатив · уровень глаз</text>
+
+      <circle cx="520" cy="155" r="40" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="520" y="160" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">ведущая</text>
+      <text x="520" y="220" text-anchor="middle" font-size="14" fill="var(--muted)">лицом к окну</text>
+
+      <line x1="478" y1="155" x2="383" y2="155" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="373,155 385,149 385,161" fill="var(--ink)"/>
+      <text x="428" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">взгляд в объектив</text>
+
+      <rect x="690" y="60" width="36" height="220" rx="8" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+      <text x="726" y="300" text-anchor="end" font-size="14" fill="var(--muted)">ровный фон за спиной</text>
+
+      <circle cx="620" cy="70" r="14" fill="none" stroke="var(--amber)" stroke-width="2"/>
+      <line x1="606" y1="56" x2="634" y2="84" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="634" y1="56" x2="606" y2="84" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/>
+      <text x="620" y="110" text-anchor="middle" font-size="14" fill="var(--amber)">лампа за спиной — выключи</text>
+    </svg>
+    <figcaption>Вся постановка: свет из окна падает на лицо, камера на уровне глаз, взгляд в объектив, за спиной — ровный фон и никакого контрового света.</figcaption>
+  </figure>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m3-s4">Выбери время и место: день, комната с окном. Ведущая садится лицом к окну — свет мягко ложится на лицо. Люстру и лампы за спиной выключи.</li>
+    <li class="step-check" data-step="m3-s5">Поставь камеру на уровень глаз в 1,5–2 метрах, строго горизонтально. Включи 1080p, а лучше 4K.</li>
+    <li class="step-check" data-step="m3-s6">Заблокируй фокус и экспозицию: нажми на лицо на экране и подержи, пока не появится замочек. Автофокус перестанет «дышать».</li>
+    <li class="step-check" data-step="m3-s7">Сними 2–3 минуты непрерывно: ведущая М. спокойно говорит в объектив — о чём угодно, хоть о любимых товарах. Без склеек и перезапусков. Очки, чёлку на глазах и жесты выше груди — убрать.</li>
+    <li class="step-check" data-step="m3-s8">Сними 20–30 фото: ракурсы — прямо, вполоборота, профиль; эмоции — улыбка, спокойствие, удивление; хотя бы один кадр в полный рост.</li>
+    <li class="step-check" data-step="m3-s9">Пересмотри материал на большом экране по списку ошибок ниже. Сомнительный кадр пересними сразу, пока свет тот же.</li>
+    <li class="step-check" data-step="m3-s10">Сложи исходники в две копии: компьютер и облако. Это золотой фонд — из него ведущая будет собираться годами.</li>
+  </ol>
+
+  <p>Типичные ошибки сета — по ним и проверяй:</p>
+  <ul>
+    <li>Резкие повороты головы — двойник потом «дёргается».</li>
+    <li>Взгляд в сторону или в текст-подсказку: взгляд должен держать объектив.</li>
+    <li>Контровый свет — окно или лампа за спиной: лицо в тени, вокруг головы «ореол».</li>
+    <li>Пёстрый фон: ковры и полки перетягивают внимание и путают обучение.</li>
+    <li>Склейки вместо одной непрерывной записи.</li>
+    <li>Шумная комната: этот же звук потом испортит клон голоса.</li>
+  </ul>
+
+  <h3>Шаг 3. Soul ID — персонаж обучается сам</h3>
+  <p>Soul ID — механизм Higgsfield для устойчивого персонажа. Нужно <span class="dated" data-src="справка Higgsfield по Soul ID, проверено 20.08.2026">20 и больше качественных фото, тренировка занимает 3–5 минут</span> — дальше лицо держится в любых сценах, свете и ракурсах.</p>
+
+  <details class="term">
+    <summary>Soul ID</summary>
+    <p>Твой персонаж внутри Higgsfield: модель, обученная на фотографиях конкретного человека. Один раз обучил — дальше вызываешь его в любых генерациях, и лицо не «плывёт» от ролика к ролику.</p>
+  </details>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m3-s11">В кабинете Higgsfield открой Soul ID и создай нового персонажа. Назови нейтрально, например «Ведущая» — без фамилий.</li>
+    <li class="step-check" data-step="m3-s12">Загрузи 20–30 фото из сета. Смазанные, тёмные и с прикрытым лицом — выкинь: одно плохое фото портит обучение сильнее, чем десять хороших помогают.</li>
+    <li class="step-check" data-step="m3-s13">Запусти тренировку и подожди 3–5 минут.</li>
+    <li class="step-check" data-step="m3-s14">Проверь персонажа тремя генерациями в разных сценах: крупный план, у полки с товаром, на улице. Лицо узнаётся везде — готово. «Поплыло» — замени слабые фото и переобучи.</li>
+  </ol>
+
+  <div class="example case-m">
+    <p>У магазина М. на всё ушёл один вечер. Согласие подписали за пять минут — дольше искали ручку. Сет снимали у кухонного окна; первую версию забраковали по собственному чек-листу: за спиной горела лампа, и у аватара выходил «ореол» вокруг головы. Пересняли днём — приняли с первого раза.</p>
+    <p>Персонаж обучился, пока заваривали чай. Дольше всего выбирали из тестовых генераций «фирменную» эмоцию ведущей М. — спокойную полуулыбку. Теперь она в каждом ролике.</p>
+  </div>
+
+  <h3>Вторая дорожка: твоя голова — для тебя</h3>
+  <p>Конвейер — не только ведущая. Экспертные разборы зритель охотнее слушает от владельца: лицу хозяина магазина верят. В экзамене М10 один из трёх роликов — твоей головой, так что эта дорожка обязательная, а не факультатив.</p>
+  <p>Хорошая новость: согласие на самого себя не нужно. Остальное — идентично.</p>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m3-s15"><strong>Для тебя:</strong> сними свой сет по тому же чек-листу — 2–3 минуты в объектив и 20–30 фото. Шаги про свет, фокус и фон работают без изменений.</li>
+    <li class="step-check" data-step="m3-s16"><strong>Для тебя:</strong> обучи отдельного персонажа — например, «Эксперт». Ведущая и эксперт живут как два разных персонажа, их фото не смешивай.</li>
+    <li class="step-check" data-step="m3-s17"><strong>Для тебя:</strong> прогони те же три проверочные генерации. Критерий один: лицо узнаётся в любой сцене.</li>
+  </ol>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">С чего начинается цифровая ведущая?</p>
+    <button>С выбора самой удачной эмоции для сета</button>
+    <button>С подписанного согласия — до первого кадра</button>
+    <button>С покупки хорошей камеры и света</button>
+    <p class="quiz-x">Съёмку можно переделать, а использование лица без согласия — нарушение ст. 152.1 ГК РФ, даже когда в кадре близкий человек. Один лист бумаги на пять минут — и ролики, реклама, обложки законны.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>У магазина теперь есть лицо — законное (согласие в папке) и техническое (обученный персонаж). Снято один раз — работает годами.</p>
+    <p>Следующий модуль даст ведущей голос: запись, проф-клон и первая честная проверка русского липсинка.</p>
+  </div>
+</section>
+    <section class="module" id="m4" data-title="Голос ведущей" data-block="B">
+  <header class="module-head">
+    <p>М4 · Блок Б «Собрать» · ≈40 мин</p>
+    <h2>Голос ведущей</h2>
+    <p>Лицо из М3 заговорит: клонируем голос, прогоняем текст через озвучку — и честно проверяем русский липсинк первым же роликом.</p>
+  </header>
+
+  <div class="why">
+    <p>Голос — вторая половина ведущей: без него персонаж из М3 остаётся фотографией.</p>
+    <p>Клон записывается один раз. Дальше любой текст превращается в её голос за минуту — ведущая не переозвучивает каждый ролик и вообще не нужна на «смене».</p>
+    <p>И здесь же — главная развилка курса: русский язык именно в липсинке Speak официально не подтверждён. Проверить это 10-секундным роликом дешевле, чем строить конвейер на вере.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Озвучка всех роликов конвейера (М6, М7): написал текст — получил голос ведущей.</li>
+      <li>Звук отдельно от видео: голосовые объявления в твоём Telegram-канале, озвучка акций и подборок.</li>
+      <li>Вторая дорожка: клон твоего голоса — для экспертных роликов твоей головой.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Качество клона: держи контрольный абзац и прогоняй его после каждой настройки — сравнивать на одинаковом тексте проще.</li>
+      <li>Лимиты: остаток кредитов виден в кабинете озвучки. Кончатся — конвейер встанет посреди недели.</li>
+      <li>Безопасность: клон голоса — почти биометрия. Пароль от аккаунта — в менеджер паролей, доступ никому не передавать.</li>
+    </ul>
+  </div>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 230">
+      <rect x="20" y="60" width="160" height="110" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="100" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Запись</text>
+      <text x="100" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">30 минут</text>
+      <text x="100" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">чистой речи</text>
+      <text x="100" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">один раз</text>
+
+      <line x1="180" y1="115" x2="203" y2="115" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="213,115 201,109 201,121" fill="var(--ink)"/>
+
+      <rect x="213" y="60" width="160" height="110" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="293" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Проф-клон</text>
+      <text x="293" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">ElevenLabs</text>
+      <text x="293" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">учится на записи</text>
+      <text x="293" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">один раз</text>
+
+      <line x1="373" y1="115" x2="396" y2="115" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="406,115 394,109 394,121" fill="var(--ink)"/>
+
+      <rect x="406" y="60" width="160" height="110" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="486" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Текст → аудио</text>
+      <text x="486" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">сценарий ролика</text>
+      <text x="486" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">её голосом</text>
+      <text x="486" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">каждый ролик</text>
+
+      <line x1="566" y1="115" x2="589" y2="115" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="599,115 587,109 587,121" fill="var(--ink)"/>
+
+      <rect x="599" y="60" width="145" height="110" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="671" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Speak</text>
+      <text x="671" y="120" text-anchor="middle" font-size="14" fill="var(--muted)">ведущая</text>
+      <text x="671" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">говорит</text>
+      <text x="671" y="205" text-anchor="middle" font-size="14" fill="var(--muted)">каждый ролик</text>
+    </svg>
+    <figcaption>Слева — делается один раз. Справа — крутится на каждом ролике: вставил текст, получил голос, ведущая заговорила.</figcaption>
+  </figure>
+
+  <h3>Три пути к голосу</h3>
+  <table>
+    <tr>
+      <th>Путь</th>
+      <th>Что нужно</th>
+      <th>Цена</th>
+      <th>Когда он твой</th>
+    </tr>
+    <tr>
+      <td>Проф-клон ElevenLabs — путь курса</td>
+      <td>от 30 минут записи</td>
+      <td><span class="dated" data-src="страница цен ElevenLabs, 20.08.2026">$22/мес, тариф Creator (первый месяц — $11)</span></td>
+      <td>рабочий голос ведущей: учится на длинной записи и живёт вне Higgsfield</td>
+    </tr>
+    <tr>
+      <td>Клон внутри Higgsfield</td>
+      <td>та же запись</td>
+      <td>без второй подписки, тратит кредиты плана</td>
+      <td>всё в одном окне; движки внутри те же — ElevenLabs и MiniMax</td>
+    </tr>
+    <tr>
+      <td>Библиотечный голос Higgsfield</td>
+      <td>ничего</td>
+      <td>входит в план</td>
+      <td>запасной путь: ролик нужен сегодня, клон ещё не готов</td>
+    </tr>
+  </table>
+  <p>Почему курс выбирает отдельную подписку: проф-клон учится на длинной записи и звучит точнее; голос живёт вне Higgsfield — пригодится для объявлений, аудио в канале, позже — для бота; и озвучка не съедает видео-кредиты. Не хочешь вторую подписку — начни с клона внутри Higgsfield: чек-лист записи тот же.</p>
+
+  <details class="term">
+    <summary>Проф-клон и мгновенный клон</summary>
+    <p>Профессиональный клон учится на записи <span class="dated" data-src="рекомендации ElevenLabs по проф-клону, сверено 20.08.2026">от 30 минут до 3 часов</span> и даёт рабочее качество. Мгновенному (Instant) хватает 1–3 минут — он доступен уже на тарифе за <span class="dated" data-src="страница цен ElevenLabs, 20.08.2026">$6/мес</span>, но качество черновое: попробовать — да, в конвейер — нет.</p>
+  </details>
+  <details class="term">
+    <summary>Библиотечный голос</summary>
+    <p>Готовый голос из каталога платформы: озвучит текст без всякого клона. Звучит хорошо, но «как у всех» — узнаваемость ведущей теряется. Его роль в курсе — запасной путь.</p>
+  </details>
+
+  <div class="example">
+    <p><strong>Бытовая аналогия.</strong> В кино актёра дубляжа утверждают один раз — дальше он говорит за героя во всех сериях. Клон — твой личный актёр дубляжа: не болеет, не занят и в полночь пятницы озвучивает ролик за минуту.</p>
+  </div>
+
+  <h3>Запись: 30 минут чистой речи</h3>
+  <p>Что понадобится: тихая комната, смартфон с петличкой или диктофон, стакан воды и живые тексты магазина на 30–40 минут чтения.</p>
+
+  <details class="term">
+    <summary>Петличка</summary>
+    <p>Маленький микрофон-прищепка на одежду. Пишет голос близко ко рту, поэтому комната и улица шумят в записи заметно меньше. Стоит недорого, а для клона и роликов — лучший друг.</p>
+  </details>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m4-s1">Подготовь комнату: закрой окна, выключи холодильник и кондиционер, телефон — в авиарежим. Ванная не подходит — эхо.</li>
+    <li class="step-check" data-step="m4-s2">Поставь микрофон в 15–20 сантиметрах ото рта. Запиши пробные 30 секунд и послушай в наушниках: без шума, эха и перегруза.</li>
+    <li class="step-check" data-step="m4-s3">Дай ведущей живые тексты магазина: описания товаров, ответы покупателям, пару историй. Клон перенимает манеру — пусть учится на рабочей речи.</li>
+    <li class="step-check" data-step="m4-s4">Как читать: спокойно, с естественной интонацией — как знакомой покупательнице, не диктором и не монотонно. Оговорка — пауза две секунды и фраза заново, запись не останавливай.</li>
+    <li class="step-check" data-step="m4-s5">Что запрещено в записи: музыка, второй голос, шум улицы, эхо, «улучшайзеры» и фильтры. Клон честно выучит всё, что услышит.</li>
+    <li class="step-check" data-step="m4-s6">Набери от 30 минут чистой речи — можно за два-три подхода в разные дни. Больше — лучше: потолок пользы около 3 часов.</li>
+    <li class="step-check" data-step="m4-s7">Сохрани оригиналы без пережатия в две копии — компьютер и облако, рядом с сетом из М3.</li>
+  </ol>
+
+  <h3>Честно: русский в Speak проверяем первыми десятью секундами</h3>
+  <p>Страница Higgsfield про говорящие аватары обещает <span class="dated" data-src="страница Higgsfield о говорящих аватарах, проверено 20.08.2026">74+ языков</span>, справка по Speak называет <span class="dated" data-src="справочник по Higgsfield Speak, сверено 20.08.2026">40+</span> — но официального списка с явным «русский» именно для липсинка Speak мы не нашли. Соседний инструмент Higgsfield Audio называет русский прямо, Speak — нет.</p>
+  <p>«Не нашли» — не значит «не работает». Это значит: проверяем сами, до того как строить. Поэтому шаг №1 всей практики Speak — 10-секундный ролик на русском, раньше любых настроек красоты.</p>
+  <p>Тест почти ничего не стоит: Speak открывается с плана Plus (на бесплатном и стартовом его нет — проверено 20.08.2026), и на Plus строка тарифа обещает <span class="dated" data-src="страница цен Higgsfield, 20.08.2026">около 1 000 коротких Speak-роликов 720p в месяц</span>. Десять секунд погоды не сделают.</p>
+  <p>Если губы разъехались — не хорони конвейер: рядом в кабинете живут другие липсинк-модели (Kling Speak, Wan 2.5 Speak, Infinite Talk) — прогони тот же тест на них; а Higgsfield Audio умеет переозвучивать видео на русский с липсинком. Какой-то путь сработает — просто ты узнаешь об этом за вечер, а не после месяца стройки.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 300">
+      <rect x="255" y="30" width="250" height="80" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="380" y="63" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">10-секундный ролик</text>
+      <text x="380" y="88" text-anchor="middle" font-size="14" fill="var(--muted)">на русском в Speak</text>
+
+      <line x1="330" y1="110" x2="210" y2="185" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="202,190 213,180 218,192" fill="var(--ink)"/>
+      <text x="240" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">губы совпали</text>
+
+      <line x1="430" y1="110" x2="550" y2="185" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="558,190 542,192 547,180" fill="var(--ink)"/>
+      <text x="530" y="140" text-anchor="middle" font-size="14" fill="var(--muted)">разъехались</text>
+
+      <rect x="40" y="195" width="300" height="85" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="190" y="228" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--accent)">Строим конвейер</text>
+      <text x="190" y="253" text-anchor="middle" font-size="14" fill="var(--muted)">дальше по курсу: М5–М7</text>
+
+      <rect x="420" y="195" width="320" height="85" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="580" y="222" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Запасные пути</text>
+      <text x="580" y="245" text-anchor="middle" font-size="14" fill="var(--muted)">соседняя липсинк-модель</text>
+      <text x="580" y="265" text-anchor="middle" font-size="14" fill="var(--muted)">или Higgsfield Audio</text>
+    </svg>
+    <figcaption>Дешёвая проверка до дорогой стройки: десять секунд отвечают, на чём строить конвейер.</figcaption>
+  </figure>
+
+  <h3>Подключение: текст → озвучка → Speak</h3>
+  <ol class="steps">
+    <li class="step-check" data-step="m4-s8">Оформи в ElevenLabs тариф Creator — проф-клон доступен с него. Пароль от аккаунта — сразу в менеджер паролей.</li>
+    <li class="step-check" data-step="m4-s9">Создай Professional Voice Clone и загрузи запись целиком. Дождись статуса «готов» — обработка не мгновенная.</li>
+    <li class="step-check" data-step="m4-s10">Прогони контрольный абзац по-русски: русский у ElevenLabs поддержан — он в списке <span class="dated" data-src="обзор языков ElevenLabs (coval.ai), сверено 20.08.2026">70+ языков</span>. Слушай в наушниках: темп, акцент, хрипы. Этот же абзац — твоя линейка для всех будущих настроек.</li>
+    <li class="step-check" data-step="m4-s11">Озвучь тест: две короткие фразы про магазин, секунд на десять. Скачай аудиофайл.</li>
+    <li class="step-check" data-step="m4-s12">В Higgsfield открой Speak: выбери персонажа-ведущую из М3, загрузи аудио, запусти генерацию.</li>
+    <li class="step-check" data-step="m4-s13">Шаг №1 практики: посмотри тест со звуком. Губы попадают в «б», «п», «м» и в паузы — русский липсинк у тебя есть, конвейер строим. Нет — вернись к запасным путям выше и прогони тот же тест там.</li>
+  </ol>
+
+  <details class="term">
+    <summary>Кредиты озвучки</summary>
+    <p>Внутренняя валюта ElevenLabs: каждый озвученный текст списывает кредиты. На тарифе Creator их <span class="dated" data-src="страница цен ElevenLabs, 20.08.2026">121 тысяча в месяц — примерно 2,5 часа готового звука</span>. Короткие ролики тратят копейки; остаток виден в кабинете.</p>
+  </details>
+
+  <div class="example case-m">
+    <p>Ведущая М. записала полчаса за два вечера: читала описания товаров и настоящие ответы покупателям — клон перенял живую манеру, а не «дикторскую». Первый дубль ушёл в корзину: писали на кухне, и на длинных фразах в записи «пел» холодильник — клон честно выучил и его. Пересели в другую комнату с петличкой — стало чисто.</p>
+    <p>Теперь текст пятничного ролика превращается в её голос за минуту. К микрофону ведущая М. вернётся, только если захочет сменить манеру — тогда клон запишут заново.</p>
+  </div>
+
+  <h3>Вторая дорожка: твой голос — для тебя</h3>
+  <p>Экспертный ролик твоей головой (его попросит экзамен в М10) требует твоего голоса. Путь тот же. Согласие не нужно: на себя бумагу не подписывают, а голос ведущей уже покрыт согласием из М3 — пункт про голос там есть.</p>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m4-s14"><strong>Для тебя:</strong> запиши свои 30 минут по чек-листу выше — читай свои разборы и советы покупателям: манера «эксперта» отличается от манеры ведущей, пусть клон выучит именно её.</li>
+    <li class="step-check" data-step="m4-s15"><strong>Для тебя:</strong> заведи отдельный клон «Эксперт». Сколько проф-клонов даёт тариф — посмотри в кабинете; если один, начни для себя с мгновенного клона: проф-клон ведущей важнее.</li>
+    <li class="step-check" data-step="m4-s16"><strong>Для тебя:</strong> тот же 10-секундный русский тест — со своим персонажем из М3.</li>
+  </ol>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">Клон голоса готов. Что делаешь первым делом?</p>
+    <button>Озвучиваю весь недельный план роликов — время дорого</button>
+    <button>Собираю 10-секундный ролик на русском в Speak и смотрю на губы</button>
+    <button>Настраиваю тембр, пока голос не станет идеальным</button>
+    <p class="quiz-x">Русский именно в липсинке Speak официально не подтверждён. Десять секунд стоят копейки и отвечают на главный вопрос конвейера; вкладывать часы до этой проверки — строить на вере.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>У ведущей есть голос, у тебя — свой, и главный риск курса закрыт проверкой, а не верой: русский липсинк проверен десятью секундами.</p>
+    <p>Лицо и голос готовы. В М5 научимся писать им сценарии — короткие, как ТЗ.</p>
+  </div>
+</section>
+    <section class="module" id="m5" data-title="Сценарий ролика" data-block="B">
+  <header class="module-head">
+    <p>М5 · Блок Б «Собрать» · ≈30 мин</p>
+    <h2>Сценарий ролика</h2>
+    <p>Сценарий — это ТЗ для ведущей. В школе-1 усвоили «промпт — это ТЗ»; ролик живёт по тому же закону: чётко скажешь — получишь то, что хотел.</p>
+  </header>
+
+  <div class="why">
+    <p>Ведущая и голос готовы. Но без сценария она говорит «ни о чём» — а зритель уходит в первую секунду.</p>
+    <p>Сценарий по шаблону пишется за 10 минут. Сценарий «из головы» переснимается три раза, и каждый дубль — это кредиты и твоё время.</p>
+    <p>Перекличка со школой-1: там мы поняли, что нечёткое ТЗ даёт нечёткий результат. Ролик — то же самое, только результат ещё и смотрят люди.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Каждый ролик конвейера (М6 — первый, М7 — поток) начинается с одного сценария.</li>
+      <li>Планёрка тем (М7): садишься раз в неделю и пишешь пачку сценариев по шаблонам подряд.</li>
+      <li>4 типа роликов — 4 готовых шаблона ниже: копируешь, подставляешь свой товар, отдаёшь ведущей.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Проверка до генерации, три вопроса: есть хук в первой секунде? одна мысль на весь ролик? есть действие в конце?</li>
+      <li>Длина: 15–40 секунд — это примерно 40–110 слов. Посчитай слова в тексте, а не длину готового ролика.</li>
+      <li>Брак ловится в тексте, где правка бесплатна. В готовом ролике правка стоит новой генерации — то есть кредитов.</li>
+    </ul>
+  </div>
+
+  <h3>Сценарий = ТЗ для ведущей</h3>
+  <p>ТЗ — техническое задание: короткий текст, по которому исполнитель делает ровно то, что нужно, без переспросов. В школе-1 исполнителем был ИИ-агент. Здесь исполнитель — ведущая: сценарий говорит ей, <em>что</em> сказать, <em>в каком порядке</em> и <em>чем закончить</em>.</p>
+  <p>Разница с обычным «текстом ролика» одна, но решающая: ТЗ пишут не для красоты, а под результат. Результат ролика — чтобы зритель досмотрел и сделал одно действие. Всё, что этому не служит, из сценария вычёркивается.</p>
+
+  <details class="term">
+    <summary>Сценарий</summary>
+    <p>Готовый текст ролика, разложенный на три части: хук, суть, действие. Не «примерно о чём говорить», а дословно — что произносит ведущая от первой секунды до последней. Пишется до генерации, проверяется глазами, правится бесплатно.</p>
+  </details>
+  <details class="term">
+    <summary>Хук</summary>
+    <p>Первая фраза ролика — «крючок», который останавливает пролистывание. Обычно это вопрос, боль зрителя или неожиданное утверждение. Не зацепил в первую секунду — остальные 39 секунд никто не увидит.</p>
+  </details>
+  <details class="term">
+    <summary>Призыв к действию</summary>
+    <p>Последняя фраза: что зрителю сделать прямо сейчас — перейти в твой Telegram-канал, открыть закреп, сохранить ролик. Одно действие, а не список. Стратегия курса — уводить зрителя в свои каналы, поэтому действие почти всегда ведёт туда, а не на сторону.</p>
+  </details>
+
+  <h3>Структура: хук → суть → действие</h3>
+  <p>Любой короткий ролик — это три отрезка. Длина всего ролика 15–40 секунд: короче — не успеешь сказать суть, длиннее — зритель устанет.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 210">
+      <text x="40" y="46" font-size="16" font-weight="bold" fill="var(--ink)">Ролик 15–40 секунд = три отрезка</text>
+
+      <rect x="40" y="80" width="120" height="62" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="100" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Хук</text>
+      <text x="100" y="129" text-anchor="middle" font-size="14" fill="var(--muted)">0–2 сек</text>
+
+      <line x1="160" y1="111" x2="192" y2="111" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="202,111 190,105 190,117" fill="var(--ink)"/>
+
+      <rect x="200" y="80" width="330" height="62" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="365" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Суть — одна мысль</text>
+      <text x="365" y="129" text-anchor="middle" font-size="14" fill="var(--muted)">что это и чем поможет</text>
+
+      <line x1="530" y1="111" x2="562" y2="111" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="572,111 560,105 560,117" fill="var(--ink)"/>
+
+      <rect x="570" y="80" width="150" height="62" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="645" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Действие</text>
+      <text x="645" y="129" text-anchor="middle" font-size="14" fill="var(--muted)">последние 3 сек</text>
+
+      <text x="40" y="185" font-size="14" fill="var(--muted)">Первая секунда решает всё: не зацепил хуком — остального ролика зритель не увидит.</text>
+    </svg>
+    <figcaption>Три отрезка одного ролика. Хук держит, суть объясняет, действие уводит зрителя в твой канал.</figcaption>
+  </figure>
+
+  <ul>
+    <li><strong>Хук (0–2 сек).</strong> Вопрос или боль зрителя. «Руки трескаются к зиме?» бьёт сильнее, чем «Сегодня расскажу про крем».</li>
+    <li><strong>Суть (2 сек — до конца).</strong> Одна мысль: что это, чем поможет, почему тебе. Два-три коротких предложения, живым языком.</li>
+    <li><strong>Действие (последние 3 сек).</strong> Одно: «Подробности — в закрепе канала». Не три ссылки, не «лайк, подписка и колокольчик».</li>
+  </ul>
+
+  <h3>Правило: одна мысль — один ролик</h3>
+  <p>Главная ошибка новичка — впихнуть в 30 секунд новинку, скидку и отзыв разом. Зритель не запоминает ничего и уходит. Три мысли — это три ролика, а не один.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 250">
+      <rect x="30" y="40" width="320" height="180" rx="16" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="190" y="72" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Один ролик — три мысли</text>
+      <text x="190" y="104" text-anchor="middle" font-size="14" fill="var(--muted)">новинка + скидка + отзыв</text>
+      <circle cx="190" cy="150" r="24" fill="none" stroke="var(--amber)" stroke-width="2"/>
+      <line x1="176" y1="136" x2="204" y2="164" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="204" y1="136" x2="176" y2="164" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/>
+      <text x="190" y="200" text-anchor="middle" font-size="14" fill="var(--muted)">зритель устал, пролистнул</text>
+
+      <rect x="410" y="40" width="320" height="180" rx="16" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="570" y="72" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Три ролика — три мысли</text>
+      <rect x="432" y="92" width="90" height="46" rx="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="477" y="120" text-anchor="middle" font-size="14" fill="var(--ink)">новинка</text>
+      <rect x="525" y="92" width="90" height="46" rx="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="570" y="120" text-anchor="middle" font-size="14" fill="var(--ink)">скидка</text>
+      <rect x="618" y="92" width="90" height="46" rx="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="663" y="120" text-anchor="middle" font-size="14" fill="var(--ink)">отзыв</text>
+      <text x="570" y="176" text-anchor="middle" font-size="14" fill="var(--muted)">каждый короткий, каждый досмотрен</text>
+      <text x="570" y="200" text-anchor="middle" font-size="14" fill="var(--muted)">и это уже контент на три дня</text>
+    </svg>
+    <figcaption>Одна мысль — один ролик. Разбить «три в одном» на три ролика не потеря, а готовый план на неделю.</figcaption>
+  </figure>
+
+  <h3>Плохой и хороший сценарий</h3>
+  <div class="example">
+    <p><strong>Плохо.</strong> «Всем привет, с вами магазин, сегодня хочу рассказать про наш новый крем для рук, он очень хороший, на пчелином воске, а ещё у нас скидка до конца недели, и вообще много всего нового, заходите, у нас всё есть, ставьте лайк и подписывайтесь.»</p>
+    <p>Что не так: нет хука (первые слова — «всем привет»), три мысли сразу, действие размазано на четыре. Зритель уходит на «сегодня хочу рассказать».</p>
+  </div>
+  <div class="example">
+    <p><strong>Хорошо.</strong> «Руки трескаются к зиме? — Крем на пчелином воске: впитывается за минуту, не липнет, хватает на день. Беру сразу два — один в сумку. — Состав и как выбрать — в закрепе канала.»</p>
+    <p>Что так: хук-вопрос в первой секунде, одна мысль (крем и чем он хорош), одно действие (закреп канала). 22 слова, ролик на 18 секунд.</p>
+  </div>
+
+  <h3>4 шаблона под 4 типа роликов</h3>
+  <p>Скопируй нужный блок, замени текст в квадратных скобках на свой товар — и сценарий готов. Под каждым шаблоном — пример заполнения, чтобы было видно, как это звучит на живом.</p>
+
+  <p><strong>1. Кружок-обзор</strong> — ведущая М. коротко показывает товар или подборку. Самый частый ролик канала.</p>
+  <table>
+    <tr>
+      <td>
+        <p><strong>ШАБЛОН · Кружок-обзор · ведущая · 15–30 сек</strong></p>
+        <p><strong>ХУК (0–2 сек):</strong> [боль или вопрос зрителя одной фразой].</p>
+        <p><strong>СУТЬ (2 сек — до конца):</strong> [один товар. Что это, чем поможет, одна личная деталь — «беру себе», «хватает надолго»].</p>
+        <p><strong>ДЕЙСТВИЕ (последние 3 сек):</strong> [куда идти: «Подробнее — в закрепе твоего Telegram-канала»].</p>
+        <p><strong>Пример:</strong> «Руки трескаются к зиме? / Крем на пчелином воске: впитался за минуту, не липнет, хватает на день. Беру сразу два. / Состав — в закрепе канала.»</p>
+      </td>
+    </tr>
+  </table>
+
+  <p><strong>2. Экспертный</strong> — твоя голова. Разбор или совет от владельца: лицу хозяина верят больше. Экзамен в М10 попросит хотя бы один такой ролик.</p>
+  <table>
+    <tr>
+      <td>
+        <p><strong>ШАБЛОН · Экспертный · твоя голова · 30–40 сек</strong></p>
+        <p><strong>ХУК (0–2 сек):</strong> [частая ошибка покупателя или спорный тезис: «Почему дешёвый плед всё равно холодный»].</p>
+        <p><strong>СУТЬ (2 сек — до конца):</strong> [твой разбор одной мысли: в чём причина, как отличить, на что смотреть. Говоришь как эксперт, а не как реклама].</p>
+        <p><strong>ДЕЙСТВИЕ (последние 3 сек):</strong> [«Такие разборы — каждую неделю в моём канале, подписывайся»].</p>
+        <p><strong>Пример:</strong> «Дешёвый плед греет хуже, и вот почему. / Дело не в толщине, а в плотности вязки: рыхлый пропускает тепло. Щупай не за угол, а на просвет. / Разборы тканей — в канале.»</p>
+      </td>
+    </tr>
+  </table>
+
+  <p><strong>3. Товарный без лица</strong> — товар крупным планом, голос за кадром, ведущей в кадре нет. Собирается не в Speak, а на товарных моделях Higgsfield; голос — тот же клон, только звук поверх съёмки товара.</p>
+  <table>
+    <tr>
+      <td>
+        <p><strong>ШАБЛОН · Товарный без лица · голос за кадром · 15–25 сек</strong></p>
+        <p><strong>ХУК (0–2 сек):</strong> [крупный план товара + короткая фраза: «Вот это выручает каждое утро»].</p>
+        <p><strong>СУТЬ (2 сек — до конца):</strong> [показываешь товар с разных сторон, голос называет 2–3 факта: материал, размер, чем удобен].</p>
+        <p><strong>ДЕЙСТВИЕ (последние 3 сек):</strong> [«Цена и наличие — в закрепе канала»].</p>
+        <p><strong>Пример:</strong> «Одна кружка на все случаи. / Толстые стенки — кофе не стынет; 400 мл — не бегать за добавкой; можно в посудомойку. / Наличие — в закрепе.»</p>
+      </td>
+    </tr>
+  </table>
+
+  <p><strong>4. Обучающий покупателю</strong> — отвечаешь на частый вопрос: как выбрать, как пользоваться, как отличить. Такие ролики сохраняют и пересылают.</p>
+  <table>
+    <tr>
+      <td>
+        <p><strong>ШАБЛОН · Обучающий · ведущая или голос · 30–40 сек</strong></p>
+        <p><strong>ХУК (0–2 сек):</strong> [частый вопрос покупателя: «Как выбрать плед, чтобы не разочароваться?»].</p>
+        <p><strong>СУТЬ (2 сек — до конца):</strong> [короткая инструкция из 2–3 шагов. Одна тема, ничего лишнего — это урок, а не витрина].</p>
+        <p><strong>ДЕЙСТВИЕ (последние 3 сек):</strong> [«Сохрани, чтобы не забыть, и загляни в канал — там разбор по каждому пункту»].</p>
+        <p><strong>Пример:</strong> «Как выбрать тёплый плед? / Смотри на состав: шерсть и флис греют, акрил — красиво, но холоднее. Проверь на просвет и понюхай — резкий запах не выветрится. / Сохрани ролик.»</p>
+      </td>
+    </tr>
+  </table>
+
+  <h3>Как написать сценарий за 10 минут</h3>
+  <ol class="steps">
+    <li class="step-check" data-step="m5-s1">Выбери тип ролика и скопируй нужный шаблон из четырёх выше.</li>
+    <li class="step-check" data-step="m5-s2">Назови одну мысль ролика одной фразой. Не помещается в одну фразу — это два ролика, раздели.</li>
+    <li class="step-check" data-step="m5-s3">Придумай хук: переверни мысль в вопрос или боль зрителя. «Расскажу про крем» → «Руки трескаются к зиме?».</li>
+    <li class="step-check" data-step="m5-s4">Заполни суть: 2–3 коротких предложения живым языком, как знакомой покупательнице. Добавь одну личную деталь.</li>
+    <li class="step-check" data-step="m5-s5">Впиши одно действие в конце — почти всегда в твой Telegram-канал: закреп, подписка или «сохрани».</li>
+    <li class="step-check" data-step="m5-s6">Посчитай слова: 40–110. Больше — режь, начиная с середины сути. Прочитай вслух с секундомером — уложился в 40 секунд, сценарий готов.</li>
+  </ol>
+
+  <div class="example case-m">
+    <p>У магазина М. первый сценарий кружка-обзора занял ровно десять минут. Взяли шаблон, вписали крем для рук, одну мысль — «впитывается за минуту». Хук родился из отзыва покупательницы: «руки трескаются к зиме» — её же словами.</p>
+    <p>Первый черновик был на 60 слов и звучал как реклама. Вычеркнули вторую мысль про скидку (ушла в отдельный ролик на следующий день) и «наш самый лучший» — осталось 24 слова и 19 секунд. Живая, «неприлизанная» подача обгоняет вылизанную рекламу <span class="dated" data-src="сводка исследований UGC (billo.app / instant-ugc.com), сверено 20.08.2026">на 31% по досмотрам и 29% по конверсиям</span> — поэтому проще, но по-человечески оказалось и правильнее.</p>
+  </div>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">В сценарий кружка-обзора просятся три мысли: новинка, скидка и отзыв. Что делаешь?</p>
+    <button>Складываю все три в один ролик — так за раз скажу больше</button>
+    <button>Делаю три коротких ролика, по одной мысли в каждом</button>
+    <button>Оставляю две поважнее, третью выкидываю совсем</button>
+    <p class="quiz-x">Одна мысль — один ролик. Три мысли в 30 секундах зритель не запомнит и уйдёт. А три отдельных ролика — это ещё и готовый контент на три дня, ничего выкидывать не пришлось.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Сценарий — это ТЗ: хук держит, суть объясняет, действие уводит в твой канал. Одна мысль — один ролик, 40–110 слов, проверка тремя вопросами до генерации.</p>
+    <p>Четыре шаблона под рукой. В М6 берём один сценарий и собираем из него первый настоящий ролик — от текста до публикации.</p>
+  </div>
+</section>
+    <section class="module" id="m6" data-title="Первый ролик" data-block="B">
+  <header class="module-head">
+    <p>М6 · Блок Б «Собрать» · ≈50 мин</p>
+    <h2>Первый ролик</h2>
+    <p>Сегодня собираем первый ролик от и до: сценарий → ведущая говорит → монтаж → метка «создано с ИИ» → пост в твоём Telegram-канале.</p>
+  </header>
+
+  <div class="why">
+    <p>Всё по частям готово: лицо (М3), голос (М4), сценарий (М5). Пора соединить их в один ролик и довести до опубликованного поста.</p>
+    <p>Первый ролик — не шедевр, а рабочий проход по всей цепочке. Задача — чтобы маршрут был тебе понятен целиком: тогда конвейер в М7 пойдёт без запинок.</p>
+    <p>Метку «создано с ИИ» ставим честно и везде. Это решение, а не риск: предупреждённый зритель не отваливается, а скрытый ИИ — наоборот, отталкивает.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Этот же проход повторяется на каждом ролике конвейера — сегодня ты отлаживаешь маршрут один раз.</li>
+      <li>Публикация — в твой Telegram-канал: первый ролик уходит в свой канал, а не на сторону.</li>
+      <li>Весь монтаж — внутри Higgsfield. Ни одного внешнего редактора ставить не нужно.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Приёмка ролика по чек-листу: взгляд в кадр, темп речи, длина, метка на месте. Что-то просело — правишь и пересобираешь.</li>
+      <li>Метка ИИ — обязательный шаг перед публикацией. Полный чек-лист «перед публикацией» ждёт в М9, здесь — его короткая версия.</li>
+      <li>Брак первого ролика — это норма. Замеряешь, что не так, и правишь в тексте или настройках, а не расстраиваешься.</li>
+    </ul>
+  </div>
+
+  <h3>Весь путь — в одном окне</h3>
+  <p>От сценария до поста всего шесть шагов. Три средних — Speak, монтаж, экспорт — целиком внутри Higgsfield: отдельная программа для монтажа не нужна.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 600 330">
+      <rect x="20" y="60" width="112" height="64" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="76" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Сценарий</text>
+      <text x="76" y="109" text-anchor="middle" font-size="14" fill="var(--muted)">из М5</text>
+
+      <line x1="132" y1="92" x2="146" y2="92" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="156,92 144,86 144,98" fill="var(--ink)"/>
+
+      <rect x="158" y="28" width="424" height="134" rx="16" fill="var(--card)" stroke="var(--accent)" stroke-width="2" stroke-dasharray="7 7"/>
+      <text x="370" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--accent)">Внутри Higgsfield — ничего внешнего</text>
+
+      <rect x="172" y="76" width="120" height="66" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="232" y="105" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Speak 2.0</text>
+      <text x="232" y="126" text-anchor="middle" font-size="14" fill="var(--muted)">говорит</text>
+
+      <line x1="292" y1="109" x2="304" y2="109" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="314,109 302,103 302,115" fill="var(--ink)"/>
+
+      <rect x="316" y="76" width="120" height="66" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="376" y="105" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Монтаж</text>
+      <text x="376" y="126" text-anchor="middle" font-size="14" fill="var(--muted)">обрезка</text>
+
+      <line x1="436" y1="109" x2="448" y2="109" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="458,109 446,103 446,115" fill="var(--ink)"/>
+
+      <rect x="460" y="76" width="106" height="66" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="513" y="105" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Экспорт</text>
+      <text x="513" y="126" text-anchor="middle" font-size="14" fill="var(--muted)">MP4 9:16</text>
+
+      <line x1="240" y1="162" x2="240" y2="242" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="240,252 234,240 246,240" fill="var(--ink)"/>
+
+      <rect x="150" y="252" width="180" height="66" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="240" y="281" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Метка</text>
+      <text x="240" y="302" text-anchor="middle" font-size="14" fill="var(--muted)">«создано с ИИ»</text>
+
+      <line x1="330" y1="285" x2="356" y2="285" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="366,285 354,279 354,291" fill="var(--ink)"/>
+
+      <rect x="368" y="252" width="214" height="66" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="475" y="281" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Пост</text>
+      <text x="475" y="302" text-anchor="middle" font-size="14" fill="var(--muted)">твой Telegram-канал</text>
+    </svg>
+    <figcaption>Шесть шагов первого ролика. Пунктирная рамка — всё, что делается в Higgsfield: внешний видеоредактор не нужен.</figcaption>
+  </figure>
+
+  <details class="term">
+    <summary>Экспорт (рендер)</summary>
+    <p>Финальная сборка ролика в готовый файл MP4, который можно выложить. «Отрендерить» = «просчитать и сохранить». Для канала выбирай вертикаль 9:16 — так ролик занимает весь экран телефона.</p>
+  </details>
+  <details class="term">
+    <summary>C2PA-метка</summary>
+    <p>Невидимая машиночитаемая пометка «сделано ИИ», которую Higgsfield встраивает в файл на любом платном плане. Глазом её не видно, но площадки (YouTube, TikTok, Meta, Pinterest) читают её сами и могут поставить свой ярлык. Вырезать нельзя и не нужно — она и есть честность по умолчанию.</p>
+  </details>
+  <details class="term">
+    <summary>Соотношение сторон 9:16</summary>
+    <p>Форма кадра. 9:16 — вертикаль во весь экран телефона (истории, короткие ролики). 16:9 — горизонталь, как в телевизоре. 1:1 — квадрат. Для Telegram-канала и коротких роликов бери 9:16.</p>
+  </details>
+
+  <h3>Собираем первый ролик по шагам</h3>
+  <p>Возьми самый простой сценарий — кружок-обзор из М5. Он короткий и прощает ошибки новичка.</p>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m6-s1">Возьми готовый сценарий кружка-обзора из М5. Один товар, одна мысль, 15–30 секунд.</li>
+    <li class="step-check" data-step="m6-s2">Озвучь текст голосом ведущей из М4: текст → аудио, послушай в наушниках, скачай файл.</li>
+    <li class="step-check" data-step="m6-s3">В Higgsfield открой Speak 2.0, выбери персонажа-ведущую из М3 и загрузи аудио.</li>
+    <li class="step-check" data-step="m6-s4">Сначала короткий тест: убедись, что губы попадают в русскую речь (та же проверка, что в М4). Разъехались — вернись к запасным путям из М4, не собирай дальше.</li>
+    <li class="step-check" data-step="m6-s5">Липсинк в порядке — генерируй полный ролик. Формат кадра — вертикаль 9:16 для канала.</li>
+    <li class="step-check" data-step="m6-s6">Монтаж — внутри Higgsfield: обрежь лишние секунды в начале и конце, при желании добавь подпись или заставку встроенными средствами. Внешний редактор не ставим.</li>
+    <li class="step-check" data-step="m6-s7">Экспортируй готовый ролик в MP4 9:16. Сохрани файл в папку готовых роликов медиа-цеха, в две копии.</li>
+    <li class="step-check" data-step="m6-s8">Промаркируй «создано с ИИ»: в подписи к посту добавь строку «Видео создано с помощью ИИ». Невидимую C2PA-метку не трогай — она уже внутри файла.</li>
+    <li class="step-check" data-step="m6-s9">Опубликуй в свой Telegram-канал. Проверь на телефоне: как выглядит, читается ли подпись, работает ли действие из сценария (закреп, ссылка).</li>
+    <li class="step-check" data-step="m6-s10">Прими работу по чек-листу ошибок ниже. Что-то просело — правь в сценарии или настройках и пересобери. Это нормальный первый круг.</li>
+  </ol>
+
+  <h3>Монтаж — только внутри Higgsfield</h3>
+  <p>Соблазн большой: скачать ещё и «настоящий» видеоредактор. Не надо. Для короткого ролика всё есть на месте: обрезка, склейка кадров, подписи, заставки, смена соотношения сторон.</p>
+  <p>Почему так решили: один инструмент — один навык и один счёт. Внешний редактор — это ещё одна программа, которую надо освоить, обновлять и держать в конвейере. На старте это лишний вес. Освоишь Higgsfield до дна — тогда и решишь, чего тебе не хватает; на первом ролике не хватать не будет ничего.</p>
+
+  <div class="example">
+    <p><strong>Бытовая аналогия.</strong> Первый раз готовишь по рецепту — не докупаешь сразу профессиональные ножи и су-вид. Берёшь то, что на кухне, и проходишь рецепт до конца. Higgsfield — твоя кухня: на первое блюдо в ней есть всё.</p>
+  </div>
+
+  <h3>Ошибки первого ролика</h3>
+  <p>Почти все спотыкаются об одно и то же. Проверяй готовый ролик по этим трём точкам — они же в схеме приёмки ниже.</p>
+  <ul>
+    <li><strong>Взгляд.</strong> Ведущая смотрит мимо камеры — ролик выглядит «неживым». Причина обычно в сете (М3): взгляд уводили от объектива. Лечится пересъёмкой сета, а не настройками.</li>
+    <li><strong>Темп речи.</strong> Голос частит, слова наезжают. Лечится в тексте: раздели длинные предложения, добавь точки — клон озвучит с паузами.</li>
+    <li><strong>Длина.</strong> Ролик уполз за 40 секунд — зритель не досматривает. Лечится сценарием: убери вторую мысль (это отдельный ролик) и лишние слова.</li>
+  </ul>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 180">
+      <text x="380" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="var(--ink)">Приёмка ролика — три точки</text>
+
+      <rect x="20" y="55" width="220" height="100" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="130" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Взгляд</text>
+      <text x="130" y="116" text-anchor="middle" font-size="14" fill="var(--muted)">держит объектив,</text>
+      <text x="130" y="134" text-anchor="middle" font-size="14" fill="var(--muted)">не бегает в сторону</text>
+
+      <rect x="270" y="55" width="220" height="100" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="380" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Темп речи</text>
+      <text x="380" y="116" text-anchor="middle" font-size="14" fill="var(--muted)">не частит,</text>
+      <text x="380" y="134" text-anchor="middle" font-size="14" fill="var(--muted)">слышны паузы</text>
+
+      <rect x="520" y="55" width="220" height="100" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="630" y="90" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Длина</text>
+      <text x="630" y="116" text-anchor="middle" font-size="14" fill="var(--muted)">15–40 секунд,</text>
+      <text x="630" y="134" text-anchor="middle" font-size="14" fill="var(--muted)">и метка на месте</text>
+    </svg>
+    <figcaption>Три точки приёмки. Прошёл все три — ролик готов к публикации.</figcaption>
+  </figure>
+
+  <h3>Метка «создано с ИИ» — честно и везде</h3>
+  <p>Решение курса простое: не прячем, что ролик собран ИИ. Причина не в морали, а в цифрах. Честность работает: если зритель заранее знает про ИИ, вовлечённость держится. А скрытый ИИ отталкивает — <span class="dated" data-src="опрос восприятия ИИ-рекламы (multiply.co), сверено 20.08.2026">54% говорят об усталости от ИИ, а 52% снижают вовлечённость, заподозрив скрытый ИИ-контент</span>.</p>
+  <p>Как маркировать на практике:</p>
+  <ul>
+    <li><strong>В подписи поста</strong> — строка «Видео создано с помощью ИИ». Коротко и один раз, без извинений.</li>
+    <li><strong>Галка «синтетический контент»</strong> — там, где площадка её даёт (в М9 разберём YouTube и другие). Для Telegram-канала хватает строки в подписи.</li>
+    <li><strong>Невидимую C2PA-метку не вырезай.</strong> Площадки читают её сами — попытка спрятать всё равно вскроется, а честная подпись превращает это в плюс.</li>
+    <li><strong>Не выдавай ведущую за живую съёмку</strong> в отзывах и «реальных историях покупателей» — вот на этом и держится вся усталость зрителей от ИИ.</li>
+  </ul>
+
+  <div class="example case-m">
+    <p>Первый ролик магазина М. собрался за вечер, но не с первого дубля. Стартовый вариант шёл 48 секунд — ведущая М. договаривала вторую мысль про доставку; её вырезали в сценарии, ролик сел на 22 секунды. Во втором дубле голос частил на длинной фразе — разбили предложение точкой, клон озвучил с паузой.</p>
+    <p>Монтаж весь остался внутри Higgsfield: обрезали первую «пустую» секунду и добавили встроенную подпись. В подпись поста поставили честную строку «Видео создано с помощью ИИ» — и опубликовали в свой Telegram-канал. Никаких внешних программ не понадобилось.</p>
+  </div>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">Ролик готов, ведущая как живая. Публикуешь в канал — что делаешь с меткой «создано ИИ»?</p>
+    <button>Убираю любые упоминания ИИ — иначе зритель не поверит ролику</button>
+    <button>Пишу в подписи «создано с помощью ИИ» и не трогаю невидимую метку</button>
+    <button>Невидимую метку оставляю, но в подписи молчу — и так честно</button>
+    <p class="quiz-x">Честная подпись держит вовлечённость, а скрытый ИИ, наоборот, отталкивает половину зрителей. Невидимую C2PA-метку площадки всё равно прочитают — прятать бессмысленно, а честная строка превращает ИИ в плюс.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Ты прошёл весь маршрут: сценарий → Speak → монтаж → экспорт → метка → пост в своём канале. Всё видео собрано в одном окне Higgsfield, без единого внешнего инструмента.</p>
+    <p>Первый ролик есть. В М7 превращаем этот разовый проход в недельный конвейер: 2–3 ролика подряд по четырём линиям.</p>
+  </div>
+</section>
+    <section class="module" id="m7" data-title="Конвейер на поток" data-block="V">
+  <header class="module-head">
+    <p>М7 · Блок В «Управлять» · ≈35 мин</p>
+    <h2>Конвейер на поток</h2>
+    <p>Один ритм в неделю — и ролики выходят сами собой, а не подвигом.</p>
+  </header>
+
+  <div class="why">
+    <p>Блок Б собрал станок. Этот модуль запускает его на поток.</p>
+    <p>Каналы любят регулярность: пусто три недели, потом десять роликов залпом — алгоритму всё равно, зрителю тем более.</p>
+    <p>Поток бьёт рывки. С ИИ те же руки выпускают <span class="dated" data-src="adwave.com, autofaceless.ai, 20.08.2026">в 11 раз больше роликов</span>, чем на ручном продакшене — но только если есть ритм, а не вдохновение по настроению.</p>
+    <p>Твоя цель из М0 — 2–3 ролика в неделю руками. Конвейер делает эту цифру скучной рутиной, а не марафоном.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Кружки и обзоры ведущей — в твой Telegram-канал, каждую неделю.</li>
+      <li>Товарные ролики — в карточки и на твою платформу.</li>
+      <li>Экспертные ролики твоей головой — туда же, для доверия.</li>
+      <li>Один ролик — во все каналы разом, без ручного перепоста.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Точка сборки недели — планёрка. Нет планёрки — нет недели.</li>
+      <li>Папка готовых роликов — это очередь на публикацию. Пусто — конвейер встал, разбирайся почему.</li>
+      <li>Раз в неделю честный чек: вышло 2–3 ролика или нет? Замеряй время на каждый — критерий из М0.</li>
+    </ul>
+  </div>
+
+  <h3>Недельный цикл: четыре станции</h3>
+  <p>Весь конвейер — один повторяющийся круг. Раз в неделю ты проходишь его от планёрки до раскладки.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 680 172" role="img" aria-label="Недельный цикл конвейера из четырёх станций">
+      <rect x="12" y="20" width="146" height="88" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="85" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">1 · Планёрка</text>
+      <text x="85" y="74" text-anchor="middle" font-size="14" fill="var(--muted)">30 минут</text>
+      <text x="85" y="92" text-anchor="middle" font-size="14" fill="var(--muted)">понедельник</text>
+
+      <line x1="160" y1="64" x2="176" y2="64" stroke="var(--ink)" stroke-width="2"/>
+      <polygon points="180,64 170,59 170,69" fill="var(--ink)"/>
+
+      <rect x="180" y="20" width="146" height="88" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="253" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">2 · Сценарии</text>
+      <text x="253" y="74" text-anchor="middle" font-size="14" fill="var(--muted)">все разом</text>
+      <text x="253" y="92" text-anchor="middle" font-size="14" fill="var(--muted)">шаблоны М5</text>
+
+      <line x1="328" y1="64" x2="344" y2="64" stroke="var(--ink)" stroke-width="2"/>
+      <polygon points="348,64 338,59 338,69" fill="var(--ink)"/>
+
+      <rect x="348" y="20" width="146" height="88" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="421" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">3 · Генерации</text>
+      <text x="421" y="74" text-anchor="middle" font-size="14" fill="var(--muted)">все разом</text>
+      <text x="421" y="92" text-anchor="middle" font-size="14" fill="var(--muted)">лицо готово</text>
+
+      <line x1="496" y1="64" x2="512" y2="64" stroke="var(--ink)" stroke-width="2"/>
+      <polygon points="516,64 506,59 506,69" fill="var(--ink)"/>
+
+      <rect x="516" y="20" width="146" height="88" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="589" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">4 · Раскладка</text>
+      <text x="589" y="74" text-anchor="middle" font-size="14" fill="var(--muted)">по каналам</text>
+      <text x="589" y="92" text-anchor="middle" font-size="14" fill="var(--muted)">n8n</text>
+
+      <path d="M589 108 V150 H85 V120" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <polygon points="85,108 79,122 91,122" fill="var(--muted)"/>
+      <text x="337" y="143" text-anchor="middle" font-size="15" fill="var(--muted)">следующая неделя — снова с планёрки</text>
+    </svg>
+    <figcaption>Круг повторяется каждую неделю. Три из четырёх станций — это работа пачкой: сел и сделал сразу всё.</figcaption>
+  </figure>
+
+  <details class="term">
+    <summary>Планёрка</summary>
+    <p>Короткая встреча с самим собой (или с командой) раз в неделю: решаешь, про что снимать. Полчаса с блокнотом — и темы на всю неделю готовы.</p>
+  </details>
+  <details class="term">
+    <summary>Пачкой (батчинг)</summary>
+    <p>Делать однотипное подряд, а не вперемешку. Все сценарии за один присест, потом все генерации за один. Меньше переключений между режимами «придумываю» и «делаю» — быстрее и ровнее.</p>
+  </details>
+
+  <h3>Как крутить цикл — шаг за шагом</h3>
+  <ol class="steps">
+    <li class="step-check" data-step="m7-s1">Поставь планёрку в календарь фиксированным окном — например, понедельник, 30 минут. Это якорь всей недели.</li>
+    <li class="step-check" data-step="m7-s2">На планёрке набери темы на неделю и помечай каждую: какая тема — какая линия контента (таблица ниже).</li>
+    <li class="step-check" data-step="m7-s3">Сядь и напиши все сценарии пачкой по шаблонам из М5. Один присест — вся неделя.</li>
+    <li class="step-check" data-step="m7-s4">Сгенерируй ролики пачкой: ведущая и твоя голова уже готовы, меняются только тексты сцен.</li>
+    <li class="step-check" data-step="m7-s5">Сложи готовые ролики в папку очереди — из неё пойдёт публикация.</li>
+    <li class="step-check" data-step="m7-s6">Разложи по каналам и засеки время на весь цикл. В следующий понедельник — снова с планёрки.</li>
+  </ol>
+
+  <h3>Четыре линии контента</h3>
+  <p>Чтобы канал не превратился в один бесконечный обзор, держи четыре линии. Каждый ролик — какая-то из них.</p>
+  <table>
+    <tr><th>Линия</th><th>Кто в кадре</th><th>Куда идёт</th></tr>
+    <tr><td>Кружок-обзор товара</td><td>ведущая М.</td><td>твой Telegram-канал</td></tr>
+    <tr><td>Экспертный разбор</td><td>твоя голова</td><td>канал, твоя платформа</td></tr>
+    <tr><td>Товар без лица</td><td>голос за кадром</td><td>карточки, Pinterest</td></tr>
+    <tr><td>Учим покупателя выбирать</td><td>ведущая или ты</td><td>канал, платформа</td></tr>
+  </table>
+
+  <h3>Каналы: две волны</h3>
+  <p>Не распыляйся сразу на всё. Первая волна — три канала, где твой зритель уже есть. Вторая — когда первая поедет ровно и перестанет требовать ручного внимания.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 680 300" role="img" aria-label="Один ролик раскладывается по каналам двумя волнами">
+      <text x="590" y="14" text-anchor="middle" font-size="14" fill="var(--accent)">первая волна</text>
+      <text x="590" y="196" text-anchor="middle" font-size="14" fill="var(--muted)">вторая волна</text>
+
+      <rect x="12" y="120" width="150" height="64" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="87" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">Готовый ролик</text>
+      <text x="87" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">из папки очереди</text>
+
+      <line x1="162" y1="152" x2="246" y2="152" stroke="var(--ink)" stroke-width="2"/>
+      <polygon points="250,152 240,147 240,157" fill="var(--ink)"/>
+
+      <rect x="250" y="118" width="150" height="68" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="325" y="146" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">Раскладка</text>
+      <text x="325" y="166" text-anchor="middle" font-size="14" fill="var(--muted)">n8n</text>
+
+      <line x1="400" y1="152" x2="510" y2="48" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="400" y1="152" x2="510" y2="102" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="400" y1="152" x2="510" y2="156" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="400" y1="152" x2="510" y2="228" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="400" y1="152" x2="510" y2="276" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+
+      <rect x="512" y="26" width="156" height="44" rx="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="590" y="53" text-anchor="middle" font-size="14" fill="var(--ink)">Telegram-канал</text>
+      <rect x="512" y="80" width="156" height="44" rx="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="590" y="107" text-anchor="middle" font-size="14" fill="var(--ink)">Твоя платформа</text>
+      <rect x="512" y="134" width="156" height="44" rx="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="590" y="161" text-anchor="middle" font-size="14" fill="var(--ink)">Pinterest</text>
+      <rect x="512" y="206" width="156" height="44" rx="10" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+      <text x="590" y="233" text-anchor="middle" font-size="14" fill="var(--ink)">VK</text>
+      <rect x="512" y="254" width="156" height="44" rx="10" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+      <text x="590" y="281" text-anchor="middle" font-size="14" fill="var(--ink)">Reels</text>
+    </svg>
+    <figcaption>Один ролик — во все каналы. Первая волна: канал, платформа, Pinterest. Вторая: VK и Reels, когда дойдут руки.</figcaption>
+  </figure>
+
+  <p>Первая волна: твой Telegram-канал, твоя платформа (сайт и карточки), Pinterest — там ИИ-ролики живут долго и подтягивают трафик.</p>
+  <p>Вторая волна: VK и Reels — добавляй, когда первые три канала уже идут на автомате.</p>
+
+  <h3>Где лежат исходники</h3>
+  <p>Конвейер держится на порядке в файлах. Заведи одну папку на твоём сервере, а внутри — четыре подпапки. Всегда знаешь, где что.</p>
+  <table>
+    <tr><th>Подпапка</th><th>Что внутри</th></tr>
+    <tr><td><code>syomka-set</code></td><td>исходные съёмки: видео сетов и фото — ведущей и твои</td></tr>
+    <tr><td><code>golos</code></td><td>записи голоса и готовые клоны</td></tr>
+    <tr><td><code>gotovye-roliki</code></td><td>смонтированные ролики, готовые к публикации — очередь конвейера</td></tr>
+    <tr><td><code>arhiv</code></td><td>черновики и старое, что жалко удалить</td></tr>
+  </table>
+  <p>Настоящие фото и голос ведущей живут в этой папке, а не в чужих сервисах и не в переписках. Держи две копии — компьютер и облако.</p>
+
+  <h3>Раскладка без рук: мост в первую школу</h3>
+  <p>Разносить один ролик по каналам вручную — десять минут, которые повторяются каждую неделю. Их забирает n8n — тот самый из первой школы.</p>
+
+  <details class="term">
+    <summary>Раскладка (дистрибуция)</summary>
+    <p>Разнести один готовый ролик по всем каналам: канал, платформа, Pinterest и дальше. Руками — по разу в каждый; через n8n — один раз положил файл в папку, дальше само.</p>
+  </details>
+
+  <p>Открой вкладку «Автоматизации» наверху страницы — это первая школа. Там есть модуль про твой n8n. Здесь — что именно ему поручить.</p>
+  <ol class="steps">
+    <li class="step-check" data-step="m7-s7">В первой школе собери сценарий n8n, который следит за папкой готовых роликов.</li>
+    <li class="step-check" data-step="m7-s8">Настрой: появился новый ролик — n8n постит его в твой Telegram-канал и кладёт на платформу.</li>
+    <li class="step-check" data-step="m7-s9">Проверь на одном ролике вручную, прежде чем довериться автопостингу. Первый пост всегда смотри глазами.</li>
+    <li class="step-check" data-step="m7-s10">Пойдёт ровно — добавь в тот же сценарий Pinterest, позже вторую волну. Расширяй по одному каналу.</li>
+  </ol>
+  <p>Готовый ролик — на входе, посты во всех каналах — на выходе. Ты только кладёшь файл в папку.</p>
+
+  <h3>Следующая ступень: Higgsfield CLI</h3>
+  <p>Когда конвейер уверенно крутится руками, генерацию тоже можно ускорить — командой вместо кликов. У Higgsfield для этого есть CLI, а не привычный из первой школы MCP: так решено — заходим этим путём отдельным разом, не сейчас.</p>
+
+  <details class="term">
+    <summary>CLI и MCP</summary>
+    <p>CLI (командная строка) — управление программой текстовой командой в терминале, без мышки: написал команду с ТЗ — программа сделала. MCP — способ, которым Higgsfield подключают прямо к помощнику-ИИ. Оба гоняют генерацию без ручных кликов; разница для кошелька — ниже.</p>
+  </details>
+
+  <p><strong>Честно про деньги.</strong> Безлимитные генерации и бесплатные модели работают <span class="dated" data-src="higgsfield.ai/pricing, сноска, 20.08.2026">только на сайте higgsfield.ai; через CLI и MCP всё списывается кредитами по полному тарифу</span>.</p>
+  <p>Вывод: пока поток маленький — генерируй на сайте, там у плана Plus часть моделей идёт без лимита. CLI бери, когда захочешь автоматизировать пачку и осознанно платить за это кредитами.</p>
+
+  <div class="example">
+    <p><strong>Аналогия с кухней.</strong> Повар не бежит к доске резать морковь всякий раз, когда она нужна в блюде. Утром он режет всю морковь на день разом — это заготовки.</p>
+    <p>Конвейер роликов — те же заготовки. Все сценарии разом, все генерации разом. Голова не прыгает между «придумываю» и «делаю» — и успеваешь больше за то же время.</p>
+  </div>
+
+  <div class="example case-m">
+    <p>Магазин М. поставил планёрку на утро понедельника — 30 минут с чаем и блокнотом. За неё набирает темы на неделю и метит каждую по линии контента.</p>
+    <p>Дальше пачкой: во вторник все сценарии, в среду все генерации. Темп — 2–3 ролика в неделю, как и целил в М0.</p>
+    <p>Сколько тем берётся за одну планёрку и сколько времени уходит на цикл — возьмём для примера, у тебя будут свои: заведи замер с первой недели.</p>
+  </div>
+
+  <div class="quiz" data-a="3">
+    <p class="quiz-q">Ты перешёл на Higgsfield CLI, чтобы гнать ролики пачкой. Что будет с безлимитами?</p>
+    <button>Останутся — CLI это тот же аккаунт, тот же план</button>
+    <button>Станут даже больше — CLI создан для тяжёлых задач</button>
+    <button>Пропадут: через CLI всё считается кредитами, безлимиты живут только на сайте</button>
+    <p class="quiz-x">Ловушка тарифа: бесплатные и безлимитные генерации живут только на сайте higgsfield.ai. Через CLI и MCP каждый ролик списывает кредиты по полному тарифу. Поэтому CLI — осознанный шаг для большого потока, а не «бесплатное ускорение».</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Конвейер — это ритм: планёрка → сценарии пачкой → генерации пачкой → раскладка.</p>
+    <p>Один ролик — во все каналы, раскладку забирает n8n из первой школы.</p>
+    <p>Следующая ступень — CLI, но сначала конвейер должен уверенно крутиться руками.</p>
+  </div>
+</section>
+    <section class="module" id="m8" data-title="Окупаемость роликов" data-block="V">
+  <header class="module-head">
+    <p>М8 · Блок В «Управлять» · ≈30 мин</p>
+    <h2>Окупаемость роликов</h2>
+    <p>Подписка уже окупилась — этот модуль показывает, насколько, и учит считать самому.</p>
+  </header>
+
+  <div class="why">
+    <p>Подписка оплачена. Здесь ты видишь, насколько сильно она уже отбилась — чтобы не жаться снимать.</p>
+    <p>Минута маркетингового видео руками стоила <span class="dated" data-src="adwave.com, 20.08.2026">~$4 500, с ИИ — ~$400: минус 91%</span>.</p>
+    <p>В Москве короткий ролик «под ключ» — <span class="dated" data-src="profi.ru, mosvideo.org, 20.08.2026">от 25 000 до 50 000 ₽</span>. На подписке тот же ролик — рубли за штуку.</p>
+    <p>Но окупаемость — не только деньги. Вторая её половина — доверие зрителя, и об этом честно ниже.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Экономия на продакшене — десятки тысяч рублей с каждого ролика.</li>
+      <li>Больше роликов теми же руками — больше касаний с покупателем.</li>
+      <li>Освободившийся бюджет уходит в трафик и товар, а не в съёмочную смену.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Раз в месяц своди три числа: сколько роликов вышло, во сколько обошлась подписка с сопутствующим, во сколько встал бы живой продакшен.</li>
+      <li>Держи сопутствующие расходы в рамках — ориентир до ~5 тыс ₽/мес.</li>
+      <li>Следи, чтобы кредиты не кончались раньше срока: остаток — в кабинете, а не на глаз.</li>
+    </ul>
+  </div>
+
+  <h3>Живой ролик против ролика на подписке</h3>
+  <p>Разница не в процентах — в порядках. Один короткий ролик «под ключ» — это десятки тысяч рублей. Тот же ролик на твоей подписке — доли кредита.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 680 200" role="img" aria-label="Сравнение стоимости живого ролика и ролика на подписке">
+      <text x="14" y="82" font-size="15" fill="var(--ink)">Живой ролик</text>
+      <rect x="190" y="58" width="474" height="44" rx="8" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="427" y="85" text-anchor="middle" font-size="15" fill="var(--ink)">от десятков тысяч ₽ за штуку</text>
+
+      <text x="14" y="158" font-size="15" fill="var(--ink)">На подписке</text>
+      <rect x="190" y="132" width="52" height="44" rx="8" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="252" y="159" font-size="15" fill="var(--accent)">рубли за штуку — доли кредита</text>
+    </svg>
+    <figcaption>Длина полоски — цена одного ролика. Точные суммы живого продакшена — в тексте выше, с источником и датой.</figcaption>
+  </figure>
+
+  <p>Мировые вилки те же: ИИ-генерация — <span class="dated" data-src="ltx.io, 20.08.2026">$0,5–30 за минуту</span> против тысяч долларов у живого продакшена. Ты платишь не деньгами, а временем на сценарии и отбраковку неудачных дублей.</p>
+
+  <details class="term">
+    <summary>Окупаемость</summary>
+    <p>Момент, когда сэкономленное и заработанное покрыло вложенное. Для подписки считается быстро: один-два несделанных «живых» ролика уже дороже, чем год подписки.</p>
+  </details>
+
+  <h3>Сколько роликов на подписке</h3>
+  <p>План Plus даёт <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">1 200 кредитов в месяц</span> — это не 3 000, столько у более дорогого Ultra. Не перепутай тариф в расчётах.</p>
+  <p>По калькулятору на странице цен этих кредитов хватает примерно на <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">1028 роликов Speak 2.0 в 720p</span> в месяц. Это оценка: реальный расход зависит от моделей и длины ролика. Точный остаток кредитов сверь в своём кабинете.</p>
+  <p>Тебе нужно 2–3 ролика в неделю — около десятка в месяц. Запас по кредитам огромный: узкое место не деньги, а твоё время на сценарии и отбор.</p>
+
+  <h3>Из чего складывается бюджет сопутствующего</h3>
+  <p>Подписка на ИИ-видео — не единственный расход, но остальное мелкое. Ориентир на всё вокруг — до ~5 тыс ₽/мес.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 680 210" role="img" aria-label="Из чего складывается бюджет сопутствующих расходов">
+      <rect x="14" y="14" width="290" height="52" rx="10" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="159" y="38" text-anchor="middle" font-size="15" fill="var(--ink)">Клон голоса отдельно</text>
+      <text x="159" y="56" text-anchor="middle" font-size="14" fill="var(--muted)">по желанию, вне Higgsfield</text>
+
+      <rect x="14" y="82" width="290" height="52" rx="10" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="159" y="106" text-anchor="middle" font-size="15" fill="var(--ink)">Докупка кредитов</text>
+      <text x="159" y="124" text-anchor="middle" font-size="14" fill="var(--muted)">только в месяц всплеска</text>
+
+      <rect x="14" y="150" width="290" height="52" rx="10" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+      <text x="159" y="174" text-anchor="middle" font-size="15" fill="var(--ink)">Хранилище и мелочь</text>
+      <text x="159" y="192" text-anchor="middle" font-size="14" fill="var(--muted)">облако, разные сервисы</text>
+
+      <line x1="304" y1="40" x2="396" y2="98" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="304" y1="108" x2="396" y2="108" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="304" y1="176" x2="396" y2="118" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/>
+
+      <rect x="400" y="62" width="264" height="92" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="532" y="102" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Сопутствующее</text>
+      <text x="532" y="128" text-anchor="middle" font-size="15" fill="var(--ink)">до ~5 тыс ₽/мес</text>
+    </svg>
+    <figcaption>Подписка считается отдельно. Это то, что докупается вокруг неё — в обычный месяц многое здесь ноль.</figcaption>
+  </figure>
+
+  <p>Что сюда входит: запасной клон голоса (<span class="dated" data-src="elevenlabs.io/pricing, 20.08.2026">ElevenLabs Creator — $22/мес</span>, нужен только если голос понадобится вне Higgsfield), докупка кредитов в месяц всплеска, облако для исходников. В спокойный месяц многое из этого — ноль.</p>
+
+  <details class="term">
+    <summary>Сопутствующие расходы</summary>
+    <p>Мелочи вокруг подписки: клон голоса вне Higgsfield, докупка кредитов при всплеске, облако для исходников. Держим ориентир — до ~5 тыс ₽/мес, и это потолок, а не норма.</p>
+  </details>
+
+  <h3>Две стороны медали</h3>
+  <p>ИИ-конвейер — это скорость и дешевизна. Но у медали есть обратная сторона, и честный продюсер держит в голове обе.</p>
+  <p><strong>За.</strong> Подача «как живой человек» (UGC) даёт вовлечённость <span class="dated" data-src="billo.app, 20.08.2026">до 6,9 раза выше вылизанной рекламы</span>. Твоя ведущая — живой человек, это твой козырь.</p>
+  <p><strong>Против.</strong> <span class="dated" data-src="multiply.co, 20.08.2026">54% зрителей устали от ИИ</span> и снижают доверие, когда чувствуют подделку — особенно если её прячут.</p>
+  <p>Вывод простой: честная подача снимает минус. Аватар своего человека, помеченный как ИИ, — работает. Армия фейковых «довольных покупателей» — бьёт по тебе же. Право и метки — в М9.</p>
+
+  <div class="example">
+    <p><strong>Два магазина.</strong> Первый залил ленту «отзывами» вымышленных людей с ИИ-лицами и молчит, что это ИИ. Зрители распознают подделку — и уходят с осадком.</p>
+    <p>Второй показывает одну настоящую ведущую и честно помечает ролики как сделанные с ИИ. Лицо узнают, доверие копится. Инструмент один — результат разный.</p>
+  </div>
+
+  <div class="example case-m">
+    <p>Магазин М. прикинул на пальцах. Живой ролик «под ключ» — <span class="dated" data-src="profi.ru, mosvideo.org, 20.08.2026">от 25 000 ₽</span>. Десяток в месяц — четверть миллиона и больше.</p>
+    <p>Подписка — ~60 тыс ₽ за год, это около 5 тыс ₽ в месяц. Плюс сопутствующее — до ~5 тыс ₽/мес. Весь конвейер выходит до ~10 тыс ₽ в месяц.</p>
+    <p>Точные цифры — возьмём для примера: 10 роликов в месяц, 90 минут руками на каждый. Подставь свои в калькуляторе ниже — он посчитает твою выгоду.</p>
+  </div>
+
+  <h3>Посчитай свою выгоду</h3>
+  <p>Хватит теории — подставь свои числа. Сколько роликов в месяц, сколько минут ушло бы на один руками, цена твоего часа и стоимость подписки. Калькулятор сравнит месяц руками с подпиской.</p>
+
+<!-- ROI-CALC -->
+
+  <p>Цена часа в калькуляторе стоит 2 000 ₽ для примера — у тебя час дороже, поставь свою. Тогда выгода станет ещё нагляднее.</p>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m8-s1">Впиши, сколько роликов в месяц реально хочешь выпускать — начни с десятка.</li>
+    <li class="step-check" data-step="m8-s2">Прикинь честно, сколько минут ушло бы на один ролик руками: съёмка плюс монтаж вместе.</li>
+    <li class="step-check" data-step="m8-s3">Поставь цену своего часа вместо примерных 2 000 ₽.</li>
+    <li class="step-check" data-step="m8-s4">Впиши стоимость подписки в месяц — около 5 тыс ₽, если годовая ~60 тыс ₽.</li>
+    <li class="step-check" data-step="m8-s5">Посмотри выгоду и цену одного ролика. Запиши число — вернёшься к нему на экзамене в М10.</li>
+  </ol>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">Сколько кредитов в месяц даёт план Plus — тот, на котором работает Speak?</p>
+    <button>270 — как на Starter</button>
+    <button>1 200 в месяц</button>
+    <button>3 000 в месяц</button>
+    <p class="quiz-x">1 200 — это Plus. 3 000 кредитов — у более дорогого Ultra, их легко перепутать в расчётах. Для 2–3 роликов в неделю хватает с большим запасом, но точный остаток всегда сверяй в своём кабинете.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Живой ролик — десятки тысяч рублей. Ролик на подписке — рубли за штуку.</p>
+    <p>Кредитов Plus (1 200 в месяц) хватает с огромным запасом — узкое место твоё время, а не деньги.</p>
+    <p>Окупаемость — это и деньги, и доверие. Честная подача бережёт вторую половину.</p>
+  </div>
+</section>
+    <section class="module" id="m9" data-title="Право и честность" data-block="V">
+  <header class="module-head">
+    <p>М9 · Блок В «Управлять» · ≈25 мин</p>
+    <h2>Право и честность</h2>
+    <p>Согласие один раз, метка на каждый ролик — и конвейер работает спокойно, без риска.</p>
+  </header>
+
+  <div class="why">
+    <p>Аватар живого человека — это использование его образа в коммерции. Значит, работают закон и правила площадок.</p>
+    <p>По российскому праву <span class="dated" data-src="gkodeksrf.ru, 20.08.2026">ст. 152.1 ГК РФ разрешает использовать изображение человека только с его согласия</span> — для рекламы согласие обязательно, лучше письменное.</p>
+    <p>Отдельно про честность перед зрителем: <span class="dated" data-src="multiply.co, 20.08.2026">54% зрителей устали от ИИ</span> и теряют доверие, когда чувствуют скрытую подделку. Открытая пометка этот минус снимает.</p>
+    <p>Право и честность — не бюрократия в конце, а часть конвейера. Один раз оформил, дальше только галочки перед публикацией.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Одно согласие ведущей закрывает всё: ролики, рекламу, обложки — подписал один раз.</li>
+      <li>Метка «сделано с ИИ» на каждом ролике — и в кадре, и в подписи под ним.</li>
+      <li>В отзывах и тестимониалах аватар не выдаётся за живую съёмку — иначе бьёт по доверию.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Подписанное согласие лежит в известной папке, а не в переписке — нашёл за минуту.</li>
+      <li>Перед каждой публикацией — чек-лист из 7 пунктов ниже. Не пропускаешь ни одного.</li>
+      <li>Раз в месяц проверяй, что метки на месте и площадки не сняли ролики за нераскрытие.</li>
+    </ul>
+  </div>
+
+  <h3>Согласие: одно на всё</h3>
+  <p>Согласие ведущей нужно оформить письменно — даже если это близкий человек. Аватар = коммерческое использование образа, а тут правило одно для всех.</p>
+  <p>Шаблон согласия ты уже собрал в М3. Здесь — про главное после подписи: <strong>где оно лежит</strong>.</p>
+  <ul>
+    <li>Бумажный оригинал — в папке с договорами магазина, там же где остальные документы.</li>
+    <li>Скан — в папке исходников на сервере, рядом с сетами (подпапка документов), плюс копия в облаке.</li>
+    <li>Не в переписке и не в галерее телефона — там оно теряется первым.</li>
+  </ul>
+  <p>Одно согласие охватывает всё использование образа: ролики, реклама, обложки, любые каналы. Переподписывать под каждый ролик не нужно.</p>
+  <p>На <strong>свою</strong> голову (владельца) согласие не нужно — ты сам себе разрешаешь. Всё остальное для твоей дорожки идентично.</p>
+
+  <details class="term">
+    <summary>Согласие на изображение (ст. 152.1 ГК)</summary>
+    <p>Письменное разрешение человека использовать его лицо и внешность. Для рекламы обязательно. В нём перечисляют, где образ будет использован (каналы, реклама, обложки) и на какой срок.</p>
+    <p>Для семьи это не формальность-«для галочки», а страховка: аватар работает годами, и лучше, чтобы разрешение было зафиксировано на бумаге.</p>
+  </details>
+
+  <h3>Маркировка: метка на каждый ролик</h3>
+  <p>Честная пометка «создано с ИИ» — не признание слабости, а норма 2026 года. Крупные площадки уже требуют её сами, каждая по-своему.</p>
+  <table>
+    <tr><th>Площадка</th><th>Как с маркировкой ИИ</th></tr>
+    <tr><td>YouTube</td><td><span class="dated" data-src="influencermarketinghub.com, 20.08.2026">обязательное раскрытие реалистичного изменённого и синтетического контента — ставишь галку сам</span></td></tr>
+    <tr><td>TikTok</td><td><span class="dated" data-src="influencermarketinghub.com, 20.08.2026">обязательная маркировка реалистичного ИИ-контента во всех форматах</span></td></tr>
+    <tr><td>Meta</td><td><span class="dated" data-src="influencermarketinghub.com, 20.08.2026">авто-метка «AI info» плюс обязательное раскрытие для рекламы и реалистичных синтетических людей</span></td></tr>
+    <tr><td>Pinterest</td><td><span class="dated" data-src="help.pinterest.com, 20.08.2026">авто-метка «Gen AI / AI modified» по метаданным с 30.04.2025 плюс раскрытие в рекламе</span></td></tr>
+  </table>
+  <p>Заметь: три из четырёх метят контент <strong>сами</strong> — читают невидимую машиночитаемую метку, которую Higgsfield зашивает в ролик. Вырезать её бессмысленно и вредно: площадка всё равно видит, а вот доверие к тебе падает.</p>
+
+  <details class="term">
+    <summary>C2PA-метка (невидимая метка «сделано ИИ»)</summary>
+    <p>Машиночитаемая пометка внутри файла ролика: кто и чем его создал. Глазами её не видно, но площадки читают автоматически и сами вешают ярлык «ИИ».</p>
+    <p>На платных планах Higgsfield видимого водяного знака нет, а эта невидимая метка остаётся всегда — и это нормально.</p>
+  </details>
+  <details class="term">
+    <summary>Раскрытие (disclosure)</summary>
+    <p>Открытое сообщение зрителю, что контент сделан или изменён ИИ. Бывает двух видов: галка «синтетический контент» в настройках публикации и человеческая пометка словами в самом ролике или подписи.</p>
+    <p>Оба вида не мешают друг другу — ставь и то, и другое.</p>
+  </details>
+
+  <h3>Что в России уже решено</h3>
+  <p>Отдельного закона «маркируй весь ИИ-контент» в РФ пока нет. Но направление ясное.</p>
+  <p><span class="dated" data-src="klerk.ru, vitvet.com, 20.08.2026">С 01.03.2027 площадки с большой аудиторией обязаны дать пользователям возможность помечать ИИ-контент</span> — это кнопка маркировки, а не запрет. По защите образа уже работает ст. 152.1 ГК: она про согласие, и её достаточно, чтобы оформить отношения с ведущей правильно.</p>
+  <p>Вывод: живёшь честно уже сейчас — к 01.03.2027 менять ничего не придётся, только нажимать готовую кнопку.</p>
+
+  <h3>Деликатные категории — осторожнее</h3>
+  <p>Есть категории, где площадки строже к рекламе и к тому, как показан товар: здоровье, деньги, чувствительные темы. Если твой товар из такой зоны — правила площадки читаешь <strong>до</strong> публикации, а не после блокировки.</p>
+  <p>Практика простая: ИИ-ролик в чувствительной категории — сначала правила рекламы этой площадки, потом уже кнопка «опубликовать». Одна проверка бережёт аккаунт.</p>
+
+  <h3>Ворота перед публикацией</h3>
+  <p>Каждый ролик проходит три ворот. Не прошёл хоть одни — не публикуешь, пока не починишь.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 660 470" role="img" aria-label="Ролик проходит трое ворот перед публикацией">
+      <rect x="110" y="16" width="440" height="66" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="330" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Готовый ролик</text>
+      <text x="330" y="67" text-anchor="middle" font-size="14" fill="var(--muted)">из папки очереди</text>
+
+      <path d="M330 82 V102" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <polygon points="330,106 323,92 337,92" fill="var(--muted)"/>
+
+      <rect x="110" y="106" width="440" height="66" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="330" y="134" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">1 · Согласие на лицо</text>
+      <text x="330" y="157" text-anchor="middle" font-size="14" fill="var(--muted)">подписано и лежит в папке</text>
+
+      <path d="M330 172 V192" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <polygon points="330,196 323,182 337,182" fill="var(--muted)"/>
+
+      <rect x="110" y="196" width="440" height="66" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="330" y="224" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">2 · Метка «сделано с ИИ»</text>
+      <text x="330" y="247" text-anchor="middle" font-size="14" fill="var(--muted)">в ролике, в подписи, галка площадки</text>
+
+      <path d="M330 262 V282" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <polygon points="330,286 323,272 337,272" fill="var(--muted)"/>
+
+      <rect x="110" y="286" width="440" height="66" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="330" y="314" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">3 · Правила площадки и ниши</text>
+      <text x="330" y="337" text-anchor="middle" font-size="14" fill="var(--muted)">деликатная категория — строже</text>
+
+      <path d="M330 352 V372" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <polygon points="330,376 323,362 337,362" fill="var(--muted)"/>
+
+      <rect x="110" y="376" width="440" height="66" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="330" y="404" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Публикация</text>
+      <text x="330" y="427" text-anchor="middle" font-size="14" fill="var(--amber)">спокойно, без риска</text>
+
+      <text x="330" y="458" text-anchor="middle" font-size="14" fill="var(--muted)">не прошёл ворота — чинишь, а не публикуешь</text>
+    </svg>
+    <figcaption>Трое ворот: согласие, метка, правила. Согласие — разовое, метка и правила — на каждый ролик.</figcaption>
+  </figure>
+
+  <div class="example">
+    <p><strong>Тот, кто вырезал метку.</strong> Магазин решил, что пометка «ИИ» отпугнёт покупателя, и убрал её из подписи. Невидимую метку в файле тронуть не смог — площадка увидела её сама, повесила ярлык и придержала охваты за нераскрытие.</p>
+    <p>Итог: и метка всё равно появилась, и доверие просело, и охваты порезали. Спрятать не вышло — вышло хуже, чем честно.</p>
+  </div>
+
+  <div class="example case-m">
+    <p>Магазин М. сделал всё один раз и забыл. Ведущая подписала одно согласие на бумаге — оно лежит в папке с договорами, скан в облаке.</p>
+    <p>Дальше на каждый ролик — та же короткая рутина: пометка «создано с ИИ» в подписи и галка «синтетический контент» при загрузке.</p>
+    <p>Для товара из чувствительной категории хозяин сначала читает правила рекламы площадки, потом публикует. Ни одной блокировки — потому что ничего не прячет.</p>
+  </div>
+
+  <h3>Чек-лист «перед публикацией»</h3>
+  <p>Семь пунктов. Пройди их по каждому ролику, пока это не станет привычкой на автомате.</p>
+  <ol class="steps">
+    <li class="step-check" data-step="m9-s1">Согласие на лицо ведущей подписано и лежит в известном месте (на свою голову согласие не нужно).</li>
+    <li class="step-check" data-step="m9-s2">В самом ролике и в подписи под ним стоит честная пометка «создано с ИИ».</li>
+    <li class="step-check" data-step="m9-s3">При загрузке на YouTube или TikTok поставлена галка «синтетический / ИИ-контент».</li>
+    <li class="step-check" data-step="m9-s4">Невидимую метку в файле не вырезал — площадки читают её сами.</li>
+    <li class="step-check" data-step="m9-s5">Аватар нигде не выдаётся за живую съёмку — ни в отзывах, ни в тестимониалах.</li>
+    <li class="step-check" data-step="m9-s6">Для деликатной категории проверил правила рекламы площадки до публикации.</li>
+    <li class="step-check" data-step="m9-s7">Исходный файл и текст сценария сохранены в папку — чтобы повторить и, если надо, доказать.</li>
+  </ol>
+
+  <div class="quiz" data-a="3">
+    <p class="quiz-q">Ты убрал из подписи слова «сделано с ИИ», чтобы ролик выглядел как живая съёмка. Что будет с невидимой меткой в файле?</p>
+    <button>её тоже не будет — раз в подписи не написано, площадка не узнает</button>
+    <button>она исчезнет сама, если экспортировать ролик заново</button>
+    <button>она останется: площадки читают её автоматически и всё равно повесят ярлык «ИИ»</button>
+    <p class="quiz-x">Невидимая C2PA-метка живёт внутри файла и не зависит от подписи. Три из четырёх крупных площадок читают её сами и метят контент. Прятать бесполезно и вредно — честная пометка бережёт доверие, а скрытая подделка его сжигает.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Согласие — один раз и в известную папку. Метка «сделано с ИИ» — на каждый ролик.</p>
+    <p>Площадки метят ИИ сами по невидимой метке — вырезать бессмысленно, честность дешевле.</p>
+    <p>Деликатная категория — правила площадки читаешь до публикации, а не после блокировки.</p>
+  </div>
+</section>
+    <section class="module" id="m10" data-title="Экзамен и три ролика" data-block="V">
+  <header class="module-head">
+    <p>М10 · Блок В «Управлять» · ≈30 мин</p>
+    <h2>Экзамен и три ролика</h2>
+    <p>Курс сдаётся не тестом, а делом: три ролика за неделю твоими руками, с секундомером.</p>
+  </header>
+
+  <div class="why">
+    <p>Знать и уметь — разное. Экзамен этого курса — не вопросы, а работающий конвейер.</p>
+    <p>Задание одно: за одну неделю выпустить три ролика руками. Хотя бы один — экспертный, твоей собственной головой, а не только ведущей.</p>
+    <p>И главное — замерить время на каждый. Цель: к третьему ролику уложиться примерно в час. Это щедрая планка — <span class="dated" data-src="adwave.com, 20.08.2026">ИИ выдаёт 60-секундный ролик за ~27 минут</span>, час у тебя ещё и со сценарием и проверкой.</p>
+    <p>Сдал делом — значит конвейер собран, а не понят на словах.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>Три готовых ролика в канале уже на этой неделе — не «когда-нибудь».</li>
+      <li>Замер времени показывает узкое место: где именно ты тормозишь.</li>
+      <li>Экспертный ролик твоей головой — доверие, которое рекламой не купить.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Засекай время на каждый ролик от сценария до публикации — числом, а не «на глаз».</li>
+      <li>Просело на каком-то шаге — по таблице ниже возвращаешься в нужный модуль, а не буксуешь.</li>
+      <li>После третьего ролика честно ответь на три критерия из М0 — они же ниже, дословно.</li>
+    </ul>
+  </div>
+
+  <h3>Задание экзамена</h3>
+  <p>Одна неделя, три ролика, секундомер. Прогоняешь весь конвейер, который собирал восемь модулей.</p>
+  <ol class="steps">
+    <li class="step-check" data-step="m10-s1">Спланируй три темы на неделю — по образцу планёрки из М7. Хотя бы одна тема — экспертная, под твою голову.</li>
+    <li class="step-check" data-step="m10-s2">Собери ролик №1 с ведущей: сценарий по шаблону М5, генерация в Speak, метка ИИ. Засеки время.</li>
+    <li class="step-check" data-step="m10-s3">Собери ролик №2 — другой линии контента. Снова засеки время: должно уйти меньше, чем на первый.</li>
+    <li class="step-check" data-step="m10-s4">Собери ролик №3 — экспертный, твоей собственной головой. Цель — уложиться примерно в час.</li>
+    <li class="step-check" data-step="m10-s5">Каждый ролик проведи через чек-лист «перед публикацией» из М9 и опубликуй.</li>
+    <li class="step-check" data-step="m10-s6">Выпиши три числа — время на ролик №1, №2, №3 — и посмотри, падает ли кривая.</li>
+    <li class="step-check" data-step="m10-s7">Ответь на три критерия ниже. Все три «да» — курс сдан.</li>
+  </ol>
+
+  <details class="term">
+    <summary>Зачёт делом</summary>
+    <p>Проверка не на словах, а результатом: не «расскажи, как собрать ролик», а «покажи три готовых ролика за неделю с замером времени».</p>
+    <p>Так проверяют навык, а не память. Конвейер либо крутится, либо нет — видно сразу.</p>
+  </details>
+
+  <h3>Как падает время</h3>
+  <p>Первый ролик всегда дольше: осваиваешься. К третьему рука набита, и время сходится к цели.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 680 230" role="img" aria-label="Время на ролик падает от первого к третьему">
+      <text x="14" y="65" font-size="15" fill="var(--ink)">Ролик 1</text>
+      <rect x="120" y="42" width="470" height="40" rx="8" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="355" y="67" text-anchor="middle" font-size="14" fill="var(--muted)">дольше всего — осваиваешься</text>
+
+      <text x="14" y="125" font-size="15" fill="var(--ink)">Ролик 2</text>
+      <rect x="120" y="102" width="320" height="40" rx="8" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="280" y="127" text-anchor="middle" font-size="14" fill="var(--muted)">уже быстрее</text>
+
+      <text x="14" y="185" font-size="15" fill="var(--ink)">Ролик 3</text>
+      <rect x="120" y="162" width="180" height="40" rx="8" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="300" y="187" font-size="14" fill="var(--accent)">&#8776; час — цель</text>
+
+      <line x1="120" y1="26" x2="120" y2="212" stroke="var(--muted)" stroke-width="2"/>
+      <text x="120" y="224" text-anchor="middle" font-size="13" fill="var(--muted)">старт замера</text>
+    </svg>
+    <figcaption>Длина полоски — время на ролик. Кривая должна падать: третий ролик — около часа. Свои числа впиши по факту.</figcaption>
+  </figure>
+
+  <h3>Три критерия успеха</h3>
+  <p>Те же три, что открывали курс в М0. Дословно — сверься по каждому честно:</p>
+  <ul>
+    <li><strong>Конвейер собран — 3 ролика за неделю руками владельца с замером времени.</strong></li>
+    <li><strong>Понимаю каждый шаг настолько, что могу его проверить.</strong></li>
+    <li><strong>Ставлю задачи ИИ и людям письменным ТЗ.</strong> ТЗ — задача, записанная словами: что сделать и как проверить.</li>
+  </ul>
+  <p>Все три «да» — курс сдан. Хоть одно «нет» — не провал, а точный адрес, куда вернуться.</p>
+
+  <h3>Просело — куда вернуться</h3>
+  <p>Если на экзамене что-то не пошло, не начинай сначала. Найди строку и вернись ровно в тот модуль.</p>
+  <table>
+    <tr><th>Что просело</th><th>Куда вернуться</th></tr>
+    <tr><td>Лицо ведущей дрожит или не похоже на неё</td><td>М3 · Лицо ведущей</td></tr>
+    <tr><td>Голос звучит не по-русски или хрипит</td><td>М4 · Голос ведущей</td></tr>
+    <tr><td>Ролик ни о чём, нет хука в первой секунде</td><td>М5 · Сценарий ролика</td></tr>
+    <tr><td>Первый ролик вообще не собрался</td><td>М6 · Первый ролик</td></tr>
+    <tr><td>Нет ритма, ролики выходят рывками</td><td>М7 · Конвейер на поток</td></tr>
+    <tr><td>Не понимаешь, окупается ли и на сколько</td><td>М8 · Окупаемость роликов</td></tr>
+    <tr><td>Не уверен в согласии, метках и праве</td><td>М9 · Право и честность</td></tr>
+  </table>
+
+  <details class="term">
+    <summary>Узкое место</summary>
+    <p>Шаг, который тормозит весь конвейер сильнее прочих. Замер времени показывает его числом: где минут ушло больше всего — там и чинишь в первую очередь.</p>
+  </details>
+
+  <h3>Карта применения: куда дальше</h3>
+  <p>Курс сдан — станок в руках. Дальше тот же конвейер кормит четыре разных направления. Выбери одно и сделай первый шаг.</p>
+  <table>
+    <tr><th>Идея</th><th>Что нужно</th><th>Первый шаг</th></tr>
+    <tr><td>Сайт-витрина с роликами ведущей</td><td>твоя платформа и папка готовых роликов</td><td>вставь три экзаменационных ролика на главную</td></tr>
+    <tr><td>Сервис: n8n сам раскладывает ролики</td><td>первая школа, модуль про n8n</td><td>собери сценарий «новый ролик → во все каналы»</td></tr>
+    <tr><td>Приложение с твоей ведущей</td><td>лицо и голос в Soul ID уже готовы</td><td>опиши письменным ТЗ, что приложение должно делать</td></tr>
+    <tr><td>Контент-канал на потоке</td><td>недельный цикл из М7</td><td>поставь планёрку в календарь фиксированным окном</td></tr>
+  </table>
+  <p>Следующая ступень автоматизации — Higgsfield CLI, разобран в модуле «Конвейер на поток» (М7).</p>
+
+  <div class="example">
+    <p><strong>Первый ролик — три часа, третий — час.</strong> Продюсер сел за экзамен. Первый ролик собирал долго: путался в сценарии, перегенерировал дубли. Часа три.</p>
+    <p>Второй пошёл бодрее — рука вспомнила. Третий, экспертный своей головой, уложил в час с небольшим. Кривая упала — конвейер собран, а не выучен.</p>
+  </div>
+
+  <div class="example case-m">
+    <p>Магазин М. сдал экзамен за рабочую неделю. Понедельник — планёрка и три темы. Вторник и среда — три ролика: два с ведущей, один экспертный головой хозяина.</p>
+    <p>Замер показал узкое место — сценарии. Хозяин вернулся в М5, взял шаблоны, и на следующей неделе три ролика заняли уже вдвое меньше времени.</p>
+    <p>Дальше выбрал первое направление из карты: три ролика легли на главную его платформы. Точные числа времени — свои, впиши по факту.</p>
+  </div>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">На экзамене голос ведущей в ролике захрипел и звучит не по-русски. Что делаешь?</p>
+    <button>бросаешь экзамен и начинаешь курс сначала</button>
+    <button>по таблице «просело → куда вернуться» идёшь в М4 и чинишь именно голос</button>
+    <button>публикуешь как есть — на экзамене сойдёт</button>
+    <p class="quiz-x">Экзамен устроен так, что любой сбой — это точный адрес модуля, а не повод всё бросить. Захрипел голос — таблица ведёт в М4. Починил один шаг и вернулся к трём роликам, не переделывая остальное.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Курс сдан делом: три ролика за неделю руками, хотя бы один — экспертный твоей головой, с замером времени.</p>
+    <p>Просело — таблица ведёт в нужный модуль, а не назад к началу.</p>
+    <p>Ролик — расходник, конвейер — актив. Станок в руках: дальше он кормит сайт, сервис, приложение и канал.</p>
+  </div>
+</section>
+  </main>
+</div>
+
+<footer class="site-foot">
+  <p><b>обновлено 20.08.2026</b> · цифры устаревают — даты у каждой</p>
+</footer>
+
+<template id="roi-calc-tpl">
+  <div id="roi-calc" data-roi="golova">
+    <h3>Калькулятор окупаемости роликов</h3>
+    <p class="roi-sub">Подставь свои цифры — сравним ролики руками и ролики на подписке.</p>
+    <div class="roi-grid">
+      <label>роликов в месяц
+        <input id="roi-videos" inputmode="decimal" autocomplete="off" placeholder="например, 10"></label>
+      <label>минут руками на один ролик
+        <input id="roi-min" inputmode="decimal" autocomplete="off" placeholder="например, 90"></label>
+      <label>цена часа, ₽
+        <input id="roi-rate" inputmode="decimal" autocomplete="off" value="2000"></label>
+      <label>подписка на ИИ-видео, ₽/мес
+        <input id="roi-sub-cost" inputmode="decimal" autocomplete="off" placeholder="например, 5000"></label>
+    </div>
+    <div class="roi-out" aria-live="polite">
+      <p class="roi-hint" id="roi-hint">Начни с числа роликов в месяц — остальное я посчитаю сам.</p>
+      <div id="roi-res" hidden>
+        <p class="roi-line">выгода: <span class="roi-big" id="roi-gain">0</span> ₽/мес</p>
+        <p class="roi-line" id="roi-per-video"></p>
+        <p class="roi-verdict" id="roi-verdict"></p>
+      </div>
+    </div>
+    <p class="roi-note">Считаю так: ролики × минуты × цена часа — столько стоил бы месяц руками; сравниваю с подпиской. Цена часа 2000 ₽ — для примера, поменяй на свою.</p>
+  </div>
+</template>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- хранилище прогресса (не падает без localStorage) ---------- */
+var KEY = "golova-progress";
+function readState(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    var d = raw ? JSON.parse(raw) : null;
+    if(!d || typeof d !== "object") d = {};
+    if(!d.steps || typeof d.steps !== "object") d.steps = {};
+    if(!d.modules || typeof d.modules !== "object") d.modules = {};
+    return d;
+  }catch(e){ return {steps:{}, modules:{}}; }
+}
+function writeState(d){
+  try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){ /* приватный режим — курс работает, прогресс не хранится */ }
+}
+var state = readState();
+
+/* ---------- прогресс-бар и оглавление ---------- */
+var modules = [].slice.call(document.querySelectorAll("section.module"));
+var total = modules.length || 11;
+
+function renderProgress(){
+  var done = 0;
+  modules.forEach(function(m){ if(state.modules[m.id]) done++; });
+  var fill = document.getElementById("progress-fill");
+  var label = document.getElementById("progress-label");
+  var track = document.querySelector(".progress-track");
+  if(fill) fill.style.width = (done/total*100) + "%";
+  if(fill) fill.style.minWidth = done ? "8px" : "0";
+  if(label) label.textContent = "пройдено " + done + " из " + total + " модулей";
+  if(track) track.setAttribute("aria-valuenow", String(done));
+  modules.forEach(function(m){
+    m.classList.toggle("is-done", !!state.modules[m.id]);
+    var link = document.querySelector('.toc-link[href="#' + m.id + '"]');
+    if(link) link.classList.toggle("done", !!state.modules[m.id]);
+    var btn = m.querySelector(".module-done button");
+    if(btn){
+      var isDone = !!state.modules[m.id];
+      btn.textContent = isDone ? "✓ Пройден — нажми, чтобы снять отметку" : "Отметить: модуль пройден";
+      btn.setAttribute("aria-pressed", isDone ? "true" : "false");
+    }
+  });
+}
+
+/* кнопка «модуль пройден» в конце каждого модуля */
+modules.forEach(function(m){
+  var wrap = document.createElement("div");
+  wrap.className = "module-done";
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.addEventListener("click", function(){
+    if(state.modules[m.id]) delete state.modules[m.id];
+    else state.modules[m.id] = true;
+    writeState(state);
+    renderProgress();
+  });
+  var note = document.createElement("span");
+  note.className = "done-note";
+  note.textContent = "галочка попадёт в прогресс-бар наверху";
+  wrap.appendChild(btn); wrap.appendChild(note);
+  m.appendChild(wrap);
+});
+
+/* ---------- галочки на шагах практик ---------- */
+[].slice.call(document.querySelectorAll("li.step-check")).forEach(function(li){
+  var id = li.getAttribute("data-step");
+  if(!id) return;
+  li.setAttribute("role", "checkbox");
+  li.setAttribute("tabindex", "0");
+  function render(){
+    var on = !!state.steps[id];
+    li.classList.toggle("done", on);
+    li.setAttribute("aria-checked", on ? "true" : "false");
+  }
+  function toggle(){
+    if(state.steps[id]) delete state.steps[id];
+    else state.steps[id] = true;
+    writeState(state); /* пишем сразу — обрыв не страшен */
+    render();
+  }
+  li.addEventListener("click", toggle);
+  li.addEventListener("keydown", function(ev){
+    if(ev.key === " " || ev.key === "Enter"){ ev.preventDefault(); toggle(); }
+  });
+  render();
+});
+
+/* ---------- самопроверка ---------- */
+[].slice.call(document.querySelectorAll(".quiz")).forEach(function(q){
+  var btns = [].slice.call(q.querySelectorAll("button"));
+  var a = parseInt(q.getAttribute("data-a"), 10);
+  btns.forEach(function(b, i){
+    b.type = "button";
+    b.addEventListener("click", function(){
+      if(q.classList.contains("answered")) return;
+      q.classList.add("answered");
+      btns.forEach(function(x, j){
+        x.disabled = true;
+        if(j === a - 1) x.classList.add("yes");
+        else if(x === b) x.classList.add("no");
+      });
+    });
+  });
+});
+
+/* ---------- калькулятор окупаемости: вставка по метке ROI-CALC ---------- */
+function initRoi(root){
+  var names = {
+    "roi-hours": "часов рутины в неделю",
+    "roi-rate": "цена часа",
+    "roi-cost": "расходы в месяц",
+    "roi-setup": "разово на настройку"
+  };
+  var ids = ["roi-hours", "roi-rate", "roi-cost", "roi-setup"];
+  var inputs = ids.map(function(id){ return root.querySelector("#" + id); });
+  var hint = root.querySelector("#roi-hint");
+  var res = root.querySelector("#roi-res");
+  var fmt = function(n){ return Math.round(n).toLocaleString("ru-RU"); };
+
+  function parse(el){
+    var t = el.value.trim().replace(/\s+/g, "").replace(",", ".");
+    if(t === "") return {empty:true};
+    var n = Number(t);
+    if(!isFinite(n) || n < 0) return {bad:true};
+    return {n:n};
+  }
+  function showHint(text){ hint.hidden = false; hint.textContent = text; res.hidden = true; }
+
+  function update(){
+    var v = {}, i;
+    for(i = 0; i < ids.length; i++){
+      v[ids[i]] = parse(inputs[i]);
+      if(v[ids[i]].bad){
+        showHint("В поле «" + names[ids[i]] + "» нужно число — например 5 или 2500.");
+        return;
+      }
+    }
+    if(v["roi-hours"].empty){ showHint("Начни с часов рутины — остальное я посчитаю сам."); return; }
+    if(v["roi-rate"].empty){ showHint("Впиши цену своего часа в рублях — без неё выгоду не посчитать."); return; }
+
+    var hours = v["roi-hours"].n, rate = v["roi-rate"].n;
+    var cost = v["roi-cost"].empty ? 0 : v["roi-cost"].n;
+    var setup = v["roi-setup"].empty ? 0 : v["roi-setup"].n;
+    var gain = hours * 4.3 * rate - cost;
+
+    hint.hidden = true; res.hidden = false;
+    root.querySelector("#roi-gain").textContent = fmt(gain);
+    var pb = root.querySelector("#roi-payback");
+    var verdict = root.querySelector("#roi-verdict");
+
+    if(gain <= 0){
+      pb.textContent = "окупаемости нет: расходы съедают всю экономию";
+      verdict.textContent = "Пока невыгодно — срежь расходы или автоматизируй более дорогую рутину.";
+      return;
+    }
+    if(setup <= 0){
+      pb.textContent = "окупается сразу — разовых затрат нет";
+      verdict.textContent = "Чистая выгода с первого месяца — запускай.";
+      return;
+    }
+    var months = setup / gain;
+    var mText = months < 1 ? "меньше месяца" : ("около " + (Math.round(months * 10) / 10).toLocaleString("ru-RU") + " мес");
+    pb.textContent = "окупаемость: " + mText;
+    if(months <= 1) verdict.textContent = "Окупится почти сразу — запускай.";
+    else if(months <= 3) verdict.textContent = "Быстрая окупаемость — уверенно запускай.";
+    else if(months <= 12) verdict.textContent = "Нормальная окупаемость — запускай и раз в месяц сверяй расходы.";
+    else verdict.textContent = "Дольше года — поищи настройку дешевле или начни с меньшего куска рутины.";
+  }
+  inputs.forEach(function(el){ el.addEventListener("input", update); });
+  update();
+}
+
+/* ---------- калькулятор школы-2: месяц роликов руками против подписки ---------- */
+function initRoiGolova(root){
+  var names = {
+    "roi-videos": "роликов в месяц",
+    "roi-min": "минут руками на один ролик",
+    "roi-rate": "цена часа",
+    "roi-sub-cost": "подписка в месяц"
+  };
+  var ids = ["roi-videos", "roi-min", "roi-rate", "roi-sub-cost"];
+  var inputs = ids.map(function(id){ return root.querySelector("#" + id); });
+  var hint = root.querySelector("#roi-hint");
+  var res = root.querySelector("#roi-res");
+  var fmt = function(n){ return Math.round(n).toLocaleString("ru-RU"); };
+
+  function parse(el){
+    var t = el.value.trim().replace(/\s+/g, "").replace(",", ".");
+    if(t === "") return {empty:true};
+    var n = Number(t);
+    if(!isFinite(n) || n < 0) return {bad:true};
+    return {n:n};
+  }
+  function showHint(text){ hint.hidden = false; hint.textContent = text; res.hidden = true; }
+
+  function update(){
+    var v = {}, i;
+    for(i = 0; i < ids.length; i++){
+      v[ids[i]] = parse(inputs[i]);
+      if(v[ids[i]].bad){
+        showHint("В поле «" + names[ids[i]] + "» нужно число — например 10 или 5000.");
+        return;
+      }
+    }
+    if(v["roi-videos"].empty){ showHint("Начни с числа роликов в месяц — остальное я посчитаю сам."); return; }
+    if(v["roi-min"].empty){ showHint("Впиши, сколько минут уходит на один ролик руками — съёмка и монтаж вместе."); return; }
+    if(v["roi-rate"].empty){ showHint("Впиши цену своего часа в рублях — без неё выгоду не посчитать."); return; }
+
+    var videos = v["roi-videos"].n, min = v["roi-min"].n, rate = v["roi-rate"].n;
+    var sub = v["roi-sub-cost"].empty ? 0 : v["roi-sub-cost"].n;
+    if(videos === 0){ showHint("Ноль роликов — считать нечего. Впиши, сколько роликов в месяц хочешь выпускать."); return; }
+    var rukami = videos * (min / 60) * rate;
+    var gain = rukami - sub;
+
+    hint.hidden = true; res.hidden = false;
+    root.querySelector("#roi-gain").textContent = fmt(gain);
+    root.querySelector("#roi-per-video").textContent =
+      "ролик руками ≈ " + fmt(min / 60 * rate) + " ₽ · ролик на подписке ≈ " + fmt(sub / videos) + " ₽";
+    var verdict = root.querySelector("#roi-verdict");
+
+    if(gain <= 0){
+      verdict.textContent = "Пока невыгодно: подписка дороже ручной работы — добавь роликов в месяц или пересмотри тариф.";
+      return;
+    }
+    if(sub <= 0){
+      verdict.textContent = "Подписка не вписана — вся разница твоя. Для честного счёта впиши её стоимость.";
+      return;
+    }
+    if(rukami / sub >= 2) verdict.textContent = "Подписка окупается с запасом: руками тот же месяц стоил бы " + fmt(rukami) + " ₽.";
+    else verdict.textContent = "Подписка окупается — запускай и раз в месяц сверяй темп роликов.";
+  }
+  inputs.forEach(function(el){ el.addEventListener("input", update); });
+  update();
+}
+
+(function insertRoi(){
+  var tpl = document.getElementById("roi-calc-tpl");
+  var host = document.querySelector("main") || document.body;
+  if(!tpl || !host || !window.NodeFilter) return;
+  var it = document.createNodeIterator(host, NodeFilter.SHOW_COMMENT);
+  var c;
+  while((c = it.nextNode())){
+    if(c.nodeValue.replace(/\s/g, "") === "ROI-CALC"){
+      c.parentNode.replaceChild(tpl.content.cloneNode(true), c);
+      var el = document.getElementById("roi-calc");
+      if(el) (el.getAttribute("data-roi") === "golova" ? initRoiGolova : initRoi)(el);
+      break;
+    }
+  }
+})();
+
+/* ---------- подсветка текущего модуля в оглавлении ---------- */
+if("IntersectionObserver" in window){
+  var links = {};
+  [].slice.call(document.querySelectorAll(".toc-link")).forEach(function(a){
+    links[a.getAttribute("href").slice(1)] = a;
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      for(var k in links) links[k].classList.remove("now");
+      var link = links[en.target.id];
+      if(link) link.classList.add("now");
+    });
+  }, {rootMargin:"-35% 0px -55% 0px"});
+  modules.forEach(function(m){ io.observe(m); });
+}
+
+renderProgress();
+})();
+</script>
+</body>
+</html>
