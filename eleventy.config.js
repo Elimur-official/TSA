@@ -4,6 +4,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("prototip");
+  eleventyConfig.addPassthroughCopy("shkola-vx82k4");
 
   eleventyConfig.addFilter("categories", (products) => {
     return [...new Set((products || []).map((p) => p.category))].sort();
