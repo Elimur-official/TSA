@@ -103,15 +103,22 @@ header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
 .hero-photo{animation:rise .9s var(--ease) .35s backwards}
 
 /* ── фильтры ── */
-.filters{position:sticky;top:57px;z-index:50;background:rgba(255,235,242,.92);backdrop-filter:blur(12px);
-  margin:14px -20px 0;padding:12px 20px;border-bottom:1px solid var(--line-soft)}
-.filters .row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.filters{position:relative;display:flex;flex-direction:column;gap:11px;
+  margin:20px 0 6px;padding:15px 17px;background:var(--surface-2);
+  border:1px solid var(--line-soft);border-radius:var(--r-m)}
+.filters .row{display:flex;gap:8px;flex-wrap:wrap;scrollbar-width:none}
 .filters .row::-webkit-scrollbar{display:none}
+@media (max-width:560px){
+  .filters .row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}
+  .filters::after{content:"";position:absolute;right:1px;bottom:15px;width:42px;height:40px;
+    background:linear-gradient(90deg,rgba(255,246,249,0),var(--surface-2));
+    pointer-events:none;border-radius:0 var(--r-m) var(--r-m) 0}
+}
 .fchip{flex:0 0 auto;font-size:13.5px;font-weight:500;border:1px solid var(--line);border-radius:99px;
   padding:8px 15px;color:var(--mute);transition:all .15s ease;white-space:nowrap}
 .fchip:hover{border-color:var(--candy);color:var(--ink)}
 .fchip.on{background:var(--candy);border-color:var(--candy);color:#fff;font-weight:600}
-.fcount{font-size:12px;color:var(--mute-2);margin-top:8px}
+.fcount{order:-1;margin:0;font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;color:var(--mute-2)}
 
 /* ── станция ── */
 .station{padding:46px 0 24px;position:relative}
@@ -1091,4 +1098,123 @@ renderCatalog();
 renderQ();
 renderCart();
 </script>
+
+<!-- ================= ПАРЯЩИЕ ПРЕДМЕТЫ ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="s-egg" viewBox="0 0 100 100"><ellipse cx="50" cy="56" rx="25" ry="33" fill="currentColor"/><ellipse cx="42" cy="40" rx="7" ry="11" fill="#fff" opacity=".35"/></symbol>
+<symbol id="s-bullet" viewBox="0 0 100 100"><rect x="37" y="16" width="26" height="66" rx="13" fill="currentColor"/><rect x="37" y="52" width="26" height="6" fill="#fff" opacity=".45"/></symbol>
+<symbol id="s-rabbit" viewBox="0 0 100 100"><rect x="41" y="24" width="25" height="58" rx="12" fill="currentColor"/><path d="M41 45c-12-6-18-17-16-27 8 2 16 11 18 21z" fill="currentColor"/><path d="M41 57c-10-2-15-8-14-15 6 1 12 6 14 12z" fill="currentColor" opacity=".72"/></symbol>
+<symbol id="s-beads" viewBox="0 0 100 100"><circle cx="50" cy="27" r="8" fill="currentColor"/><circle cx="50" cy="48" r="11" fill="currentColor"/><circle cx="50" cy="72" r="14" fill="currentColor"/><circle cx="50" cy="14" r="6" fill="none" stroke="currentColor" stroke-width="4"/></symbol>
+<symbol id="s-plug" viewBox="0 0 100 100"><path d="M50 16c12 14 18 28 18 38 0 12-8 18-18 18s-18-6-18-18c0-10 6-24 18-38z" fill="currentColor"/><rect x="33" y="74" width="34" height="10" rx="5" fill="currentColor"/></symbol>
+<symbol id="s-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="13"/></symbol>
+<symbol id="s-wand" viewBox="0 0 100 100"><circle cx="50" cy="30" r="17" fill="currentColor"/><rect x="42" y="44" width="16" height="42" rx="8" fill="currentColor" opacity=".85"/></symbol>
+<symbol id="s-cuffs" viewBox="0 0 100 100"><circle cx="29" cy="52" r="14" fill="none" stroke="currentColor" stroke-width="7"/><circle cx="71" cy="52" r="14" fill="none" stroke="currentColor" stroke-width="7"/><path d="M43 52h14" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></symbol>
+<symbol id="s-flogger" viewBox="0 0 100 100"><rect x="44" y="10" width="12" height="30" rx="6" fill="currentColor"/><path d="M50 40c-8 14-14 26-16 42M50 40c-3 16-4 30-4 44M50 40c8 14 13 27 15 43" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="s-heart" viewBox="0 0 100 100"><path d="M50 80S18 60 18 40a16 16 0 0132-8 16 16 0 0132 8c0 20-32 40-32 40z" fill="currentColor"/></symbol>
+<symbol id="s-mail" viewBox="0 0 100 100"><rect x="16" y="29" width="68" height="44" rx="6" fill="currentColor"/><path d="M16 35l34 23 34-23" fill="none" stroke="#fff" stroke-width="5" opacity=".55"/></symbol>
+<symbol id="s-drawer" viewBox="0 0 100 100"><rect x="14" y="30" width="72" height="43" rx="7" fill="currentColor"/><circle cx="50" cy="52" r="6" fill="#fff" opacity=".5"/></symbol>
+<symbol id="s-key" viewBox="0 0 100 100"><circle cx="34" cy="40" r="15" fill="none" stroke="currentColor" stroke-width="8"/><path d="M46 50l30 30M63 67l9 9M71 59l9 9" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="s-spark" viewBox="0 0 100 100"><path d="M50 14l8 26 26 8-26 8-8 26-8-26-26-8 26-8z" fill="currentColor"/></symbol>
+</defs></svg>
+
+<style>
+.floaty{position:absolute;top:0;left:0;width:100%;z-index:-1;pointer-events:none;overflow:hidden;contain:layout paint}
+.fl{position:absolute;will-change:transform;opacity:var(--op,.6)}
+.fl>svg{display:block;width:100%;height:100%;
+  animation:flbob var(--dur,8s) ease-in-out infinite;animation-delay:var(--del,0s);
+  transform-origin:50% 50%}
+@keyframes flbob{
+  0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}
+  50%{transform:translateY(-10px) rotate(calc(var(--rot,0deg) + 4deg))}
+}
+.t-pink{color:#FF8FB4}
+.t-lilac{color:#B79BE8}
+.t-coral{color:#FF7A66}
+.t-sun{color:#FFCF4A}
+@media (max-width:1180px){ .fl-wide{display:none} }
+@media (max-width:760px){ .fl{opacity:calc(var(--op,.6) * .7)} .fl-mid{display:none} }
+@media (prefers-reduced-motion:reduce){ .fl>svg{animation:none;transform:rotate(var(--rot,0deg))} }
+</style>
+
+<div class="floaty" id="floaty" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var layer = document.getElementById('floaty');
+  if(!layer) return;
+
+  /* x — доля ширины окна, y — доля высоты страницы, d — глубина параллакса */
+  var ITEMS = [
+    {s:'rabbit', x:.035, y:.030, w:78, d:.10, rot:-14, op:.55, t:'t-pink',  cls:'fl-wide'},
+    {s:'egg',    x:.930, y:.052, w:62, d:.16, rot:12,  op:.50, t:'t-lilac', cls:'fl-wide'},
+    {s:'heart',  x:.905, y:.020, w:30, d:.22, rot:-8,  op:.45, t:'t-coral', cls:'fl-wide'},
+    {s:'spark',  x:.075, y:.075, w:26, d:.20, rot:6,   op:.40, t:'t-sun',   cls:'fl-wide'},
+    {s:'beads',  x:.020, y:.120, w:66, d:.13, rot:9,   op:.52, t:'t-coral', cls:'fl-wide'},
+    {s:'plug',   x:.945, y:.150, w:56, d:.09, rot:-11, op:.48, t:'t-pink',  cls:'fl-wide'},
+    {s:'mail',   x:.880, y:.200, w:52, d:.18, rot:7,   op:.42, t:'t-sun',   cls:'fl-mid'},
+    {s:'ring',   x:.055, y:.235, w:48, d:.15, rot:-6,  op:.46, t:'t-lilac', cls:'fl-wide'},
+    {s:'bullet', x:.930, y:.285, w:54, d:.12, rot:15,  op:.50, t:'t-coral', cls:'fl-wide'},
+    {s:'heart',  x:.115, y:.310, w:26, d:.24, rot:10,  op:.40, t:'t-pink',  cls:'fl-mid'},
+    {s:'cuffs',  x:.025, y:.360, w:70, d:.11, rot:-9,  op:.44, t:'t-lilac', cls:'fl-wide'},
+    {s:'wand',   x:.900, y:.410, w:58, d:.14, rot:8,   op:.48, t:'t-pink',  cls:'fl-wide'},
+    {s:'drawer', x:.060, y:.470, w:62, d:.10, rot:5,   op:.42, t:'t-sun',   cls:'fl-wide'},
+    {s:'flogger',x:.935, y:.520, w:60, d:.13, rot:-12, op:.46, t:'t-coral', cls:'fl-wide'},
+    {s:'egg',    x:.030, y:.580, w:52, d:.17, rot:14,  op:.48, t:'t-pink',  cls:'fl-wide'},
+    {s:'key',    x:.890, y:.620, w:46, d:.19, rot:-7,  op:.44, t:'t-lilac', cls:'fl-mid'},
+    {s:'spark',  x:.140, y:.650, w:24, d:.23, rot:4,   op:.38, t:'t-sun',   cls:'fl-mid'},
+    {s:'beads',  x:.945, y:.700, w:56, d:.12, rot:11,  op:.46, t:'t-pink',  cls:'fl-wide'},
+    {s:'rabbit', x:.045, y:.735, w:64, d:.15, rot:-10, op:.44, t:'t-lilac', cls:'fl-wide'},
+    {s:'heart',  x:.860, y:.770, w:28, d:.21, rot:9,   op:.40, t:'t-coral', cls:'fl-mid'}
+  ];
+
+  var nodes = [];
+  ITEMS.forEach(function(it, i){
+    var el = document.createElement('div');
+    el.className = 'fl ' + it.t + ' ' + (it.cls || '');
+    el.style.setProperty('--op', it.op);
+    el.style.setProperty('--rot', it.rot + 'deg');
+    el.style.setProperty('--dur', (6.5 + (i % 5) * 1.1).toFixed(1) + 's');
+    el.style.setProperty('--del', (i * .37).toFixed(2) + 's');
+    el.style.width = it.w + 'px';
+    el.style.height = it.w + 'px';
+    el.innerHTML = '<svg><use href="#s-' + it.s + '"></use></svg>';
+    layer.appendChild(el);
+    nodes.push({el:el, cfg:it});
+  });
+
+  var pageH = 0, still = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function place(){
+    pageH = document.documentElement.scrollHeight;
+    layer.style.height = pageH + 'px';
+    var w = innerWidth;
+    nodes.forEach(function(n){
+      n.base = Math.round(pageH * n.cfg.y);
+      n.el.style.top = n.base + 'px';
+      n.el.style.left = Math.round(w * n.cfg.x - n.cfg.w / 2) + 'px';
+    });
+    move();
+  }
+
+  var ticking = false;
+  function move(){
+    var y = scrollY;
+    nodes.forEach(function(n){
+      var shift = still ? 0 : -(y - n.base + innerHeight / 2) * n.cfg.d;
+      n.el.style.transform = 'translate3d(0,' + shift.toFixed(1) + 'px,0)';
+    });
+    ticking = false;
+  }
+
+  addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; requestAnimationFrame(move); }
+  }, {passive:true});
+
+  addEventListener('resize', place, {passive:true});
+  addEventListener('load', place);
+  place();
+  setTimeout(place, 1200);
+})();
+</script>
+
 </body></html>
