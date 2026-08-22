@@ -275,6 +275,25 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 .module.is-done .module-done button{color:var(--amber-ink);background:var(--amber-wash);border-color:var(--amber);filter:none}
 .module-done .done-note{font-size:13px;color:var(--muted)}
 
+/* связка: JSON для вставки в n8n (плашку с именем и кнопку добавляет движок) */
+.svyazka{background:var(--card);border:1.5px solid var(--line);border-radius:16px;margin:22px 0;overflow:hidden}
+.svyazka-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--accent-wash);border-bottom:1px solid var(--line)}
+.svyazka-name{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.svyazka-name::before{content:"связка · ";color:var(--muted)}
+.svyazka-copy{font-size:13.5px;font-weight:800;color:var(--on-accent);background:var(--accent);
+  border:1.5px solid var(--accent);border-radius:10px;padding:7px 14px;cursor:pointer;transition:filter .15s}
+.svyazka-copy:hover{filter:brightness(1.08)}
+.svyazka-copy.ok{color:var(--amber-ink);background:var(--amber-wash);border-color:var(--amber);filter:none}
+.svyazka pre{margin:0;max-height:320px;overflow:auto;padding:14px 16px;font-size:12.5px;line-height:1.5;
+  background:var(--paper);tab-size:2}
+.svyazka code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.svyazka-net{margin:0;padding:14px 16px;color:var(--amber-ink);font-weight:700}
+
+/* бейдж «новое» в оглавлении — ставит движок по data-new секции, живёт 30 дней */
+.toc-new{display:inline-block;margin-left:2px;padding:2px 7px;border-radius:99px;background:var(--amber);color:#241A05;
+  font-family:var(--fd);font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+
 /* ============ калькулятор окупаемости ============ */
 #roi-calc{background:var(--card);border:2px solid var(--accent);border-radius:var(--r);
   padding:clamp(18px,4vw,32px);margin:26px 0}
@@ -307,14 +326,14 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <div class="head-inner">
     <div class="brandline">
       <p class="course-name">Школа <b>автоматизаций</b></p>
-      <p class="progress-label" id="progress-label">пройдено 0 из 11 модулей</p>
+      <p class="progress-label" id="progress-label">пройдено 0 из 13 модулей</p>
     </div>
     <nav class="school-switch" aria-label="Выбор школы">
       <span class="switch-tab now" aria-current="page">Автоматизации</span>
       <a class="switch-tab" href="golova/index.html">Говорящая голова</a>
     </nav>
     <div class="progress-track" role="progressbar" aria-label="Прогресс по курсу"
-         aria-valuemin="0" aria-valuemax="11" aria-valuenow="0">
+         aria-valuemin="0" aria-valuemax="13" aria-valuenow="0">
       <div class="progress-fill" id="progress-fill"></div>
     </div>
     <p class="progress-note">прогресс хранится в этом браузере · курс на 3 захода по 2–3 часа</p>
@@ -331,18 +350,20 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
         <a class="toc-link" href="#m2"><span class="toc-num">2</span>Три конструктора</a>
       </div>
       <div class="toc-block">
-        <p class="toc-cap"><b>Б · Собрать</b><span>≈3 ч</span></p>
+        <p class="toc-cap"><b>Б · Собрать</b><span>≈4 ч</span></p>
         <a class="toc-link" href="#m3"><span class="toc-num">3</span>Твой n8n</a>
         <a class="toc-link" href="#m4"><span class="toc-num">4</span>Соцсети на автопилоте</a>
         <a class="toc-link" href="#m5"><span class="toc-num">5</span>ИИ внутри конвейера</a>
-        <a class="toc-link" href="#m6"><span class="toc-num">6</span>Единая база</a>
+        <a class="toc-link" href="#m6"><span class="toc-num">6</span>ИИ-агенты и MCP</a>
+        <a class="toc-link" href="#m7"><span class="toc-num">7</span>Единая база</a>
       </div>
       <div class="toc-block">
-        <p class="toc-cap"><b>В · Управлять</b><span>≈2 ч</span></p>
-        <a class="toc-link" href="#m7"><span class="toc-num">7</span>Схемы рынка 2026</a>
-        <a class="toc-link" href="#m8"><span class="toc-num">8</span>Окупаемость агентов</a>
-        <a class="toc-link" href="#m9"><span class="toc-num">9</span>Клетка для агентов</a>
-        <a class="toc-link" href="#m10"><span class="toc-num">10</span>Экзамен и карта возможностей</a>
+        <p class="toc-cap"><b>В · Управлять</b><span>≈3,5 ч</span></p>
+        <a class="toc-link" href="#m8"><span class="toc-num">8</span>Схемы рынка 2026</a>
+        <a class="toc-link" href="#m9"><span class="toc-num">9</span>Четыре связки под ключ</a>
+        <a class="toc-link" href="#m10"><span class="toc-num">10</span>Окупаемость агентов</a>
+        <a class="toc-link" href="#m11"><span class="toc-num">11</span>Клетка для агентов</a>
+        <a class="toc-link" href="#m12"><span class="toc-num">12</span>Экзамен и карта возможностей</a>
       </div>
     </div>
   </nav>
@@ -371,7 +392,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <li><strong>Видишь возможности для своего бизнеса.</strong></li>
     <li><strong>Умеешь ставить задачи Claude/GPT и проверять результат.</strong></li>
   </ul>
-  <p>В конце курса, в М10, экзамен ровно по этим трём пунктам.</p>
+  <p>В конце курса, в М12, экзамен ровно по этим трём пунктам.</p>
 
   <details class="term">
     <summary>Автоматизация</summary>
@@ -473,6 +494,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <h3>Карта пути</h3>
   <p>Три блока — три захода по 2–3 часа. Каждый кончается результатом, который можно потрогать.</p>
+  <p>Всего 13 модулей. Два новых: М6 «ИИ-агенты и MCP» в блоке Б и М9 «Четыре связки под ключ» в блоке В.</p>
 
   <figure class="scheme">
     <svg viewBox="0 0 660 235" role="img" aria-label="Карта пути: три блока курса">
@@ -484,17 +506,17 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       <path d="M205 105 H231" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <path d="M224 98 L232 105 L224 112" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <rect x="235" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
-      <text x="330" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок Б · ≈3 ч</text>
+      <text x="330" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок Б · ≈4 ч</text>
       <text x="330" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Собрать</text>
-      <text x="330" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М3–М6: твой n8n, соцсети,</text>
-      <text x="330" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">ИИ и единая база</text>
+      <text x="330" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М3–М7: твой n8n, соцсети,</text>
+      <text x="330" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">ИИ, агенты, единая база</text>
       <path d="M425 105 H451" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <path d="M444 98 L452 105 L444 112" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <rect x="455" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
-      <text x="550" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок В · ≈2,5 ч</text>
+      <text x="550" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок В · ≈3,5 ч</text>
       <text x="550" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Управлять</text>
-      <text x="550" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М7–М10: схемы, деньги,</text>
-      <text x="550" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">безопасность, экзамен</text>
+      <text x="550" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М8–М12: схемы, связки,</text>
+      <text x="550" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">деньги, клетка, экзамен</text>
       <text x="330" y="215" text-anchor="middle" font-size="15" font-weight="600" fill="var(--amber)">в начале блока Б — первая связка своими руками за 15 минут</text>
     </svg>
     <figcaption>Дорога курса: понять → собрать → управлять. Возвращаться можно в любой модуль — прогресс сохраняется.</figcaption>
@@ -758,7 +780,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>n8n на своём сервере — своя кухня: готовь что хочешь почти бесплатно. Но кухню надо иметь и содержать.</p>
   </div>
 
-  <h3>Цены — на 20.08.2026</h3>
+  <h3>Цены — на 22.08.2026</h3>
   <p>Тарифы меняются. Перед оплатой открой сайт сервиса и сверь.</p>
 
   <table>
@@ -769,19 +791,19 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       <tr>
         <td>n8n</td>
         <td>на своём сервере — целиком, без лимитов сервиса</td>
-        <td><span class="dated" data-src="doit.software, digitalapplied.com, 20.08.2026">облако €20/мес (2 500 запусков), Pro €50/мес (10 000 запусков)</span></td>
+        <td><span class="dated" data-src="n8n.io/pricing, 22.08.2026">облако Starter €20/мес (2 500 запусков), Pro €50/мес (10 000 запусков) — при годовой оплате</span></td>
         <td>запуск сценария целиком</td>
       </tr>
       <tr>
         <td>Make</td>
-        <td><span class="dated" data-src="doit.software, digitalapplied.com, 20.08.2026">1 000 операций/мес</span></td>
-        <td><span class="dated" data-src="doit.software, digitalapplied.com, 20.08.2026">Core ~$10.59/мес (10 000 операций)</span></td>
-        <td>каждая операция (шаг)</td>
+        <td><span class="dated" data-src="make.com/pricing, 22.08.2026">1 000 кредитов (операций) в месяц</span></td>
+        <td><span class="dated" data-src="make.com/pricing, 22.08.2026">Core $12/мес (10 000 кредитов), за год — дешевле на 15%</span></td>
+        <td>каждая операция (шаг) — на сайте она теперь зовётся «кредит»</td>
       </tr>
       <tr>
         <td>Zapier</td>
-        <td>урезанный бесплатный тариф</td>
-        <td><span class="dated" data-src="doit.software, digitalapplied.com, 20.08.2026">~$19.99/мес, бизнес-тарифы $20–100/мес</span></td>
+        <td><span class="dated" data-src="zapier.com/pricing, 22.08.2026">100 задач/мес</span></td>
+        <td><span class="dated" data-src="zapier.com/pricing, 22.08.2026">Pro $19.99/мес при годовой оплате ($29.99 помесячно), Team от $69/мес</span></td>
         <td>каждая задача (действие)</td>
       </tr>
     </tbody>
@@ -939,7 +961,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <ul>
       <li>Утреннее сообщение себе в Telegram — соберёшь прямо сейчас.</li>
       <li>Напоминания: оплатить счёт, проверить поставку, снять отчёт.</li>
-      <li>Дальше по курсу на этом же n8n: постинг в соцсети (М4), ИИ в конвейере (М5), единая база (М6).</li>
+      <li>Дальше по курсу на этом же n8n: постинг в соцсети (М4), ИИ в конвейере (М5), агенты и MCP (М6), единая база (М7).</li>
     </ul>
   </div>
 
@@ -1519,12 +1541,279 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <div class="takeaway">
     <p>ИИ в конвейере — обычный узел: ключ в сейфе, промпт внутри, текст на выходе.</p>
+    <p>Узел AI Agent и агенты — когда ИИ сам выбирает, каким инструментом действовать, — следующий модуль.</p>
     <p>Твоя сила не в ключе, а в двух привычках: промпт = ТЗ из пяти частей и «ИИ предлагает — человек утверждает». С ними ИИ работает на тебя, а не вместо тебя.</p>
   </div>
 </section>
-    <section class="module" id="m6" data-title="Единая база" data-block="B">
+    <section class="module" id="m6" data-title="ИИ-агенты и MCP" data-block="B" data-new="2026-08-22">
   <header class="module-head">
-    <p>М6 · Блок Б «Собрать» · ≈40 мин</p>
+    <p>М6 · Блок Б «Собрать» · ≈60 мин</p>
+    <h2>ИИ-агенты и MCP</h2>
+    <p>В М5 ИИ был одним узлом на линии. Сегодня он получит руки: сам выберет инструмент, посмотрит результат и решит, что делать дальше.</p>
+  </header>
+
+  <div class="why">
+    <p>Конвейер делает ровно то, что ты нарисовал. Шаг в сторону — красный узел.</p>
+    <p>Агент умеет иначе: ему дают цель и набор инструментов, а порядок действий он выбирает сам.</p>
+    <p>Это главный сдвиг 2026 года в конструкторах: от линии к агенту. В n8n узел AI Agent за год переписан — <span class="dated" data-src="docs.n8n.io/changelog, 22.08.2026">новая версия узла, MCP-серверы прямо из панели узлов</span>. На твоём сервере стоит <span class="dated" data-src="проверено на твоём сервере, 22.08.2026">n8n 2.35.5 с узлом AI Agent версии 3.1</span>.</p>
+    <p>И защита от переплаты: кто видит, где кончается конвейер и начинается агент, не купит «ИИ-агента», который на деле — три узла в линию.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>«Сколько вчера?» в Telegram — агент сам читает таблицу цифр и отвечает. Соберёшь сегодня.</li>
+      <li>Вопрос клиента → агент ищет ответ в базе знаний магазина, а не выдумывает.</li>
+      <li>Связка «Разведка: цены конкурентов» из М9: сайт не отдал цену обычным запросом — агент через MCP открывает страницу как браузер.</li>
+      <li>Помощник в Telegram: задачи, состояние служб, заметки — один агент, много инструментов.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Инструменты — по списку. Агент видит только то, что ты подключил. Ничего «про запас».</li>
+      <li>Опасное — через человека в контуре: удалить, оплатить, отправить наружу — только после твоего «да» в Telegram.</li>
+      <li>След: в Executions виден каждый вызов инструмента — что агент спросил и что получил. Читай, когда ответ странный.</li>
+      <li>Деньги: агент на каждом витке цикла тратит токены. Ограничь число витков в настройках узла (Max Iterations) и держи лимит расходов в кабинете ИИ из М5.</li>
+    </ul>
+  </div>
+
+  <h3>Конвейер и агент — одна схема</h3>
+  <p>Конвейер — линия. Каждый узел знает, что после него.</p>
+  <p>Агент — цикл. Подумал → выбрал инструмент → посмотрел результат → снова подумал. Пока цель не достигнута.</p>
+  <p>Вопрос «сколько вчера заказов?» в конвейере потребовал бы отдельной ветки. Агент сам поймёт, что нужна таблица, сам заглянет в неё, сам сложит ответ.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 370" role="img" aria-label="Схема: конвейер — линия из узлов, агент — цикл подумал, выбрал инструмент, посмотрел, снова подумал">
+      <text x="20" y="36" font-size="15" font-weight="bold" fill="var(--muted)">Конвейер — линия</text>
+      <rect x="20" y="56" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="105" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Вопрос</text>
+      <text x="105" y="108" text-anchor="middle" font-size="14" fill="var(--muted)">пришёл в Telegram</text>
+      <line x1="190" y1="91" x2="218" y2="91" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="230,91 218,85 218,97" fill="var(--ink)"/>
+      <rect x="230" y="56" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="315" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Узел ИИ</text>
+      <text x="315" y="108" text-anchor="middle" font-size="14" fill="var(--muted)">один ответ</text>
+      <line x1="400" y1="91" x2="428" y2="91" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="440,91 428,85 428,97" fill="var(--ink)"/>
+      <rect x="440" y="56" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="525" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Отправить</text>
+      <text x="525" y="108" text-anchor="middle" font-size="14" fill="var(--muted)">в Telegram</text>
+      <line x1="610" y1="91" x2="638" y2="91" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="650,91 638,85 638,97" fill="var(--ink)"/>
+      <rect x="650" y="56" width="90" height="70" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="695" y="96" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Готово</text>
+
+      <text x="20" y="186" font-size="15" font-weight="bold" fill="var(--muted)">Агент — цикл</text>
+      <rect x="20" y="206" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="105" y="236" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Подумал</text>
+      <text x="105" y="258" text-anchor="middle" font-size="14" fill="var(--muted)">что нужно для ответа</text>
+      <line x1="190" y1="241" x2="218" y2="241" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="230,241 218,235 218,247" fill="var(--ink)"/>
+      <rect x="230" y="206" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="315" y="236" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Выбрал инструмент</text>
+      <text x="315" y="258" text-anchor="middle" font-size="14" fill="var(--muted)">таблица, сайт, MCP</text>
+      <line x1="400" y1="241" x2="428" y2="241" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="440,241 428,235 428,247" fill="var(--ink)"/>
+      <rect x="440" y="206" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="525" y="236" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Посмотрел</text>
+      <text x="525" y="258" text-anchor="middle" font-size="14" fill="var(--muted)">что вернул инструмент</text>
+      <path d="M525 276 v46 h-420 v-34" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/>
+      <polygon points="105,276 99,290 111,290" fill="var(--accent)"/>
+      <text x="315" y="348" text-anchor="middle" font-size="14" fill="var(--muted)">снова подумал — пока ответ не собран</text>
+      <line x1="610" y1="241" x2="638" y2="241" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="650,241 638,235 638,247" fill="var(--ink)"/>
+      <rect x="650" y="206" width="90" height="70" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="695" y="246" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Ответил</text>
+    </svg>
+    <figcaption>Две дорожки. Конвейер проходит линию один раз. Агент крутит цикл: думает, зовёт инструмент, смотрит — и снова думает, пока не соберёт ответ.</figcaption>
+  </figure>
+
+  <div class="example">
+    <p><strong>Бытовая аналогия.</strong> Конвейер — курьер с маршрутным листом: три адреса по порядку, шаг в сторону — не его дело. Агент — завхоз: ты сказал «к утру нужна бумага», а кому звонить и где проверить остаток — он решил сам.</p>
+    <p>Кому больше свободы — тому строже лимит по кассе. У завхоза есть сумма, выше которой он обязан спросить. У агента это называется «человек в контуре». Разберём ниже.</p>
+  </div>
+
+  <details class="term">
+    <summary>Агент</summary>
+    <p>ИИ с целью и инструментами. Модель читает задачу, решает, какой инструмент позвать, читает результат и решает снова. Отличие от узла ИИ из М5: тот отвечает один раз, агент крутит цикл.</p>
+  </details>
+  <details class="term">
+    <summary>Инструмент (tool)</summary>
+    <p>Действие, которое агент может позвать: прочитать таблицу, сходить по адресу, отправить сообщение. Каждый инструмент — отдельный узел, подключённый к агенту снизу. Чего не подключил — того агент не умеет.</p>
+  </details>
+
+  <h3>Узел AI Agent: три разъёма</h3>
+  <p>Слева в узел входит вопрос, справа выходит ответ. Снизу три разъёма — и это весь агент.</p>
+  <table>
+    <thead>
+      <tr><th>Разъём</th><th>Что втыкаешь</th><th>В практике сегодня</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Chat Model</td><td>Модель ИИ: Claude, GPT, Gemini. Ключ — из сейфа, как в М5</td><td>Anthropic Chat Model, креденшел «Ключ Claude»</td></tr>
+      <tr><td>Tool</td><td>Инструменты: Data Table, HTTP Request, Telegram, MCP Client Tool, другой сценарий</td><td>Data Table «Цифры дня»</td></tr>
+      <tr><td>Memory</td><td>Память переписки: последние сообщения диалога</td><td>Simple Memory на 5 сообщений</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 260" role="img" aria-label="Схема: узел AI Agent с входом, выходом и тремя разъёмами снизу — модель, инструменты, память">
+      <rect x="20" y="35" width="120" height="60" rx="14" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+      <text x="80" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Вопрос</text>
+      <line x1="140" y1="65" x2="168" y2="65" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="180,65 168,59 168,71" fill="var(--ink)"/>
+
+      <rect x="180" y="20" width="400" height="90" rx="16" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="380" y="58" text-anchor="middle" font-size="17" font-weight="bold" fill="var(--ink)">AI Agent</text>
+      <text x="380" y="84" text-anchor="middle" font-size="14" fill="var(--muted)">цель — из промпта · цикл — внутри узла</text>
+
+      <line x1="580" y1="65" x2="608" y2="65" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="620,65 608,59 608,71" fill="var(--ink)"/>
+      <rect x="620" y="35" width="120" height="60" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="680" y="70" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Ответ</text>
+
+      <circle cx="250" cy="110" r="7" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <circle cx="380" cy="110" r="7" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <circle cx="510" cy="110" r="7" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <line x1="250" y1="117" x2="250" y2="160" stroke="var(--amber)" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+      <line x1="380" y1="117" x2="380" y2="160" stroke="var(--amber)" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+      <line x1="510" y1="117" x2="510" y2="160" stroke="var(--amber)" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+
+      <rect x="190" y="160" width="120" height="80" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="250" y="192" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Модель</text>
+      <text x="250" y="216" text-anchor="middle" font-size="14" fill="var(--muted)">Claude</text>
+      <rect x="320" y="160" width="120" height="80" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="380" y="192" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Инструменты</text>
+      <text x="380" y="216" text-anchor="middle" font-size="14" fill="var(--muted)">таблица, MCP…</text>
+      <rect x="450" y="160" width="120" height="80" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="510" y="192" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Память</text>
+      <text x="510" y="216" text-anchor="middle" font-size="14" fill="var(--muted)">Simple Memory</text>
+    </svg>
+    <figcaption>Узел AI Agent: вопрос входит, ответ выходит, а три разъёма снизу решают, чем он думает, что умеет и что помнит.</figcaption>
+  </figure>
+
+  <details class="term">
+    <summary>Память агента</summary>
+    <p>Последние сообщения диалога, которые подклеиваются к каждому запросу. Без памяти агент не поймёт «а позавчера?». Simple Memory живёт внутри n8n, ключей не требует.</p>
+  </details>
+
+  <h3>MCP — общий разъём</h3>
+  <p>Инструментов в мире тысячи. Если каждый подключать по-своему — конструктор утонет в обёртках.</p>
+  <p>MCP (Model Context Protocol) — общий стандарт: сервис описывает свои инструменты одним понятным для ИИ способом, а любой агент этот список читает.</p>
+  <p>Одна розетка вместо ящика переходников.</p>
+  <p>Масштаб: <span class="dated" data-src="digitalapplied.com по реестру MCP на 24.05.2026 и данным Anthropic, 22.08.2026">в официальном реестре около 9 700 серверов, публичных всего — больше 10 000, библиотеки MCP скачивают 97 млн раз в месяц</span>. Zapier вывел через MCP <span class="dated" data-src="zapier.com/mcp, 22.08.2026">9 000+ приложений и 30 000+ действий</span>.</p>
+
+  <details class="term">
+    <summary>MCP</summary>
+    <p>Протокол-переходник между ИИ и сервисом. Сервис-сервер говорит: «вот мои инструменты и что они умеют». Агент-клиент читает список и зовёт нужный. Один стандарт на всех — как USB-C для зарядок.</p>
+  </details>
+
+  <p>n8n умеет обе роли — и клиента, и сервера.</p>
+  <table>
+    <thead>
+      <tr><th>Роль n8n</th><th>Что это значит</th><th>Узел и версия</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Клиент</td><td>Твой агент пользуется чужим MCP-сервером: Apify, Notion, задачник команды</td><td>MCP Client Tool. С <span class="dated" data-src="docs.n8n.io/changelog; тег n8n@2.22.0 на github.com/n8n-io/n8n, 22.08.2026">версии 2.22 (19.05.2026) серверы подключаются из панели узлов без ручной настройки: Apify, Linear, monday.com, Notion, PostHog</span></td></tr>
+      <tr><td>Сервер</td><td>Твои сценарии становятся инструментами для чужого ИИ — например, для помощника в Telegram</td><td>MCP Server Trigger — <span class="dated" data-src="проверено на твоём сервере, 22.08.2026">есть в твоём n8n 2.35.5</span>. Отдельно от узла: у самого n8n есть свой MCP-сервер — через него внешний ИИ строит и настраивает твои сценарии; <span class="dated" data-src="docs.n8n.io/changelog; тег n8n@2.29.0 на github.com/n8n-io/n8n, 22.08.2026">в 2.29 (30.06.2026) ему добавили настройки сценария и твои собственные узлы</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="example">
+    <p><strong>Живой пример.</strong> Связка «Разведка: цены конкурентов» из М9 берёт цену узлом HTTP Request. Но часть сайтов отдаёт страницу без цены — её дорисовывает скрипт уже в браузере. Обычный запрос бессилен.</p>
+    <p>Агент с MCP-сервером Apify открывает страницу как настоящий браузер и возвращает цену. Кода нет: выбрал сервер в панели узлов, вошёл в аккаунт — агент видит его инструменты.</p>
+  </div>
+
+  <h3>Человек в контуре</h3>
+  <p>Агент сам выбирает инструмент. Значит, может выбрать и «удалить», и «отправить».</p>
+  <p>Правило из М5 «ИИ предлагает — человек утверждает» здесь становится узлом.</p>
+  <p>С <span class="dated" data-src="docs.n8n.io/changelog; тег n8n@2.6.0 на github.com/n8n-io/n8n, 22.08.2026">версии 2.6 (26.01.2026) любому инструменту агента можно поставить обязательное одобрение человека — в том числе MCP Client Tool и сценарию-инструменту</span>. Агент доходит до опасного шага, шлёт тебе в Telegram «одобрить / отклонить» и ждёт.</p>
+  <p>С <span class="dated" data-src="docs.n8n.io/changelog; тег n8n@2.30.0 на github.com/n8n-io/n8n, 22.08.2026">версии 2.30 (07.07.2026) в ответе узла фиксируется, кто ответил — id, имя, логин — и когда, полем respondedAt</span>. Спор через месяц — след есть.</p>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 760 300" role="img" aria-label="Схема: агент выбрал опасный инструмент, сценарий остановился и ждёт одобрения человека в Telegram; да — инструмент выполнен, нет — агент сообщает об отказе; в журнале остаётся, кто и когда ответил">
+      <rect x="20" y="40" width="170" height="80" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="105" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Агент</text>
+      <text x="105" y="98" text-anchor="middle" font-size="14" fill="var(--muted)">выбрал «удалить»</text>
+      <line x1="190" y1="80" x2="218" y2="80" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="230,80 218,74 218,86" fill="var(--ink)"/>
+
+      <rect x="230" y="40" width="170" height="80" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="315" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--amber)">Стоп: одобрение</text>
+      <text x="315" y="98" text-anchor="middle" font-size="14" fill="var(--muted)">сценарий ждёт</text>
+      <line x1="400" y1="80" x2="428" y2="80" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="440,80 428,74 428,86" fill="var(--ink)"/>
+
+      <rect x="440" y="40" width="170" height="80" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="525" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Ты в Telegram</text>
+      <text x="525" y="98" text-anchor="middle" font-size="14" fill="var(--muted)">одобрить · отклонить</text>
+
+      <line x1="525" y1="120" x2="525" y2="178" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="525,190 519,178 531,178" fill="var(--amber)"/>
+      <text x="548" y="156" font-size="14" font-weight="bold" fill="var(--amber)">да</text>
+      <rect x="440" y="190" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="525" y="220" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Инструмент</text>
+      <text x="525" y="242" text-anchor="middle" font-size="14" fill="var(--muted)">выполнен</text>
+
+      <path d="M440 100 h-20 v125 h-218" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/>
+      <polygon points="190,225 202,219 202,231" fill="var(--muted)"/>
+      <text x="315" y="214" text-anchor="middle" font-size="14" fill="var(--muted)">нет</text>
+      <rect x="20" y="190" width="170" height="70" rx="14" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+      <text x="105" y="220" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Агент</text>
+      <text x="105" y="242" text-anchor="middle" font-size="14" fill="var(--muted)">сообщает: отклонено</text>
+
+      <rect x="630" y="40" width="110" height="80" rx="14" fill="var(--card)" stroke="var(--muted)" stroke-width="2"/>
+      <text x="685" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="var(--ink)">Журнал</text>
+      <text x="685" y="90" text-anchor="middle" font-size="14" fill="var(--muted)">кто · когда</text>
+      <line x1="610" y1="80" x2="630" y2="80" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+    </svg>
+    <figcaption>Человек в контуре: перед опасным инструментом сценарий замирает и ждёт твоего ответа. «Да» — инструмент выполняется, «нет» — агент докладывает об отказе. В журнале остаётся, кто и когда решил.</figcaption>
+  </figure>
+
+  <details class="term">
+    <summary>Человек в контуре</summary>
+    <p>Точка в сценарии, где машина останавливается и ждёт решения живого человека. В n8n это операция Send and Wait for Response у Telegram и почты с типом ответа Approval — две кнопки. Для инструментов агента — обязательное одобрение перед вызовом.</p>
+  </details>
+
+  <p>Где ставить: всё необратимое — деньги, удаление, отправка наружу, публикация. Чтение таблицы — без одобрения, иначе будешь жать кнопку каждую минуту. Остальные правила клетки — М11.</p>
+  <p>Напоминание из М3: кнопка «одобрить» доходит до n8n, только если он открыт снаружи. Через туннель ответ не дойдёт. Лечится адресом для вебхуков — шаг после курса.</p>
+
+  <h3>Практика — агент отвечает на «сколько вчера»</h3>
+  <p>Один агент, один инструмент — таблица с цифрами дня. Цель: спросить словами, получить цифру из таблицы.</p>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m6-s1">В n8n открой Data Tables в меню слева → создай таблицу «Цифры дня». Колонки латиницей: den (текст), zakazy, vyruchka, reklama (числа). Внеси руками 3–4 строки за последние дни. Эту же таблицу в М9 кормит связка «Сводка цифр утром».</li>
+    <li class="step-check" data-step="m6-s2">Create workflow → «Сколько вчера». Триггер — When chat message received. Он открывает окно чата прямо в n8n и работает через туннель из М3: вебхуки снаружи не нужны.</li>
+    <li class="step-check" data-step="m6-s3">Добавь узел AI Agent. В разъём Chat Model — Anthropic Chat Model с креденшелом «Ключ Claude» из М5. Поле Prompt оставь «из триггера»: вопрос из чата сам попадёт в агента.</li>
+    <li class="step-check" data-step="m6-s4">System Message — по правилу «промпт = ТЗ»: «Ты помощник владельца интернет-магазина. Про цифры отвечай только по данным инструмента «Цифры дня». Нет строки за нужный день — так и скажи, не придумывай. Ответ — до трёх строк, числа с единицами». Сегодняшнюю дату подставь выражением <code>$now</code> — агенту нужна точка отсчёта для слова «вчера».</li>
+    <li class="step-check" data-step="m6-s5">Разъём Tool → «+» → Data Table, операция Get row(s), таблица «Цифры дня». Условие отбора сам не заполняй — нажми рядом с полем «Let the model define this parameter»: дату агент подставит сам. В описании инструмента напиши, что внутри: «цифры по дням: заказы, выручка, реклама».</li>
+    <li class="step-check" data-step="m6-s6">Разъём Memory → Simple Memory, окно 5 сообщений. Теперь «а позавчера?» агент поймёт без повторения вопроса.</li>
+    <li class="step-check" data-step="m6-s7">Open chat → «сколько вчера заказов?». Смотри на полотно: узел Data Table подсветится — это вызов инструмента. Ответ должен совпасть с твоей строкой в таблице. Не совпал — открой запуск в Executions и прочитай, что агент спросил у таблицы и что она вернула.</li>
+    <li class="step-check" data-step="m6-s8">Контрольный вопрос: спроси про день, которого в таблице нет. Правильный ответ — «данных нет». Агент выдумал цифру — ужесточай System Message, пока не перестанет. Это галлюцинация из М5, ловится только так.</li>
+    <li class="step-check" data-step="m6-s9">Перевод в Telegram: замени триггер на Telegram Trigger, в конец поставь Telegram → Send Message с chat id из М3; в Prompt агента — текст сообщения, в Simple Memory — chat id как ключ сессии. Честно: Telegram Trigger — вебхук, из-под туннеля М3 он не сработает. Проверить можно двумя путями: подставь узлу триггера тестовые данные (Pin data) — или жди адреса снаружи, тогда заработает вживую.</li>
+  </ol>
+
+  <div class="example case-m">
+    <p>Помощник в Telegram у магазина М. — ровно этот узел, только инструментов больше. Модель — та же Claude. Инструменты — список проектов, состояние служб на сервере, заметки, поиск по записям. Память — последние сообщения чата. Владелец пишет с телефона «что упало за ночь?» — помощник сам решает, какие проверки позвать, и отвечает одним сообщением.</p>
+    <p>Человек в контуре там жёсткий: команда не из разрешённого списка и всё, что удаляет или отправляет наружу, уходит владельцу карточкой-вопросом. Без «да» не выполняется. А агент отзывов из М5 по этой классификации — конвейер с узлом ИИ: линия плюс кнопка. Слово «агент» прижилось раньше, чем появилась разница.</p>
+  </div>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">Агент получил инструмент «удалить строку в таблице». Что сделать до включения сценария?</p>
+    <button>Ничего: модель умная, лишнего не удалит</button>
+    <button>Поставить инструменту обязательное одобрение человека — агент спросит в Telegram и будет ждать</button>
+    <button>Убрать из System Message слово «удалить» — тогда инструмент не вызовется</button>
+    <p class="quiz-x">Агент сам выбирает инструменты — значит, может выбрать и «удалить». Промпт — не замок: модель может понять его иначе. Замок — человек в контуре: необратимый инструмент не выполняется без твоего «да», а в журнале остаётся, кто и когда одобрил.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Конвейер — линия, агент — цикл: подумал, выбрал инструмент, посмотрел, снова подумал.</p>
+    <p>Узел AI Agent — три разъёма: модель, инструменты, память. MCP — общий разъём для инструментов, и n8n умеет быть с обеих сторон.</p>
+    <p>Чем свободнее агент, тем важнее человек в контуре: опасный инструмент — только после твоего «да».</p>
+  </div>
+</section>
+    <section class="module" id="m7" data-title="Единая база" data-block="B">
+  <header class="module-head">
+    <p>М7 · Блок Б «Собрать» · ≈40 мин</p>
     <h2>Единая база</h2>
     <p>Сейчас каждый бот пишет в своё место, а общую картину ты собираешь головой. Спроектируем одну таблицу событий, в которую пишут все.</p>
   </header>
@@ -1671,7 +1960,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Язык вопросов к базе данных: «сколько заказов за вчера», «покажи все тревоги за неделю». Тебе его учить не обязательно — достаточно знать, что вопросы к базе задают на нём.</p>
   </details>
 
-  <h3>Где хранить: пять вариантов</h3>
+  <h3>Где хранить: шесть вариантов</h3>
   <table>
     <thead>
       <tr><th>Хранилище</th><th>Что это</th><th>Предел</th><th>Цена</th><th>Когда брать</th></tr>
@@ -1712,8 +2001,17 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
         <td>есть бесплатный тариф</td>
         <td>инструкции и описания процессов — не события</td>
       </tr>
+      <tr>
+        <td>Таблицы внутри n8n</td>
+        <td>Data Tables — встроенные таблицы конструктора, без внешней базы; CSV загружается и выгружается</td>
+        <td><span class="dated" data-src="docs.n8n.io, 22.08.2026">200 МиБ на все таблицы по умолчанию</span>; потолок поднимает переменная <code>N8N_DATA_TABLES_MAX_SIZE_BYTES</code></td>
+        <td>бесплатно, внутри твоего n8n</td>
+        <td>старт и очереди связок; для истории заказов за год — нет</td>
+      </tr>
     </tbody>
   </table>
+
+  <p>Шестой вариант честно: для старта хватит, для истории заказов за год — нет. Готовые связки из М9 пишут именно в такие таблицы.</p>
 
   <p><strong>Рекомендация курса:</strong> база на сервере (SQLite) + Google-таблица как витрина. База держит поток от ботов и живёт у тебя, витрина даёт «посмотреть с телефона». Это рекомендация, а не приказ: выбор за тобой — таблица вариантов выше для того и написана.</p>
 
@@ -1749,11 +2047,11 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <h3>Первый шаг: одна таблица, один бот</h3>
   <ol class="steps">
-    <li class="step-check" data-step="m6-s1">Заведи хранилище. Быстрый вариант — новая Google-таблица «События магазина»: первая строка — пять полей схемы. Вариант по рекомендации — файл SQLite на сервере с теми же полями.</li>
-    <li class="step-check" data-step="m6-s2">Выбери одного бота. Лучше самого простого — утренняя связка из М3 подойдёт: она уже работает и понятна тебе целиком.</li>
-    <li class="step-check" data-step="m6-s3">Научи его писать: в n8n добавь в конец сценария узел записи — для Google-таблицы это Google Sheets → Append Row. Каждый запуск — одна строка по схеме.</li>
-    <li class="step-check" data-step="m6-s4">Неделю наблюдай: строки появляются каждый день? Поля не разъезжаются? Это твоя выборочная сверка из М5, только для данных.</li>
-    <li class="step-check" data-step="m6-s5">Только после этого подключай второго бота. По одному — так ошибка схемы всплывает на одном боте, а не на всех сразу.</li>
+    <li class="step-check" data-step="m7-s1">Заведи хранилище. Быстрый вариант — новая Google-таблица «События магазина»: первая строка — пять полей схемы. Вариант по рекомендации — файл SQLite на сервере с теми же полями.</li>
+    <li class="step-check" data-step="m7-s2">Выбери одного бота. Лучше самого простого — утренняя связка из М3 подойдёт: она уже работает и понятна тебе целиком.</li>
+    <li class="step-check" data-step="m7-s3">Научи его писать: в n8n добавь в конец сценария узел записи — для Google-таблицы это Google Sheets → Append Row. Каждый запуск — одна строка по схеме.</li>
+    <li class="step-check" data-step="m7-s4">Неделю наблюдай: строки появляются каждый день? Поля не разъезжаются? Это твоя выборочная сверка из М5, только для данных.</li>
+    <li class="step-check" data-step="m7-s5">Только после этого подключай второго бота. По одному — так ошибка схемы всплывает на одном боте, а не на всех сразу.</li>
   </ol>
 
   <div class="quiz" data-a="2">
@@ -1769,9 +2067,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Начни с одного бота и одной таблицы. Сводки, тревоги и остальные боты встанут на этот каркас — и вечерний вопрос «как прошёл день?» будет решаться одним взглядом, а не обходом пяти мест.</p>
   </div>
 </section>
-    <section class="module" id="m7" data-title="Схемы рынка 2026" data-block="V">
+    <section class="module" id="m8" data-title="Схемы рынка 2026" data-block="V">
   <header class="module-head">
-    <p>М7 · Блок В «Управлять» · ≈40 мин</p>
+    <p>М8 · Блок В «Управлять» · ≈40 мин</p>
     <h2>Схемы рынка 2026</h2>
     <p>Каталог из 12 связок, которые рынок собирает прямо сейчас. Читай как меню: выбирай по боли, а не по моде.</p>
   </header>
@@ -1821,9 +2119,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <p>Теперь честная сторона. Три способа потратиться впустую:</p>
   <ul>
-    <li><strong>Автоматизация ради автоматизации.</strong> Схема красивая, а боли под ней нет. Час в месяц экономит — три часа просит на уход. Лечится вопросом из М8: сколько часов и денег вернёт?</li>
+    <li><strong>Автоматизация ради автоматизации.</strong> Схема красивая, а боли под ней нет. Час в месяц экономит — три часа просит на уход. Лечится вопросом из М10: сколько часов и денег вернёт?</li>
     <li><strong>Перенос хаоса в конвейер.</strong> Кривой процесс автоматизация не чинит — она делает мусор быстрее. Мусор на входе — мусор на выходе, только теперь круглосуточно. Сначала наведи порядок руками, потом автоматизируй порядок.</li>
-    <li><strong>Схема без сторожа.</strong> Молча сломавшаяся связка хуже отсутствующей: ты уверен, что она работает, а она — нет. Каждой схеме — сторож и тревога. Как — расскажет М9.</li>
+    <li><strong>Схема без сторожа.</strong> Молча сломавшаяся связка хуже отсутствующей: ты уверен, что она работает, а она — нет. Каждой схеме — сторож и тревога. Как — расскажет М11.</li>
   </ul>
 
   <h3>Каталог: 5 областей, 12 схем</h3>
@@ -1840,6 +2138,8 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       <tr><td>Единая база</td><td>12</td><td>данные врозь, целой картины нет</td></tr>
     </tbody>
   </table>
+
+  <p>У четырёх схем есть готовый файл для твоего n8n — ищи ниже строку «готовая связка — модуль 9».</p>
 
   <h3>Клиенты и заявки (схемы 1–3)</h3>
 
@@ -1943,6 +2243,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p><strong>Что происходит.</strong> Клиент спрашивает — ИИ ищет ответ в твоей базе знаний: условия доставки, возвраты, размеры. Отвечает с опорой на твои документы, а не из головы. Сомневается — молча передаёт вопрос человеку.</p>
   <p><strong>Кому нужна.</strong> Тем, кто отвечает на одни и те же вопросы по десять раз в день.</p>
   <p><strong>На чём собирать.</strong> n8n — таких шаблонов в библиотеке больше всего, это одна из самых тиражируемых связок года.</p>
+  <p><strong>Готовая связка — модуль 9.</strong> «Вопрос клиента → ответ с ок»: ИИ пишет черновик, ты жмёшь «да» — ответ уходит клиенту.</p>
 
   <details class="term">
     <summary>База знаний и RAG</summary>
@@ -1980,6 +2281,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p><strong>Что происходит.</strong> Пост готовится один раз — в таблице или в боте. Дальше связка сама раскладывает его по всем сетям, каждой в её формате. Четыре публикации по цене одной.</p>
   <p><strong>Кому нужна.</strong> Тем, кто ведёт больше одной сети — или бросил вторую, потому что «руки не доходят». Рамку из М4 помни: это про международную аудиторию.</p>
   <p><strong>На чём собирать.</strong> Make или Zapier — родные соединители соцсетей. n8n — когда постов станет много.</p>
+  <p><strong>Готовая связка — модуль 9.</strong> «Один ролик → все площадки»: один файл боту — подписи под каждую сеть и очередь на публикацию.</p>
 
   <figure class="scheme">
     <svg viewBox="0 0 664 130" role="img" aria-label="Схема 5: идея из списка, ИИ пишет текст, ИИ делает картинку, постинг по расписанию">
@@ -2126,6 +2428,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p><strong>Что происходит.</strong> Робот по расписанию обходит страницы и карточки конкурентов. ИИ сравнивает со вчерашним: цены, тексты, новинки. Тебе приходит короткая сводка — только отличия, без простыней.</p>
   <p><strong>Кому нужна.</strong> Каждому продавцу на конкурентном рынке. Смотреть конкурентов руками — работа, которую все бросают через неделю.</p>
   <p><strong>На чём собирать.</strong> n8n на твоём сервере: запуски по расписанию ничего не стоят, хоть каждый час.</p>
+  <p><strong>Готовая связка — модуль 9.</strong> «Разведка: цены конкурентов»: таблица конкурентов, обход по расписанию, тревога при расхождении выше порога.</p>
 
   <h3>Внутренняя рутина (схемы 10–11)</h3>
 
@@ -2158,6 +2461,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p><strong>Что происходит.</strong> Вместо утреннего обхода пяти кабинетов и трёх таблиц — одно сообщение в 9:00. Заказы, остатки, расходы на рекламу — вся картина дня на один экран телефона.</p>
   <p><strong>Кому нужна.</strong> Владельцу, у которого данные размазаны по нескольким системам. То есть почти любому.</p>
   <p><strong>На чём собирать.</strong> n8n на твоём сервере — он живёт рядом с твоими данными и ботами.</p>
+  <p><strong>Готовая связка — модуль 9.</strong> «Сводка цифр утром»: вечером три числа в форму, в 9:00 — пять строк от ИИ в Telegram.</p>
 
   <details class="term">
     <summary>Дайджест</summary>
@@ -2232,9 +2536,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <figcaption>Схема 12: все источники → таблица событий → витрины и тревоги.</figcaption>
   </figure>
 
-  <p><strong>Что происходит.</strong> Все боты и связки пишут события в одну таблицу — ту самую, что ты проектировал в М6. Поверх таблицы живут витрины с графиками и тревоги: упали заказы — узнаёшь сразу.</p>
+  <p><strong>Что происходит.</strong> Все боты и связки пишут события в одну таблицу — ту самую, что ты проектировал в М7. Поверх таблицы живут витрины с графиками и тревоги: упали заказы — узнаёшь сразу.</p>
   <p><strong>Кому нужна.</strong> Тем, у кого автоматизаций стало больше трёх и каждая живёт своей жизнью.</p>
-  <p><strong>На чём собирать.</strong> n8n плюс база на твоём сервере — по плану из М6.</p>
+  <p><strong>На чём собирать.</strong> n8n плюс база на твоём сервере — по плану из М7.</p>
 
   <details class="term">
     <summary>Витрина</summary>
@@ -2252,15 +2556,15 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <ol class="steps">
-    <li class="step-check" data-step="m7-s1">Выпиши три самых надоевших ручных дела прошлой недели.</li>
-    <li class="step-check" data-step="m7-s2">Найди в каталоге схему под каждое: у боли почти всегда есть номер.</li>
-    <li class="step-check" data-step="m7-s3">Для одной схемы прикинь часы в месяц, которые она вернёт. Эта цифра пойдёт в калькулятор М8.</li>
+    <li class="step-check" data-step="m8-s1">Выпиши три самых надоевших ручных дела прошлой недели.</li>
+    <li class="step-check" data-step="m8-s2">Найди в каталоге схему под каждое: у боли почти всегда есть номер.</li>
+    <li class="step-check" data-step="m8-s3">Для одной схемы прикинь часы в месяц, которые она вернёт. Эта цифра пойдёт в калькулятор М10.</li>
   </ol>
 
   <div class="control">
     <p>Задачу исполнителю ставь картинкой: «собери схему 9 — вот узлы, вот вход, вот выход».</p>
     <p>Критерий приёмки бери из правого кубика схемы: сводка приходит, пост выходит, строка в таблице появляется.</p>
-    <p>И про каждую схему спрашивай: где сторож? Связка без сторожа не принимается — почему, объяснит М9.</p>
+    <p>И про каждую схему спрашивай: где сторож? Связка без сторожа не принимается — почему, объяснит М11.</p>
   </div>
 
   <div class="quiz" data-a="2">
@@ -2268,7 +2572,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <button>собрать сразу — по ходу разберёмся</button>
     <button>сначала ответить: какую ручную работу и сколько часов в месяц она заменит</button>
     <button>заказать исполнителю все 12 схем каталога разом</button>
-    <p class="quiz-x">Схема без названной боли — это антитренд «автоматизация ради автоматизации». Сначала боль и часы, потом стройка. Считать поможет следующий модуль.</p>
+    <p class="quiz-x">Схема без названной боли — это антитренд «автоматизация ради автоматизации». Сначала боль и часы, потом стройка. Считать поможет М10.</p>
   </div>
 
   <div class="takeaway">
@@ -2277,9 +2581,1210 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Выбирай схему по боли и часам, а не по моде. Начинай с одной.</p>
   </div>
 </section>
-    <section class="module" id="m8" data-title="Окупаемость агентов" data-block="V">
+    <section class="module" id="m9" data-title="Четыре связки под ключ" data-block="V" data-new="2026-08-22">
   <header class="module-head">
-    <p>М8 · Блок В «Управлять» · ≈25 мин</p>
+    <p>М9 · Блок В «Управлять» · ≈90 мин</p>
+    <h2>Четыре связки под ключ</h2>
+    <p>Четыре готовых сценария для твоего n8n. Скопировал — вставил — привязал доступы — нажал «Execute». И разобрал каждый узел, чтобы управлять, а не верить на слово.</p>
+  </header>
+
+  <p>В М8 ты смотрел на схемы рынка как на меню. У четырёх блюд из него есть готовый рецепт — файл для твоего n8n.</p>
+  <p>Сегодня ты вставишь все четыре и запустишь на своих данных. Файлы без ключей: доступы привяжешь сам, по имени.</p>
+
+  <div class="why">
+    <p>Собрать связку с нуля — час. Вставить готовую и поправить под себя — десять минут.</p>
+    <p>Но готовый файл опасен тем же, чем чужой сотрудник: делает, а ты не знаешь что.</p>
+    <p>Поэтому к каждому файлу — схема, шаги и список «что заменить». Вставляешь не вслепую.</p>
+  </div>
+
+  <div class="apply">
+    <ul>
+      <li>«Сводка цифр утром» — вместо обхода таблиц за кофе.</li>
+      <li>«Вопрос клиента → ответ с ок» — вместо «отвечу вечером».</li>
+      <li>«Один ролик → все площадки» — вместо трёх окон и трёх подписей руками.</li>
+      <li>«Разведка: цены конкурентов» — вместо «кажется, они подешевели».</li>
+      <li>Ставишь задачу исполнителю — отдай файл и схему: половина ТЗ готова.</li>
+    </ul>
+  </div>
+
+  <div class="control">
+    <ul>
+      <li>Вкладка Executions: каждый запуск — строка, зелёная или красная. Красная — видно, какой узел упал.</li>
+      <li>Таблицы Data Tables внутри n8n: строки видно глазами, без кода.</li>
+      <li>Сейф Credentials: какие доступы заведены и к чему привязаны. Ключ в тексте сценария — нарушение, ищи и убирай.</li>
+      <li>Две связки из четырёх спрашивают тебя кнопкой перед отправкой — «человек в контуре» из М6.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Готовая связка — как сборная мебель: коробка, инструкция, пакет винтов.</p>
+    <p>Без инструкции собрать можно, но половина винтов останется лишней — и не узнаешь, каких.</p>
+    <p>Инструкция здесь — схема и шаги под каждым файлом. Винты — доступы и плейсхолдеры, которые закручиваешь сам.</p>
+  </div>
+
+  <h3>Перед вставкой: общее для всех четырёх</h3>
+
+  <p><strong>Откуда доступы.</strong> Токен бота уроков ты сделал в модуле 3 — практика №1, BotFather; там же узнал свой chat id. Ключ Claude — модуль 5, раздел «Ключ Claude: где взять и куда положить». Напоминание оттуда: подписка на чат и баланс API — разные кошельки.</p>
+
+  <p><strong>Доступы по имени.</strong> В файлах нет ни одного токена — у узла стоит только имя доступа. Заведи доступы ровно с такими именами, и узлы подхватят их сами. Назовёшь иначе — откроешь узел и выберешь из списка.</p>
+  <table>
+    <thead><tr><th>Имя доступа в n8n</th><th>Тип</th><th>Что внутри</th><th>Кому нужен</th></tr></thead>
+    <tbody>
+      <tr><td>Бот уроков</td><td>Telegram API</td><td>токен бота из М3</td><td>всем четырём</td></tr>
+      <tr><td>Ключ Claude</td><td>Anthropic</td><td>ключ из М5</td><td>связкам 1, 2, 3</td></tr>
+      <tr><td>Бот клиентов</td><td>Telegram API</td><td>токен второго бота — ему пишут покупатели</td><td>связке 2</td></tr>
+      <tr><td>Токен Instagram</td><td>Query Auth</td><td>имя <code>access_token</code>, значение — токен площадки</td><td>связке 3, после включения узлов</td></tr>
+      <tr><td>Токен Pinterest</td><td>Header Auth</td><td>имя <code>Authorization</code>, значение — <code>Bearer</code>, пробел и токен</td><td>связке 3, после включения узлов</td></tr>
+    </tbody>
+  </table>
+  <p>Имена — без кавычек, как в таблице. Токены площадок — из модуля 4 «Соцсети на автопилоте», и нужны не сейчас: без них связка 3 публикует только в Telegram-канал.</p>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m9-s1">Открой n8n через туннель, как в М3. Credentials → Create credential → Telegram API → вставь токен бота уроков → имя замени на <strong>Бот уроков</strong> → Save.</li>
+    <li class="step-check" data-step="m9-s2">Ещё раз Create credential → Anthropic → вставь ключ → имя <strong>Ключ Claude</strong> → Save.</li>
+    <li class="step-check" data-step="m9-s3">Проверь список Credentials: оба имени написаны ровно так. Опечатка — узел не найдёт доступ и будет красным.</li>
+  </ol>
+
+  <p><strong>Почему вебхук-триггеры пока запускаем руками.</strong> Telegram Trigger, форма и кнопки «одобрить» в Telegram — вебхуки: внешний сервис сам стучится к n8n. А твой n8n снаружи закрыт — модуль 3, «Почему вебхуки пока не работают». Следствия:</p>
+  <ul>
+    <li>Связки по расписанию — сводка (1) и разведка (4) — работают с localhost без оговорок.</li>
+    <li>Связки с Telegram Trigger — (2) и (3) — запускай через «Execute» на тестовом сообщении: закрепи его на триггере (как — в шагах), и n8n пойдёт от него, не дожидаясь Telegram.</li>
+    <li>Кнопки одобрения тебе придут — отправка наружу работает. Нажатие не дойдёт: ссылка в кнопке ведёт на адрес n8n, а пока у него нет внешнего адреса в переменной <code>WEBHOOK_URL</code>, телефон стучится в закрытую дверь. Как проверить хвост без этого — в шагах.</li>
+    <li>Форма связки 1 открывается с ноутбука при открытом туннеле. С телефона — только после <code>WEBHOOK_URL</code>.</li>
+  </ul>
+
+  <details class="term">
+    <summary>WEBHOOK_URL</summary>
+    <p>Настройка n8n: адрес, по которому сервер виден из интернета. Его n8n вписывает в ссылки кнопок и сообщает Telegram как адрес для вебхука.</p>
+    <p>Пока настройки нет, в ссылках стоит localhost — с телефона по нему никуда не попасть. Появится внешний адрес (туннель из М3) — впишешь сюда, и кнопки оживут.</p>
+  </details>
+
+  <details class="term">
+    <summary>Закрепить данные (pin)</summary>
+    <p>Записать узлу готовый результат вручную: открыл узел, в панели результата нажал карандаш Edit Output, вставил текст, сохранил — n8n пометил его булавкой.</p>
+    <p>При запуске n8n не выполняет такой узел, а берёт записанное и идёт дальше. Так тестируют триггеры «снаружи» на закрытом сервере. Закончил — сними булавку, иначе связка будет работать на старых данных.</p>
+  </details>
+
+  <p><strong>Таблицы — руками.</strong> Три связки пишут в Data Tables, встроенные таблицы n8n из М7. Файл связки таблицу не создаёт: сделай её до вставки. На главном экране n8n рядом с Workflows и Credentials — вкладка Data tables → Create data table → имя как в связке → колонки с типами. Имена колонок — только латиницей: узлы ищут их по имени, кириллицу не найдут.</p>
+  <table>
+    <thead><tr><th>Таблица</th><th>Колонки и типы</th><th>Связка</th></tr></thead>
+    <tbody>
+      <tr><td>Цифры дня</td><td><code>den</code> — String; <code>zakazy</code>, <code>vyruchka</code>, <code>reklama</code> — Number</td><td>1</td></tr>
+      <tr><td>Очередь роликов</td><td><code>file_id</code>, <code>tema</code>, <code>telegram</code>, <code>instagram</code>, <code>pinterest</code>, <code>status</code> — все String</td><td>3</td></tr>
+      <tr><td>Конкуренты</td><td><code>nazvanie</code>, <code>adres</code>, <code>selektor</code> — String; <code>moya_cena</code>, <code>porog_procent</code> — Number</td><td>4</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Как вставлять — одно движение на все четыре.</strong> Кнопка «Скопировать» под связкой кладёт файл в буфер. В n8n: Create workflow → щёлкни по пустому холсту → Ctrl+V (Mac — Cmd+V). Узлы появятся со связями. У каждого узла есть заметка «что менять»: открой узел, вкладка Settings, поле Notes.</p>
+
+  <h3>Связка 1. Сводка цифр утром</h3>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 780 200" role="img" aria-label="Связка 1: вечером форма пишет строку в таблицу; утром расписание берёт восемь строк, код считает среднее, ИИ пишет сводку, Telegram отдаёт её тебе">
+      <rect x="4" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="74" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Вечером: форма</text>
+      <text x="74" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">три числа</text>
+      <path d="M146 42 H160 M154 36 L161 42 L154 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="162" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="232" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Таблица</text>
+      <text x="232" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">«Цифры дня»</text>
+      <rect x="4" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="74" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Каждое утро 9:00</text>
+      <text x="74" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">расписание</text>
+      <path d="M146 152 H160 M154 146 L161 152 L154 158" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="162" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="232" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Таблица</text>
+      <text x="232" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">последние 8 дней</text>
+      <path d="M304 152 H318 M312 146 L319 152 L312 158" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="320" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="390" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Код</text>
+      <text x="390" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">вчера и 7 дней</text>
+      <path d="M462 152 H476 M470 146 L477 152 L470 158" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="478" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="548" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">ИИ</text>
+      <text x="548" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">сводка в 5 строк</text>
+      <path d="M620 152 H634 M628 146 L635 152 L628 158" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="636" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="706" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Telegram</text>
+      <text x="706" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">тебе</text>
+      <path d="M232 72 V122" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="242" y="102" text-anchor="start" font-size="14" fill="var(--muted)">та же таблица</text>
+    </svg>
+    <figcaption>Две ветки и одна таблица: вечером форма пишет строку, утром расписание читает восемь строк, ИИ делает из них пять строк для тебя.</figcaption>
+  </figure>
+
+  <p><strong>Что делает.</strong></p>
+  <ul>
+    <li>Вечером ты заполняешь форму: заказы, выручка, реклама. Строка уходит в таблицу «Цифры дня».</li>
+    <li>В 9:00 связка берёт последние 8 строк: первая — вчера, остальные семь — для среднего.</li>
+    <li>ИИ пишет ровно пять строк: цифры, отклонение от среднего, доля рекламы, что выбилось, на что посмотреть. Сообщение — тебе в Telegram.</li>
+  </ul>
+
+  <div class="svyazka" data-name="Сводка цифр утром">
+<pre><code>{
+  "name": "Сводка цифр утром",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Цифры за день",
+        "formDescription": "Заполни вечером: три числа за сегодня. Одна форма = одна строка в таблице.",
+        "formFields": {
+          "values": [
+            { "fieldLabel": "Заказы, шт", "fieldType": "number", "requiredField": true },
+            { "fieldLabel": "Выручка, руб", "fieldType": "number", "requiredField": true },
+            { "fieldLabel": "Реклама, руб", "fieldType": "number", "requiredField": true }
+          ]
+        },
+        "options": { "buttonLabel": "Записать" }
+      },
+      "name": "Вечером: три числа",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [0, 0],
+      "notes": "Менять: названия полей под свои цифры (тогда поправь и колонки ниже). Ссылку на форму n8n покажет после активации.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": { "__rl": true, "mode": "name", "value": "Цифры дня" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "den": "={{ $json.submittedAt.slice(0, 10) }}",
+            "zakazy": "={{ Number($json['Заказы, шт']) }}",
+            "vyruchka": "={{ Number($json['Выручка, руб']) }}",
+            "reklama": "={{ Number($json['Реклама, руб']) }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "den", "displayName": "den", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "zakazy", "displayName": "zakazy", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true, "removed": false },
+            { "id": "vyruchka", "displayName": "vyruchka", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true, "removed": false },
+            { "id": "reklama", "displayName": "reklama", "required": false, "defaultMatch": false, "display": true, "type": "number", "canBeUsedToMatch": true, "removed": false }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Записать в таблицу",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [260, 0],
+      "notes": "Сначала создай в n8n таблицу «Цифры дня» с колонками den (текст), zakazy, vyruchka, reklama (число) — узел найдёт её по имени.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "days", "daysInterval": 1, "triggerAtHour": 9, "triggerAtMinute": 0 }
+          ]
+        }
+      },
+      "name": "Каждое утро 9:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [0, 260],
+      "notes": "Менять: час отправки. Часовой пояс берётся из настроек воркфлоу (Settings → Timezone).",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "get",
+        "dataTableId": { "__rl": true, "mode": "name", "value": "Цифры дня" },
+        "matchType": "anyCondition",
+        "filters": {},
+        "returnAll": false,
+        "limit": 8,
+        "orderBy": true,
+        "orderByColumn": "createdAt",
+        "orderByDirection": "DESC"
+      },
+      "name": "Взять последние 8 дней",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [260, 260],
+      "notes": "Берёт 8 свежих строк: первая — вчера, остальные семь — для среднего. Менять ничего не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Вход: до 8 строк таблицы «Цифры дня», свежие сверху.\nconst stroki = $input.all().map(i =&gt; i.json);\nif (stroki.length === 0) {\n  return [{ json: { oshibka: 'В таблице «Цифры дня» пока нет строк — заполни форму вечером.' } }];\n}\nconst vchera = stroki[0];\nconst proshlye = stroki.slice(1, 8);\nconst polya = ['zakazy', 'vyruchka', 'reklama'];\nconst srednee = {};\nconst otklonenie = {};\nfor (const p of polya) {\n  const summa = proshlye.reduce((s, r) =&gt; s + Number(r[p] || 0), 0);\n  srednee[p] = proshlye.length ? Math.round(summa / proshlye.length) : null;\n  otklonenie[p] = srednee[p] ? Math.round((Number(vchera[p]) - srednee[p]) / srednee[p] * 100) : null;\n}\nconst vyruchka = Number(vchera.vyruchka);\nconst reklamaDolya = vyruchka ? Math.round(Number(vchera.reklama) / vyruchka * 100) : null;\nreturn [{ json: {\n  den: vchera.den,\n  vchera: { zakazy: Number(vchera.zakazy), vyruchka, reklama: Number(vchera.reklama) },\n  srednee_za_proshlye_dni: srednee,\n  dney_v_srednem: proshlye.length,\n  otklonenie_procent: otklonenie,\n  reklama_k_vyruchke_procent: reklamaDolya,\n} }];"
+      },
+      "name": "Вчера против среднего за 7 дней",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [520, 260],
+      "notes": "Считает среднее по прошлым дням и отклонение в процентах. Менять: список полей polya, если переименовал колонки.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ JSON.stringify($json) }}",
+        "options": {
+          "systemMessage": "Ты помощник владельца интернет-магазина. На входе JSON: цифры за вчера (vchera), среднее за прошлые дни (srednee_za_proshlye_dni), отклонение в процентах (otklonenie_procent), доля рекламы от выручки (reklama_k_vyruchke_procent).\n\nНапиши сводку ровно в 5 строк, одна мысль на строку:\n1. Дата и заказы — число и отклонение от среднего.\n2. Выручка — число и отклонение.\n3. Реклама — число и доля от выручки.\n4. Что выбилось из среднего сильнее всего.\n5. Одно короткое «на что посмотреть сегодня».\n\nЦифры бери только из JSON, ничего не выдумывай. Без приветствий, заголовков и выводов сверх пяти строк. Если в JSON есть поле oshibka — верни его текст одной строкой."
+        }
+      },
+      "name": "Сводка от ИИ",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [780, 260],
+      "notes": "Промпт = ТЗ: менять число строк и что важно видеть первым. Модель подключена снизу.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "model": { "__rl": true, "mode": "list", "value": "claude-sonnet-4-6", "cachedResultName": "Claude Sonnet 4.6" },
+        "options": { "maxTokensToSample": 600, "temperature": 0.3 }
+      },
+      "name": "Модель Claude",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [780, 480],
+      "credentials": { "anthropicApi": { "name": "Ключ Claude" } },
+      "notes": "Привяжи свой ключ Anthropic (Credentials → Anthropic). Менять: модель из списка, если хочешь дешевле или умнее.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "text": "={{ $json.output }}",
+        "additionalFields": { "appendAttribution": false }
+      },
+      "name": "В Telegram владельцу",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1120, 260],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt; — на свой chat id (бот уроков из модуля «Твой n8n» его подскажет). Привяжи токен бота в Credentials.",
+      "notesInFlow": true
+    }
+  ],
+  "connections": {
+    "Вечером: три числа": {
+      "main": [[{ "node": "Записать в таблицу", "type": "main", "index": 0 }]]
+    },
+    "Каждое утро 9:00": {
+      "main": [[{ "node": "Взять последние 8 дней", "type": "main", "index": 0 }]]
+    },
+    "Взять последние 8 дней": {
+      "main": [[{ "node": "Вчера против среднего за 7 дней", "type": "main", "index": 0 }]]
+    },
+    "Вчера против среднего за 7 дней": {
+      "main": [[{ "node": "Сводка от ИИ", "type": "main", "index": 0 }]]
+    },
+    "Сводка от ИИ": {
+      "main": [[{ "node": "В Telegram владельцу", "type": "main", "index": 0 }]]
+    },
+    "Модель Claude": {
+      "ai_languageModel": [[{ "node": "Сводка от ИИ", "type": "ai_languageModel", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}</code></pre>
+  </div>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m9-s4">Создай таблицу «Цифры дня» по таблице выше. Без неё узлы «Записать в таблицу» и «Взять последние 8 дней» будут красными.</li>
+    <li class="step-check" data-step="m9-s5">«Скопировать» → Create workflow → Ctrl+V. Появится 8 узлов в две ветки. Save, имя «Сводка цифр утром».</li>
+    <li class="step-check" data-step="m9-s6">Открой «В Telegram владельцу»: Credential — Бот уроков, в Chat ID замени <code>&lt;CHAT_ID&gt;</code> на свой номер из М3. Открой «Модель Claude»: Credential — Ключ Claude.</li>
+    <li class="step-check" data-step="m9-s7">Открой узел «Вечером: три числа», нажми Execute step — n8n откроет тестовую форму в новой вкладке (не открыл — адрес формы показан в узле). Заполни три числа, нажми «Записать». В таблице «Цифры дня» появилась строка.</li>
+    <li class="step-check" data-step="m9-s8">Повтори форму ещё два-три раза с другими числами: среднему нужно из чего считаться.</li>
+    <li class="step-check" data-step="m9-s9">Открой узел «Каждое утро 9:00», нажми Execute step — ветка сводки выполнится сейчас, не дожидаясь утра. В Telegram придут пять строк.</li>
+    <li class="step-check" data-step="m9-s10">Прочитай результат: цифры те же, что ты вводил? Отклонения похожи на правду? Совпало — проверь часовой пояс сценария (Settings → Timezone — твой город) и включи Active. Завтра в 9:00 сводка придёт сама.</li>
+  </ol>
+
+  <p><strong>Что заменить на своё.</strong></p>
+  <ul>
+    <li><code>&lt;CHAT_ID&gt;</code> в «В Telegram владельцу» — единственная обязательная замена.</li>
+    <li>Час — в узле «Каждое утро 9:00»; часовой пояс — в настройках сценария, не в узле.</li>
+    <li>Поля формы — под свои три цифры. Переименовал поле — поправь колонку в «Записать в таблицу» и список <code>polya</code> в «Вчера против среднего за 7 дней».</li>
+    <li>Промпт в «Сводка от ИИ» — это ТЗ: сколько строк, что первым. Правило «цифры только из JSON» оставь.</li>
+  </ul>
+
+  <p><strong>Если что-то красное.</strong></p>
+  <ul>
+    <li>Красный «Модель Claude» — доступ Ключ Claude не выбран или баланс API нулевой. Подписка на чат не считается — модуль 5.</li>
+    <li>Красный «Записать в таблицу» или «Взять последние 8 дней» — таблицы «Цифры дня» нет или колонки названы иначе. Сверь имена побуквенно: латиница, без пробелов.</li>
+    <li>Красный «В Telegram владельцу» — остался <code>&lt;CHAT_ID&gt;</code>, бот не получил от тебя /start, или доступ Бот уроков не выбран.</li>
+  </ul>
+  <p>Не красное, но пустое: пришла фраза «в таблице пока нет строк» — не ошибка, связка честно говорит, что форму ещё не заполняли.</p>
+
+  <h3>Связка 2. Вопрос клиента → ответ с ок</h3>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 780 200" role="img" aria-label="Связка 2: вопрос боту, черновик от ИИ, кнопки тебе; да — черновик клиенту, нет — форма для твоего текста и он уходит клиенту">
+      <rect x="4" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="74" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Вопрос боту</text>
+      <text x="74" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">Telegram Trigger</text>
+      <path d="M146 42 H160 M154 36 L161 42 L154 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="162" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="232" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">ИИ</text>
+      <text x="232" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">черновик</text>
+      <path d="M304 42 H318 M312 36 L319 42 L312 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="320" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="390" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Тебе в Telegram</text>
+      <text x="390" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">две кнопки</text>
+      <path d="M462 42 H476 M470 36 L477 42 L470 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="478" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="548" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Одобрил?</text>
+      <text x="548" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">If</text>
+      <path d="M620 42 H634 M628 36 L635 42 L628 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="636" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="706" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Клиенту</text>
+      <text x="706" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">черновик от бота</text>
+      <text x="627" y="10" text-anchor="middle" font-size="14" fill="var(--muted)">да</text>
+      <path d="M548 72 V123 M542 116 L548 123 L554 116" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <text x="556" y="104" text-anchor="start" font-size="14" fill="var(--muted)">нет</text>
+      <rect x="478" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="548" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Твой текст</text>
+      <text x="548" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">форма n8n</text>
+      <path d="M620 152 H634 M628 146 L635 152 L628 158" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="636" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="706" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Клиенту</text>
+      <text x="706" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">твой ответ</text>
+    </svg>
+    <figcaption>Покупатель пишет боту клиентов, ИИ готовит черновик, ты жмёшь кнопку. «Да» — уходит черновик, «нет» — форма для твоего текста.</figcaption>
+  </figure>
+
+  <p><strong>Что делает.</strong></p>
+  <ul>
+    <li>Покупатель пишет боту клиентов. ИИ по правилам стиля из промпта готовит черновик: на «вы», коротко, без обещаний, которых нет в данных.</li>
+    <li>Черновик приходит тебе от бота уроков с двумя кнопками: «Отправить» или «Переписать».</li>
+    <li>«Отправить» — ответ уходит покупателю от бота клиентов. «Переписать» — n8n откроет форму для твоего текста, и уйдёт он.</li>
+  </ul>
+
+  <div class="svyazka" data-name="Вопрос клиента → ответ с ок">
+<pre><code>{
+  "name": "Вопрос клиента → ответ с ок",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": ["message"],
+        "additionalFields": {}
+      },
+      "name": "Вопрос от клиента",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [0, 0],
+      "credentials": { "telegramApi": { "name": "Бот клиентов" } },
+      "notes": "Бот клиентов — отдельный бот, которому пишут покупатели. Привяжи его токен в Credentials. Один бот = один такой триггер.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "Ты отвечаешь покупателям интернет-магазина от имени владельца.\n\nПравила стиля:\n- на «вы», тепло и коротко: 2–4 предложения;\n- без обещаний сроков, скидок и наличия, которых нет во входных данных;\n- если вопрос про заказ или доставку и данных не хватает — попроси номер заказа;\n- без эмодзи и восклицаний.\n\nВерни только текст ответа, без пояснений и заголовков."
+        }
+      },
+      "name": "Черновик от ИИ",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [260, 0],
+      "notes": "Промпт = ТЗ: впиши сюда правила своего стиля (обращение, длина, что обещать нельзя). Модель подключена снизу.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "model": { "__rl": true, "mode": "list", "value": "claude-sonnet-4-6", "cachedResultName": "Claude Sonnet 4.6" },
+        "options": { "maxTokensToSample": 500, "temperature": 0.4 }
+      },
+      "name": "Модель Claude",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [260, 220],
+      "credentials": { "anthropicApi": { "name": "Ключ Claude" } },
+      "notes": "Привяжи свой ключ Anthropic (Credentials → Anthropic). Менять: модель из списка.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendAndWait",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "message": "=Вопрос клиента:\n{{ $('Вопрос от клиента').item.json.message.text }}\n\nЧерновик ответа:\n{{ $json.output }}",
+        "responseType": "approval",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "✅ Отправить",
+            "disapproveLabel": "✏️ Переписать"
+          }
+        },
+        "options": { "appendAttribution": false }
+      },
+      "name": "Спросить владельца",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [620, 0],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt; — твой chat id у бота уроков. Кнопки ведут на адрес твоего n8n — он должен быть доступен с телефона (WEBHOOK_URL), иначе нажатие не дойдёт.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Одобрил?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [880, 0],
+      "notes": "Верхний выход (true) — нажал «Отправить», нижний (false) — «Переписать». Менять ничего не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Вопрос от клиента').item.json.message.chat.id }}",
+        "text": "={{ $('Черновик от ИИ').item.json.output }}",
+        "additionalFields": { "appendAttribution": false }
+      },
+      "name": "Ответить клиенту",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1140, -120],
+      "credentials": { "telegramApi": { "name": "Бот клиентов" } },
+      "notes": "Отправляет одобренный черновик тому, кто спросил. Менять ничего не нужно — chat id берётся из вопроса.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendAndWait",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "message": "=Напиши ответ клиенту своими словами.\nВопрос: {{ $('Вопрос от клиента').item.json.message.text }}",
+        "responseType": "freeText",
+        "options": {
+          "messageButtonLabel": "Написать ответ",
+          "responseFormTitle": "Ответ клиенту"
+        }
+      },
+      "name": "Попросить свой текст",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1140, 120],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt;. Кнопка открывает форму n8n для твоего текста — n8n должен быть доступен с телефона.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "={{ $('Вопрос от клиента').item.json.message.chat.id }}",
+        "text": "={{ $json.data.text }}",
+        "additionalFields": { "appendAttribution": false }
+      },
+      "name": "Отправить свой текст",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1400, 120],
+      "credentials": { "telegramApi": { "name": "Бот клиентов" } },
+      "notes": "Отправляет клиенту текст, который ты написал в форме. Менять ничего не нужно.",
+      "notesInFlow": true
+    }
+  ],
+  "connections": {
+    "Вопрос от клиента": {
+      "main": [[{ "node": "Черновик от ИИ", "type": "main", "index": 0 }]]
+    },
+    "Модель Claude": {
+      "ai_languageModel": [[{ "node": "Черновик от ИИ", "type": "ai_languageModel", "index": 0 }]]
+    },
+    "Черновик от ИИ": {
+      "main": [[{ "node": "Спросить владельца", "type": "main", "index": 0 }]]
+    },
+    "Спросить владельца": {
+      "main": [[{ "node": "Одобрил?", "type": "main", "index": 0 }]]
+    },
+    "Одобрил?": {
+      "main": [
+        [{ "node": "Ответить клиенту", "type": "main", "index": 0 }],
+        [{ "node": "Попросить свой текст", "type": "main", "index": 0 }]
+      ]
+    },
+    "Попросить свой текст": {
+      "main": [[{ "node": "Отправить свой текст", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}</code></pre>
+  </div>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m9-s11">Заведи у BotFather второго бота — ему будут писать покупатели. Токен — в Credentials → Telegram API, имя <strong>Бот клиентов</strong>. Напиши новому боту /start, иначе в тесте он не сможет ответить тебе.</li>
+    <li class="step-check" data-step="m9-s12">«Скопировать» → Create workflow → Ctrl+V. Появится 8 узлов. Save, имя «Вопрос клиента → ответ с ок».</li>
+    <li class="step-check" data-step="m9-s13">Привяжи доступы. Бот клиентов — в «Вопрос от клиента», «Ответить клиенту», «Отправить свой текст». Бот уроков — в «Спросить владельца» и «Попросить свой текст». Ключ Claude — в «Модель Claude». Подхватились сами — открой и проверь.</li>
+    <li class="step-check" data-step="m9-s14">Замени <code>&lt;CHAT_ID&gt;</code> в двух узлах — «Спросить владельца» и «Попросить свой текст» — на свой chat id у бота уроков.</li>
+    <li class="step-check" data-step="m9-s15">Тестовое сообщение: открой «Вопрос от клиента», нажми карандаш Edit Output и вставь <code>{"message":{"text":"Когда придёт заказ?","chat":{"id":ТВОЙ_CHAT_ID}}}</code> — число вместо слов. Это тот же номер, что у бота уроков: в личном чате он один для всех ботов. Сохрани — n8n закрепит данные булавкой.</li>
+    <li class="step-check" data-step="m9-s16">Execute workflow. От бота уроков придёт «Вопрос клиента / Черновик ответа» с двумя кнопками — триггер, ИИ и бот уроков в порядке. Прочитай черновик: он в твоём стиле?</li>
+    <li class="step-check" data-step="m9-s17">Кнопка на localhost не дойдёт — запуск повиснет в Executions со статусом Waiting, останови его там. Проверить хвост сейчас: закрепи на «Спросить владельца» ответ <code>{"data":{"approved":true}}</code> и запусти снова — черновик придёт тебе от бота клиентов, как пришёл бы покупателю. Проверил — сними обе булавки, иначе связка будет отвечать на один вопрос и одобрять сама.</li>
+  </ol>
+
+  <p><strong>Что заменить на своё.</strong></p>
+  <ul>
+    <li>Правила стиля в промпте «Черновик от ИИ» — главное место: обращение, длина, что обещать нельзя, когда просить номер заказа.</li>
+    <li><code>&lt;CHAT_ID&gt;</code> — в двух узлах, не в одном. Подписи кнопок в «Спросить владельца» — по-своему.</li>
+    <li>Один бот на оба имени тоже заработает, но тогда твои же сообщения боту будут запускать связку. Второй бот — проще.</li>
+    <li>Active — только после внешнего адреса: с localhost Telegram Trigger не активируется, n8n скажет об ошибке вебхука.</li>
+  </ul>
+
+  <p><strong>Если что-то красное.</strong></p>
+  <ul>
+    <li>«Вопрос от клиента» не ловит сообщения или ругается на webhook — это вебхук: Telegram должен достучаться до n8n снаружи. На localhost — тест через закреплённое сообщение; по-настоящему — внешний адрес и <code>WEBHOOK_URL</code>, модуль 3 «Почему вебхуки пока не работают». Кнопки до этого тоже не дойдут.</li>
+    <li>Красный «Модель Claude» — доступ Ключ Claude не привязан или баланс API нулевой.</li>
+    <li>Красный «Спросить владельца» или «Ответить клиенту» — остался <code>&lt;CHAT_ID&gt;</code>, бот не получил /start от того, кому пишет (в тесте — от тебя), или выбран не тот бот: владельцу пишет Бот уроков, покупателю — Бот клиентов.</li>
+  </ul>
+
+  <div class="example case-m">
+    <p>У магазина М. эта связка уже живёт службой на сервере — агент отзывов. Каждые два часа он собирает свежие отзывы и вопросы покупателей, пишет черновики в стиле магазина и отправляет.</p>
+    <p>Начиналось ровно с того, что у тебя сейчас: вопрос → черновик → «ок» владельца на каждый ответ. Месяц владелец правил черновики и дописывал правила стиля в промпт.</p>
+    <p>Когда черновики перестали хотеться править, кнопку «ок» убрали. Разница с твоей связкой одна: вместо бота клиентов — кабинет площадки. Скелет тот же.</p>
+  </div>
+
+  <h3>Связка 3. Один ролик → все площадки</h3>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 780 300" role="img" aria-label="Связка 3: ролик боту, три подписи от ИИ, разбор, очередь, кнопки тебе; да — Telegram-канал и выключенные узлы Instagram и Pinterest, нет — напоминание">
+      <rect x="4" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="74" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Ролик боту</text>
+      <text x="74" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">файл + тема</text>
+      <path d="M146 42 H160 M154 36 L161 42 L154 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="162" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="232" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">ИИ</text>
+      <text x="232" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">три подписи</text>
+      <path d="M304 42 H318 M312 36 L319 42 L312 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="320" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="390" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Код</text>
+      <text x="390" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">разобрать JSON</text>
+      <path d="M462 42 H476 M470 36 L477 42 L470 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="478" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="548" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Таблица</text>
+      <text x="548" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">«Очередь роликов»</text>
+      <path d="M620 42 H634 M628 36 L635 42 L628 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="636" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="706" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Тебе в Telegram</text>
+      <text x="706" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">две кнопки</text>
+      <path d="M706 72 V123 M700 116 L706 123 L712 116" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="636" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="706" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Одобрил?</text>
+      <text x="706" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">If</text>
+      <path d="M706 182 V208 H74" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M74 208 V233 M68 226 L74 233 L80 226" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M232 208 V233 M226 226 L232 233 L238 226" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M390 208 V233 M384 226 L390 233 L396 226" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M706 208 V233 M700 226 L706 233 L712 226" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <text x="300" y="203" text-anchor="middle" font-size="14" fill="var(--muted)">да</text>
+      <text x="716" y="226" text-anchor="start" font-size="14" fill="var(--muted)">нет</text>
+      <rect x="4" y="234" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="74" y="258" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Telegram-канал</text>
+      <text x="74" y="278" text-anchor="middle" font-size="14" fill="var(--muted)">видео + подпись</text>
+      <rect x="162" y="234" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="232" y="258" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Instagram</text>
+      <text x="232" y="278" text-anchor="middle" font-size="14" fill="var(--muted)">выключен: 2 шага</text>
+      <rect x="320" y="234" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="390" y="258" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Pinterest</text>
+      <text x="390" y="278" text-anchor="middle" font-size="14" fill="var(--muted)">выключен: пин</text>
+      <rect x="636" y="234" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="706" y="258" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Отложено</text>
+      <text x="706" y="278" text-anchor="middle" font-size="14" fill="var(--muted)">напоминание</text>
+    </svg>
+    <figcaption>Ролик боту — три подписи от ИИ — строка в очереди — твоя кнопка. «Публикуем» — канал сразу, Instagram и Pinterest — когда включишь их узлы. «Отложить» — напоминание.</figcaption>
+  </figure>
+
+  <p><strong>Что делает.</strong></p>
+  <ul>
+    <li>Ты присылаешь боту уроков ролик как видео (не как файл), в подписи к нему — тема.</li>
+    <li>ИИ пишет три подписи — для Telegram, Instagram и Pinterest. Всё ложится строкой в «Очередь роликов» со статусом «ждёт ок».</li>
+    <li>Тебе приходят подписи с кнопками «Публикуем» / «Отложить». «Публикуем» — ролик уходит в канал; узлы Instagram и Pinterest стоят выключенными и ждут твоих токенов.</li>
+  </ul>
+
+  <div class="svyazka" data-name="Один ролик → все площадки">
+<pre><code>{
+  "name": "Один ролик → все площадки",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": ["message"],
+        "additionalFields": {}
+      },
+      "name": "Ролик пришёл боту",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [0, 0],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Пришли боту ролик файлом, а в подписи к нему — тему. Привяжи токен бота в Credentials. Один бот = один такой триггер.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Тема ролика: {{ $json.message.caption || 'тема не указана — сделай подписи нейтральными' }}",
+        "options": {
+          "systemMessage": "Ты пишешь подписи к одному короткому ролику для трёх площадок.\n\nВерни строго JSON, без пояснений и без обрамления кодом:\n{\"telegram\": \"...\", \"instagram\": \"...\", \"pinterest\": \"...\"}\n\n- telegram: 2–3 строки живым языком, без хештегов.\n- instagram: до 5 строк и ровно 5 хештегов в конце.\n- pinterest: первая строка — заголовок до 100 знаков, дальше описание до 300 знаков.\n\nЯзык русский. Факты только из темы, ничего не выдумывай."
+        }
+      },
+      "name": "Три подписи от ИИ",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [260, 0],
+      "notes": "Промпт = ТЗ: менять тон, длину и число хештегов под свои площадки. Формат JSON не трогай — его разбирает следующий узел.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "model": { "__rl": true, "mode": "list", "value": "claude-sonnet-4-6", "cachedResultName": "Claude Sonnet 4.6" },
+        "options": { "maxTokensToSample": 800, "temperature": 0.7 }
+      },
+      "name": "Модель Claude",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [260, 220],
+      "credentials": { "anthropicApi": { "name": "Ключ Claude" } },
+      "notes": "Привяжи свой ключ Anthropic (Credentials → Anthropic). Менять: модель из списка.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ответ ИИ приходит строкой — вырезаем из неё JSON и добавляем file_id ролика.\nconst otvet = $input.first().json.output || '';\nconst nachalo = otvet.indexOf('{');\nconst konec = otvet.lastIndexOf('}');\nif (nachalo &lt; 0 || konec &lt; 0) {\n  throw new Error('ИИ вернул не JSON. Начало ответа: ' + otvet.slice(0, 200));\n}\nconst podpisi = JSON.parse(otvet.slice(nachalo, konec + 1));\nconst soobshchenie = $('Ролик пришёл боту').first().json.message;\nif (!soobshchenie.video) {\n  throw new Error('В сообщении нет видео — пришли боту ролик файлом, а не ссылкой.');\n}\nreturn [{ json: {\n  file_id: soobshchenie.video.file_id,\n  tema: soobshchenie.caption || '',\n  telegram: podpisi.telegram || '',\n  instagram: podpisi.instagram || '',\n  pinterest: podpisi.pinterest || '',\n} }];"
+      },
+      "name": "Разобрать подписи",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [620, 0],
+      "notes": "Достаёт три подписи из ответа ИИ и file_id ролика из Telegram. Менять ничего не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": { "__rl": true, "mode": "name", "value": "Очередь роликов" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "file_id": "={{ $json.file_id }}",
+            "tema": "={{ $json.tema }}",
+            "telegram": "={{ $json.telegram }}",
+            "instagram": "={{ $json.instagram }}",
+            "pinterest": "={{ $json.pinterest }}",
+            "status": "ждёт ок"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "file_id", "displayName": "file_id", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "tema", "displayName": "tema", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "telegram", "displayName": "telegram", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "instagram", "displayName": "instagram", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "pinterest", "displayName": "pinterest", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "status", "displayName": "status", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false }
+          ]
+        },
+        "options": {}
+      },
+      "name": "В очередь",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [880, 0],
+      "notes": "Сначала создай в n8n таблицу «Очередь роликов» с текстовыми колонками file_id, tema, telegram, instagram, pinterest, status.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendAndWait",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "message": "=Ролик: {{ $('Разобрать подписи').item.json.tema || 'без темы' }}\n\nTelegram:\n{{ $('Разобрать подписи').item.json.telegram }}\n\nInstagram:\n{{ $('Разобрать подписи').item.json.instagram }}\n\nPinterest:\n{{ $('Разобрать подписи').item.json.pinterest }}",
+        "responseType": "approval",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "✅ Публикуем",
+            "disapproveLabel": "⏸ Отложить"
+          }
+        },
+        "options": { "appendAttribution": false }
+      },
+      "name": "Спросить владельца",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1140, 0],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt; — твой chat id. Кнопки ведут на адрес твоего n8n — он должен быть доступен с телефона (WEBHOOK_URL).",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Одобрил?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1400, 0],
+      "notes": "Верхний выход (true) — «Публикуем», нижний (false) — «Отложить». Менять ничего не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendVideo",
+        "chatId": "&lt;CHANNEL_ID&gt;",
+        "binaryData": false,
+        "file": "={{ $('Разобрать подписи').item.json.file_id }}",
+        "additionalFields": {
+          "caption": "={{ $('Разобрать подписи').item.json.telegram }}"
+        }
+      },
+      "name": "В Telegram-канал",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1660, -200],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHANNEL_ID&gt; — id канала или @имя. Бот должен быть админом канала. Видео уходит по file_id, скачивать не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v21.0/&lt;PAGE_ID&gt;/media",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "keypair",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "media_type", "value": "REELS" },
+            { "name": "video_url", "value": "&lt;АДРЕС_ВИДЕО&gt;" },
+            { "name": "caption", "value": "={{ $('Разобрать подписи').item.json.instagram }}" }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Instagram: нужен токен площадки",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1660, 0],
+      "disabled": true,
+      "credentials": { "httpQueryAuth": { "name": "Токен Instagram" } },
+      "notes": "Первый шаг из двух: создаёт контейнер, публикует его следующий узел. Токен заведи креденшелом «Токен Instagram» (Query Auth: имя access_token, значение — токен): это делается в n8n, не в файле. Честно: сам токен площадки — из модуля «Соцсети на автопилоте». Менять: &lt;PAGE_ID&gt;, &lt;АДРЕС_ВИДЕО&gt; (площадка берёт видео только по публичной ссылке).",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v21.0/&lt;PAGE_ID&gt;/media_publish",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "keypair",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "creation_id", "value": "={{ $json.id }}" }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Instagram: опубликовать контейнер",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1920, 0],
+      "disabled": true,
+      "credentials": { "httpQueryAuth": { "name": "Токен Instagram" } },
+      "notes": "Второй шаг из двух — после заполнения включи оба узла. Токен заведи креденшелом «Токен Instagram»: это делается в n8n, не в файле. Менять: &lt;PAGE_ID&gt;; creation_id берётся из ответа первого шага. Видео площадка готовит не сразу: если ответ без id — подожди минуту и проверь GET /&lt;ID_КОНТЕЙНЕРА&gt;?fields=status_code, публикуй при FINISHED (не дольше 5 минут).",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pinterest.com/v5/pins",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ board_id: '&lt;PINTEREST_BOARD&gt;', title: $('Разобрать подписи').item.json.pinterest.split('\\n')[0].slice(0, 100), description: $('Разобрать подписи').item.json.pinterest.slice(0, 500), media_source: { source_type: 'video_id', media_id: '&lt;MEDIA_ID&gt;', cover_image_url: '&lt;АДРЕС_ОБЛОЖКИ&gt;' } }) }}",
+        "options": {}
+      },
+      "name": "Pinterest: нужен токен площадки",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1660, 200],
+      "disabled": true,
+      "credentials": { "httpHeaderAuth": { "name": "Токен Pinterest" } },
+      "notes": "Токен заведи креденшелом «Токен Pinterest» (Header Auth: имя Authorization, значение «Bearer » и токен): это делается в n8n, не в файле. Честно: сам токен площадки — из модуля «Соцсети на автопилоте». Видео на Pinterest грузится в три шага (регистрация → загрузка → пин), здесь третий. Менять: &lt;PINTEREST_BOARD&gt;, &lt;MEDIA_ID&gt;, &lt;АДРЕС_ОБЛОЖКИ&gt;. Включи узел, когда заполнил.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "text": "=Ролик отложен. Подписи лежат в таблице «Очередь роликов». Тема: {{ $('Разобрать подписи').item.json.tema || 'без темы' }}",
+        "additionalFields": { "appendAttribution": false }
+      },
+      "name": "Отложено",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1660, 400],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt;. Просто напоминание, что подписи сохранены и ждут в таблице.",
+      "notesInFlow": true
+    }
+  ],
+  "connections": {
+    "Ролик пришёл боту": {
+      "main": [[{ "node": "Три подписи от ИИ", "type": "main", "index": 0 }]]
+    },
+    "Модель Claude": {
+      "ai_languageModel": [[{ "node": "Три подписи от ИИ", "type": "ai_languageModel", "index": 0 }]]
+    },
+    "Три подписи от ИИ": {
+      "main": [[{ "node": "Разобрать подписи", "type": "main", "index": 0 }]]
+    },
+    "Разобрать подписи": {
+      "main": [[{ "node": "В очередь", "type": "main", "index": 0 }]]
+    },
+    "В очередь": {
+      "main": [[{ "node": "Спросить владельца", "type": "main", "index": 0 }]]
+    },
+    "Спросить владельца": {
+      "main": [[{ "node": "Одобрил?", "type": "main", "index": 0 }]]
+    },
+    "Instagram: нужен токен площадки": {
+      "main": [[{ "node": "Instagram: опубликовать контейнер", "type": "main", "index": 0 }]]
+    },
+    "Одобрил?": {
+      "main": [
+        [
+          { "node": "В Telegram-канал", "type": "main", "index": 0 },
+          { "node": "Instagram: нужен токен площадки", "type": "main", "index": 0 },
+          { "node": "Pinterest: нужен токен площадки", "type": "main", "index": 0 }
+        ],
+        [{ "node": "Отложено", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}</code></pre>
+  </div>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m9-s18">Создай таблицу «Очередь роликов» по таблице выше. Без неё узел «В очередь» будет красным.</li>
+    <li class="step-check" data-step="m9-s19">«Скопировать» → Create workflow → Ctrl+V. Появится 12 узлов, три из них серые: «Instagram: нужен токен площадки», «Instagram: опубликовать контейнер», «Pinterest: нужен токен площадки». Серые — выключены нарочно, это не поломка. Save.</li>
+    <li class="step-check" data-step="m9-s20">Привяжи доступы: Бот уроков — в «Ролик пришёл боту», «Спросить владельца», «В Telegram-канал», «Отложено». Ключ Claude — в «Модель Claude».</li>
+    <li class="step-check" data-step="m9-s21">Замени <code>&lt;CHAT_ID&gt;</code> в «Спросить владельца» и «Отложено». В «В Telegram-канал» замени <code>&lt;CHANNEL_ID&gt;</code>: у открытого канала — @имя, у закрытого — числовой id. Бота добавь в канал администратором. Нет канала — заведи тестовый на минуту.</li>
+    <li class="step-check" data-step="m9-s22">Тест с настоящим роликом: пришли боту уроков короткий ролик как видео, не как файл — узел «Разобрать подписи» ждёт именно видео; в подписи — тема. Открой getUpdates, как в М3 для chat id, скопируй из ответа объект <code>message</code> целиком. В «Ролик пришёл боту» нажми Edit Output, вставь <code>{"message": …}</code> с тем, что скопировал, сохрани. Так у теста настоящий <code>file_id</code> — без него видео в канал не уйдёт.</li>
+    <li class="step-check" data-step="m9-s23">Execute workflow. Проверь два места: в «Очередь роликов» строка со статусом «ждёт ок»; в Telegram — три подписи с кнопками.</li>
+    <li class="step-check" data-step="m9-s24">Кнопки на localhost не дойдут — <code>WEBHOOK_URL</code>, модуль 3. Увидеть публикацию сейчас: закрепи на «Спросить владельца» ответ <code>{"data":{"approved":true}}</code>, запусти снова — ролик с подписью появится в канале. Потом сними булавки с обоих узлов.</li>
+    <li class="step-check" data-step="m9-s25">Площадки — когда будут токены из М4. Заведи доступы Токен Instagram (Query Auth) и Токен Pinterest (Header Auth), как в таблице выше. В узлах Instagram замени <code>&lt;PAGE_ID&gt;</code> и <code>&lt;АДРЕС_ВИДЕО&gt;</code> — ролик должен лежать по публичной ссылке. В узле Pinterest — <code>&lt;PINTEREST_BOARD&gt;</code>, <code>&lt;MEDIA_ID&gt;</code>, <code>&lt;АДРЕС_ОБЛОЖКИ&gt;</code>. Заполнил плейсхолдеры — включи выключенные узлы: правый клик по узлу → Activate (или клавиша D). Они стоят <code>disabled</code> ровно до этого шага.</li>
+    <li class="step-check" data-step="m9-s26">Прочитай Executions: зелёная цепочка до «В Telegram-канал», узлы площадок серые, пока выключены. Active — после внешнего адреса: с localhost Telegram Trigger не активируется.</li>
+  </ol>
+
+  <p><strong>Что заменить на своё.</strong></p>
+  <ul>
+    <li>Промпт в «Три подписи от ИИ» — тон, длина, число хештегов под свои площадки. Формат JSON в ответе не трогай: его разбирает «Разобрать подписи».</li>
+    <li><code>&lt;CHAT_ID&gt;</code> — в двух узлах; <code>&lt;CHANNEL_ID&gt;</code> — в одном.</li>
+    <li>Instagram: <code>&lt;PAGE_ID&gt;</code>, <code>&lt;АДРЕС_ВИДЕО&gt;</code>, доступ Токен Instagram. Публикация в два шага — контейнер, потом его публикация, поэтому узлов два.</li>
+    <li>Pinterest: <code>&lt;PINTEREST_BOARD&gt;</code>, <code>&lt;MEDIA_ID&gt;</code>, <code>&lt;АДРЕС_ОБЛОЖКИ&gt;</code>, доступ Токен Pinterest. Видео туда грузится в три шага — регистрация, загрузка, пин; в связке третий, <code>&lt;MEDIA_ID&gt;</code> берётся из первых двух.</li>
+  </ul>
+
+  <details class="term">
+    <summary>Контейнер Instagram</summary>
+    <p>Заявка на публикацию: видео, подпись, тип. Площадка получает её и готовит файл — это занимает время.</p>
+    <p>Публикуют не видео, а готовый контейнер — отдельным запросом. Пока статус контейнера не FINISHED, публиковать рано: ответ придёт без id.</p>
+  </details>
+
+  <p><strong>Если что-то красное.</strong></p>
+  <ul>
+    <li>«Ролик пришёл боту» не активируется или кнопки не работают — вебхуки: нужен внешний адрес и <code>WEBHOOK_URL</code>, модуль 3 «Почему вебхуки пока не работают». До этого — тест через закреплённое сообщение, как в шагах.</li>
+    <li>Узлы Instagram и Pinterest серые — они стоят <code>disabled</code>: заполни плейсхолдеры Instagram/Pinterest и включи выключенные узлы. Красные после включения — не тот тип доступа (Instagram — Query Auth, Pinterest — Header Auth) или <code>&lt;АДРЕС_ВИДЕО&gt;</code> не публичная ссылка.</li>
+    <li>Instagram ответил без id — видео ещё готовится: подожди минуту и проверь статус контейнера (см. notes узла «Instagram: опубликовать контейнер»). Публикуй при FINISHED.</li>
+    <li>Красный «Разобрать подписи» с текстом «В сообщении нет видео» — ролик ушёл боту как файл (документ, без сжатия), а узел берёт только видео. Шли ролик как видео, не как файл.</li>
+  </ul>
+
+  <h3>Связка 4. Разведка: цены конкурентов</h3>
+
+  <figure class="scheme">
+    <svg viewBox="0 0 780 200" role="img" aria-label="Связка 4: по расписанию список из таблицы, скачать страницу, вытащить цену, код считает расхождение, если есть — тревога в Telegram">
+      <rect x="4" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="74" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Каждое утро 8:00</text>
+      <text x="74" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">расписание</text>
+      <path d="M146 42 H160 M154 36 L161 42 L154 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="162" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="232" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Таблица</text>
+      <text x="232" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">«Конкуренты»</text>
+      <path d="M304 42 H318 M312 36 L319 42 L312 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="320" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="390" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Скачать страницу</text>
+      <text x="390" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">HTTP</text>
+      <path d="M462 42 H476 M470 36 L477 42 L470 48" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="478" y="14" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="548" y="38" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Вытащить цену</text>
+      <text x="548" y="58" text-anchor="middle" font-size="14" fill="var(--muted)">по селектору</text>
+      <path d="M548 72 V98 H74 V123" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <path d="M68 116 L74 123 L80 116" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="4" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="74" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Код</text>
+      <text x="74" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">расхождение, %</text>
+      <path d="M146 152 H160 M154 146 L161 152 L154 158" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="162" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="232" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Расхождение?</text>
+      <text x="232" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">If</text>
+      <path d="M304 152 H318 M312 146 L319 152 L312 158" fill="none" stroke="var(--ink)" stroke-width="2"/>
+      <rect x="320" y="124" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="390" y="148" text-anchor="middle" font-size="14" font-weight="600" fill="var(--ink)">Telegram</text>
+      <text x="390" y="168" text-anchor="middle" font-size="14" fill="var(--muted)">тревога тебе</text>
+      <text x="311" y="118" text-anchor="middle" font-size="14" fill="var(--muted)">да</text>
+    </svg>
+    <figcaption>По расписанию — список из таблицы — страница — цена по селектору — сравнение с порогом. Тревога только когда есть повод.</figcaption>
+  </figure>
+
+  <p><strong>Что делает.</strong></p>
+  <ul>
+    <li>Каждое утро в 8:00 берёт из таблицы «Конкуренты» список: адрес страницы, селектор цены, твоя цена, порог в процентах.</li>
+    <li>Скачивает каждую страницу, вытаскивает цену по селектору, считает расхождение с твоей ценой.</li>
+    <li>Расхождение не меньше порога, цена не найдена или страница не открылась — тревога тебе в Telegram, одно сообщение на конкурента. Тишина — всё в пределах порога.</li>
+  </ul>
+
+  <div class="svyazka" data-name="Разведка: цены конкурентов">
+<pre><code>{
+  "name": "Разведка: цены конкурентов",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "days", "daysInterval": 1, "triggerAtHour": 8, "triggerAtMinute": 0 }
+          ]
+        }
+      },
+      "name": "Каждое утро 8:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [0, 0],
+      "notes": "Менять: час проверки. Чаще раза в день не нужно — цены так быстро не меняются, а магазины не любят частых запросов.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "get",
+        "dataTableId": { "__rl": true, "mode": "name", "value": "Конкуренты" },
+        "matchType": "anyCondition",
+        "filters": {},
+        "returnAll": true
+      },
+      "name": "Список конкурентов",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [260, 0],
+      "notes": "Сначала создай таблицу «Конкуренты»: nazvanie (текст), adres (текст — &lt;АДРЕС_СТРАНИЦЫ&gt; товара), selektor (текст — CSS-селектор цены), moya_cena (число), porog_procent (число). Одна строка = один конкурент.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.adres }}",
+        "sendHeaders": true,
+        "specifyHeaders": "keypair",
+        "headerParameters": {
+          "parameters": [
+            { "name": "User-Agent", "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36" }
+          ]
+        },
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": { "responseFormat": "text", "outputPropertyName": "html" }
+          }
+        }
+      },
+      "name": "Скачать страницу",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [520, 0],
+      "onError": "continueRegularOutput",
+      "notes": "Страница должна отдавать цену прямо в HTML. Если в ответе цены нет (её рисует скрипт) — бери Apify через MCP, модуль «ИИ-агенты и MCP». Менять ничего не нужно: адрес берётся из таблицы.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "sourceData": "json",
+        "dataPropertyName": "html",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "cena_tekst",
+              "cssSelector": "={{ $('Список конкурентов').item.json.selektor }}",
+              "returnValue": "text"
+            }
+          ]
+        },
+        "options": { "trimValues": true, "cleanUpText": true }
+      },
+      "name": "Вытащить цену",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [780, 0],
+      "onError": "continueRegularOutput",
+      "notes": "Селектор берётся из таблицы по каждому конкуренту. Как найти: в браузере правый клик по цене → Inspect → Copy selector.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Для каждого конкурента: цена со страницы против моей цены и порога из таблицы.\nconst konkurenty = $('Список конкурентов').all().map(i =&gt; i.json);\nconst vhod = $input.all();\nconst itogi = [];\nfor (let i = 0; i &lt; vhod.length; i++) {\n  const k = konkurenty[i] || {};\n  const dannye = vhod[i].json;\n  const syroy = String(dannye.cena_tekst || '').replace(/[\\s\\u00a0]/g, '').replace(',', '.');\n  const naydeno = syroy.match(/\\d+(?:\\.\\d+)?/);\n  const ihCena = naydeno ? Number(naydeno[0]) : null;\n  const moya = Number(k.moya_cena);\n  const porog = Number(k.porog_procent) || 5;\n  let raznica = null;\n  let trevoga = false;\n  let prichina = '';\n  if (dannye.error) {\n    trevoga = true;\n    prichina = 'страница не открылась: ' + String(dannye.error).slice(0, 120);\n  } else if (ihCena === null) {\n    trevoga = true;\n    prichina = 'селектор не нашёл цену — проверь selektor в таблице';\n  } else if (moya) {\n    raznica = Math.round((ihCena - moya) / moya * 100);\n    if (Math.abs(raznica) &gt;= porog) {\n      trevoga = true;\n      prichina = raznica &lt; 0 ? 'конкурент дешевле' : 'конкурент дороже';\n    }\n  }\n  itogi.push({ json: {\n    nazvanie: k.nazvanie || ('конкурент ' + (i + 1)),\n    adres: k.adres || '',\n    ih_cena: ihCena,\n    moya_cena: moya,\n    raznica_procent: raznica,\n    porog_procent: porog,\n    trevoga,\n    prichina,\n  } });\n}\nreturn itogi;"
+      },
+      "name": "Сравнить с порогом",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1040, 0],
+      "notes": "Считает расхождение в процентах и ставит trevoga, если оно не меньше порога из таблицы. Менять: запасной порог 5, если в таблице его нет.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.trevoga }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Есть расхождение?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1300, 0],
+      "notes": "Пропускает дальше только тревоги: расхождение не меньше порога, цена не найдена или страница не открылась.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "text": "={{ $json.nazvanie }}: {{ $json.prichina }}\nИх цена: {{ $json.ih_cena ?? '—' }}, моя: {{ $json.moya_cena }}, разница: {{ $json.raznica_procent ?? '—' }}% (порог {{ $json.porog_procent }}%)\n{{ $json.adres }}",
+        "additionalFields": { "appendAttribution": false }
+      },
+      "name": "Сообщить в Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1560, -120],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt; — твой chat id у бота уроков. Одно сообщение на каждого конкурента с тревогой.",
+      "notesInFlow": true
+    }
+  ],
+  "connections": {
+    "Каждое утро 8:00": {
+      "main": [[{ "node": "Список конкурентов", "type": "main", "index": 0 }]]
+    },
+    "Список конкурентов": {
+      "main": [[{ "node": "Скачать страницу", "type": "main", "index": 0 }]]
+    },
+    "Скачать страницу": {
+      "main": [[{ "node": "Вытащить цену", "type": "main", "index": 0 }]]
+    },
+    "Вытащить цену": {
+      "main": [[{ "node": "Сравнить с порогом", "type": "main", "index": 0 }]]
+    },
+    "Сравнить с порогом": {
+      "main": [[{ "node": "Есть расхождение?", "type": "main", "index": 0 }]]
+    },
+    "Есть расхождение?": {
+      "main": [
+        [{ "node": "Сообщить в Telegram", "type": "main", "index": 0 }],
+        []
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}</code></pre>
+  </div>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m9-s27">Создай таблицу «Конкуренты» по таблице выше.</li>
+    <li class="step-check" data-step="m9-s28">Найди селектор цены: открой страницу конкурента в браузере, правый клик по цене → «Просмотреть код» (Inspect), правый клик по подсвеченной строке → Copy → Copy selector. Это и есть <code>selektor</code>.</li>
+    <li class="step-check" data-step="m9-s29">Добавь строку: название, полный адрес страницы (это <code>&lt;АДРЕС_СТРАНИЦЫ&gt;</code> из заметки узла), селектор, твоя цена. Порог для первого прогона — 0: тревога придёт при любом расхождении, и ты увидишь, что связка жива.</li>
+    <li class="step-check" data-step="m9-s30">«Скопировать» → Create workflow → Ctrl+V. Появится 7 узлов в одну линию. Save.</li>
+    <li class="step-check" data-step="m9-s31">Открой «Сообщить в Telegram»: Credential — Бот уроков, в Chat ID замени <code>&lt;CHAT_ID&gt;</code>.</li>
+    <li class="step-check" data-step="m9-s32">Execute workflow. Придёт сообщение: название, причина, их цена против твоей, разница в процентах, ссылка. Открой страницу и сверь цену глазами. Пришло «селектор не нашёл цену» — вернись к шагу с Copy selector или читай «что заменить».</li>
+    <li class="step-check" data-step="m9-s33">Верни порог на рабочий — столько процентов, сколько для тебя уже повод шевелиться. Включи Active: вебхуков здесь нет, на localhost связка живёт как есть.</li>
+  </ol>
+
+  <details class="term">
+    <summary>Селектор (CSS-селектор)</summary>
+    <p>Адрес элемента внутри страницы — как номер полки в магазине. По нему узел находит именно цену, а не всё подряд.</p>
+    <p>Магазин перерисовал страницу — адрес устарел, связка пришлёт «селектор не нашёл цену». Обнови селектор в таблице, код не трогай.</p>
+  </details>
+
+  <p><strong>Что заменить на своё.</strong></p>
+  <ul>
+    <li><code>&lt;CHAT_ID&gt;</code> в «Сообщить в Telegram». Строки таблицы — по одной на конкурента; добавил строку — перезапускать ничего не нужно.</li>
+    <li>Час в «Каждое утро 8:00». Чаще раза в день не нужно: цены так быстро не меняются, а магазины не любят частых запросов.</li>
+    <li>Запасной порог 5 в узле «Сравнить с порогом» — работает, если в строке порог не заполнен.</li>
+    <li>Цены в скачанной странице нет — её рисует скрипт после загрузки. Тогда агент с Apify через MCP из М6 откроет страницу как настоящий браузер.</li>
+  </ul>
+
+  <p><strong>Если что-то красное.</strong></p>
+  <ul>
+    <li>Красный «Список конкурентов» — таблицы «Конкуренты» нет или колонки названы иначе. Сверь имена побуквенно.</li>
+    <li>Не красный узел, а тревога «страница не открылась» — магазин не пустил, ответил дольше лимита или в адресе опечатка. Узлы «Скачать страницу» и «Вытащить цену» настроены идти дальше при ошибке — поэтому это сообщение, а не красная строка в Executions.</li>
+    <li>Красный «Сообщить в Telegram» — остался <code>&lt;CHAT_ID&gt;</code>, доступ Бот уроков не выбран или бот без /start.</li>
+  </ul>
+  <p>Тишина после запуска — тоже не ошибка: расхождение ниже порога. В Executions строка зелёная, «Есть расхождение?» никого не пропустил.</p>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">Ты вставил «Вопрос клиента → ответ с ок», черновик с кнопками пришёл, нажал «Отправить» — ничего не произошло. Что это?</p>
+    <button>ИИ не справился — надо поменять модель в «Модель Claude»</button>
+    <button>Нажатие кнопки — вебхук: n8n не виден снаружи, без WEBHOOK_URL оно не дойдёт</button>
+    <button>Бот клиентов не получил /start — надо написать ему первым</button>
+    <p class="quiz-x">Черновик пришёл — значит триггер, ИИ и бот уроков в порядке. Сломалось на обратном пути: кнопка ведёт на адрес n8n, а он с телефона недоступен. Лечится внешним адресом и WEBHOOK_URL — модуль 3.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Четыре связки стоят у тебя на сервере, ключи — в сейфе, файлы — без секретов. Ты знаешь, какие работают сразу, какие ждут внешний адрес и что в каждой менять под себя.</p>
+    <p>Дальше — деньги и границы: М10 посчитает, что связки возвращают, М11 — где им нельзя давать волю.</p>
+  </div>
+</section>
+    <section class="module" id="m10" data-title="Окупаемость агентов" data-block="V">
+  <header class="module-head">
+    <p>М10 · Блок В «Управлять» · ≈25 мин</p>
     <h2>Окупаемость агентов</h2>
     <p>Агент — работник. У работника есть зарплата и выработка. Научимся считать их до найма.</p>
   </header>
@@ -2295,7 +3800,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <div class="apply">
-    <p>Перед заказом любой связки из каталога М7: сначала цифры, потом стройка.</p>
+    <p>Перед заказом любой связки из каталога М8: сначала цифры, потом стройка.</p>
     <p>В разговоре с исполнителем: его обещания переводишь в часы и рубли.</p>
     <p>Раз в квартал: пересчитываешь уже работающих агентов — тянут ли свою зарплату.</p>
   </div>
@@ -2397,7 +3902,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <h3>Посчитай на своих цифрах</h3>
 
   <p>Хватит чужих процентов и прикидок — подставь свои числа.</p>
-  <p>Часы возьми из шага, который ты сделал в М7. Цену часа — свою. Расходы — из разговора с исполнителем.</p>
+  <p>Часы возьми из шага, который ты сделал в М8. Цену часа — свою. Расходы — из разговора с исполнителем.</p>
 
   <!-- ROI-CALC -->
 
@@ -2410,10 +3915,10 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p>Посчитанная до стройки, она превращается в план. А план — в поводок для исполнителя.</p>
 
   <ol class="steps">
-    <li class="step-check" data-step="m8-s1">До стройки запиши три числа: часы, которые вернутся; цена часа; расходы на стройку и уход.</li>
-    <li class="step-check" data-step="m8-s2">Согласуй числа с исполнителем: пусть подпишется под сроком окупаемости.</li>
-    <li class="step-check" data-step="m8-s3">Поставь напоминание через месяц после запуска: сверить факт с планом.</li>
-    <li class="step-check" data-step="m8-s4">Факт хуже плана в разы — разговор с исполнителем по цифрам, а не по ощущениям.</li>
+    <li class="step-check" data-step="m10-s1">До стройки запиши три числа: часы, которые вернутся; цена часа; расходы на стройку и уход.</li>
+    <li class="step-check" data-step="m10-s2">Согласуй числа с исполнителем: пусть подпишется под сроком окупаемости.</li>
+    <li class="step-check" data-step="m10-s3">Поставь напоминание через месяц после запуска: сверить факт с планом.</li>
+    <li class="step-check" data-step="m10-s4">Факт хуже плана в разы — разговор с исполнителем по цифрам, а не по ощущениям.</li>
   </ol>
 
   <div class="control">
@@ -2436,9 +3941,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Один сценарий, доведённый до боя, бьёт десять красивых пилотов.</p>
   </div>
 </section>
-    <section class="module" id="m9" data-title="Клетка для агентов" data-block="V">
+    <section class="module" id="m11" data-title="Клетка для агентов" data-block="V">
   <header class="module-head">
-    <p>М9 · Блок В «Управлять» · ≈30 мин</p>
+    <p>М11 · Блок В «Управлять» · ≈30 мин</p>
     <h2>Клетка для агентов</h2>
     <p>Агент без клетки — работник с ключами от всего склада. Клетка строится за вечер.</p>
   </header>
@@ -2601,21 +4106,28 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Собирается в том же n8n: расписание → проверка → сообщение. Ты уже умеешь всё это из блока Б.</p>
   </details>
 
+  <h3>Человек в контуре: штатный узел перед опасным действием</h3>
+
+  <p>Правило из М5 «ИИ предлагает — человек утверждает» в n8n теперь не просьба к исполнителю, а узел.</p>
+  <p>Первый механизм — кнопка одобрения: перед отправкой клиенту связка замирает и шлёт тебе в Telegram две кнопки, «Отправить» и «Переписать».</p>
+  <p>Нажал «Переписать» — черновик ИИ не ушёл, n8n открыл форму для твоего текста, и клиенту уходит он. В связке «Вопрос клиента → ответ с ок» из М9 эта кнопка уже стоит.</p>
+  <p>Второй механизм — для агентов: <span class="dated" data-src="docs.n8n.io/changelog, 22.08.2026">обязательное одобрение перед вызовом инструмента — в n8n с версии 2.6, 26.01.2026</span>. Агент хочет удалить, оплатить, записать — ждёт твоего «да». Термин «Человек в контуре» и как ставить — в М6.</p>
+
   <h3>Чек-лист безопасности — 10 пунктов</h3>
 
   <p>Это и есть клетка. Пройди по своему хозяйству и отметь честно.</p>
 
   <ol class="steps">
-    <li class="step-check" data-step="m9-s1">У каждого агента стоит потолок памяти: контейнер или лимит службы.</li>
-    <li class="step-check" data-step="m9-s2">Все важные агенты поднимаются сами после перезагрузки сервера.</li>
-    <li class="step-check" data-step="m9-s3">Ни один ключ не лежит в тексте сценария или в коде.</li>
-    <li class="step-check" data-step="m9-s4">Ни один ключ не отправлялся в чат или письмо. Отправлялся — заменён.</li>
-    <li class="step-check" data-step="m9-s5">Ключи живут в отдельном файле или хранилище с правами «только владелец».</li>
-    <li class="step-check" data-step="m9-s6">У каждой связки свой отдельный ключ, а не один общий на всё.</li>
-    <li class="step-check" data-step="m9-s7">Права каждого ключа минимальны: читающему агенту — ключ «только чтение».</li>
-    <li class="step-check" data-step="m9-s8">Ты знаешь, где выключатель: как отозвать любой ключ за минуту.</li>
-    <li class="step-check" data-step="m9-s9">Сторож по расписанию проверяет каждого агента: жив ли.</li>
-    <li class="step-check" data-step="m9-s10">Тревога сторожа приходит тебе в Telegram, а не лежит молча в журнале.</li>
+    <li class="step-check" data-step="m11-s1">У каждого агента стоит потолок памяти: контейнер или лимит службы.</li>
+    <li class="step-check" data-step="m11-s2">Все важные агенты поднимаются сами после перезагрузки сервера.</li>
+    <li class="step-check" data-step="m11-s3">Ни один ключ не лежит в тексте сценария или в коде.</li>
+    <li class="step-check" data-step="m11-s4">Ни один ключ не отправлялся в чат или письмо. Отправлялся — заменён.</li>
+    <li class="step-check" data-step="m11-s5">Ключи живут в отдельном файле или хранилище с правами «только владелец».</li>
+    <li class="step-check" data-step="m11-s6">У каждой связки свой отдельный ключ, а не один общий на всё.</li>
+    <li class="step-check" data-step="m11-s7">Права каждого ключа минимальны: читающему агенту — ключ «только чтение».</li>
+    <li class="step-check" data-step="m11-s8">Ты знаешь, где выключатель: как отозвать любой ключ за минуту.</li>
+    <li class="step-check" data-step="m11-s9">Сторож по расписанию проверяет каждого агента: жив ли.</li>
+    <li class="step-check" data-step="m11-s10">Тревога сторожа приходит тебе в Telegram, а не лежит молча в журнале.</li>
   </ol>
 
   <div class="control">
@@ -2639,9 +4151,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Правило магазина М.: одна авария — одна жертва, а не весь магазин.</p>
   </div>
 </section>
-    <section class="module" id="m10" data-title="Экзамен и карта возможностей" data-block="V">
+    <section class="module" id="m12" data-title="Экзамен и карта возможностей" data-block="V">
   <header class="module-head">
-    <p>М10 · Блок В «Управлять» · ≈25 мин</p>
+    <p>М12 · Блок В «Управлять» · ≈25 мин</p>
     <h2>Экзамен и карта возможностей</h2>
     <p>Курс кончается. Управление — начинается.</p>
   </header>
@@ -2667,9 +4179,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p>Отмечай пункт, только если проверка пройдена по-настоящему.</p>
 
   <ol class="steps">
-    <li class="step-check" data-step="m10-s1"><strong>Собрал связку своими руками.</strong> Проверка: открой свой n8n — там живёт связка из М3, утреннее сообщение приходит. Можешь объяснить вслух каждый её узел.</li>
-    <li class="step-check" data-step="m10-s2"><strong>Видишь возможности для своего бизнеса.</strong> Проверка: выпиши три связки для своего магазина, не подглядывая. Потом сравни с картой ниже.</li>
-    <li class="step-check" data-step="m10-s3"><strong>Умеешь ставить задачи Claude/GPT и проверять результат.</strong> Проверка: поставь ИИ задачу по шаблону ТЗ из этого модуля и прими работу по своим же критериям.</li>
+    <li class="step-check" data-step="m12-s1"><strong>Собрал связку своими руками.</strong> Проверка: открой свой n8n — там живёт связка из М3, утреннее сообщение приходит. Можешь объяснить вслух каждый её узел. Плюс задание: вставь одну готовую связку из М9 и покажи результат — сообщение в Telegram или строку в таблице.</li>
+    <li class="step-check" data-step="m12-s2"><strong>Видишь возможности для своего бизнеса.</strong> Проверка: выпиши три связки для своего магазина, не подглядывая. Потом сравни с картой ниже.</li>
+    <li class="step-check" data-step="m12-s3"><strong>Умеешь ставить задачи Claude/GPT и проверять результат.</strong> Проверка: поставь ИИ задачу по шаблону ТЗ из этого модуля и прими работу по своим же критериям.</li>
   </ol>
 
   <p>Какой-то пункт не отметил — это не провал, это адрес.</p>
@@ -2679,15 +4191,15 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     </thead>
     <tbody>
       <tr><td>Собрал связку своими руками</td><td>М1 (анатомия) → М3 (практика в n8n)</td></tr>
-      <tr><td>Видишь возможности для своего бизнеса</td><td>М6 (единая база) → М7 (12 схем рынка) → М8 (деньги)</td></tr>
-      <tr><td>Умеешь ставить задачи Claude/GPT и проверять результат</td><td>М5 (ИИ в конвейере) → шаблон ТЗ ниже</td></tr>
+      <tr><td>Видишь возможности для своего бизнеса</td><td>М7 (единая база) → М8 (12 схем рынка) → М9 (четыре связки) → М10 (деньги)</td></tr>
+      <tr><td>Умеешь ставить задачи Claude/GPT и проверять результат</td><td>М5 (ИИ в конвейере) → М6 (агенты и MCP) → шаблон ТЗ ниже</td></tr>
     </tbody>
   </table>
 
   <h3>Карта следующих связок магазина М.</h3>
 
   <div class="example case-m">
-    <p>Хозяин магазина М. сдал этот экзамен и сел с формулой из М8.</p>
+    <p>Хозяин магазина М. сдал этот экзамен и сел с формулой из М10.</p>
     <p>Выгода = часы, которые связка вернёт за месяц × цена его часа (~20 тыс ₽).</p>
     <p>Получилась карта — не мечты, а очередь работ с ценником.</p>
   </div>
@@ -2697,18 +4209,19 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       <tr><th>Связка</th><th>Что делает</th><th>Вернёт часов/мес</th><th>Грубая выгода</th></tr>
     </thead>
     <tbody>
-      <tr><td>Единая таблица событий (М6)</td><td>все девять автоматизаций пишут в одну базу, ручная сверка исчезает</td><td>~10</td><td>~200 тыс ₽/мес</td></tr>
-      <tr><td>Контент-конвейер (М7, схема 5)</td><td>идея → ИИ-текст → ИИ-картинка → отложенный пост</td><td>~8</td><td>~160 тыс ₽/мес</td></tr>
-      <tr><td>Вопрос покупателя → черновик ответа (М7, схема 3)</td><td>ИИ отвечает по базе знаний, человек подключается к сложному</td><td>~6</td><td>~120 тыс ₽/мес</td></tr>
-      <tr><td>Документы поставок (М7, схема 11)</td><td>накладная пришла → распознана → строка в таблице → уведомление</td><td>~4</td><td>~80 тыс ₽/мес</td></tr>
-      <tr><td>ИИ-сводка по конкурентам (М7, схема 9)</td><td>дозор цен уже есть; ИИ добавляет сводку отличий карточек</td><td>~3</td><td>~60 тыс ₽/мес</td></tr>
-      <tr><td>Авторазбор почты (М7, схема 7)</td><td>ИИ сортирует письма и готовит черновики ответов</td><td>~3</td><td>~60 тыс ₽/мес</td></tr>
+      <tr><td>Единая таблица событий (М7)</td><td>все девять автоматизаций пишут в одну базу, ручная сверка исчезает</td><td>~10</td><td>~200 тыс ₽/мес</td></tr>
+      <tr><td>Контент-конвейер (М8, схема 5)</td><td>идея → ИИ-текст → ИИ-картинка → отложенный пост</td><td>~8</td><td>~160 тыс ₽/мес</td></tr>
+      <tr><td>Вопрос покупателя → черновик ответа (М8, схема 3; готовая связка в М9)</td><td>ИИ отвечает по базе знаний, человек подключается к сложному</td><td>~6</td><td>~120 тыс ₽/мес</td></tr>
+      <tr><td>Документы поставок (М8, схема 11)</td><td>накладная пришла → распознана → строка в таблице → уведомление</td><td>~4</td><td>~80 тыс ₽/мес</td></tr>
+      <tr><td>ИИ-сводка по конкурентам (М8, схема 9; готовая связка в М9)</td><td>дозор цен уже есть; ИИ добавляет сводку отличий карточек</td><td>~3</td><td>~60 тыс ₽/мес</td></tr>
+      <tr><td>Авторазбор почты (М8, схема 7)</td><td>ИИ сортирует письма и готовит черновики ответов</td><td>~3</td><td>~60 тыс ₽/мес</td></tr>
     </tbody>
   </table>
 
   <p>Часы — грубые оценки хозяина, для выбора очереди, не для бухгалтерии.</p>
   <p>Сборка одной связки у исполнителя — по прикидке, десятки тысяч рублей; точную цену покажет только твоё ТЗ. Или твой выходной в n8n.</p>
-  <p>Почти каждая строка окупается за первый месяц. Точный расчёт — калькулятор в М8.</p>
+  <p>Почти каждая строка окупается за первый месяц. Точный расчёт — калькулятор в М10.</p>
+  <p>Четыре такие связки уже лежат готовыми файлами в М9 — их цена не десятки тысяч, а вечер на вставку. А когда связке надо самой решать, что искать и кого спросить, — это агент с MCP из М6.</p>
 
   <figure class="scheme">
     <svg viewBox="0 0 660 340" role="img" aria-label="Схема: три дороги после экзамена — собрать самому, заказать исполнителю, поставить задачу ИИ — ведут к магазину, который работает сам">
@@ -2755,7 +4268,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <li><strong>Триггер.</strong> С чего начинается запуск: время, событие, письмо, кнопка. Формула из М1: «когда __ — тогда __».</li>
     <li><strong>Шаги.</strong> Цепочка по порядку: откуда берутся данные → что с ними происходит → куда падает результат.</li>
     <li><strong>Что считается успехом.</strong> Проверяемый критерий с числом или фактом: «сообщение пришло до 9:05, суммы сходятся с кабинетом».</li>
-    <li><strong>Что запрещено.</strong> Границы: каких данных не касаться, что не отправлять без моего подтверждения, лимит расходов. Ключ — свой и с минимальными правами (М9).</li>
+    <li><strong>Что запрещено.</strong> Границы: каких данных не касаться, что не отправлять без моего подтверждения, лимит расходов. Ключ — свой и с минимальными правами (М11).</li>
     <li><strong>Как проверю.</strong> Приёмка: показать на живом запуске; несколько дней наблюдаю параллельно со старым способом; при ошибке — тревога мне, а не тишина.</li>
   </ol>
 
@@ -2793,7 +4306,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <div class="control">
     <p>Экзамен пересдавай: вернись к трём критериям через месяц.</p>
-    <p>Карту возможностей пересматривай раз в квартал, выгоду пересчитывай в калькуляторе М8.</p>
+    <p>Карту возможностей пересматривай раз в квартал, выгоду пересчитывай в калькуляторе М10.</p>
     <p>Шаблон ТЗ — единственный формат, в котором ты теперь ставишь задачи и принимаешь работу.</p>
   </div>
 
@@ -2851,15 +4364,37 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
 /* ---------- хранилище прогресса (не падает без localStorage) ---------- */
 var KEY = "shkola-progress";
+var REMAP = {"m6": "m7", "m7": "m8", "m8": "m10", "m9": "m11", "m10": "m12"}; /* старый id модуля → новый; прогресс v1 переезжает по нему */
+/* MIGRATE:start */
+/* Прогресс v1 (запись без поля v, до перенумерации 22.08.2026) -> v2:
+   ключи модулей «mN» и шагов «mN-sK» переезжают по карте старый id -> новый.
+   Запись с v:2 возвращается как есть — повторная загрузка ничего не меняет. */
+function migrateState(d, remap){
+  if(d && d.v === 2) return d;
+  var out = {v:2, steps:{}, modules:{}};
+  var mods = (d && d.modules && typeof d.modules === "object") ? d.modules : {};
+  var steps = (d && d.steps && typeof d.steps === "object") ? d.steps : {};
+  var k, m;
+  for(k in mods){ if(mods[k]) out.modules[remap[k] || k] = true; }
+  for(k in steps){
+    if(!steps[k]) continue;
+    m = k.split("-")[0];
+    out.steps[(remap[m] || m) + k.slice(m.length)] = true;
+  }
+  return out;
+}
+/* MIGRATE:end */
 function readState(){
   try{
     var raw = localStorage.getItem(KEY);
-    var d = raw ? JSON.parse(raw) : null;
+    if(!raw) return {v:2, steps:{}, modules:{}};
+    var d = JSON.parse(raw);
     if(!d || typeof d !== "object") d = {};
+    if(d.v !== 2){ d = migrateState(d, REMAP); writeState(d); } /* старая запись — переезд один раз */
     if(!d.steps || typeof d.steps !== "object") d.steps = {};
     if(!d.modules || typeof d.modules !== "object") d.modules = {};
     return d;
-  }catch(e){ return {steps:{}, modules:{}}; }
+  }catch(e){ return {v:2, steps:{}, modules:{}}; }
 }
 function writeState(d){
   try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){ /* приватный режим — курс работает, прогресс не хранится */ }
@@ -2868,7 +4403,7 @@ var state = readState();
 
 /* ---------- прогресс-бар и оглавление ---------- */
 var modules = [].slice.call(document.querySelectorAll("section.module"));
-var total = modules.length || 11;
+var total = modules.length;
 
 function renderProgress(){
   var done = 0;
@@ -2952,6 +4487,55 @@ modules.forEach(function(m){
       });
     });
   });
+});
+
+/* ---------- связки: плашка с именем и кнопка «Скопировать» ---------- */
+[].slice.call(document.querySelectorAll(".svyazka")).forEach(function(box){
+  var code = box.querySelector("pre > code");
+  var head = document.createElement("div");
+  head.className = "svyazka-head";
+  var name = document.createElement("span");
+  name.className = "svyazka-name";
+  name.textContent = box.getAttribute("data-name") || "без имени";
+  head.appendChild(name);
+  if(code){
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "svyazka-copy";
+    btn.textContent = "Скопировать";
+    function gotovo(){
+      btn.textContent = "скопировано";
+      btn.classList.add("ok");
+      setTimeout(function(){ btn.textContent = "Скопировать"; btn.classList.remove("ok"); }, 2000);
+    }
+    function vruchnuyu(){ /* старый браузер или нет прав на буфер — выделяем текст */
+      try{
+        var r = document.createRange(); r.selectNodeContents(code);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        if(document.execCommand("copy")) gotovo();
+        else btn.textContent = "выдели и скопируй сам";
+      }catch(e){ btn.textContent = "выдели и скопируй сам"; }
+    }
+    btn.addEventListener("click", function(){
+      if(navigator.clipboard && navigator.clipboard.writeText)
+        navigator.clipboard.writeText(code.textContent).then(gotovo, vruchnuyu);
+      else vruchnuyu();
+    });
+    head.appendChild(btn);
+  }
+  box.insertBefore(head, box.firstChild);
+});
+
+/* ---------- бейдж «новое» в оглавлении: 30 дней с даты data-new на секции ---------- */
+modules.forEach(function(m){
+  var ot = Date.parse(m.getAttribute("data-new") || "");
+  if(isNaN(ot) || Date.now() - ot > 30 * 86400000) return;
+  var link = document.querySelector('.toc-link[href="#' + m.id + '"]');
+  if(!link) return;
+  var b = document.createElement("span");
+  b.className = "toc-new";
+  b.textContent = "новое";
+  link.appendChild(b);
 });
 
 /* ---------- калькулятор окупаемости: вставка по метке ROI-CALC ---------- */

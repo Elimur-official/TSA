@@ -275,6 +275,25 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 .module.is-done .module-done button{color:var(--amber-ink);background:var(--amber-wash);border-color:var(--amber);filter:none}
 .module-done .done-note{font-size:13px;color:var(--muted)}
 
+/* связка: JSON для вставки в n8n (плашку с именем и кнопку добавляет движок) */
+.svyazka{background:var(--card);border:1.5px solid var(--line);border-radius:16px;margin:22px 0;overflow:hidden}
+.svyazka-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--accent-wash);border-bottom:1px solid var(--line)}
+.svyazka-name{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.svyazka-name::before{content:"связка · ";color:var(--muted)}
+.svyazka-copy{font-size:13.5px;font-weight:800;color:var(--on-accent);background:var(--accent);
+  border:1.5px solid var(--accent);border-radius:10px;padding:7px 14px;cursor:pointer;transition:filter .15s}
+.svyazka-copy:hover{filter:brightness(1.08)}
+.svyazka-copy.ok{color:var(--amber-ink);background:var(--amber-wash);border-color:var(--amber);filter:none}
+.svyazka pre{margin:0;max-height:320px;overflow:auto;padding:14px 16px;font-size:12.5px;line-height:1.5;
+  background:var(--paper);tab-size:2}
+.svyazka code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.svyazka-net{margin:0;padding:14px 16px;color:var(--amber-ink);font-weight:700}
+
+/* бейдж «новое» в оглавлении — ставит движок по data-new секции, живёт 30 дней */
+.toc-new{display:inline-block;margin-left:2px;padding:2px 7px;border-radius:99px;background:var(--amber);color:#241A05;
+  font-family:var(--fd);font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+
 /* ============ калькулятор окупаемости ============ */
 #roi-calc{background:var(--card);border:2px solid var(--accent);border-radius:var(--r);
   padding:clamp(18px,4vw,32px);margin:26px 0}
@@ -307,14 +326,14 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <div class="head-inner">
     <div class="brandline">
       <p class="course-name">Школа <b>говорящей головы</b></p>
-      <p class="progress-label" id="progress-label">пройдено 0 из 11 модулей</p>
+      <p class="progress-label" id="progress-label">пройдено 0 из 12 модулей</p>
     </div>
     <nav class="school-switch" aria-label="Выбор школы">
       <a class="switch-tab" href="../index.html">Автоматизации</a>
       <span class="switch-tab now" aria-current="page">Говорящая голова</span>
     </nav>
     <div class="progress-track" role="progressbar" aria-label="Прогресс по курсу"
-         aria-valuemin="0" aria-valuemax="11" aria-valuenow="0">
+         aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
       <div class="progress-fill" id="progress-fill"></div>
     </div>
     <p class="progress-note">прогресс хранится в этом браузере · курс на 3 захода по 2–3 часа</p>
@@ -325,24 +344,25 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <nav class="toc" id="toc" aria-label="Оглавление курса">
     <div class="toc-inner">
       <div class="toc-block">
-        <p class="toc-cap"><b>А · Понять</b><span>≈2 ч</span></p>
+        <p class="toc-cap"><b>А · Понять</b><span>≈3 ч</span></p>
         <a class="toc-link" href="#m0"><span class="toc-num">0</span>Цель</a>
         <a class="toc-link" href="#m1"><span class="toc-num">1</span>Как ИИ делает видео</a>
-        <a class="toc-link" href="#m2"><span class="toc-num">2</span>Твой Higgsfield</a>
+        <a class="toc-link" href="#m2"><span class="toc-num">2</span>Рынок видео-ИИ 2026</a>
+        <a class="toc-link" href="#m3"><span class="toc-num">3</span>Твой Higgsfield</a>
       </div>
       <div class="toc-block">
         <p class="toc-cap"><b>Б · Собрать</b><span>≈3 ч</span></p>
-        <a class="toc-link" href="#m3"><span class="toc-num">3</span>Лицо ведущей</a>
-        <a class="toc-link" href="#m4"><span class="toc-num">4</span>Голос ведущей</a>
-        <a class="toc-link" href="#m5"><span class="toc-num">5</span>Сценарий ролика</a>
-        <a class="toc-link" href="#m6"><span class="toc-num">6</span>Первый ролик</a>
+        <a class="toc-link" href="#m4"><span class="toc-num">4</span>Лицо ведущей</a>
+        <a class="toc-link" href="#m5"><span class="toc-num">5</span>Голос ведущей</a>
+        <a class="toc-link" href="#m6"><span class="toc-num">6</span>Сценарий ролика</a>
+        <a class="toc-link" href="#m7"><span class="toc-num">7</span>Первый ролик</a>
       </div>
       <div class="toc-block">
-        <p class="toc-cap"><b>В · Управлять</b><span>≈2,5 ч</span></p>
-        <a class="toc-link" href="#m7"><span class="toc-num">7</span>Конвейер на поток</a>
-        <a class="toc-link" href="#m8"><span class="toc-num">8</span>Окупаемость роликов</a>
-        <a class="toc-link" href="#m9"><span class="toc-num">9</span>Право и честность</a>
-        <a class="toc-link" href="#m10"><span class="toc-num">10</span>Экзамен и три ролика</a>
+        <p class="toc-cap"><b>В · Управлять</b><span>≈2 ч</span></p>
+        <a class="toc-link" href="#m8"><span class="toc-num">8</span>Конвейер на поток</a>
+        <a class="toc-link" href="#m9"><span class="toc-num">9</span>Окупаемость роликов</a>
+        <a class="toc-link" href="#m10"><span class="toc-num">10</span>Право и честность</a>
+        <a class="toc-link" href="#m11"><span class="toc-num">11</span>Экзамен и три ролика</a>
       </div>
     </div>
   </nav>
@@ -361,7 +381,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p>Ролик — расходник. Конвейер — актив.</p>
 
   <h3>Три критерия успеха</h3>
-  <p>Курс сдан, когда честно отметишь все три. Дословно, как на экзамене в М10:</p>
+  <p>Курс сдан, когда честно отметишь все три. Дословно, как на экзамене в М11:</p>
   <ul>
     <li><strong>Конвейер собран — 3 ролика за неделю руками владельца с замером времени.</strong></li>
     <li><strong>Понимаю каждый шаг настолько, что могу его проверить.</strong></li>
@@ -418,28 +438,28 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <h3>Карта пути</h3>
-  <p>Три блока — три захода. Каждый кончается результатом, который можно потрогать.</p>
+  <p>Три блока, двенадцать модулей — три захода. Каждый кончается результатом, который можно потрогать.</p>
 
   <figure class="scheme">
     <svg viewBox="0 0 660 235" role="img" aria-label="Карта пути: три блока курса">
       <rect x="15" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
-      <text x="110" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок А · ≈2 ч</text>
+      <text x="110" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок А · ≈3 ч</text>
       <text x="110" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Понять</text>
-      <text x="110" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М0–М2: цель, устройство</text>
-      <text x="110" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">ИИ-видео, твой Higgsfield</text>
+      <text x="110" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М0–М3: цель, устройство,</text>
+      <text x="110" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">рынок 2026, твой Higgsfield</text>
       <path d="M205 105 H231" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <path d="M224 98 L232 105 L224 112" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <rect x="235" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
       <text x="330" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок Б · ≈3 ч</text>
       <text x="330" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Собрать</text>
-      <text x="330" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М3–М6: лицо, голос,</text>
+      <text x="330" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М4–М7: лицо, голос,</text>
       <text x="330" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">сценарий, первый ролик</text>
       <path d="M425 105 H451" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <path d="M444 98 L452 105 L444 112" fill="none" stroke="var(--ink)" stroke-width="2"/>
       <rect x="455" y="30" width="190" height="150" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
-      <text x="550" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок В · ≈2,5 ч</text>
+      <text x="550" y="62" text-anchor="middle" font-size="14" fill="var(--muted)">Блок В · ≈2 ч</text>
       <text x="550" y="92" text-anchor="middle" font-size="20" font-weight="700" fill="var(--ink)">Управлять</text>
-      <text x="550" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М7–М10: поток, деньги,</text>
+      <text x="550" y="122" text-anchor="middle" font-size="14" fill="var(--muted)">М8–М11: поток, деньги,</text>
       <text x="550" y="142" text-anchor="middle" font-size="14" fill="var(--muted)">право, экзамен</text>
       <text x="330" y="215" text-anchor="middle" font-size="15" font-weight="600" fill="var(--amber)">в конце блока Б — первый ролик с твоей ведущей</text>
     </svg>
@@ -453,35 +473,35 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <svg viewBox="0 0 660 500" role="img" aria-label="Конвейер из пяти станций">
       <rect x="110" y="16" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
       <text x="330" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">1 · Тема и сценарий</text>
-      <text x="330" y="68" text-anchor="middle" font-size="14" fill="var(--muted)">каждую неделю · М5</text>
+      <text x="330" y="68" text-anchor="middle" font-size="14" fill="var(--muted)">каждую неделю · М6</text>
       <path d="M330 84 V104" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <path d="M323 97 L330 105 L337 97" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <rect x="110" y="112" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
       <text x="330" y="140" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">2 · Лицо ведущей</text>
-      <text x="330" y="164" text-anchor="middle" font-size="14" fill="var(--muted)">настраивается один раз · М3</text>
+      <text x="330" y="164" text-anchor="middle" font-size="14" fill="var(--muted)">настраивается один раз · М4</text>
       <path d="M330 180 V200" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <path d="M323 193 L330 201 L337 193" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <rect x="110" y="208" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
       <text x="330" y="236" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">3 · Голос ведущей</text>
-      <text x="330" y="260" text-anchor="middle" font-size="14" fill="var(--muted)">клонируется один раз · М4</text>
+      <text x="330" y="260" text-anchor="middle" font-size="14" fill="var(--muted)">клонируется один раз · М5</text>
       <path d="M330 276 V296" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <path d="M323 289 L330 297 L337 289" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <rect x="110" y="304" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
       <text x="330" y="332" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">4 · Генерация ролика</text>
-      <text x="330" y="356" text-anchor="middle" font-size="14" fill="var(--muted)">минуты на штуку · М6</text>
+      <text x="330" y="356" text-anchor="middle" font-size="14" fill="var(--muted)">минуты на штуку · М7</text>
       <path d="M330 372 V392" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <path d="M323 385 L330 393 L337 385" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <rect x="110" y="400" width="440" height="68" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
       <text x="330" y="428" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">5 · Проверка и публикация</text>
-      <text x="330" y="452" text-anchor="middle" font-size="14" fill="var(--amber)">твоя приёмка · М7 и М9</text>
+      <text x="330" y="452" text-anchor="middle" font-size="14" fill="var(--amber)">твоя приёмка · М8 и М10</text>
       <text x="330" y="490" text-anchor="middle" font-size="14" fill="var(--muted)">станции 2 и 3 — разовые, остальные — еженедельные</text>
     </svg>
     <figcaption>Пять станций конвейера. Лицо и голос снимаются один раз, дальше работают на каждый ролик.</figcaption>
   </figure>
 
   <h3>Быстрая победа</h3>
-  <p>Первая проверка — 10-секундный ролик с русской речью, самый первый шаг М4.</p>
-  <p>Первый полный ролик с ведущей — М6, конец блока Б.</p>
+  <p>Первая проверка — 10-секундный ролик с русской речью, самый первый шаг М5.</p>
+  <p>Первый полный ролик с ведущей — М7, конец блока Б.</p>
   <p>Дальше станок разгоняется до темпа 2–3 ролика в неделю.</p>
 
   <ol class="steps">
@@ -555,7 +575,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <details class="term">
     <summary>C2PA-метка</summary>
     <p>Невидимая машиночитаемая отметка «сделано ИИ» внутри файла.</p>
-    <p>Площадки читают её автоматически. Вырезать не пытайся — про честность будет М9.</p>
+    <p>Площадки читают её автоматически. Вырезать не пытайся — про честность будет М10.</p>
   </details>
 
   <h3>Одна схема: текст → картинка → движение → речь</h3>
@@ -626,7 +646,8 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <div class="apply">
-    <p>В М2 — сверить тариф и кредиты, уже понимая, что это такое.</p>
+    <p>В М2 — карта рынка: какие движки живы и сколько стоит секунда.</p>
+    <p>В М3 — сверить тариф и кредиты, уже понимая, что это такое.</p>
     <p>В блоке Б — снять сет для аватара и записать голос для клона.</p>
     <p>В любом разговоре «сделаем ролики под ключ» — теперь слышно, где пугают магией.</p>
   </div>
@@ -675,9 +696,254 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Проверяй слабые места: руки, надписи, длинные планы. Брак — расход, а не авария.</p>
   </div>
 </section>
-    <section class="module" id="m2" data-title="Твой Higgsfield" data-block="A">
+    <section class="module" id="m2" data-title="Рынок видео-ИИ 2026" data-block="A" data-new="2026-08-22">
   <header class="module-head">
-    <p>М2 · Блок А «Понять» · ≈50 мин</p>
+    <p>М2 · Блок А «Понять» · ≈45 мин</p>
+    <h2>Рынок видео-ИИ 2026</h2>
+    <p>Карта движков с ценой за секунду. Комбайн оплачен — менять его не надо, но знать, куда бежать, когда один движок упал, — обязательно.</p>
+  </header>
+
+  <p>Внутри твоей подписки живёт не одна модель, а целая полка чужих.</p>
+  <p>Этот модуль — карта полки на август 2026 с датой сверки у каждой цифры.</p>
+  <p>Через месяц она начнёт врать — в конце модуля ты научишься сверять её сам.</p>
+
+  <h3>Шесть движков августа 2026</h3>
+  <p>Цена за секунду — это цена через API у площадок-продавцов, где она опубликована.</p>
+  <p>В кабинете комбайна ты платишь кредитами, но пропорция между движками та же.</p>
+  <table>
+    <thead>
+      <tr><th>Движок</th><th>Сильная сторона</th><th>Цена за секунду</th><th>Где живёт</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Seedance 2.0 (ByteDance)</td>
+        <td>Картинка и звук по <span class="dated" data-src="higgsfield.ai, блог о пяти моделях, 09.06.2026">9 референсам</span> разом: фото товара, кадр ведущей, голос; несколько планов в одном ролике</td>
+        <td><span class="dated" data-src="fal.ai, 22.08.2026">$0,24–0,30 за 720p</span>; 1080p считается по токенам — <span class="dated" data-src="расчёт по формуле токенов fal.ai, 22.08.2026">≈ $0,68</span>; внутри комбайна — <span class="dated" data-src="higgsfield.ai, блог о Seedance, 24.06.2026">36 кредитов за 8 секунд 720p</span></td>
+        <td>Higgsfield, fal, Runway</td>
+      </tr>
+      <tr>
+        <td>Veo 3.1 (Google)</td>
+        <td>Свет, погода, глубина кадра; родной звук и речь в том же проходе</td>
+        <td><span class="dated" data-src="ai.google.dev, цены Gemini API, 22.08.2026">быстрый $0,10 за 720p и $0,12 за 1080p; полный $0,40; лёгкий $0,05</span></td>
+        <td>Higgsfield, Gemini API, Flow</td>
+      </tr>
+      <tr>
+        <td>Kling 3.0 (Kuaishou, <span class="dated" data-src="обзоры morphic.com, veevid.ai, 22.08.2026">февраль 2026</span>)</td>
+        <td>4K, до <span class="dated" data-src="higgsfield.ai, блог о пяти моделях, 09.06.2026">6 планов</span> в одном ролике, родная речь; самая дешёвая говорящая сцена</td>
+        <td><span class="dated" data-src="fal.ai, 22.08.2026">$0,084 без звука; $0,126 со звуком</span></td>
+        <td>Higgsfield, fal, Runway</td>
+      </tr>
+      <tr>
+        <td>Wan 2.7 (Alibaba)</td>
+        <td>Первый и последний кадр задаёшь сам; правит готовое видео по команде словами; родной звук и липсинк</td>
+        <td><span class="dated" data-src="fal.ai, 22.08.2026">$0,10 за 720p; $0,15 за 1080p</span></td>
+        <td>Higgsfield (2.6 и 2.7), fal</td>
+      </tr>
+      <tr>
+        <td>Runway Gen-4.5 (Runway)</td>
+        <td>Движение камеры и кино-картинка; модель своя, другим площадкам не отдаётся</td>
+        <td><span class="dated" data-src="docs.dev.runwayml.com, 22.08.2026">12 кредитов за секунду по API, кредит — $0,01</span>; в подписке — <span class="dated" data-src="higgsfield.ai, блог о Runway, 04.07.2026">25 кредитов за секунду</span></td>
+        <td>только Runway — в комбайне нет</td>
+      </tr>
+      <tr>
+        <td>Hailuo 2.3 (MiniMax)</td>
+        <td>Скорость, стабильный цвет, чёткие надписи в кадре</td>
+        <td><span class="dated" data-src="openrouter.ai, 22.08.2026">$0,082</span> через OpenRouter; у MiniMax напрямую — <span class="dated" data-src="gate.ai, обзор Hailuo 2.3, 14.07.2026">$0,19 за 6 секунд 768p, то есть около $0,03</span></td>
+        <td>Higgsfield, MiniMax</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Разброс — в пять раз за ту же секунду. Для говорящей головы дорогой свет Veo не нужен.</p>
+  <p><span class="dated" data-src="higgsfield.ai, блог о пяти моделях, 09.06.2026">Пять из шести живут в твоём кабинете</span>: переключатель модели — и та же сцена идёт другим движком.</p>
+  <p>Шестой, Runway, — отдельная подписка. Держи в голове, платить не спеши.</p>
+
+  <h3>Sora 2 закрыта — не строй на ней</h3>
+  <p><strong>Приложение Sora закрыто <span class="dated" data-src="the-decoder.com, 28.03.2026">26.04.2026</span>. API отключают <span class="dated" data-src="the-decoder.com, 28.03.2026">24.09.2026</span>.</strong></p>
+  <p>В конспектах лета 2026 Sora 2 ещё стоит в библиотеках «движком на все случаи». Это устарело.</p>
+  <p>Увидел Sora в переключателе моделей — не выбирай: через месяц ролики не перегенерировать.</p>
+
+  <details class="term">
+    <summary>Цена за секунду</summary>
+    <p>Сколько стоит одна секунда готового видео у продавца доступа к модели.</p>
+    <p>Ролик на 10 секунд — умножай на десять. Брак-дубли платятся той же ценой, поэтому считай их.</p>
+  </details>
+  <details class="term">
+    <summary>Родной звук и липсинк по аудио</summary>
+    <p>Родной звук: модель сама придумывает голос и кладёт его на губы — в одном проходе.</p>
+    <p>Липсинк по аудио: ты даёшь готовую озвучку, модель подгоняет губы под неё.</p>
+    <p>Для русского второй путь надёжнее: озвучку делает клон голоса из М5, а движок только шевелит губы.</p>
+  </details>
+  <details class="term">
+    <summary>Бенчмарк</summary>
+    <p>Замер на большой выборке аккаунтов, а не «у нас сработало».</p>
+    <p>Цифра бенчмарка — ориентир, не обещание: она говорит, в какой диапазон целиться.</p>
+  </details>
+
+  <h3>Говорящие головы: четыре сервиса</h3>
+  <table>
+    <thead>
+      <tr><th>Сервис</th><th>Сильная сторона</th><th>Вход</th><th>Когда брать</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Higgsfield Speak</td>
+        <td>Говорящая голова внутри комбайна: тот же кошелёк кредитов, те же движки рядом</td>
+        <td><span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">только Plus и Ultra; Plus $59/мес, годовая $47/мес</span>; на Plus — <span class="dated" data-src="страница цен Higgsfield, 20.08.2026">около 1 000 коротких Speak-роликов 720p в месяц</span></td>
+        <td>твой случай: уже оплачено</td>
+      </tr>
+      <tr>
+        <td>HeyGen</td>
+        <td>Цифровой двойник и перевод видео на <span class="dated" data-src="heygen.com/pricing, 20.08.2026">175 языков</span></td>
+        <td><span class="dated" data-src="heygen.com/pricing, 20.08.2026">Creator $29/мес, годовая $24/мес</span></td>
+        <td>нужен дубляж на много языков</td>
+      </tr>
+      <tr>
+        <td>Synthesia</td>
+        <td>«Офисное» видео по сценарию, <span class="dated" data-src="synthesia.io/pricing, 20.08.2026">140+ языков</span></td>
+        <td><span class="dated" data-src="synthesia.io/pricing, 20.08.2026">Starter $29/мес, годовая $18/мес, 120 мин/год</span></td>
+        <td>инструкции и обучение персонала</td>
+      </tr>
+      <tr>
+        <td>D-ID</td>
+        <td>Оживление фото, аватар-чат на сайте</td>
+        <td><span class="dated" data-src="top50aitools.com, d-id.com, 20.08.2026">Lite $5.90/мес за 10 мин; Pro $29.90 за 15 мин</span></td>
+        <td>самый дешёвый вход, качество ниже</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Вывод тот же, что в М3: комбайн не менять. Три соседа — запасные выходы, не план.</p>
+
+  <h3>Где русский липсинк</h3>
+  <p>Честная дыра курса: ни один видео-движок не обещает русский в официальном списке так, чтобы на это строить. Русский есть только у инструмента перевода.</p>
+  <ul>
+    <li><strong>Kling 3.0</strong> — родная речь на <span class="dated" data-src="atlascloud.ai, 14.07.2026">пяти языках: китайский, английский, японский, корейский, испанский</span>. Русского в списке нет. Режим «липсинк по аудио» языком формально не ограничен — по обзорам, не по документации.</li>
+    <li><strong>Higgsfield Audio</strong> — перевод видео с липсинком, <span class="dated" data-src="higgsfield.ai, блог об Audio, 02.03.2026">русский в официальном списке из десяти языков</span>; замена голоса — <span class="dated" data-src="higgsfield.ai, блог об Audio, 02.03.2026">70+ языков</span>. Это инструмент перевода поверх готового ролика, не видео-движок — и единственный из троих, где «русский» написано прямо.</li>
+    <li><strong>Higgsfield Speak</strong> — заявлено <span class="dated" data-src="higgsfield.ai/ai-talking-avatar, 20.08.2026">74+ языков</span>, русский отдельно не подтверждён; проверка — в М5.</li>
+  </ul>
+  <p>Поэтому курс обещает не «русский работает», а способ проверить это за десять секунд и горстку кредитов.</p>
+  <p>Порядок запасных путей, если Speak не справился: липсинк по аудио в Kling 3.0 → перевод в Higgsfield Audio → HeyGen.</p>
+
+  <h3>Цифры ИИ-UGC: обе стороны медали</h3>
+  <p>UGC — подача «как от живого покупателя»; так и говорит ведущая. Бенчмарк <span class="dated" data-src="aiugcvideogenerator, бенчмарк, 04.08.2026">04.08.2026 по 200+ рекламным аккаунтам за первое полугодие 2026</span>:</p>
+  <table>
+    <thead>
+      <tr><th>Формат ролика</th><th>Конверсия в покупку</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Обычное бренд-видео</td><td><span class="dated" data-src="aiugcvideogenerator, бенчмарк, 04.08.2026">1,2–2,6 %</span></td></tr>
+      <tr><td>ИИ-UGC с аватаром</td><td><span class="dated" data-src="aiugcvideogenerator, бенчмарк, 04.08.2026">2,1–4,8 %</span></td></tr>
+      <tr><td>Живой UGC от человека</td><td><span class="dated" data-src="aiugcvideogenerator, бенчмарк, 04.08.2026">2,3–5,1 %</span></td></tr>
+    </tbody>
+  </table>
+  <p><strong>За.</strong> ИИ-аватар бьёт обычную рекламу почти вдвое и почти догоняет живого человека.</p>
+  <p><strong>Против.</strong> На тёплом трафике — тем, кто уже знает магазин, — живой UGC лучше аватара <span class="dated" data-src="tok-vibes.com, 10.03.2026">на 20–25 % по конверсии</span>; на холодном разница <span class="dated" data-src="tok-vibes.com, 10.03.2026">10–15 % по цене покупки</span>.</p>
+  <p>Что это значит для тебя: аватар — для потока и холодной аудитории; живое видео с собой — для тех, кто уже покупал.</p>
+
+  <h3>Одна сцена — пять движков: куда что</h3>
+  <p>Сцена одна: ведущая у полки, десять секунд речи. Движок выбираешь под задачу, а не «любимый».</p>
+  <figure class="scheme">
+    <svg viewBox="0 0 700 470" role="img" aria-label="Схема: одна сцена и пять движков, куда какую задачу">
+      <rect x="175" y="10" width="350" height="72" rx="14" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
+      <text x="350" y="40" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink)">Одна сцена</text>
+      <text x="350" y="64" text-anchor="middle" font-size="14" fill="var(--muted)">ведущая у полки, 10 секунд речи</text>
+      <path d="M350 82 V106" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M115 106 H585" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M115 106 V130" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M350 106 V130" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M585 106 V130" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M232 106 V245" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M467 106 V245" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="10" y="130" width="210" height="92" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="115" y="158" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Kling 3.0</text>
+      <text x="115" y="182" text-anchor="middle" font-size="14" fill="var(--muted)">говорит и двигается</text>
+      <text x="115" y="204" text-anchor="middle" font-size="14" fill="var(--accent)">дешевле всех — первый запасной</text>
+      <rect x="245" y="130" width="210" height="92" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="350" y="158" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Veo 3.1</text>
+      <text x="350" y="182" text-anchor="middle" font-size="14" fill="var(--muted)">свет, погода, глубина</text>
+      <text x="350" y="204" text-anchor="middle" font-size="14" fill="var(--muted)">красивый кадр-открытие</text>
+      <rect x="480" y="130" width="210" height="92" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="585" y="158" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Seedance 2.0</text>
+      <text x="585" y="182" text-anchor="middle" font-size="14" fill="var(--muted)">товар по фото-референсу</text>
+      <text x="585" y="204" text-anchor="middle" font-size="14" fill="var(--muted)">несколько планов разом</text>
+      <rect x="127" y="245" width="210" height="92" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="232" y="273" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Wan 2.7</text>
+      <text x="232" y="297" text-anchor="middle" font-size="14" fill="var(--muted)">первый и последний кадр</text>
+      <text x="232" y="319" text-anchor="middle" font-size="14" fill="var(--muted)">правка готового ролика</text>
+      <rect x="362" y="245" width="210" height="92" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="467" y="273" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Hailuo 2.3</text>
+      <text x="467" y="297" text-anchor="middle" font-size="14" fill="var(--muted)">быстро, надписи в кадре</text>
+      <text x="467" y="319" text-anchor="middle" font-size="14" fill="var(--muted)">черновики и тесты</text>
+      <rect x="245" y="362" width="210" height="60" rx="12" fill="var(--card)" stroke="var(--amber)" stroke-width="2" stroke-dasharray="8 6"/>
+      <text x="350" y="387" text-anchor="middle" font-size="16" font-weight="700" fill="var(--amber)">Sora 2 — закрыта</text>
+      <text x="350" y="409" text-anchor="middle" font-size="14" fill="var(--muted)">в конвейер не брать</text>
+      <path d="M262 370 L438 414" fill="none" stroke="var(--amber)" stroke-width="2"/>
+      <text x="350" y="452" text-anchor="middle" font-size="14" fill="var(--muted)">Runway Gen-4.5 — только в своей подписке, в комбайне нет</text>
+    </svg>
+    <figcaption>Пять движков одного кабинета и одна закрытая модель. Основной путь говорящей головы — Speak, он оплачен; Kling 3.0 — первый запасной и самый дешёвый из видеодвижков; остальные — под отдельные задачи.</figcaption>
+  </figure>
+
+  <h3>Практика: тест «10 секунд по-русски» на Kling 3.0</h3>
+  <ol class="steps">
+    <li class="step-check" data-step="m2-s1">Открой кабинет Higgsfield, раздел видео, в переключателе моделей выбери Kling 3.0. Нет в списке — запиши это: полка меняется без предупреждения.</li>
+    <li class="step-check" data-step="m2-s2">Кадр: любой аватар из библиотеки, план по грудь, лицо в камеру. Своя ведущая будет в М4 — сейчас проверяем движок.</li>
+    <li class="step-check" data-step="m2-s3">Текст: 25 русских слов с «о», «у» и с «б», «п», «м» — на них губы выдают себя. Попроси родную речь на русском.</li>
+    <li class="step-check" data-step="m2-s4">Один дубль. Смотри губы на этих звуках: совпали — плюс, разъехались — минус.</li>
+    <li class="step-check" data-step="m2-s5">Второй путь: ту же фразу озвучь любым синтезом голоса и прогони липсинком по аудио — в Kling или через Higgsfield Audio. Сравни с первым дублем.</li>
+    <li class="step-check" data-step="m2-s6">В кабинете посмотри, сколько кредитов ушло на оба дубля. Запиши строку: дата, модель, режим, кредиты, вердикт. Это первая строка твоей таблицы движков.</li>
+    <li class="step-check" data-step="m2-s7">Сверь три любые цены из таблицы выше с живыми страницами продавцов. Расхождение — запиши рядом с датой.</li>
+  </ol>
+
+  <div class="why">
+    <p>Рынок движков живёт квартал: Kling 3.0 вышел <span class="dated" data-src="обзоры morphic.com, veevid.ai, 22.08.2026">в феврале</span>, Seedance 2.0 и Wan 2.7 — <span class="dated" data-src="openrouter.ai и fal.ai, 22.08.2026">в апреле</span>, Sora 2 <span class="dated" data-src="the-decoder.com, 28.03.2026">в апреле закрылась</span>.</p>
+    <p>Без карты ты либо строишь на мёртвом движке, либо платишь впятеро дороже за ту же секунду.</p>
+    <p>А без даты у цифры любая карта через месяц — враньё, которому удобно верить.</p>
+  </div>
+
+  <div class="apply">
+    <p>В М5, если Speak не справился с русским, — запасные пути из этого модуля, по порядку.</p>
+    <p>В М7, при первом ролике, — переключатель модели выбираешь по таблице, а не наугад.</p>
+    <p>В М9 цена за секунду ложится в себестоимость ролика, а цифры UGC — в ожидаемую конверсию.</p>
+  </div>
+
+  <div class="control">
+    <p>Раз в месяц — пять минут: страницы цен трёх движков, сверка столбца, новая дата сверху таблицы.</p>
+    <p>Модель пропала из кабинета — не паника: в таблице у каждой задачи есть второй движок.</p>
+    <p>Цифра старше месяца — не факт, а догадка. Перед крупной тратой кредитов — сверить заново.</p>
+  </div>
+
+  <div class="example">
+    <p>Считаем один и тот же ролик ведущей на 10 секунд по ценам из таблицы.</p>
+    <p><span class="dated" data-src="расчёт по ценам fal.ai, 22.08.2026">Kling 3.0 со звуком — $1,26; Wan 2.7 — $1,00; Seedance 2.0 на 720p — около $3</span> (1080p по токенам — около $7, расчёт).</p>
+    <p><span class="dated" data-src="расчёт по ценам ai.google.dev и openrouter.ai, 22.08.2026">Veo 3.1 быстрый — $1,00, полный — $4,00; Hailuo 2.3 — $0,82</span>.</p>
+    <p>Разница между самым дешёвым и самым дорогим — почти впятеро. Кадр с ведущей у полки не станет лучше от дорогого света.</p>
+    <p>Вывод: запасной движок говорящей сцены — дешёвый и умеющий речь. Дорогой — на один красивый кадр-открытие, и то не в каждом ролике.</p>
+  </div>
+
+  <div class="example case-m">
+    <p>Хозяин магазина М. просил конспект по движкам ещё в начале лета.</p>
+    <p>В конспекте от 20 августа Sora 2 стояла в библиотеке комбайна как «движок на все случаи».</p>
+    <p>Сверка 22 августа: приложение Sora закрыто с <span class="dated" data-src="the-decoder.com, 28.03.2026">26.04.2026</span>, API гаснет <span class="dated" data-src="the-decoder.com, 28.03.2026">24.09.2026</span>. Конспект врал четыре месяца — не потому что плохой, а потому что без даты сверки у строки.</p>
+    <p>Ведущая М. на Sora построена не была — повезло. Теперь у неё основной путь Speak, запасные — Kling 3.0 и Higgsfield Audio, и у каждой строки таблицы стоит дата.</p>
+    <p>Правило он записал так: любимого движка в конвейере нет. Есть таблица с датой и второй путь на каждую задачу.</p>
+  </div>
+
+  <div class="quiz" data-a="2">
+    <p class="quiz-q">В переключателе моделей кабинета есть Sora 2. Что делаешь?</p>
+    <button>беру: это OpenAI, значит, надёжнее всех</button>
+    <button>не беру: приложение закрыто 26.04.2026, API гаснет 24.09.2026 — ролики не перегенерировать</button>
+    <button>беру только для черновиков, а чистовые — на Sora 3, когда выйдет</button>
+    <p class="quiz-x">Закрытая модель — тупик для конвейера: через месяц тот же кадр нечем повторить. Основной путь говорящей сцены — Speak, первый запасной — Kling 3.0, и у каждой задачи на схеме есть второй путь.</p>
+  </div>
+
+  <div class="takeaway">
+    <p>Пять живых движков в одном кабинете, цена за секунду отличается впятеро. Основной путь — Speak, он оплачен; Kling 3.0 — первый запасной и самый дешёвый из видеодвижков. Sora 2 закрыта — в конвейер не брать.</p>
+    <p>Русский официально обещан только у Higgsfield Audio. Остальное — проверяем десятью секундами, а не верим.</p>
+    <p>Комбайн оплачен — не менять. Таблица с датой у каждой строки — знать, куда бежать.</p>
+  </div>
+</section>
+    <section class="module" id="m3" data-title="Твой Higgsfield" data-block="A">
+  <header class="module-head">
+    <p>М3 · Блок А «Понять» · ≈50 мин</p>
     <h2>Твой Higgsfield: что уже куплено</h2>
     <p>Ты платишь за комбайн. Узнай, что в нём есть, и сверь тариф своими глазами.</p>
   </header>
@@ -695,23 +961,23 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <h3>Карта функций: четыре ветки</h3>
   <ul>
     <li><strong>Speak 2.0</strong> — говорящая голова: кадр с ведущей плюс звук — и ведущая говорит. Есть <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">только на планах Plus и Ultra</span>.</li>
-    <li><strong>Soul ID</strong> — постоянное лицо: загружаешь <span class="dated" data-src="higgsfield.ai, справка Soul ID, 20.08.2026">20+ фото, тренировка 3–5 минут</span> — дальше ведущая узнаваема в любой сцене.</li>
+    <li><strong>Soul ID</strong> — постоянное лицо: загружаешь <span class="dated" data-src="higgsfield.ai, справка Soul ID, 20.08.2026">20+ фото, тренировка 3–5 минут</span> — дальше ведущая узнаваема в любой сцене. Рядом — <strong>Soul Cast</strong>: <span class="dated" data-src="по обзорам coldiq.com, makerstack.co, 22.08.2026">проверка, не похоже ли сгенерированное лицо на чужое реальное, с подсказкой по праву</span>. Это по обзорам, не по кабинету: есть ли он на твоём плане — сверь в кабинете.</li>
     <li><strong>Marketing Studio и UGC-сборщик</strong> — вставляешь ссылку на товар, платформа сама тянет фото и описание и собирает ролик-обзор. Тоже <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">только Plus и Ultra</span>.</li>
-    <li><strong>Библиотека моделей</strong> — <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">Sora 2, Veo 3.1, Kling 3.0, Minimax Hailuo, Seedance, Nano Banana и другие</span> — движки на все случаи.</li>
+    <li><strong>Библиотека моделей</strong> — <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">Veo 3.1, Kling 3.0, Minimax Hailuo, Seedance, Nano Banana и другие</span> — движки под разные задачи. Кто из них жив, кто закрыт и сколько стоит секунда — карта рынка в М2.</li>
   </ul>
   <p>Про язык. У говорящих аватаров заявлено <span class="dated" data-src="higgsfield.ai/ai-talking-avatar, 20.08.2026">74+ языков</span>.</p>
   <p>Но прямого подтверждения «русский работает именно в Speak» нет — говорю честно.</p>
-  <p>Поэтому первая практика М4 — русская фраза на 10 секунд. Проверим, а не поверим.</p>
+  <p>Поэтому первая практика М5 — русская фраза на 10 секунд. Проверим, а не поверим.</p>
 
   <details class="term">
-    <summary>Sora, Veo, Kling — что это</summary>
-    <p>Флагманские видеомодели больших ИИ-компаний: Sora — OpenAI, Veo — Google, Kling — Kuaishou.</p>
+    <summary>Veo, Kling, Seedance — что это</summary>
+    <p>Флагманские видеомодели больших ИИ-компаний: Veo — Google, Kling — Kuaishou, Seedance — ByteDance.</p>
     <p>По отдельности у каждой свой сайт и подписка. Higgsfield продаёт доступ ко всем из одного окна — за кредиты.</p>
   </details>
   <details class="term">
     <summary>UGC</summary>
     <p>User Generated Content — контент «как от живого покупателя»: снято будто на телефон, без студийного лоска.</p>
-    <p>Такая подача смотрится как совет, а не как реклама. Цифры, почему она работает, — в М8.</p>
+    <p>Такая подача смотрится как совет, а не как реклама. Цифры, почему она работает, — в М9.</p>
   </details>
   <details class="term">
     <summary>Водяной знак</summary>
@@ -744,7 +1010,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       <text x="165" y="306" text-anchor="middle" font-size="14" fill="var(--amber)">только Plus и выше</text>
       <rect x="345" y="232" width="300" height="88" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
       <text x="495" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">Библиотека моделей</text>
-      <text x="495" y="286" text-anchor="middle" font-size="14" fill="var(--muted)">Sora 2 · Veo 3.1 · Kling 3.0</text>
+      <text x="495" y="286" text-anchor="middle" font-size="14" fill="var(--muted)">Veo 3.1 · Kling 3.0 · Seedance</text>
       <text x="495" y="306" text-anchor="middle" font-size="14" fill="var(--muted)">и другие движки</text>
       <text x="330" y="360" text-anchor="middle" font-size="15" font-weight="600" fill="var(--amber)">кредиты — общий кошелёк всех четырёх веток</text>
       <text x="330" y="392" text-anchor="middle" font-size="14" fill="var(--muted)">нет плана Plus — ветки говорящей головы и товарных роликов закрыты</text>
@@ -791,11 +1057,11 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <h3>Аудит тарифа: открой кабинет и сверь</h3>
   <p>Курс не знает твой тариф. И не должен: факт живёт в кабинете, а не в конспекте.</p>
   <ol class="steps">
-    <li class="step-check" data-step="m2-s1">Зайди на сайт платформы под своим аккаунтом и открой раздел подписки: профиль → Subscription или Billing.</li>
-    <li class="step-check" data-step="m2-s2">Выпиши план — Free, Starter, Plus или Ultra — и дату следующего списания.</li>
-    <li class="step-check" data-step="m2-s3">Выпиши кредиты: сколько даёт план в месяц и сколько осталось сейчас.</li>
-    <li class="step-check" data-step="m2-s4">Проверь строку Speak: доступна ли говорящая голова на твоём плане. Без неё блок Б не поедет.</li>
-    <li class="step-check" data-step="m2-s5">Сверь списанную сумму с прикидкой ниже. Кабинет сейчас не открывается — не беда: иди по курсу дальше, а эту галочку закрой до начала М3.</li>
+    <li class="step-check" data-step="m3-s1">Зайди на сайт платформы под своим аккаунтом и открой раздел подписки: профиль → Subscription или Billing.</li>
+    <li class="step-check" data-step="m3-s2">Выпиши план — Free, Starter, Plus или Ultra — и дату следующего списания.</li>
+    <li class="step-check" data-step="m3-s3">Выпиши кредиты: сколько даёт план в месяц и сколько осталось сейчас.</li>
+    <li class="step-check" data-step="m3-s4">Проверь строку Speak: доступна ли говорящая голова на твоём плане. Без неё блок Б не поедет.</li>
+    <li class="step-check" data-step="m3-s5">Сверь списанную сумму с прикидкой ниже. Кабинет сейчас не открывается — не беда: иди по курсу дальше, а эту галочку закрой до начала М4.</li>
   </ol>
 
   <h3>Прикидка: на что похожи ~60 тыс ₽ в год</h3>
@@ -839,7 +1105,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       </tr>
     </tbody>
   </table>
-  <p>У комбайна нет пер-минутных гарантий и публичного API — интеграции через MCP и CLI, о них в М7.</p>
+  <p>У комбайна нет пер-минутных гарантий и публичного API — интеграции через MCP и CLI, о них в М8.</p>
   <p>Менять платформу не нужно: подписка уже оплачена.</p>
   <p>Альтернативы держи в голове, чтобы не быть заложником одного сервиса.</p>
 
@@ -850,18 +1116,18 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <li>Невидимая C2PA-метка остаётся всегда. Помнишь из М1: площадки читают её сами.</li>
     <li>Коммерческое использование — <span class="dated" data-src="higgsfield.ai/pricing, 20.08.2026">на всех платных планах; на Free его нет</span>.</li>
   </ul>
-  <p>Вырезать метку не пытайся. Честная маркировка — тема М9, и она работает на тебя.</p>
+  <p>Вырезать метку не пытайся. Честная маркировка — тема М10, и она работает на тебя.</p>
 
   <div class="why">
     <p>Это твой станок за твои деньги.</p>
     <p>Не зная карту функций — платишь за комбайн, а пользуешься одной кнопкой.</p>
-    <p>Не зная тариф — не посчитаешь себестоимость ролика в М8.</p>
+    <p>Не зная тариф — не посчитаешь себестоимость ролика в М9.</p>
     <p>И не заметишь, если план сменится или спишется чужая сумма.</p>
   </div>
 
   <div class="apply">
     <p>Чек-лист аудита — прямо сейчас: пять галочек выше.</p>
-    <p>Карта функций — при сборке: Soul ID ждёт в М3, Speak — в М6, товарные ролики — в М7.</p>
+    <p>Карта функций — при сборке: Soul ID ждёт в М4, Speak — в М7, товарные ролики — в М8.</p>
     <p>Таблица сравнения — когда кто-то скажет «бросай всё, есть сервис лучше».</p>
   </div>
 
@@ -883,7 +1149,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Условная прикидка, подставь свои цифры: пусть конвейеру нужно десять роликов в месяц.</p>
     <p>У сервисов с помесячными минутами входной тариф — <span class="dated" data-src="synthesia.io/pricing, 20.08.2026">120 минут в год</span>: это про обучающие фильмы, не про поток коротких роликов.</p>
     <p>У комбайна валюта — кредиты на всё сразу: ролики, картинки, дубли.</p>
-    <p>Поэтому в М8 мы посчитаем не «сколько стоит сервис», а «сколько стоит твой ролик».</p>
+    <p>Поэтому в М9 мы посчитаем не «сколько стоит сервис», а «сколько стоит твой ролик».</p>
   </div>
 
   <div class="quiz" data-a="3">
@@ -900,9 +1166,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Твой тариф — «похоже, годовой Plus». Это оценка. Фактом её делает только кабинет.</p>
   </div>
 </section>
-    <section class="module" id="m3" data-title="Лицо ведущей" data-block="B">
+    <section class="module" id="m4" data-title="Лицо ведущей" data-block="B">
   <header class="module-head">
-    <p>М3 · Блок Б «Собрать» · ≈45 мин</p>
+    <p>М4 · Блок Б «Собрать» · ≈45 мин</p>
     <h2>Лицо ведущей</h2>
     <p>Один вечер — и у магазина есть цифровое лицо: согласие подписано, сет отснят, персонаж обучен.</p>
   </header>
@@ -916,14 +1182,14 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <div class="apply">
     <ul>
       <li>Сегодня: подписать согласие, снять сет за вечер, обучить персонажа в Soul ID.</li>
-      <li>Дальше по курсу: голос (М4), первый ролик (М6), конвейер (М7) — все берут ведущую из этого модуля.</li>
-      <li>Вторая дорожка — твоё собственное лицо для экспертных роликов: экзамен в М10 попросит хотя бы один такой ролик.</li>
+      <li>Дальше по курсу: голос (М5), первый ролик (М7), конвейер (М8) — все берут ведущую из этого модуля.</li>
+      <li>Вторая дорожка — твоё собственное лицо для экспертных роликов: экзамен в М11 попросит хотя бы один такой ролик.</li>
     </ul>
   </div>
 
   <div class="control">
     <ul>
-      <li>Бумага: подписанное согласие лежит в папке документов магазина. Проверка — один взгляд; в М9 этот вопрос встретится снова.</li>
+      <li>Бумага: подписанное согласие лежит в папке документов магазина. Проверка — один взгляд; в М10 этот вопрос встретится снова.</li>
       <li>Сет: принимается по чек-листу ниже. Тем же списком примешь работу, если снимать будешь не ты.</li>
       <li>Персонаж: три тестовые генерации в разных сценах. Лицо «поплыло» — пересобрать сет, а не мириться.</li>
     </ul>
@@ -972,7 +1238,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <h3>Шаг 1. Согласие — до первого кадра</h3>
   <p>По закону использовать изображение человека можно только с его согласия — это <span class="dated" data-src="Гражданский кодекс РФ, статья 152.1, проверено 20.08.2026">ст. 152.1 ГК РФ</span>. Для рекламы согласие обязательно.</p>
   <p>Цифровая ведущая — коммерческое использование внешности. Даже если ведущая — близкий человек, бумага нужна: она защищает вас обоих и снимает вопросы площадок и партнёров.</p>
-  <p>Сразу впиши в согласие и голос: клонировать его будем в М4, а бумага пусть закроет всё одним разом.</p>
+  <p>Сразу впиши в согласие и голос: клонировать его будем в М5, а бумага пусть закроет всё одним разом.</p>
 
   <details class="term">
     <summary>Ст. 152.1 ГК РФ</summary>
@@ -1014,9 +1280,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </ul>
 
   <ol class="steps">
-    <li class="step-check" data-step="m3-s1">Скопируй шаблон, заполни поля и распечатай — на всё уходит пять минут.</li>
-    <li class="step-check" data-step="m3-s2">Подпишите два экземпляра: один — в папку документов магазина, второй — ведущей.</li>
-    <li class="step-check" data-step="m3-s3">Сфотографируй подписанный лист и положи скан в облако рядом с исходниками: чек-лист «перед публикацией» в М9 спросит, где согласие.</li>
+    <li class="step-check" data-step="m4-s1">Скопируй шаблон, заполни поля и распечатай — на всё уходит пять минут.</li>
+    <li class="step-check" data-step="m4-s2">Подпишите два экземпляра: один — в папку документов магазина, второй — ведущей.</li>
+    <li class="step-check" data-step="m4-s3">Сфотографируй подписанный лист и положи скан в облако рядом с исходниками: чек-лист «перед публикацией» в М10 спросит, где согласие.</li>
   </ol>
 
   <h3>Шаг 2. Сет — вечер у окна</h3>
@@ -1066,13 +1332,13 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </figure>
 
   <ol class="steps">
-    <li class="step-check" data-step="m3-s4">Выбери время и место: день, комната с окном. Ведущая садится лицом к окну — свет мягко ложится на лицо. Люстру и лампы за спиной выключи.</li>
-    <li class="step-check" data-step="m3-s5">Поставь камеру на уровень глаз в 1,5–2 метрах, строго горизонтально. Включи 1080p, а лучше 4K.</li>
-    <li class="step-check" data-step="m3-s6">Заблокируй фокус и экспозицию: нажми на лицо на экране и подержи, пока не появится замочек. Автофокус перестанет «дышать».</li>
-    <li class="step-check" data-step="m3-s7">Сними 2–3 минуты непрерывно: ведущая М. спокойно говорит в объектив — о чём угодно, хоть о любимых товарах. Без склеек и перезапусков. Очки, чёлку на глазах и жесты выше груди — убрать.</li>
-    <li class="step-check" data-step="m3-s8">Сними 20–30 фото: ракурсы — прямо, вполоборота, профиль; эмоции — улыбка, спокойствие, удивление; хотя бы один кадр в полный рост.</li>
-    <li class="step-check" data-step="m3-s9">Пересмотри материал на большом экране по списку ошибок ниже. Сомнительный кадр пересними сразу, пока свет тот же.</li>
-    <li class="step-check" data-step="m3-s10">Сложи исходники в две копии: компьютер и облако. Это золотой фонд — из него ведущая будет собираться годами.</li>
+    <li class="step-check" data-step="m4-s4">Выбери время и место: день, комната с окном. Ведущая садится лицом к окну — свет мягко ложится на лицо. Люстру и лампы за спиной выключи.</li>
+    <li class="step-check" data-step="m4-s5">Поставь камеру на уровень глаз в 1,5–2 метрах, строго горизонтально. Включи 1080p, а лучше 4K.</li>
+    <li class="step-check" data-step="m4-s6">Заблокируй фокус и экспозицию: нажми на лицо на экране и подержи, пока не появится замочек. Автофокус перестанет «дышать».</li>
+    <li class="step-check" data-step="m4-s7">Сними 2–3 минуты непрерывно: ведущая М. спокойно говорит в объектив — о чём угодно, хоть о любимых товарах. Без склеек и перезапусков. Очки, чёлку на глазах и жесты выше груди — убрать.</li>
+    <li class="step-check" data-step="m4-s8">Сними 20–30 фото: ракурсы — прямо, вполоборота, профиль; эмоции — улыбка, спокойствие, удивление; хотя бы один кадр в полный рост.</li>
+    <li class="step-check" data-step="m4-s9">Пересмотри материал на большом экране по списку ошибок ниже. Сомнительный кадр пересними сразу, пока свет тот же.</li>
+    <li class="step-check" data-step="m4-s10">Сложи исходники в две копии: компьютер и облако. Это золотой фонд — из него ведущая будет собираться годами.</li>
   </ol>
 
   <p>Типичные ошибки сета — по ним и проверяй:</p>
@@ -1094,10 +1360,10 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </details>
 
   <ol class="steps">
-    <li class="step-check" data-step="m3-s11">В кабинете Higgsfield открой Soul ID и создай нового персонажа. Назови нейтрально, например «Ведущая» — без фамилий.</li>
-    <li class="step-check" data-step="m3-s12">Загрузи 20–30 фото из сета. Смазанные, тёмные и с прикрытым лицом — выкинь: одно плохое фото портит обучение сильнее, чем десять хороших помогают.</li>
-    <li class="step-check" data-step="m3-s13">Запусти тренировку и подожди 3–5 минут.</li>
-    <li class="step-check" data-step="m3-s14">Проверь персонажа тремя генерациями в разных сценах: крупный план, у полки с товаром, на улице. Лицо узнаётся везде — готово. «Поплыло» — замени слабые фото и переобучи.</li>
+    <li class="step-check" data-step="m4-s11">В кабинете Higgsfield открой Soul ID и создай нового персонажа. Назови нейтрально, например «Ведущая» — без фамилий.</li>
+    <li class="step-check" data-step="m4-s12">Загрузи 20–30 фото из сета. Смазанные, тёмные и с прикрытым лицом — выкинь: одно плохое фото портит обучение сильнее, чем десять хороших помогают.</li>
+    <li class="step-check" data-step="m4-s13">Запусти тренировку и подожди 3–5 минут.</li>
+    <li class="step-check" data-step="m4-s14">Проверь персонажа тремя генерациями в разных сценах: крупный план, у полки с товаром, на улице. Лицо узнаётся везде — готово. «Поплыло» — замени слабые фото и переобучи.</li>
   </ol>
 
   <div class="example case-m">
@@ -1106,13 +1372,13 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <h3>Вторая дорожка: твоя голова — для тебя</h3>
-  <p>Конвейер — не только ведущая. Экспертные разборы зритель охотнее слушает от владельца: лицу хозяина магазина верят. В экзамене М10 один из трёх роликов — твоей головой, так что эта дорожка обязательная, а не факультатив.</p>
+  <p>Конвейер — не только ведущая. Экспертные разборы зритель охотнее слушает от владельца: лицу хозяина магазина верят. В экзамене М11 один из трёх роликов — твоей головой, так что эта дорожка обязательная, а не факультатив.</p>
   <p>Хорошая новость: согласие на самого себя не нужно. Остальное — идентично.</p>
 
   <ol class="steps">
-    <li class="step-check" data-step="m3-s15"><strong>Для тебя:</strong> сними свой сет по тому же чек-листу — 2–3 минуты в объектив и 20–30 фото. Шаги про свет, фокус и фон работают без изменений.</li>
-    <li class="step-check" data-step="m3-s16"><strong>Для тебя:</strong> обучи отдельного персонажа — например, «Эксперт». Ведущая и эксперт живут как два разных персонажа, их фото не смешивай.</li>
-    <li class="step-check" data-step="m3-s17"><strong>Для тебя:</strong> прогони те же три проверочные генерации. Критерий один: лицо узнаётся в любой сцене.</li>
+    <li class="step-check" data-step="m4-s15"><strong>Для тебя:</strong> сними свой сет по тому же чек-листу — 2–3 минуты в объектив и 20–30 фото. Шаги про свет, фокус и фон работают без изменений.</li>
+    <li class="step-check" data-step="m4-s16"><strong>Для тебя:</strong> обучи отдельного персонажа — например, «Эксперт». Ведущая и эксперт живут как два разных персонажа, их фото не смешивай.</li>
+    <li class="step-check" data-step="m4-s17"><strong>Для тебя:</strong> прогони те же три проверочные генерации. Критерий один: лицо узнаётся в любой сцене.</li>
   </ol>
 
   <div class="quiz" data-a="2">
@@ -1128,22 +1394,22 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Следующий модуль даст ведущей голос: запись, проф-клон и первая честная проверка русского липсинка.</p>
   </div>
 </section>
-    <section class="module" id="m4" data-title="Голос ведущей" data-block="B">
+    <section class="module" id="m5" data-title="Голос ведущей" data-block="B">
   <header class="module-head">
-    <p>М4 · Блок Б «Собрать» · ≈40 мин</p>
+    <p>М5 · Блок Б «Собрать» · ≈40 мин</p>
     <h2>Голос ведущей</h2>
-    <p>Лицо из М3 заговорит: клонируем голос, прогоняем текст через озвучку — и честно проверяем русский липсинк первым же роликом.</p>
+    <p>Лицо из М4 заговорит: клонируем голос, прогоняем текст через озвучку — и честно проверяем русский липсинк первым же роликом.</p>
   </header>
 
   <div class="why">
-    <p>Голос — вторая половина ведущей: без него персонаж из М3 остаётся фотографией.</p>
+    <p>Голос — вторая половина ведущей: без него персонаж из М4 остаётся фотографией.</p>
     <p>Клон записывается один раз. Дальше любой текст превращается в её голос за минуту — ведущая не переозвучивает каждый ролик и вообще не нужна на «смене».</p>
     <p>И здесь же — главная развилка курса: русский язык именно в липсинке Speak официально не подтверждён. Проверить это 10-секундным роликом дешевле, чем строить конвейер на вере.</p>
   </div>
 
   <div class="apply">
     <ul>
-      <li>Озвучка всех роликов конвейера (М6, М7): написал текст — получил голос ведущей.</li>
+      <li>Озвучка всех роликов конвейера (М7, М8): написал текст — получил голос ведущей.</li>
       <li>Звук отдельно от видео: голосовые объявления в твоём Telegram-канале, озвучка акций и подборок.</li>
       <li>Вторая дорожка: клон твоего голоса — для экспертных роликов твоей головой.</li>
     </ul>
@@ -1246,20 +1512,21 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </details>
 
   <ol class="steps">
-    <li class="step-check" data-step="m4-s1">Подготовь комнату: закрой окна, выключи холодильник и кондиционер, телефон — в авиарежим. Ванная не подходит — эхо.</li>
-    <li class="step-check" data-step="m4-s2">Поставь микрофон в 15–20 сантиметрах ото рта. Запиши пробные 30 секунд и послушай в наушниках: без шума, эха и перегруза.</li>
-    <li class="step-check" data-step="m4-s3">Дай ведущей живые тексты магазина: описания товаров, ответы покупателям, пару историй. Клон перенимает манеру — пусть учится на рабочей речи.</li>
-    <li class="step-check" data-step="m4-s4">Как читать: спокойно, с естественной интонацией — как знакомой покупательнице, не диктором и не монотонно. Оговорка — пауза две секунды и фраза заново, запись не останавливай.</li>
-    <li class="step-check" data-step="m4-s5">Что запрещено в записи: музыка, второй голос, шум улицы, эхо, «улучшайзеры» и фильтры. Клон честно выучит всё, что услышит.</li>
-    <li class="step-check" data-step="m4-s6">Набери от 30 минут чистой речи — можно за два-три подхода в разные дни. Больше — лучше: потолок пользы около 3 часов.</li>
-    <li class="step-check" data-step="m4-s7">Сохрани оригиналы без пережатия в две копии — компьютер и облако, рядом с сетом из М3.</li>
+    <li class="step-check" data-step="m5-s1">Подготовь комнату: закрой окна, выключи холодильник и кондиционер, телефон — в авиарежим. Ванная не подходит — эхо.</li>
+    <li class="step-check" data-step="m5-s2">Поставь микрофон в 15–20 сантиметрах ото рта. Запиши пробные 30 секунд и послушай в наушниках: без шума, эха и перегруза.</li>
+    <li class="step-check" data-step="m5-s3">Дай ведущей живые тексты магазина: описания товаров, ответы покупателям, пару историй. Клон перенимает манеру — пусть учится на рабочей речи.</li>
+    <li class="step-check" data-step="m5-s4">Как читать: спокойно, с естественной интонацией — как знакомой покупательнице, не диктором и не монотонно. Оговорка — пауза две секунды и фраза заново, запись не останавливай.</li>
+    <li class="step-check" data-step="m5-s5">Что запрещено в записи: музыка, второй голос, шум улицы, эхо, «улучшайзеры» и фильтры. Клон честно выучит всё, что услышит.</li>
+    <li class="step-check" data-step="m5-s6">Набери от 30 минут чистой речи — можно за два-три подхода в разные дни. Больше — лучше: потолок пользы около 3 часов.</li>
+    <li class="step-check" data-step="m5-s7">Сохрани оригиналы без пережатия в две копии — компьютер и облако, рядом с сетом из М4.</li>
   </ol>
 
   <h3>Честно: русский в Speak проверяем первыми десятью секундами</h3>
   <p>Страница Higgsfield про говорящие аватары обещает <span class="dated" data-src="страница Higgsfield о говорящих аватарах, проверено 20.08.2026">74+ языков</span>, справка по Speak называет <span class="dated" data-src="справочник по Higgsfield Speak, сверено 20.08.2026">40+</span> — но официального списка с явным «русский» именно для липсинка Speak мы не нашли. Соседний инструмент Higgsfield Audio называет русский прямо, Speak — нет.</p>
   <p>«Не нашли» — не значит «не работает». Это значит: проверяем сами, до того как строить. Поэтому шаг №1 всей практики Speak — 10-секундный ролик на русском, раньше любых настроек красоты.</p>
   <p>Тест почти ничего не стоит: Speak открывается с плана Plus (на бесплатном и стартовом его нет — проверено 20.08.2026), и на Plus строка тарифа обещает <span class="dated" data-src="страница цен Higgsfield, 20.08.2026">около 1 000 коротких Speak-роликов 720p в месяц</span>. Десять секунд погоды не сделают.</p>
-  <p>Если губы разъехались — не хорони конвейер: рядом в кабинете живут другие липсинк-модели (Kling Speak, Wan 2.5 Speak, Infinite Talk) — прогони тот же тест на них; а Higgsfield Audio умеет переозвучивать видео на русский с липсинком. Какой-то путь сработает — просто ты узнаешь об этом за вечер, а не после месяца стройки.</p>
+  <p>Если губы разъехались — не хорони конвейер. Первый запасной путь — <strong>Kling 3.0</strong>: <span class="dated" data-src="teamday.ai, lovart.ai, 22.08.2026">модель февраля 2026 с многоязычным липсинком</span>. Но родная речь у неё <span class="dated" data-src="atlascloud.ai, 14.07.2026">на пяти языках — китайский, английский, японский, корейский, испанский; русского в официальном списке нет</span>. Поэтому берём её не как «русский движок», а как липсинк по готовому русскому аудио: озвучка ElevenLabs → Kling двигает губы. И только после того же теста на 10 секунд.</p>
+  <p>Дальше по списку — соседние липсинк-модели в кабинете (Wan 2.5 Speak, Infinite Talk): тот же тест на них. А русский как язык перевода видео официально заявлен у <span class="dated" data-src="higgsfield.ai, 02.03.2026">Higgsfield Audio</span> — переозвучка с липсинком. Какой-то путь сработает — просто ты узнаешь об этом за вечер, а не после месяца стройки.</p>
 
   <figure class="scheme">
     <svg viewBox="0 0 760 300">
@@ -1277,11 +1544,11 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
       <rect x="40" y="195" width="300" height="85" rx="14" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
       <text x="190" y="228" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--accent)">Строим конвейер</text>
-      <text x="190" y="253" text-anchor="middle" font-size="14" fill="var(--muted)">дальше по курсу: М5–М7</text>
+      <text x="190" y="253" text-anchor="middle" font-size="14" fill="var(--muted)">дальше по курсу: М6–М8</text>
 
       <rect x="420" y="195" width="320" height="85" rx="14" fill="var(--card)" stroke="var(--amber)" stroke-width="2"/>
       <text x="580" y="222" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Запасные пути</text>
-      <text x="580" y="245" text-anchor="middle" font-size="14" fill="var(--muted)">соседняя липсинк-модель</text>
+      <text x="580" y="245" text-anchor="middle" font-size="14" fill="var(--muted)">Kling 3.0 по русскому аудио</text>
       <text x="580" y="265" text-anchor="middle" font-size="14" fill="var(--muted)">или Higgsfield Audio</text>
     </svg>
     <figcaption>Дешёвая проверка до дорогой стройки: десять секунд отвечают, на чём строить конвейер.</figcaption>
@@ -1289,12 +1556,12 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <h3>Подключение: текст → озвучка → Speak</h3>
   <ol class="steps">
-    <li class="step-check" data-step="m4-s8">Оформи в ElevenLabs тариф Creator — проф-клон доступен с него. Пароль от аккаунта — сразу в менеджер паролей.</li>
-    <li class="step-check" data-step="m4-s9">Создай Professional Voice Clone и загрузи запись целиком. Дождись статуса «готов» — обработка не мгновенная.</li>
-    <li class="step-check" data-step="m4-s10">Прогони контрольный абзац по-русски: русский у ElevenLabs поддержан — он в списке <span class="dated" data-src="обзор языков ElevenLabs (coval.ai), сверено 20.08.2026">70+ языков</span>. Слушай в наушниках: темп, акцент, хрипы. Этот же абзац — твоя линейка для всех будущих настроек.</li>
-    <li class="step-check" data-step="m4-s11">Озвучь тест: две короткие фразы про магазин, секунд на десять. Скачай аудиофайл.</li>
-    <li class="step-check" data-step="m4-s12">В Higgsfield открой Speak: выбери персонажа-ведущую из М3, загрузи аудио, запусти генерацию.</li>
-    <li class="step-check" data-step="m4-s13">Шаг №1 практики: посмотри тест со звуком. Губы попадают в «б», «п», «м» и в паузы — русский липсинк у тебя есть, конвейер строим. Нет — вернись к запасным путям выше и прогони тот же тест там.</li>
+    <li class="step-check" data-step="m5-s8">Оформи в ElevenLabs тариф Creator — проф-клон доступен с него. Пароль от аккаунта — сразу в менеджер паролей.</li>
+    <li class="step-check" data-step="m5-s9">Создай Professional Voice Clone и загрузи запись целиком. Дождись статуса «готов» — обработка не мгновенная.</li>
+    <li class="step-check" data-step="m5-s10">Прогони контрольный абзац по-русски: русский у ElevenLabs поддержан — он в списке <span class="dated" data-src="обзор языков ElevenLabs (coval.ai), сверено 20.08.2026">70+ языков</span>. Слушай в наушниках: темп, акцент, хрипы. Этот же абзац — твоя линейка для всех будущих настроек.</li>
+    <li class="step-check" data-step="m5-s11">Озвучь тест: две короткие фразы про магазин, секунд на десять. Скачай аудиофайл.</li>
+    <li class="step-check" data-step="m5-s12">В Higgsfield открой Speak: выбери персонажа-ведущую из М4, загрузи аудио, запусти генерацию.</li>
+    <li class="step-check" data-step="m5-s13">Шаг №1 практики: посмотри тест со звуком. Губы попадают в «б», «п», «м» и в паузы — русский липсинк у тебя есть, конвейер строим. Нет — вернись к запасным путям выше и прогони тот же тест там.</li>
   </ol>
 
   <details class="term">
@@ -1308,12 +1575,12 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <h3>Вторая дорожка: твой голос — для тебя</h3>
-  <p>Экспертный ролик твоей головой (его попросит экзамен в М10) требует твоего голоса. Путь тот же. Согласие не нужно: на себя бумагу не подписывают, а голос ведущей уже покрыт согласием из М3 — пункт про голос там есть.</p>
+  <p>Экспертный ролик твоей головой (его попросит экзамен в М11) требует твоего голоса. Путь тот же. Согласие не нужно: на себя бумагу не подписывают, а голос ведущей уже покрыт согласием из М4 — пункт про голос там есть.</p>
 
   <ol class="steps">
-    <li class="step-check" data-step="m4-s14"><strong>Для тебя:</strong> запиши свои 30 минут по чек-листу выше — читай свои разборы и советы покупателям: манера «эксперта» отличается от манеры ведущей, пусть клон выучит именно её.</li>
-    <li class="step-check" data-step="m4-s15"><strong>Для тебя:</strong> заведи отдельный клон «Эксперт». Сколько проф-клонов даёт тариф — посмотри в кабинете; если один, начни для себя с мгновенного клона: проф-клон ведущей важнее.</li>
-    <li class="step-check" data-step="m4-s16"><strong>Для тебя:</strong> тот же 10-секундный русский тест — со своим персонажем из М3.</li>
+    <li class="step-check" data-step="m5-s14"><strong>Для тебя:</strong> запиши свои 30 минут по чек-листу выше — читай свои разборы и советы покупателям: манера «эксперта» отличается от манеры ведущей, пусть клон выучит именно её.</li>
+    <li class="step-check" data-step="m5-s15"><strong>Для тебя:</strong> заведи отдельный клон «Эксперт». Сколько проф-клонов даёт тариф — посмотри в кабинете; если один, начни для себя с мгновенного клона: проф-клон ведущей важнее.</li>
+    <li class="step-check" data-step="m5-s16"><strong>Для тебя:</strong> тот же 10-секундный русский тест — со своим персонажем из М4.</li>
   </ol>
 
   <div class="quiz" data-a="2">
@@ -1326,12 +1593,12 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <div class="takeaway">
     <p>У ведущей есть голос, у тебя — свой, и главный риск курса закрыт проверкой, а не верой: русский липсинк проверен десятью секундами.</p>
-    <p>Лицо и голос готовы. В М5 научимся писать им сценарии — короткие, как ТЗ.</p>
+    <p>Лицо и голос готовы. В М6 научимся писать им сценарии — короткие, как ТЗ.</p>
   </div>
 </section>
-    <section class="module" id="m5" data-title="Сценарий ролика" data-block="B">
+    <section class="module" id="m6" data-title="Сценарий ролика" data-block="B">
   <header class="module-head">
-    <p>М5 · Блок Б «Собрать» · ≈30 мин</p>
+    <p>М6 · Блок Б «Собрать» · ≈30 мин</p>
     <h2>Сценарий ролика</h2>
     <p>Сценарий — это ТЗ для ведущей. В школе-1 усвоили «промпт — это ТЗ»; ролик живёт по тому же закону: чётко скажешь — получишь то, что хотел.</p>
   </header>
@@ -1344,8 +1611,8 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <div class="apply">
     <ul>
-      <li>Каждый ролик конвейера (М6 — первый, М7 — поток) начинается с одного сценария.</li>
-      <li>Планёрка тем (М7): садишься раз в неделю и пишешь пачку сценариев по шаблонам подряд.</li>
+      <li>Каждый ролик конвейера (М7 — первый, М8 — поток) начинается с одного сценария.</li>
+      <li>Планёрка тем (М8): садишься раз в неделю и пишешь пачку сценариев по шаблонам подряд.</li>
       <li>4 типа роликов — 4 готовых шаблона ниже: копируешь, подставляешь свой товар, отдаёшь ведущей.</li>
     </ul>
   </div>
@@ -1464,7 +1731,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     </tr>
   </table>
 
-  <p><strong>2. Экспертный</strong> — твоя голова. Разбор или совет от владельца: лицу хозяина верят больше. Экзамен в М10 попросит хотя бы один такой ролик.</p>
+  <p><strong>2. Экспертный</strong> — твоя голова. Разбор или совет от владельца: лицу хозяина верят больше. Экзамен в М11 попросит хотя бы один такой ролик.</p>
   <table>
     <tr>
       <td>
@@ -1505,12 +1772,12 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <h3>Как написать сценарий за 10 минут</h3>
   <ol class="steps">
-    <li class="step-check" data-step="m5-s1">Выбери тип ролика и скопируй нужный шаблон из четырёх выше.</li>
-    <li class="step-check" data-step="m5-s2">Назови одну мысль ролика одной фразой. Не помещается в одну фразу — это два ролика, раздели.</li>
-    <li class="step-check" data-step="m5-s3">Придумай хук: переверни мысль в вопрос или боль зрителя. «Расскажу про крем» → «Руки трескаются к зиме?».</li>
-    <li class="step-check" data-step="m5-s4">Заполни суть: 2–3 коротких предложения живым языком, как знакомой покупательнице. Добавь одну личную деталь.</li>
-    <li class="step-check" data-step="m5-s5">Впиши одно действие в конце — почти всегда в твой Telegram-канал: закреп, подписка или «сохрани».</li>
-    <li class="step-check" data-step="m5-s6">Посчитай слова: 40–110. Больше — режь, начиная с середины сути. Прочитай вслух с секундомером — уложился в 40 секунд, сценарий готов.</li>
+    <li class="step-check" data-step="m6-s1">Выбери тип ролика и скопируй нужный шаблон из четырёх выше.</li>
+    <li class="step-check" data-step="m6-s2">Назови одну мысль ролика одной фразой. Не помещается в одну фразу — это два ролика, раздели.</li>
+    <li class="step-check" data-step="m6-s3">Придумай хук: переверни мысль в вопрос или боль зрителя. «Расскажу про крем» → «Руки трескаются к зиме?».</li>
+    <li class="step-check" data-step="m6-s4">Заполни суть: 2–3 коротких предложения живым языком, как знакомой покупательнице. Добавь одну личную деталь.</li>
+    <li class="step-check" data-step="m6-s5">Впиши одно действие в конце — почти всегда в твой Telegram-канал: закреп, подписка или «сохрани».</li>
+    <li class="step-check" data-step="m6-s6">Посчитай слова: 40–110. Больше — режь, начиная с середины сути. Прочитай вслух с секундомером — уложился в 40 секунд, сценарий готов.</li>
   </ol>
 
   <div class="example case-m">
@@ -1528,19 +1795,19 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <div class="takeaway">
     <p>Сценарий — это ТЗ: хук держит, суть объясняет, действие уводит в твой канал. Одна мысль — один ролик, 40–110 слов, проверка тремя вопросами до генерации.</p>
-    <p>Четыре шаблона под рукой. В М6 берём один сценарий и собираем из него первый настоящий ролик — от текста до публикации.</p>
+    <p>Четыре шаблона под рукой. В М7 берём один сценарий и собираем из него первый настоящий ролик — от текста до публикации.</p>
   </div>
 </section>
-    <section class="module" id="m6" data-title="Первый ролик" data-block="B">
+    <section class="module" id="m7" data-title="Первый ролик" data-block="B">
   <header class="module-head">
-    <p>М6 · Блок Б «Собрать» · ≈50 мин</p>
+    <p>М7 · Блок Б «Собрать» · ≈50 мин</p>
     <h2>Первый ролик</h2>
     <p>Сегодня собираем первый ролик от и до: сценарий → ведущая говорит → монтаж → метка «создано с ИИ» → пост в твоём Telegram-канале.</p>
   </header>
 
   <div class="why">
-    <p>Всё по частям готово: лицо (М3), голос (М4), сценарий (М5). Пора соединить их в один ролик и довести до опубликованного поста.</p>
-    <p>Первый ролик — не шедевр, а рабочий проход по всей цепочке. Задача — чтобы маршрут был тебе понятен целиком: тогда конвейер в М7 пойдёт без запинок.</p>
+    <p>Всё по частям готово: лицо (М4), голос (М5), сценарий (М6). Пора соединить их в один ролик и довести до опубликованного поста.</p>
+    <p>Первый ролик — не шедевр, а рабочий проход по всей цепочке. Задача — чтобы маршрут был тебе понятен целиком: тогда конвейер в М8 пойдёт без запинок.</p>
     <p>Метку «создано с ИИ» ставим честно и везде. Это решение, а не риск: предупреждённый зритель не отваливается, а скрытый ИИ — наоборот, отталкивает.</p>
   </div>
 
@@ -1555,7 +1822,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <div class="control">
     <ul>
       <li>Приёмка ролика по чек-листу: взгляд в кадр, темп речи, длина, метка на месте. Что-то просело — правишь и пересобираешь.</li>
-      <li>Метка ИИ — обязательный шаг перед публикацией. Полный чек-лист «перед публикацией» ждёт в М9, здесь — его короткая версия.</li>
+      <li>Метка ИИ — обязательный шаг перед публикацией. Полный чек-лист «перед публикацией» ждёт в М10, здесь — его короткая версия.</li>
       <li>Брак первого ролика — это норма. Замеряешь, что не так, и правишь в тексте или настройках, а не расстраиваешься.</li>
     </ul>
   </div>
@@ -1567,7 +1834,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <svg viewBox="0 0 600 330">
       <rect x="20" y="60" width="112" height="64" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
       <text x="76" y="88" text-anchor="middle" font-size="15" font-weight="bold" fill="var(--ink)">Сценарий</text>
-      <text x="76" y="109" text-anchor="middle" font-size="14" fill="var(--muted)">из М5</text>
+      <text x="76" y="109" text-anchor="middle" font-size="14" fill="var(--muted)">из М6</text>
 
       <line x1="132" y1="92" x2="146" y2="92" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
       <polygon points="156,92 144,86 144,98" fill="var(--ink)"/>
@@ -1624,19 +1891,19 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </details>
 
   <h3>Собираем первый ролик по шагам</h3>
-  <p>Возьми самый простой сценарий — кружок-обзор из М5. Он короткий и прощает ошибки новичка.</p>
+  <p>Возьми самый простой сценарий — кружок-обзор из М6. Он короткий и прощает ошибки новичка.</p>
 
   <ol class="steps">
-    <li class="step-check" data-step="m6-s1">Возьми готовый сценарий кружка-обзора из М5. Один товар, одна мысль, 15–30 секунд.</li>
-    <li class="step-check" data-step="m6-s2">Озвучь текст голосом ведущей из М4: текст → аудио, послушай в наушниках, скачай файл.</li>
-    <li class="step-check" data-step="m6-s3">В Higgsfield открой Speak 2.0, выбери персонажа-ведущую из М3 и загрузи аудио.</li>
-    <li class="step-check" data-step="m6-s4">Сначала короткий тест: убедись, что губы попадают в русскую речь (та же проверка, что в М4). Разъехались — вернись к запасным путям из М4, не собирай дальше.</li>
-    <li class="step-check" data-step="m6-s5">Липсинк в порядке — генерируй полный ролик. Формат кадра — вертикаль 9:16 для канала.</li>
-    <li class="step-check" data-step="m6-s6">Монтаж — внутри Higgsfield: обрежь лишние секунды в начале и конце, при желании добавь подпись или заставку встроенными средствами. Внешний редактор не ставим.</li>
-    <li class="step-check" data-step="m6-s7">Экспортируй готовый ролик в MP4 9:16. Сохрани файл в папку готовых роликов медиа-цеха, в две копии.</li>
-    <li class="step-check" data-step="m6-s8">Промаркируй «создано с ИИ»: в подписи к посту добавь строку «Видео создано с помощью ИИ». Невидимую C2PA-метку не трогай — она уже внутри файла.</li>
-    <li class="step-check" data-step="m6-s9">Опубликуй в свой Telegram-канал. Проверь на телефоне: как выглядит, читается ли подпись, работает ли действие из сценария (закреп, ссылка).</li>
-    <li class="step-check" data-step="m6-s10">Прими работу по чек-листу ошибок ниже. Что-то просело — правь в сценарии или настройках и пересобери. Это нормальный первый круг.</li>
+    <li class="step-check" data-step="m7-s1">Возьми готовый сценарий кружка-обзора из М6. Один товар, одна мысль, 15–30 секунд.</li>
+    <li class="step-check" data-step="m7-s2">Озвучь текст голосом ведущей из М5: текст → аудио, послушай в наушниках, скачай файл.</li>
+    <li class="step-check" data-step="m7-s3">В Higgsfield открой Speak 2.0, выбери персонажа-ведущую из М4 и загрузи аудио.</li>
+    <li class="step-check" data-step="m7-s4">Сначала короткий тест: убедись, что губы попадают в русскую речь (та же проверка, что в М5). Разъехались — вернись к запасным путям из М5, не собирай дальше.</li>
+    <li class="step-check" data-step="m7-s5">Липсинк в порядке — генерируй полный ролик. Формат кадра — вертикаль 9:16 для канала.</li>
+    <li class="step-check" data-step="m7-s6">Монтаж — внутри Higgsfield: обрежь лишние секунды в начале и конце, при желании добавь подпись или заставку встроенными средствами. Внешний редактор не ставим.</li>
+    <li class="step-check" data-step="m7-s7">Экспортируй готовый ролик в MP4 9:16. Сохрани файл в папку готовых роликов медиа-цеха, в две копии.</li>
+    <li class="step-check" data-step="m7-s8">Промаркируй «создано с ИИ»: в подписи к посту добавь строку «Видео создано с помощью ИИ». Невидимую C2PA-метку не трогай — она уже внутри файла.</li>
+    <li class="step-check" data-step="m7-s9">Опубликуй в свой Telegram-канал. Проверь на телефоне: как выглядит, читается ли подпись, работает ли действие из сценария (закреп, ссылка).</li>
+    <li class="step-check" data-step="m7-s10">Прими работу по чек-листу ошибок ниже. Что-то просело — правь в сценарии или настройках и пересобери. Это нормальный первый круг.</li>
   </ol>
 
   <h3>Монтаж — только внутри Higgsfield</h3>
@@ -1650,7 +1917,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <h3>Ошибки первого ролика</h3>
   <p>Почти все спотыкаются об одно и то же. Проверяй готовый ролик по этим трём точкам — они же в схеме приёмки ниже.</p>
   <ul>
-    <li><strong>Взгляд.</strong> Ведущая смотрит мимо камеры — ролик выглядит «неживым». Причина обычно в сете (М3): взгляд уводили от объектива. Лечится пересъёмкой сета, а не настройками.</li>
+    <li><strong>Взгляд.</strong> Ведущая смотрит мимо камеры — ролик выглядит «неживым». Причина обычно в сете (М4): взгляд уводили от объектива. Лечится пересъёмкой сета, а не настройками.</li>
     <li><strong>Темп речи.</strong> Голос частит, слова наезжают. Лечится в тексте: раздели длинные предложения, добавь точки — клон озвучит с паузами.</li>
     <li><strong>Длина.</strong> Ролик уполз за 40 секунд — зритель не досматривает. Лечится сценарием: убери вторую мысль (это отдельный ролик) и лишние слова.</li>
   </ul>
@@ -1682,7 +1949,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p>Как маркировать на практике:</p>
   <ul>
     <li><strong>В подписи поста</strong> — строка «Видео создано с помощью ИИ». Коротко и один раз, без извинений.</li>
-    <li><strong>Галка «синтетический контент»</strong> — там, где площадка её даёт (в М9 разберём YouTube и другие). Для Telegram-канала хватает строки в подписи.</li>
+    <li><strong>Галка «синтетический контент»</strong> — там, где площадка её даёт (в М10 разберём YouTube и другие). Для Telegram-канала хватает строки в подписи.</li>
     <li><strong>Невидимую C2PA-метку не вырезай.</strong> Площадки читают её сами — попытка спрятать всё равно вскроется, а честная подпись превращает это в плюс.</li>
     <li><strong>Не выдавай ведущую за живую съёмку</strong> в отзывах и «реальных историях покупателей» — вот на этом и держится вся усталость зрителей от ИИ.</li>
   </ul>
@@ -1702,12 +1969,12 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <div class="takeaway">
     <p>Ты прошёл весь маршрут: сценарий → Speak → монтаж → экспорт → метка → пост в своём канале. Всё видео собрано в одном окне Higgsfield, без единого внешнего инструмента.</p>
-    <p>Первый ролик есть. В М7 превращаем этот разовый проход в недельный конвейер: 2–3 ролика подряд по четырём линиям.</p>
+    <p>Первый ролик есть. В М8 превращаем этот разовый проход в недельный конвейер: 2–3 ролика подряд по четырём линиям.</p>
   </div>
 </section>
-    <section class="module" id="m7" data-title="Конвейер на поток" data-block="V">
+    <section class="module" id="m8" data-title="Конвейер на поток" data-block="V">
   <header class="module-head">
-    <p>М7 · Блок В «Управлять» · ≈35 мин</p>
+    <p>М8 · Блок В «Управлять» · ≈35 мин</p>
     <h2>Конвейер на поток</h2>
     <p>Один ритм в неделю — и ролики выходят сами собой, а не подвигом.</p>
   </header>
@@ -1752,7 +2019,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
       <rect x="180" y="20" width="146" height="88" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/>
       <text x="253" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink)">2 · Сценарии</text>
       <text x="253" y="74" text-anchor="middle" font-size="14" fill="var(--muted)">все разом</text>
-      <text x="253" y="92" text-anchor="middle" font-size="14" fill="var(--muted)">шаблоны М5</text>
+      <text x="253" y="92" text-anchor="middle" font-size="14" fill="var(--muted)">шаблоны М6</text>
 
       <line x1="328" y1="64" x2="344" y2="64" stroke="var(--ink)" stroke-width="2"/>
       <polygon points="348,64 338,59 338,69" fill="var(--ink)"/>
@@ -1788,12 +2055,12 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <h3>Как крутить цикл — шаг за шагом</h3>
   <ol class="steps">
-    <li class="step-check" data-step="m7-s1">Поставь планёрку в календарь фиксированным окном — например, понедельник, 30 минут. Это якорь всей недели.</li>
-    <li class="step-check" data-step="m7-s2">На планёрке набери темы на неделю и помечай каждую: какая тема — какая линия контента (таблица ниже).</li>
-    <li class="step-check" data-step="m7-s3">Сядь и напиши все сценарии пачкой по шаблонам из М5. Один присест — вся неделя.</li>
-    <li class="step-check" data-step="m7-s4">Сгенерируй ролики пачкой: ведущая и твоя голова уже готовы, меняются только тексты сцен.</li>
-    <li class="step-check" data-step="m7-s5">Сложи готовые ролики в папку очереди — из неё пойдёт публикация.</li>
-    <li class="step-check" data-step="m7-s6">Разложи по каналам и засеки время на весь цикл. В следующий понедельник — снова с планёрки.</li>
+    <li class="step-check" data-step="m8-s1">Поставь планёрку в календарь фиксированным окном — например, понедельник, 30 минут. Это якорь всей недели.</li>
+    <li class="step-check" data-step="m8-s2">На планёрке набери темы на неделю и помечай каждую: какая тема — какая линия контента (таблица ниже).</li>
+    <li class="step-check" data-step="m8-s3">Сядь и напиши все сценарии пачкой по шаблонам из М6. Один присест — вся неделя.</li>
+    <li class="step-check" data-step="m8-s4">Сгенерируй ролики пачкой: ведущая и твоя голова уже готовы, меняются только тексты сцен.</li>
+    <li class="step-check" data-step="m8-s5">Сложи готовые ролики в папку очереди — из неё пойдёт публикация.</li>
+    <li class="step-check" data-step="m8-s6">Разложи по каналам и засеки время на весь цикл. В следующий понедельник — снова с планёрки.</li>
   </ol>
 
   <h3>Четыре линии контента</h3>
@@ -1867,14 +2134,310 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Разнести один готовый ролик по всем каналам: канал, платформа, Pinterest и дальше. Руками — по разу в каждый; через n8n — один раз положил файл в папку, дальше само.</p>
   </details>
 
-  <p>Открой вкладку «Автоматизации» наверху страницы — это первая школа. Там есть модуль про твой n8n. Здесь — что именно ему поручить.</p>
+  <p>Открой вкладку «Автоматизации» наверху страницы — это первая школа. Там есть модуль про твой n8n. Здесь — что именно ему поручить, и готовая связка, чтобы не собирать с нуля.</p>
   <ol class="steps">
-    <li class="step-check" data-step="m7-s7">В первой школе собери сценарий n8n, который следит за папкой готовых роликов.</li>
-    <li class="step-check" data-step="m7-s8">Настрой: появился новый ролик — n8n постит его в твой Telegram-канал и кладёт на платформу.</li>
-    <li class="step-check" data-step="m7-s9">Проверь на одном ролике вручную, прежде чем довериться автопостингу. Первый пост всегда смотри глазами.</li>
-    <li class="step-check" data-step="m7-s10">Пойдёт ровно — добавь в тот же сценарий Pinterest, позже вторую волну. Расширяй по одному каналу.</li>
+    <li class="step-check" data-step="m8-s7">В первой школе собери сценарий n8n, который принимает готовый ролик — из папки очереди или сообщением боту.</li>
+    <li class="step-check" data-step="m8-s8">Настрой: появился новый ролик — n8n постит его в твой Telegram-канал и кладёт на платформу.</li>
+    <li class="step-check" data-step="m8-s9">Проверь на одном ролике вручную, прежде чем довериться автопостингу. Первый пост всегда смотри глазами.</li>
+    <li class="step-check" data-step="m8-s10">Пойдёт ровно — добавь в тот же сценарий Pinterest, позже вторую волну. Расширяй по одному каналу.</li>
   </ol>
-  <p>Готовый ролик — на входе, посты во всех каналах — на выходе. Ты только кладёшь файл в папку.</p>
+  <p>Готовый ролик — на входе, посты во всех каналах — на выходе. Ты только отдаёшь файл — в папку или боту.</p>
+
+  <h3>Готовая связка: вставь, а не собирай</h3>
+  <p>Тот самый сценарий уже собран — он же живёт в первой школе. Отправляешь ролик боту, ИИ пишет три подписи, ты одобряешь кнопкой — и ролик уходит в Telegram-канал, Instagram и Pinterest.</p>
+  <p>Полный разбор — школа автоматизаций, модуль 9. Здесь — сам файл и три шага вставки.</p>
+
+  <div class="svyazka" data-name="Один ролик → все площадки">
+<pre><code>{
+  "name": "Один ролик → все площадки",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": ["message"],
+        "additionalFields": {}
+      },
+      "name": "Ролик пришёл боту",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [0, 0],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Пришли боту ролик файлом, а в подписи к нему — тему. Привяжи токен бота в Credentials. Один бот = один такой триггер.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Тема ролика: {{ $json.message.caption || 'тема не указана — сделай подписи нейтральными' }}",
+        "options": {
+          "systemMessage": "Ты пишешь подписи к одному короткому ролику для трёх площадок.\n\nВерни строго JSON, без пояснений и без обрамления кодом:\n{\"telegram\": \"...\", \"instagram\": \"...\", \"pinterest\": \"...\"}\n\n- telegram: 2–3 строки живым языком, без хештегов.\n- instagram: до 5 строк и ровно 5 хештегов в конце.\n- pinterest: первая строка — заголовок до 100 знаков, дальше описание до 300 знаков.\n\nЯзык русский. Факты только из темы, ничего не выдумывай."
+        }
+      },
+      "name": "Три подписи от ИИ",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [260, 0],
+      "notes": "Промпт = ТЗ: менять тон, длину и число хештегов под свои площадки. Формат JSON не трогай — его разбирает следующий узел.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "model": { "__rl": true, "mode": "list", "value": "claude-sonnet-4-6", "cachedResultName": "Claude Sonnet 4.6" },
+        "options": { "maxTokensToSample": 800, "temperature": 0.7 }
+      },
+      "name": "Модель Claude",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.5,
+      "position": [260, 220],
+      "credentials": { "anthropicApi": { "name": "Ключ Claude" } },
+      "notes": "Привяжи свой ключ Anthropic (Credentials → Anthropic). Менять: модель из списка.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ответ ИИ приходит строкой — вырезаем из неё JSON и добавляем file_id ролика.\nconst otvet = $input.first().json.output || '';\nconst nachalo = otvet.indexOf('{');\nconst konec = otvet.lastIndexOf('}');\nif (nachalo &lt; 0 || konec &lt; 0) {\n  throw new Error('ИИ вернул не JSON. Начало ответа: ' + otvet.slice(0, 200));\n}\nconst podpisi = JSON.parse(otvet.slice(nachalo, konec + 1));\nconst soobshchenie = $('Ролик пришёл боту').first().json.message;\nif (!soobshchenie.video) {\n  throw new Error('В сообщении нет видео — пришли боту ролик файлом, а не ссылкой.');\n}\nreturn [{ json: {\n  file_id: soobshchenie.video.file_id,\n  tema: soobshchenie.caption || '',\n  telegram: podpisi.telegram || '',\n  instagram: podpisi.instagram || '',\n  pinterest: podpisi.pinterest || '',\n} }];"
+      },
+      "name": "Разобрать подписи",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [620, 0],
+      "notes": "Достаёт три подписи из ответа ИИ и file_id ролика из Telegram. Менять ничего не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": { "__rl": true, "mode": "name", "value": "Очередь роликов" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "file_id": "={{ $json.file_id }}",
+            "tema": "={{ $json.tema }}",
+            "telegram": "={{ $json.telegram }}",
+            "instagram": "={{ $json.instagram }}",
+            "pinterest": "={{ $json.pinterest }}",
+            "status": "ждёт ок"
+          },
+          "matchingColumns": [],
+          "schema": [
+            { "id": "file_id", "displayName": "file_id", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "tema", "displayName": "tema", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "telegram", "displayName": "telegram", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "instagram", "displayName": "instagram", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "pinterest", "displayName": "pinterest", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "status", "displayName": "status", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false }
+          ]
+        },
+        "options": {}
+      },
+      "name": "В очередь",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [880, 0],
+      "notes": "Сначала создай в n8n таблицу «Очередь роликов» с текстовыми колонками file_id, tema, telegram, instagram, pinterest, status.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendAndWait",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "message": "=Ролик: {{ $('Разобрать подписи').item.json.tema || 'без темы' }}\n\nTelegram:\n{{ $('Разобрать подписи').item.json.telegram }}\n\nInstagram:\n{{ $('Разобрать подписи').item.json.instagram }}\n\nPinterest:\n{{ $('Разобрать подписи').item.json.pinterest }}",
+        "responseType": "approval",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "✅ Публикуем",
+            "disapproveLabel": "⏸ Отложить"
+          }
+        },
+        "options": { "appendAttribution": false }
+      },
+      "name": "Спросить владельца",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1140, 0],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt; — твой chat id. Кнопки ведут на адрес твоего n8n — он должен быть доступен с телефона (WEBHOOK_URL).",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3 },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "name": "Одобрил?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1400, 0],
+      "notes": "Верхний выход (true) — «Публикуем», нижний (false) — «Отложить». Менять ничего не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendVideo",
+        "chatId": "&lt;CHANNEL_ID&gt;",
+        "binaryData": false,
+        "file": "={{ $('Разобрать подписи').item.json.file_id }}",
+        "additionalFields": {
+          "caption": "={{ $('Разобрать подписи').item.json.telegram }}"
+        }
+      },
+      "name": "В Telegram-канал",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1660, -200],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHANNEL_ID&gt; — id канала или @имя. Бот должен быть админом канала. Видео уходит по file_id, скачивать не нужно.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v21.0/&lt;PAGE_ID&gt;/media",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "keypair",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "media_type", "value": "REELS" },
+            { "name": "video_url", "value": "&lt;АДРЕС_ВИДЕО&gt;" },
+            { "name": "caption", "value": "={{ $('Разобрать подписи').item.json.instagram }}" }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Instagram: нужен токен площадки",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1660, 0],
+      "disabled": true,
+      "credentials": { "httpQueryAuth": { "name": "Токен Instagram" } },
+      "notes": "Первый шаг из двух: создаёт контейнер, публикует его следующий узел. Токен заведи креденшелом «Токен Instagram» (Query Auth: имя access_token, значение — токен): это делается в n8n, не в файле. Честно: сам токен площадки — из модуля «Соцсети на автопилоте». Менять: &lt;PAGE_ID&gt;, &lt;АДРЕС_ВИДЕО&gt; (площадка берёт видео только по публичной ссылке).",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v21.0/&lt;PAGE_ID&gt;/media_publish",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "keypair",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "creation_id", "value": "={{ $json.id }}" }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Instagram: опубликовать контейнер",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1920, 0],
+      "disabled": true,
+      "credentials": { "httpQueryAuth": { "name": "Токен Instagram" } },
+      "notes": "Второй шаг из двух — после заполнения включи оба узла. Токен заведи креденшелом «Токен Instagram»: это делается в n8n, не в файле. Менять: &lt;PAGE_ID&gt;; creation_id берётся из ответа первого шага. Видео площадка готовит не сразу: если ответ без id — подожди минуту и проверь GET /&lt;ID_КОНТЕЙНЕРА&gt;?fields=status_code, публикуй при FINISHED (не дольше 5 минут).",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pinterest.com/v5/pins",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ board_id: '&lt;PINTEREST_BOARD&gt;', title: $('Разобрать подписи').item.json.pinterest.split('\\n')[0].slice(0, 100), description: $('Разобрать подписи').item.json.pinterest.slice(0, 500), media_source: { source_type: 'video_id', media_id: '&lt;MEDIA_ID&gt;', cover_image_url: '&lt;АДРЕС_ОБЛОЖКИ&gt;' } }) }}",
+        "options": {}
+      },
+      "name": "Pinterest: нужен токен площадки",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [1660, 200],
+      "disabled": true,
+      "credentials": { "httpHeaderAuth": { "name": "Токен Pinterest" } },
+      "notes": "Токен заведи креденшелом «Токен Pinterest» (Header Auth: имя Authorization, значение «Bearer » и токен): это делается в n8n, не в файле. Честно: сам токен площадки — из модуля «Соцсети на автопилоте». Видео на Pinterest грузится в три шага (регистрация → загрузка → пин), здесь третий. Менять: &lt;PINTEREST_BOARD&gt;, &lt;MEDIA_ID&gt;, &lt;АДРЕС_ОБЛОЖКИ&gt;. Включи узел, когда заполнил.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "&lt;CHAT_ID&gt;",
+        "text": "=Ролик отложен. Подписи лежат в таблице «Очередь роликов». Тема: {{ $('Разобрать подписи').item.json.tema || 'без темы' }}",
+        "additionalFields": { "appendAttribution": false }
+      },
+      "name": "Отложено",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1660, 400],
+      "credentials": { "telegramApi": { "name": "Бот уроков" } },
+      "notes": "Менять: &lt;CHAT_ID&gt;. Просто напоминание, что подписи сохранены и ждут в таблице.",
+      "notesInFlow": true
+    }
+  ],
+  "connections": {
+    "Ролик пришёл боту": {
+      "main": [[{ "node": "Три подписи от ИИ", "type": "main", "index": 0 }]]
+    },
+    "Модель Claude": {
+      "ai_languageModel": [[{ "node": "Три подписи от ИИ", "type": "ai_languageModel", "index": 0 }]]
+    },
+    "Три подписи от ИИ": {
+      "main": [[{ "node": "Разобрать подписи", "type": "main", "index": 0 }]]
+    },
+    "Разобрать подписи": {
+      "main": [[{ "node": "В очередь", "type": "main", "index": 0 }]]
+    },
+    "В очередь": {
+      "main": [[{ "node": "Спросить владельца", "type": "main", "index": 0 }]]
+    },
+    "Спросить владельца": {
+      "main": [[{ "node": "Одобрил?", "type": "main", "index": 0 }]]
+    },
+    "Instagram: нужен токен площадки": {
+      "main": [[{ "node": "Instagram: опубликовать контейнер", "type": "main", "index": 0 }]]
+    },
+    "Одобрил?": {
+      "main": [
+        [
+          { "node": "В Telegram-канал", "type": "main", "index": 0 },
+          { "node": "Instagram: нужен токен площадки", "type": "main", "index": 0 },
+          { "node": "Pinterest: нужен токен площадки", "type": "main", "index": 0 }
+        ],
+        [{ "node": "Отложено", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}</code></pre>
+  </div>
+
+  <ol class="steps">
+    <li class="step-check" data-step="m8-s11">Нажми «Скопировать» над связкой, открой в n8n новый сценарий и нажми Ctrl+V прямо на холст — узлы появятся сами.</li>
+    <li class="step-check" data-step="m8-s12">Заведи в n8n креденшелы ровно с такими именами: «Бот уроков» (Telegram), «Ключ Claude» (Anthropic), «Токен Instagram» (Query Auth: имя <code>access_token</code>, значение — токен), «Токен Pinterest» (Header Auth: имя <code>Authorization</code>, значение — «Bearer » и токен). Связка найдёт их по имени; самих токенов в файле нет и быть не должно.</li>
+    <li class="step-check" data-step="m8-s13">Заполни плейсхолдеры — <code>&lt;CHAT_ID&gt;</code>, <code>&lt;CHANNEL_ID&gt;</code>, <code>&lt;PAGE_ID&gt;</code>, <code>&lt;PINTEREST_BOARD&gt;</code>, <code>&lt;MEDIA_ID&gt;</code>, <code>&lt;АДРЕС_ВИДЕО&gt;</code>, <code>&lt;АДРЕС_ОБЛОЖКИ&gt;</code> — и включи три выключенных узла площадок. Первый прогон — на одном тестовом ролике, глазами.</li>
+  </ol>
+
+  <p><strong>Если что-то красное.</strong></p>
+  <ul>
+    <li>Узел «Ролик пришёл боту» и кнопка одобрения работают, только если n8n виден снаружи (переменная <code>WEBHOOK_URL</code>). На localhost из модуля «Твой n8n» подставь узлу триггера тестовые данные (Pin data) или жди адреса снаружи — кнопки одобрения до тебя не дойдут.</li>
+    <li>Instagram публикует в два шага: сначала контейнер, потом «опубликовать». Узел покраснел на втором шаге — подожди и проверь статус контейнера: пока он не FINISHED, публиковать нельзя.</li>
+    <li>Pinterest грузит видео в три шага: регистрация загрузки → отправка файла → создание пина. Узел связки — третий шаг, и ему нужен <code>&lt;MEDIA_ID&gt;</code> из ответа на регистрацию; первые два шага — по документации площадки или двумя HTTP-узлами перед ним. Нет media_id — узел красный.</li>
+  </ul>
 
   <h3>Следующая ступень: Higgsfield CLI</h3>
   <p>Когда конвейер уверенно крутится руками, генерацию тоже можно ускорить — командой вместо кликов. У Higgsfield для этого есть CLI, а не привычный из первой школы MCP: так решено — заходим этим путём отдельным разом, не сейчас.</p>
@@ -1912,9 +2475,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Следующая ступень — CLI, но сначала конвейер должен уверенно крутиться руками.</p>
   </div>
 </section>
-    <section class="module" id="m8" data-title="Окупаемость роликов" data-block="V">
+    <section class="module" id="m9" data-title="Окупаемость роликов" data-block="V">
   <header class="module-head">
-    <p>М8 · Блок В «Управлять» · ≈30 мин</p>
+    <p>М9 · Блок В «Управлять» · ≈30 мин</p>
     <h2>Окупаемость роликов</h2>
     <p>Подписка уже окупилась — этот модуль показывает, насколько, и учит считать самому.</p>
   </header>
@@ -2007,9 +2570,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <h3>Две стороны медали</h3>
   <p>ИИ-конвейер — это скорость и дешевизна. Но у медали есть обратная сторона, и честный продюсер держит в голове обе.</p>
-  <p><strong>За.</strong> Подача «как живой человек» (UGC) даёт вовлечённость <span class="dated" data-src="billo.app, 20.08.2026">до 6,9 раза выше вылизанной рекламы</span>. Твоя ведущая — живой человек, это твой козырь.</p>
-  <p><strong>Против.</strong> <span class="dated" data-src="multiply.co, 20.08.2026">54% зрителей устали от ИИ</span> и снижают доверие, когда чувствуют подделку — особенно если её прячут.</p>
-  <p>Вывод простой: честная подача снимает минус. Аватар своего человека, помеченный как ИИ, — работает. Армия фейковых «довольных покупателей» — бьёт по тебе же. Право и метки — в М9.</p>
+  <p><strong>За.</strong> Подача «как живой человек» (UGC) даёт вовлечённость <span class="dated" data-src="billo.app, 20.08.2026">до 6,9 раза выше вылизанной рекламы</span>. Твоя ведущая — живой человек, это твой козырь. Свежий бенчмарк по ИИ-UGC: <span class="dated" data-src="aiugcvideogenerator, бенчмарк 04.08.2026; tok-vibes, 10.03.2026">конверсия 2,1–4,8 % против 1,2–2,6 % у обычного бренд-видео</span>.</p>
+  <p><strong>Против.</strong> <span class="dated" data-src="multiply.co, 20.08.2026">54% зрителей устали от ИИ</span> и снижают доверие, когда чувствуют подделку — особенно если её прячут. И вторая цифра того же бенчмарка: <span class="dated" data-src="aiugcvideogenerator, бенчмарк 04.08.2026; tok-vibes, 10.03.2026">на тёплом трафике живой UGC всё ещё лучше ИИ на 20–25 %</span> — тем, кто тебя уже знает, нужнее настоящее лицо.</p>
+  <p>Вывод простой: честная подача снимает минус. Аватар своего человека, помеченный как ИИ, — работает. Армия фейковых «довольных покупателей» — бьёт по тебе же. Право и метки — в М10.</p>
 
   <div class="example">
     <p><strong>Два магазина.</strong> Первый залил ленту «отзывами» вымышленных людей с ИИ-лицами и молчит, что это ИИ. Зрители распознают подделку — и уходят с осадком.</p>
@@ -2030,11 +2593,11 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p>Цена часа в калькуляторе стоит 2 000 ₽ для примера — у тебя час дороже, поставь свою. Тогда выгода станет ещё нагляднее.</p>
 
   <ol class="steps">
-    <li class="step-check" data-step="m8-s1">Впиши, сколько роликов в месяц реально хочешь выпускать — начни с десятка.</li>
-    <li class="step-check" data-step="m8-s2">Прикинь честно, сколько минут ушло бы на один ролик руками: съёмка плюс монтаж вместе.</li>
-    <li class="step-check" data-step="m8-s3">Поставь цену своего часа вместо примерных 2 000 ₽.</li>
-    <li class="step-check" data-step="m8-s4">Впиши стоимость подписки в месяц — около 5 тыс ₽, если годовая ~60 тыс ₽.</li>
-    <li class="step-check" data-step="m8-s5">Посмотри выгоду и цену одного ролика. Запиши число — вернёшься к нему на экзамене в М10.</li>
+    <li class="step-check" data-step="m9-s1">Впиши, сколько роликов в месяц реально хочешь выпускать — начни с десятка.</li>
+    <li class="step-check" data-step="m9-s2">Прикинь честно, сколько минут ушло бы на один ролик руками: съёмка плюс монтаж вместе.</li>
+    <li class="step-check" data-step="m9-s3">Поставь цену своего часа вместо примерных 2 000 ₽.</li>
+    <li class="step-check" data-step="m9-s4">Впиши стоимость подписки в месяц — около 5 тыс ₽, если годовая ~60 тыс ₽.</li>
+    <li class="step-check" data-step="m9-s5">Посмотри выгоду и цену одного ролика. Запиши число — вернёшься к нему на экзамене в М11.</li>
   </ol>
 
   <div class="quiz" data-a="2">
@@ -2051,9 +2614,9 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
     <p>Окупаемость — это и деньги, и доверие. Честная подача бережёт вторую половину.</p>
   </div>
 </section>
-    <section class="module" id="m9" data-title="Право и честность" data-block="V">
+    <section class="module" id="m10" data-title="Право и честность" data-block="V">
   <header class="module-head">
-    <p>М9 · Блок В «Управлять» · ≈25 мин</p>
+    <p>М10 · Блок В «Управлять» · ≈25 мин</p>
     <h2>Право и честность</h2>
     <p>Согласие один раз, метка на каждый ролик — и конвейер работает спокойно, без риска.</p>
   </header>
@@ -2076,14 +2639,14 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <div class="control">
     <ul>
       <li>Подписанное согласие лежит в известной папке, а не в переписке — нашёл за минуту.</li>
-      <li>Перед каждой публикацией — чек-лист из 7 пунктов ниже. Не пропускаешь ни одного.</li>
+      <li>Перед каждой публикацией — чек-лист из 8 пунктов ниже. Не пропускаешь ни одного.</li>
       <li>Раз в месяц проверяй, что метки на месте и площадки не сняли ролики за нераскрытие.</li>
     </ul>
   </div>
 
   <h3>Согласие: одно на всё</h3>
   <p>Согласие ведущей нужно оформить письменно — даже если это близкий человек. Аватар = коммерческое использование образа, а тут правило одно для всех.</p>
-  <p>Шаблон согласия ты уже собрал в М3. Здесь — про главное после подписи: <strong>где оно лежит</strong>.</p>
+  <p>Шаблон согласия ты уже собрал в М4. Здесь — про главное после подписи: <strong>где оно лежит</strong>.</p>
   <ul>
     <li>Бумажный оригинал — в папке с договорами магазина, там же где остальные документы.</li>
     <li>Скан — в папке исходников на сервере, рядом с сетами (подпапка документов), плюс копия в облаке.</li>
@@ -2121,9 +2684,20 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </details>
 
   <h3>Что в России уже решено</h3>
-  <p>Отдельного закона «маркируй весь ИИ-контент» в РФ пока нет. Но направление ясное.</p>
-  <p><span class="dated" data-src="klerk.ru, vitvet.com, 20.08.2026">С 01.03.2027 площадки с большой аудиторией обязаны дать пользователям возможность помечать ИИ-контент</span> — это кнопка маркировки, а не запрет. По защите образа уже работает ст. 152.1 ГК: она про согласие, и её достаточно, чтобы оформить отношения с ведущей правильно.</p>
-  <p>Вывод: живёшь честно уже сейчас — к 01.03.2027 менять ничего не придётся, только нажимать готовую кнопку.</p>
+  <p>Закон про ИИ в России уже есть. Читать его надо по статусам: что принято, что только внесено, что отклонено. Это три разные вещи.</p>
+  <p><strong>Принято.</strong> <span class="dated" data-src="ppt.ru, обзор 27.07.2026 (ст. 13); по данным прессы: habr.com 26.07.2026, rb.ru 08.07.2026; сверено 22.08.2026">ФЗ от 26.07.2026 № 243-ФЗ «О поддержке развития технологий ИИ» — закон в силе с 01.09.2026, отдельные положения — позже</span>. По маркировке: <span class="dated" data-src="ppt.ru, обзор 27.07.2026 (ст. 9 ч. 3); срок 01.03.2027 — rb.ru 08.07.2026, klerk.ru 17.08.2026; сверено 22.08.2026">кнопка маркировки по статье 9 — с 01.03.2027: площадки с аудиторией от 500 тыс. пользователей в сутки обязаны дать возможность пометить ИИ-контент; для автора пометка добровольная</span>.</p>
+  <p>Честно: первоисточник — текст статьи 9 — при сборке курса не открылся; выше — обзор ppt.ru и пересказ прессы. Перед тем как строить на этом решение, сверь текст статьи 9 сам на портале официального опубликования.</p>
+  <p><strong>Ещё не закон.</strong> <span class="dated" data-src="klerk.ru, 17.08.2026; сверено 22.08.2026">17.08.2026 в Госдуму внесён законопроект об обязательной маркировке ИИ-контента с 01.03.2027 — обязать сервисы-генераторы, владельцев больших моделей, не автора</span>. Пока это проект: обязанность может поменяться или не появиться вовсе. Тебя как автора он не трогает — метка всё равно на тебе, по чек-листу ниже.</p>
+  <p><strong>Не путать.</strong> <span class="dated" data-src="developers.sber.ru, 16.04.2026 (обновлено 17.04.2026); сверено 22.08.2026">15.04.2026 комитет Госдумы отклонил прежний проект о маркировке со штрафами 10–500 тыс. ₽</span>. Штрафов за отсутствие метки в России сегодня нет — статьи прошлой весны, которые ими пугают, устарели.</p>
+  <p>Дата 01.03.2027 встречается дважды, и это не путаница: с неё работает статья 9 самого 243-ФЗ — кнопка у площадок, и на неё же законопроект 17.08 хочет повесить обязанность сервисов-генераторов. Запомни так: закон — с 01.09.2026, кнопка маркировки по статье 9 — с 01.03.2027.</p>
+  <p>По защите образа ничего не изменилось: ст. 152.1 ГК — про согласие, и её достаточно, чтобы оформить отношения с ведущей правильно.</p>
+  <p>Вывод не меняется: метка на каждом ролике — уже сейчас, независимо от того, что примут дальше. Кнопку площадки нажимаешь, даже когда для тебя она добровольная.</p>
+
+  <h3>Зритель в Европе: статья 50 AI Act</h3>
+  <p>Публикуешь на площадках, где тебя смотрят из ЕС, — работает европейское правило прозрачности.</p>
+  <p><span class="dated" data-src="digital-strategy.ec.europa.eu, 22.08.2026">Статья 50 AI Act действует с 02.08.2026</span>. Суть: <span class="dated" data-src="digital-strategy.ec.europa.eu, 22.08.2026">кто публикует дипфейк или синтетического человека — обязан пометить это видимо или слышимо; провайдер модели — машиночитаемой меткой</span>.</p>
+  <p>Штраф за нарушение — <span class="dated" data-src="digital-strategy.ec.europa.eu, 22.08.2026">до 15 млн € или 3 % годового оборота</span>. Переходный срок по машиночитаемой метке — <span class="dated" data-src="digital-strategy.ec.europa.eu, 22.08.2026">до 02.12.2026</span> — касается провайдеров моделей, не тебя. Твоя часть — видимая или слышимая метка в самом ролике.</p>
+  <p>Заметь: то, что ты и так делаешь по чек-листу ниже, — ровно то, чего требует ЕС. Новых действий нет.</p>
 
   <h3>Деликатные категории — осторожнее</h3>
   <p>Есть категории, где площадки строже к рекламе и к тому, как показан товар: здоровье, деньги, чувствительные темы. Если твой товар из такой зоны — правила площадки читаешь <strong>до</strong> публикации, а не после блокировки.</p>
@@ -2150,7 +2724,7 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
       <rect x="110" y="196" width="440" height="66" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="2"/>
       <text x="330" y="224" text-anchor="middle" font-size="16" font-weight="700" fill="var(--ink)">2 · Метка «сделано с ИИ»</text>
-      <text x="330" y="247" text-anchor="middle" font-size="14" fill="var(--muted)">в ролике, в подписи, галка площадки</text>
+      <text x="330" y="247" text-anchor="middle" font-size="14" fill="var(--muted)">в ролике, в подписи, галка площадки · 243-ФЗ, ЕС ст. 50</text>
 
       <path d="M330 262 V282" fill="none" stroke="var(--muted)" stroke-width="2"/>
       <polygon points="330,286 323,272 337,272" fill="var(--muted)"/>
@@ -2183,15 +2757,16 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <h3>Чек-лист «перед публикацией»</h3>
-  <p>Семь пунктов. Пройди их по каждому ролику, пока это не станет привычкой на автомате.</p>
+  <p>Восемь пунктов. Пройди их по каждому ролику, пока это не станет привычкой на автомате.</p>
   <ol class="steps">
-    <li class="step-check" data-step="m9-s1">Согласие на лицо ведущей подписано и лежит в известном месте (на свою голову согласие не нужно).</li>
-    <li class="step-check" data-step="m9-s2">В самом ролике и в подписи под ним стоит честная пометка «создано с ИИ».</li>
-    <li class="step-check" data-step="m9-s3">При загрузке на YouTube или TikTok поставлена галка «синтетический / ИИ-контент».</li>
-    <li class="step-check" data-step="m9-s4">Невидимую метку в файле не вырезал — площадки читают её сами.</li>
-    <li class="step-check" data-step="m9-s5">Аватар нигде не выдаётся за живую съёмку — ни в отзывах, ни в тестимониалах.</li>
-    <li class="step-check" data-step="m9-s6">Для деликатной категории проверил правила рекламы площадки до публикации.</li>
-    <li class="step-check" data-step="m9-s7">Исходный файл и текст сценария сохранены в папку — чтобы повторить и, если надо, доказать.</li>
+    <li class="step-check" data-step="m10-s1">Согласие на лицо ведущей подписано и лежит в известном месте (на свою голову согласие не нужно).</li>
+    <li class="step-check" data-step="m10-s2">В самом ролике и в подписи под ним стоит честная пометка «создано с ИИ».</li>
+    <li class="step-check" data-step="m10-s3">При загрузке на YouTube или TikTok поставлена галка «синтетический / ИИ-контент».</li>
+    <li class="step-check" data-step="m10-s4">Невидимую метку в файле не вырезал — площадки читают её сами.</li>
+    <li class="step-check" data-step="m10-s5">Аватар нигде не выдаётся за живую съёмку — ни в отзывах, ни в тестимониалах.</li>
+    <li class="step-check" data-step="m10-s6">Для деликатной категории проверил правила рекламы площадки до публикации.</li>
+    <li class="step-check" data-step="m10-s7">Исходный файл и текст сценария сохранены в папку — чтобы повторить и, если надо, доказать.</li>
+    <li class="step-check" data-step="m10-s8">Кнопку «ИИ-контент» нажал и там, где площадка её только предлагает: закон 243-ФЗ — с 01.09.2026, кнопка маркировки по статье 9 у площадок от 500 тыс. в сутки — с 01.03.2027, для автора она добровольная — ты нажимаешь всегда; для зрителя из ЕС видимая метка обязательна.</li>
   </ol>
 
   <div class="quiz" data-a="3">
@@ -2205,12 +2780,13 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <div class="takeaway">
     <p>Согласие — один раз и в известную папку. Метка «сделано с ИИ» — на каждый ролик.</p>
     <p>Площадки метят ИИ сами по невидимой метке — вырезать бессмысленно, честность дешевле.</p>
+    <p>Закон в РФ есть: 243-ФЗ с 01.09.2026, кнопка маркировки по статье 9 — с 01.03.2027; законопроект 17.08 хочет обязать сервисы-генераторы, не автора; в ЕС метка обязательна с 02.08.2026. Метку ставишь в любом случае.</p>
     <p>Деликатная категория — правила площадки читаешь до публикации, а не после блокировки.</p>
   </div>
 </section>
-    <section class="module" id="m10" data-title="Экзамен и три ролика" data-block="V">
+    <section class="module" id="m11" data-title="Экзамен и три ролика" data-block="V">
   <header class="module-head">
-    <p>М10 · Блок В «Управлять» · ≈30 мин</p>
+    <p>М11 · Блок В «Управлять» · ≈30 мин</p>
     <h2>Экзамен и три ролика</h2>
     <p>Курс сдаётся не тестом, а делом: три ролика за неделю твоими руками, с секундомером.</p>
   </header>
@@ -2239,15 +2815,15 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </div>
 
   <h3>Задание экзамена</h3>
-  <p>Одна неделя, три ролика, секундомер. Прогоняешь весь конвейер, который собирал восемь модулей.</p>
+  <p>Одна неделя, три ролика, секундомер. Прогоняешь весь конвейер, который собирал девять модулей.</p>
   <ol class="steps">
-    <li class="step-check" data-step="m10-s1">Спланируй три темы на неделю — по образцу планёрки из М7. Хотя бы одна тема — экспертная, под твою голову.</li>
-    <li class="step-check" data-step="m10-s2">Собери ролик №1 с ведущей: сценарий по шаблону М5, генерация в Speak, метка ИИ. Засеки время.</li>
-    <li class="step-check" data-step="m10-s3">Собери ролик №2 — другой линии контента. Снова засеки время: должно уйти меньше, чем на первый.</li>
-    <li class="step-check" data-step="m10-s4">Собери ролик №3 — экспертный, твоей собственной головой. Цель — уложиться примерно в час.</li>
-    <li class="step-check" data-step="m10-s5">Каждый ролик проведи через чек-лист «перед публикацией» из М9 и опубликуй.</li>
-    <li class="step-check" data-step="m10-s6">Выпиши три числа — время на ролик №1, №2, №3 — и посмотри, падает ли кривая.</li>
-    <li class="step-check" data-step="m10-s7">Ответь на три критерия ниже. Все три «да» — курс сдан.</li>
+    <li class="step-check" data-step="m11-s1">Спланируй три темы на неделю — по образцу планёрки из М8. Хотя бы одна тема — экспертная, под твою голову.</li>
+    <li class="step-check" data-step="m11-s2">Собери ролик №1 с ведущей: сценарий по шаблону М6, генерация в Speak, метка ИИ. Засеки время.</li>
+    <li class="step-check" data-step="m11-s3">Собери ролик №2 — другой линии контента. Снова засеки время: должно уйти меньше, чем на первый.</li>
+    <li class="step-check" data-step="m11-s4">Собери ролик №3 — экспертный, твоей собственной головой. Цель — уложиться примерно в час.</li>
+    <li class="step-check" data-step="m11-s5">Каждый ролик проведи через чек-лист «перед публикацией» из М10 и опубликуй.</li>
+    <li class="step-check" data-step="m11-s6">Выпиши три числа — время на ролик №1, №2, №3 — и посмотри, падает ли кривая.</li>
+    <li class="step-check" data-step="m11-s7">Ответь на три критерия ниже. Все три «да» — курс сдан.</li>
   </ol>
 
   <details class="term">
@@ -2292,13 +2868,14 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   <p>Если на экзамене что-то не пошло, не начинай сначала. Найди строку и вернись ровно в тот модуль.</p>
   <table>
     <tr><th>Что просело</th><th>Куда вернуться</th></tr>
-    <tr><td>Лицо ведущей дрожит или не похоже на неё</td><td>М3 · Лицо ведущей</td></tr>
-    <tr><td>Голос звучит не по-русски или хрипит</td><td>М4 · Голос ведущей</td></tr>
-    <tr><td>Ролик ни о чём, нет хука в первой секунде</td><td>М5 · Сценарий ролика</td></tr>
-    <tr><td>Первый ролик вообще не собрался</td><td>М6 · Первый ролик</td></tr>
-    <tr><td>Нет ритма, ролики выходят рывками</td><td>М7 · Конвейер на поток</td></tr>
-    <tr><td>Не понимаешь, окупается ли и на сколько</td><td>М8 · Окупаемость роликов</td></tr>
-    <tr><td>Не уверен в согласии, метках и праве</td><td>М9 · Право и честность</td></tr>
+    <tr><td>Движок закрылся, подорожал или не тянет русские губы</td><td>М2 · Рынок видео-ИИ 2026</td></tr>
+    <tr><td>Лицо ведущей дрожит или не похоже на неё</td><td>М4 · Лицо ведущей</td></tr>
+    <tr><td>Голос звучит не по-русски или хрипит</td><td>М5 · Голос ведущей</td></tr>
+    <tr><td>Ролик ни о чём, нет хука в первой секунде</td><td>М6 · Сценарий ролика</td></tr>
+    <tr><td>Первый ролик вообще не собрался</td><td>М7 · Первый ролик</td></tr>
+    <tr><td>Нет ритма, ролики выходят рывками</td><td>М8 · Конвейер на поток</td></tr>
+    <tr><td>Не понимаешь, окупается ли и на сколько</td><td>М9 · Окупаемость роликов</td></tr>
+    <tr><td>Не уверен в согласии, метках и праве</td><td>М10 · Право и честность</td></tr>
   </table>
 
   <details class="term">
@@ -2307,15 +2884,16 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
   </details>
 
   <h3>Карта применения: куда дальше</h3>
-  <p>Курс сдан — станок в руках. Дальше тот же конвейер кормит четыре разных направления. Выбери одно и сделай первый шаг.</p>
+  <p>Курс сдан — станок в руках. Дальше тот же конвейер кормит пять разных направлений. Выбери одно и сделай первый шаг.</p>
   <table>
     <tr><th>Идея</th><th>Что нужно</th><th>Первый шаг</th></tr>
     <tr><td>Сайт-витрина с роликами ведущей</td><td>твоя платформа и папка готовых роликов</td><td>вставь три экзаменационных ролика на главную</td></tr>
-    <tr><td>Сервис: n8n сам раскладывает ролики</td><td>первая школа, модуль про n8n</td><td>собери сценарий «новый ролик → во все каналы»</td></tr>
+    <tr><td>Сервис: n8n сам раскладывает ролики</td><td>готовая связка «Один ролик → все площадки» из М8; разбор — первая школа, модуль 9</td><td>вставь связку в свой n8n и прогони один тестовый ролик</td></tr>
     <tr><td>Приложение с твоей ведущей</td><td>лицо и голос в Soul ID уже готовы</td><td>опиши письменным ТЗ, что приложение должно делать</td></tr>
-    <tr><td>Контент-канал на потоке</td><td>недельный цикл из М7</td><td>поставь планёрку в календарь фиксированным окном</td></tr>
+    <tr><td>Контент-канал на потоке</td><td>недельный цикл из М8</td><td>поставь планёрку в календарь фиксированным окном</td></tr>
+    <tr><td>Запасной движок про запас</td><td>карта рынка из М2: цена за секунду, кто закрылся</td><td>прогони один сценарий через вторую модель и сравни цену и губы</td></tr>
   </table>
-  <p>Следующая ступень автоматизации — Higgsfield CLI, разобран в модуле «Конвейер на поток» (М7).</p>
+  <p>Следующая ступень автоматизации — Higgsfield CLI, разобран в модуле «Конвейер на поток» (М8).</p>
 
   <div class="example">
     <p><strong>Первый ролик — три часа, третий — час.</strong> Продюсер сел за экзамен. Первый ролик собирал долго: путался в сценарии, перегенерировал дубли. Часа три.</p>
@@ -2324,22 +2902,22 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
   <div class="example case-m">
     <p>Магазин М. сдал экзамен за рабочую неделю. Понедельник — планёрка и три темы. Вторник и среда — три ролика: два с ведущей, один экспертный головой хозяина.</p>
-    <p>Замер показал узкое место — сценарии. Хозяин вернулся в М5, взял шаблоны, и на следующей неделе три ролика заняли уже вдвое меньше времени.</p>
+    <p>Замер показал узкое место — сценарии. Хозяин вернулся в М6, взял шаблоны, и на следующей неделе три ролика заняли уже вдвое меньше времени.</p>
     <p>Дальше выбрал первое направление из карты: три ролика легли на главную его платформы. Точные числа времени — свои, впиши по факту.</p>
   </div>
 
   <div class="quiz" data-a="2">
     <p class="quiz-q">На экзамене голос ведущей в ролике захрипел и звучит не по-русски. Что делаешь?</p>
     <button>бросаешь экзамен и начинаешь курс сначала</button>
-    <button>по таблице «просело → куда вернуться» идёшь в М4 и чинишь именно голос</button>
+    <button>по таблице «просело → куда вернуться» идёшь в М5 и чинишь именно голос</button>
     <button>публикуешь как есть — на экзамене сойдёт</button>
-    <p class="quiz-x">Экзамен устроен так, что любой сбой — это точный адрес модуля, а не повод всё бросить. Захрипел голос — таблица ведёт в М4. Починил один шаг и вернулся к трём роликам, не переделывая остальное.</p>
+    <p class="quiz-x">Экзамен устроен так, что любой сбой — это точный адрес модуля, а не повод всё бросить. Захрипел голос — таблица ведёт в М5. Починил один шаг и вернулся к трём роликам, не переделывая остальное.</p>
   </div>
 
   <div class="takeaway">
     <p>Курс сдан делом: три ролика за неделю руками, хотя бы один — экспертный твоей головой, с замером времени.</p>
     <p>Просело — таблица ведёт в нужный модуль, а не назад к началу.</p>
-    <p>Ролик — расходник, конвейер — актив. Станок в руках: дальше он кормит сайт, сервис, приложение и канал.</p>
+    <p>Ролик — расходник, конвейер — актив. Станок в руках: дальше он кормит сайт, сервис, приложение, канал — и держит запасной движок.</p>
   </div>
 </section>
   </main>
@@ -2381,15 +2959,37 @@ figure.scheme figcaption::before{content:"— ";color:var(--amber)}
 
 /* ---------- хранилище прогресса (не падает без localStorage) ---------- */
 var KEY = "golova-progress";
+var REMAP = {"m2": "m3", "m3": "m4", "m4": "m5", "m5": "m6", "m6": "m7", "m7": "m8", "m8": "m9", "m9": "m10", "m10": "m11"}; /* старый id модуля → новый; прогресс v1 переезжает по нему */
+/* MIGRATE:start */
+/* Прогресс v1 (запись без поля v, до перенумерации 22.08.2026) -> v2:
+   ключи модулей «mN» и шагов «mN-sK» переезжают по карте старый id -> новый.
+   Запись с v:2 возвращается как есть — повторная загрузка ничего не меняет. */
+function migrateState(d, remap){
+  if(d && d.v === 2) return d;
+  var out = {v:2, steps:{}, modules:{}};
+  var mods = (d && d.modules && typeof d.modules === "object") ? d.modules : {};
+  var steps = (d && d.steps && typeof d.steps === "object") ? d.steps : {};
+  var k, m;
+  for(k in mods){ if(mods[k]) out.modules[remap[k] || k] = true; }
+  for(k in steps){
+    if(!steps[k]) continue;
+    m = k.split("-")[0];
+    out.steps[(remap[m] || m) + k.slice(m.length)] = true;
+  }
+  return out;
+}
+/* MIGRATE:end */
 function readState(){
   try{
     var raw = localStorage.getItem(KEY);
-    var d = raw ? JSON.parse(raw) : null;
+    if(!raw) return {v:2, steps:{}, modules:{}};
+    var d = JSON.parse(raw);
     if(!d || typeof d !== "object") d = {};
+    if(d.v !== 2){ d = migrateState(d, REMAP); writeState(d); } /* старая запись — переезд один раз */
     if(!d.steps || typeof d.steps !== "object") d.steps = {};
     if(!d.modules || typeof d.modules !== "object") d.modules = {};
     return d;
-  }catch(e){ return {steps:{}, modules:{}}; }
+  }catch(e){ return {v:2, steps:{}, modules:{}}; }
 }
 function writeState(d){
   try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){ /* приватный режим — курс работает, прогресс не хранится */ }
@@ -2398,7 +2998,7 @@ var state = readState();
 
 /* ---------- прогресс-бар и оглавление ---------- */
 var modules = [].slice.call(document.querySelectorAll("section.module"));
-var total = modules.length || 11;
+var total = modules.length;
 
 function renderProgress(){
   var done = 0;
@@ -2482,6 +3082,55 @@ modules.forEach(function(m){
       });
     });
   });
+});
+
+/* ---------- связки: плашка с именем и кнопка «Скопировать» ---------- */
+[].slice.call(document.querySelectorAll(".svyazka")).forEach(function(box){
+  var code = box.querySelector("pre > code");
+  var head = document.createElement("div");
+  head.className = "svyazka-head";
+  var name = document.createElement("span");
+  name.className = "svyazka-name";
+  name.textContent = box.getAttribute("data-name") || "без имени";
+  head.appendChild(name);
+  if(code){
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "svyazka-copy";
+    btn.textContent = "Скопировать";
+    function gotovo(){
+      btn.textContent = "скопировано";
+      btn.classList.add("ok");
+      setTimeout(function(){ btn.textContent = "Скопировать"; btn.classList.remove("ok"); }, 2000);
+    }
+    function vruchnuyu(){ /* старый браузер или нет прав на буфер — выделяем текст */
+      try{
+        var r = document.createRange(); r.selectNodeContents(code);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        if(document.execCommand("copy")) gotovo();
+        else btn.textContent = "выдели и скопируй сам";
+      }catch(e){ btn.textContent = "выдели и скопируй сам"; }
+    }
+    btn.addEventListener("click", function(){
+      if(navigator.clipboard && navigator.clipboard.writeText)
+        navigator.clipboard.writeText(code.textContent).then(gotovo, vruchnuyu);
+      else vruchnuyu();
+    });
+    head.appendChild(btn);
+  }
+  box.insertBefore(head, box.firstChild);
+});
+
+/* ---------- бейдж «новое» в оглавлении: 30 дней с даты data-new на секции ---------- */
+modules.forEach(function(m){
+  var ot = Date.parse(m.getAttribute("data-new") || "");
+  if(isNaN(ot) || Date.now() - ot > 30 * 86400000) return;
+  var link = document.querySelector('.toc-link[href="#' + m.id + '"]');
+  if(!link) return;
+  var b = document.createElement("span");
+  b.className = "toc-new";
+  b.textContent = "новое";
+  link.appendChild(b);
 });
 
 /* ---------- калькулятор окупаемости: вставка по метке ROI-CALC ---------- */
