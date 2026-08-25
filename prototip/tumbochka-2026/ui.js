@@ -4,6 +4,9 @@
  *   TMB.ui.productCard(it) → HTMLElement карточки товара (сетка/полка)
  *   TMB.ui.sheet(el)       → {open, close} — нижняя шторка с подложкой
  *   TMB.ui.toast(msg)      — всплывашка над навигацией, сама гаснет
+ *   TMB.ui.dostavkaDate(from?) → '28 августа' — дата доставки: from (или
+ *                            сегодня) + 3 дня, по-русски, без года. Чистая,
+ *                            работает в Node без DOM (юниты таска 08).
  */
 (function (root) {
   'use strict';
@@ -24,6 +27,16 @@
     if (cls) e.className = cls;
     if (html !== undefined) e.innerHTML = html;
     return e;
+  }
+
+  /* месяцы в родительном падеже — для даты доставки («28 августа») */
+  var MES = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+  function dostavkaDate(from) {
+    var d = new Date(from ? from.getTime() : Date.now());
+    d.setDate(d.getDate() + 3); // привезём через три дня — обещание витрины
+    return d.getDate() + ' ' + MES[d.getMonth()];
   }
 
   function productCard(item) {
@@ -60,7 +73,12 @@
     if (item.orders > 0) {
       body.appendChild(el('div', 'pcard-orders', formatOrders(item.orders) + ' заказали'));
     }
-    var btn = el('button', 'pcard-add', 'В корзину');
+    /* кнопка-плашка как на маркетплейсах: корзинка + дата доставки (G12) */
+    var data = dostavkaDate();
+    var btn = el('button', 'pcard-add',
+      '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true"><path d="M4 6h2l2.2 10.2a1.5 1.5 0 0 0 1.47 1.2h7.9a1.5 1.5 0 0 0 1.46-1.16L20.8 9H7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10.5" cy="20.5" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20.5" r="1.4" fill="currentColor"/></svg>' +
+      '<span>' + data + '</span>');
+    btn.setAttribute('aria-label', 'В корзину, доставка ' + data);
     btn.addEventListener('click', function (ev) {
       ev.stopPropagation();
       root.TMB.store.cart.add(item.id);
@@ -120,5 +138,5 @@
   }
 
   var TMB = (root.TMB = root.TMB || {});
-  TMB.ui = { price: price, productCard: productCard, sheet: sheet, toast: toast };
+  TMB.ui = { price: price, productCard: productCard, sheet: sheet, toast: toast, dostavkaDate: dostavkaDate };
 })(typeof window !== 'undefined' ? window : globalThis);

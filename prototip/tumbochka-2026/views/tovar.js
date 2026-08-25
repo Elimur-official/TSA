@@ -248,7 +248,7 @@
     if (item.noise >= 1) rows.push(['Питание', 'см. упаковку']);
     rows.push(['Комплектация', 'указана на упаковке']);
     rows.push(['Упаковка', 'скромная коробка без надписей о содержимом']);
-    rows.push(['Доставка', '2–4 дня по России']);
+    rows.push(['Доставка', 'до ' + TMB.ui.dostavkaDate()]); /* та же дата, что на экране (G12) */
     return rows;
   }
 
@@ -388,7 +388,7 @@
 
     body.appendChild(el('div', 'tovar-delivery',
       '<svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="18" r="1.8" stroke="currentColor" stroke-width="1.6"/></svg>' +
-      '<span>Привезём за <b>2–4 дня</b> · анонимная коробка</span>'));
+      '<span>Привезём <b>' + TMB.ui.dostavkaDate() + '</b> · анонимная коробка</span>'));
 
     var aboutBtn = el('button', 'tovar-about-btn',
       '<span>О товаре</span><span class="tovar-about-sub">материал, шум, доставка</span>' +

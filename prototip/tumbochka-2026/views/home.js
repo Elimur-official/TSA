@@ -94,6 +94,74 @@
     return sec;
   }
 
+  /* ── мини-презентация «Тумбочки» (G09): нас ещё не знают — знакомимся.
+   * Обложка — зона «дерзко», слайды про страхи — тихо и по-взрослому. */
+  var PROMO = [
+    {
+      cls: 'home-promo-slide--cover', emoji: '🗝️', tag: 'Кто мы',
+      title: 'Тумбочка — магазин, где не стыдно',
+      text: 'Выбирай спокойно: без осуждения и лишних глаз. Всё для взрослых — и всё по-честному.',
+    },
+    {
+      emoji: '📦', tag: 'Анонимность',
+      title: 'Коробка без надписей',
+      /* формулировка сверена с экраном анонимности — он авторитет */
+      text: 'На этикетке — имя получателя и адрес, о содержимом ни слова.',
+      btn: 'Как это устроено', hash: '#/anonimnost',
+    },
+    {
+      emoji: '🛡️', tag: 'Безопасность',
+      title: 'Реквизиты на сайте не вводятся',
+      text: 'Заказ уходит в Telegram, данные остаются в твоём телефоне.',
+      btn: 'Политика данных', href: './politika.html',
+    },
+  ];
+
+  function promo() {
+    var sec = el('section', 'home-promo');
+    var row = el('div', 'home-promo-row');
+    PROMO.forEach(function (s) {
+      var slide = el('article', 'home-promo-slide' + (s.cls ? ' ' + s.cls : ''));
+      slide.innerHTML =
+        '<span class="home-promo-tag">' + s.tag + '</span>' +
+        '<span class="home-promo-emoji">' + s.emoji + '</span>' +
+        '<h2>' + s.title + '</h2><p>' + s.text + '</p>';
+      if (s.hash) {
+        var b = el('button', 'home-promo-btn', s.btn);
+        b.addEventListener('click', function () { TMB.router.go(s.hash); });
+        slide.appendChild(b);
+      } else if (s.href) {
+        var a = el('a', 'home-promo-btn', s.btn);
+        a.href = s.href;
+        slide.appendChild(a);
+      }
+      row.appendChild(slide);
+    });
+    sec.appendChild(row);
+
+    var dots = el('div', 'home-promo-dots');
+    function step() {
+      var first = row.firstElementChild;
+      return first ? first.offsetWidth + 10 : 1; /* 10 = gap из css */
+    }
+    PROMO.forEach(function (_, i) {
+      var d = el('button', 'home-dot' + (i === 0 ? ' on' : ''));
+      d.setAttribute('aria-label', 'Слайд ' + (i + 1));
+      d.addEventListener('click', function () {
+        row.scrollTo({ left: i * step(), behavior: 'smooth' });
+      });
+      dots.appendChild(d);
+    });
+    row.addEventListener('scroll', function () {
+      var i = Math.round(row.scrollLeft / step());
+      for (var j = 0; j < dots.children.length; j++) {
+        dots.children[j].classList.toggle('on', j === i);
+      }
+    }, { passive: true });
+    sec.appendChild(dots);
+    return sec;
+  }
+
   function chips() {
     var row = el('div', 'home-chips');
     function chip(emoji, name, go) {
@@ -171,6 +239,7 @@
     var wrap = el('div', 'home');
     wrap.appendChild(banner());
     wrap.appendChild(chips());
+    wrap.appendChild(promo());
     wrap.appendChild(el('div', 'home-wave'));
     wrap.appendChild(shelves());
     wrap.appendChild(el('div', 'home-wave home-wave--sun'));
