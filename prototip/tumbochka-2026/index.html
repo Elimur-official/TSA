@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Тумбочка — магазин для взрослых</title>
+  <meta name="description" content="Тумбочка — то, что лежит в тумбочке. Магазин 18+ с доставкой по России в скромной коробке.">
+  <meta name="theme-color" content="#FF4D88">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23FF4D88'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='Arial Black,sans-serif'%3EТ%3C/text%3E%3C/svg%3E">
+  <meta property="og:title" content="Тумбочка — магазин для взрослых девочек">
+  <meta property="og:description" content="То, что лежит в тумбочке. Доставка по России в скромной коробке.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://effulgent-smakager-3d5066.netlify.app/prototip/img/hero.jpg">
+  <meta property="og:url" content="https://effulgent-smakager-3d5066.netlify.app/prototip/tumbochka-2026/">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;600;700;800&display=swap">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/katalog.css">
+  <link rel="stylesheet" href="css/tovar.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/profile.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="css/anon.css">
+
+  <script>
+  /* PWA: регистрация service worker (офлайн-оболочка), scope — папка приложения */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js').catch(function () {});
+    });
+  }
+  </script>
+</head>
+<body>
+
+  <!-- заставка: один раз за сессию -->
+  <div id="splash" hidden>
+    <div class="splash-logo">Тумбочка</div>
+    <div class="splash-sub">то, что лежит в тумбочке</div>
+  </div>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="topbar-place">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="currentColor"/></svg>
+        <span>Доставка&nbsp;<b>по России</b></span>
+      </div>
+      <label class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.2-3.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="search" type="search" placeholder="Найти в Тумбочке" autocomplete="off">
+      </label>
+    </header>
+
+    <main id="screen"></main>
+  </div>
+
+  <nav class="bottomnav" aria-label="Основная навигация">
+    <div class="bottomnav-inner">
+      <button class="nav-btn" data-route="#/" aria-label="Главная">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span>Главная</span>
+      </button>
+      <button class="nav-btn" data-route="#/katalog" aria-label="Каталог">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2.5" stroke="currentColor" stroke-width="2"/><rect x="13" y="3" width="8" height="8" rx="2.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="8" height="8" rx="2.5" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="8" height="8" rx="2.5" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Каталог</span>
+      </button>
+      <button class="nav-btn" data-route="#/kviz" aria-label="Квиз">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2.5 14.4 9l6.6.3-5.2 4.2 1.8 6.4L12 16.2 6.4 19.9l1.8-6.4L3 9.3 9.6 9 12 2.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span>Квиз</span>
+      </button>
+      <button class="nav-btn" data-route="#/korzina" aria-label="Корзина">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1.3 11.2a2 2 0 0 1-2 1.8H7.3a2 2 0 0 1-2-1.8L4 7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 10V6a3.5 3.5 0 0 1 7 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Корзина</span>
+        <span class="nav-badge" id="cart-badge"></span>
+      </button>
+      <button class="nav-btn" data-route="#/profil" aria-label="Профиль">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Профиль</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Яндекс.Метрика: место под счётчик (появится после подключения владельцем).
+       При подключении Метрики — обновить текст куки-баннера и политику ПДн. -->
+
+  <script src="data.js"></script>
+  <script src="store.js"></script>
+  <script src="router.js"></script>
+  <script src="ui.js"></script>
+  <script src="views/home.js"></script>
+  <script src="views/katalog.js"></script>
+  <script src="views/tovar.js"></script>
+  <script src="views/cart.js"></script>
+  <script src="views/checkout.js"></script>
+  <script src="views/profile.js"></script>
+  <script src="views/quiz.js"></script>
+  <script src="views/anon.js"></script>
+
+  <script>
+  /* Оболочка: заставка, 18+, куки, навигация. Живёт только здесь. */
+  (function () {
+    'use strict';
+    var TMB = window.TMB;
+    var doc = document;
+
+    /* ── заставка: один раз за сессию ── */
+    var splash = doc.getElementById('splash');
+    var splashSeen = false;
+    try { splashSeen = sessionStorage.getItem('tmb_splash') === '1'; } catch (e) {}
+    if (!splashSeen) {
+      splash.hidden = false;
+      try { sessionStorage.setItem('tmb_splash', '1'); } catch (e) {}
+      setTimeout(function () {
+        splash.classList.add('hide');
+        setTimeout(function () { splash.remove(); }, 600);
+      }, 1500);
+    } else {
+      splash.remove();
+    }
+
+    /* ── 18+ (зона: тихо) ── */
+    function showUnder18() {
+      var d = doc.createElement('div');
+      d.id = 'under18';
+      d.innerHTML =
+        '<div class="gate-emoji">🌱</div>' +
+        '<h1>До встречи через пару лет</h1>' +
+        '<p>Здесь продаются товары для взрослых. Возвращайся, когда исполнится восемнадцать.</p>';
+      doc.body.appendChild(d);
+    }
+    function showGate18() {
+      var d = doc.createElement('div');
+      d.id = 'gate18';
+      d.innerHTML =
+        '<div class="gate-card">' +
+        '<div class="gate-emoji">🔞</div>' +
+        '<h2 class="gate-title">Вам уже есть 18?</h2>' +
+        '<p class="gate-text">В Тумбочке продаются товары для взрослых. Пожалуйста, подтвердите возраст.</p>' +
+        '<button class="gate-yes">Мне есть 18</button>' +
+        '<button class="gate-no">Мне нет 18</button>' +
+        '</div>';
+      d.querySelector('.gate-yes').addEventListener('click', function () {
+        TMB.store.consent.set('age18', true);
+        d.remove();
+        maybeCookies();
+      });
+      d.querySelector('.gate-no').addEventListener('click', function () {
+        TMB.store.consent.set('age18', false);
+        d.remove();
+        showUnder18();
+      });
+      doc.body.appendChild(d);
+    }
+    var age = TMB.store.consent.get('age18');
+    if (age === false) showUnder18();
+    else if (age !== true) showGate18();
+
+    /* ── куки-баннер: один раз, после «Понятно» не возвращается ── */
+    function maybeCookies() {
+      if (TMB.store.consent.get('cookies')) return;
+      var d = doc.createElement('div');
+      d.id = 'cookies';
+      d.innerHTML =
+        '<span>Храним корзину и настройки в вашем браузере.</span>' +
+        '<button>Понятно</button>';
+      d.querySelector('button').addEventListener('click', function () {
+        TMB.store.consent.set('cookies', true);
+        d.remove();
+      });
+      doc.body.appendChild(d);
+    }
+    if (age === true) maybeCookies();
+
+    /* ── нижняя навигация ── */
+    var navBtns = doc.querySelectorAll('.nav-btn');
+    navBtns.forEach(function (b) {
+      b.addEventListener('click', function () { TMB.router.go(b.dataset.route); });
+    });
+    TMB.router.onchange = function (base) {
+      var map = { '#/tovar': '#/katalog', '#/oformlenie': '#/korzina', '#/anonimnost': '#/profil' };
+      var active = map[base] || base;
+      navBtns.forEach(function (b) {
+        b.classList.toggle('active', b.dataset.route === active);
+      });
+    };
+
+    /* ── бейдж корзины: живёт от store.subscribe ── */
+    var badge = doc.getElementById('cart-badge');
+    function renderBadge(pulse) {
+      var n = TMB.store.cart.count();
+      badge.textContent = n > 99 ? '99+' : n;
+      badge.classList.toggle('show', n > 0);
+      if (pulse && n > 0) {
+        badge.classList.remove('pulse');
+        void badge.offsetWidth;
+        badge.classList.add('pulse');
+      }
+    }
+    renderBadge(false);
+    TMB.store.subscribe(function (e) {
+      if (e.type === 'cart') renderBadge(true);
+    });
+
+    /* ── поиск: пока ведёт в каталог (наполнит таск каталога) ── */
+    doc.getElementById('search').addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') TMB.router.go('#/katalog');
+    });
+
+    /* ── старт роутера после регистрации всех экранов ── */
+    TMB.router.start();
+  })();
+  </script>
+</body>
+</html>
