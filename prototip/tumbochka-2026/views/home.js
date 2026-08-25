@@ -1,5 +1,6 @@
-/* views/home.js — экран «#/»: баннер-карусель, чипсы категорий, полки
- * по намерению с мем-подписями и бесконечная лента порциями по 20.
+/* views/home.js — экран «#/»: крупная мини-презентация (первый экран),
+ * чипсы категорий, полки по намерению с мем-подписями, баннер-карусель
+ * «Глаза разбежались» (после полок) и бесконечная лента порциями по 20.
  * Карточки — только через TMB.ui.productCard. Регистрация — самовызовом.
  * Тексты экрана — зона «дерзко»: смеёмся над ситуацией, никогда над
  * телом, неопытностью или одиночеством (правило спеки от 18.08). */
@@ -44,7 +45,7 @@
     {
       cls: 'home-slide--sun', emoji: '💛',
       title: 'Подборка недели',
-      text: 'Полки ниже собраны за тебя. Листай и складывай.',
+      text: 'Полки выше собраны за тебя. Листай и складывай.',
       btn: 'К полкам',
       go: function () {
         var s = doc.querySelector('.home-shelves');
@@ -236,13 +237,15 @@
   }
 
   TMB.router.on('#/', function (container) {
+    /* порядок блоков — таск 09: сперва знакомство (крупная презентация),
+     * потом товары, развлекательный баннер — после полок, перед лентой */
     var wrap = el('div', 'home');
-    wrap.appendChild(banner());
-    wrap.appendChild(chips());
     wrap.appendChild(promo());
+    wrap.appendChild(chips());
     wrap.appendChild(el('div', 'home-wave'));
     wrap.appendChild(shelves());
     wrap.appendChild(el('div', 'home-wave home-wave--sun'));
+    wrap.appendChild(banner());
     wrap.appendChild(feed());
     container.appendChild(wrap);
   });

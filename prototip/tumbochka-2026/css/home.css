@@ -73,8 +73,9 @@
 }
 .home-dot.on { width: 20px; background: var(--pink); }
 
-/* ── мини-презентация «Тумбочки» (G09): обложка дерзко, страхи — тихо ── */
-.home-promo { padding-top: 12px; }
+/* ── мини-презентация «Тумбочки» (G09): обложка дерзко, страхи — тихо.
+ * Таск 09 (G13): первый экран после шапки — крупные слайды-знакомство. ── */
+.home-promo { padding-top: 8px; }
 .home-promo-row {
   display: flex; gap: 10px;
   overflow-x: auto;
@@ -85,36 +86,36 @@
 .home-promo-row::-webkit-scrollbar { display: none; }
 .home-promo-slide {
   position: relative;
-  flex: 0 0 82%;
+  flex: 0 0 86%;
   scroll-snap-align: center;
   background: var(--surface);
   border-radius: var(--r-l);
-  padding: 16px 84px 16px 16px;
-  min-height: 138px;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  padding: 20px 18px 18px;
+  min-height: clamp(300px, 46vh, 430px);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 .home-promo-tag {
-  font-size: 10.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--pink);
   background: var(--pink-soft);
-  padding: 3px 9px; border-radius: 999px;
+  padding: 4px 11px; border-radius: 999px;
 }
 .home-promo-emoji {
-  position: absolute; right: 16px; top: 16px;
-  font-size: 40px; line-height: 1;
+  margin: auto 0; /* эмодзи плавает между тегом и заголовком */
+  font-size: clamp(64px, 11vh, 92px); line-height: 1;
   filter: drop-shadow(0 6px 10px rgba(36, 26, 46, 0.16));
 }
-.home-promo-slide h2 { font-size: 15px; line-height: 1.3; }
+.home-promo-slide h2 { font-size: 24px; line-height: 1.2; }
 .home-promo-slide p {
-  color: var(--muted); font-size: 12.5px; line-height: 1.45; font-weight: 600;
+  color: var(--muted); font-size: 14.5px; line-height: 1.5; font-weight: 600;
 }
 .home-promo-btn {
   margin-top: auto;
   background: var(--pink-soft); color: var(--pink);
-  font-weight: 800; font-size: 12.5px;
-  padding: 8px 14px; border-radius: 999px;
+  font-weight: 800; font-size: 14px;
+  padding: 11px 18px; border-radius: 999px;
   text-decoration: none;
   transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -218,8 +219,14 @@
   .home-slide { min-height: 170px; padding-right: 150px; }
   .home-slide h2 { font-size: 22px; }
   /* презентация: все три карточки видно разом, точки не нужны */
-  .home-promo-slide { flex-basis: calc((100% - 20px) / 3); padding-right: 16px; }
-  .home-promo-emoji { position: static; order: -1; font-size: 34px; }
+  .home-promo-slide {
+    flex-basis: calc((100% - 20px) / 3);
+    padding: 16px; min-height: 230px;
+  }
+  .home-promo-slide h2 { font-size: 18px; }
+  .home-promo-slide p { font-size: 13px; }
+  .home-promo-btn { font-size: 13px; padding: 9px 15px; }
+  .home-promo-emoji { order: -1; margin: 0; font-size: 40px; }
   .home-promo-dots { display: none; }
 }
 
@@ -232,4 +239,7 @@
   .home-slide p { font-size: 14.5px; }
   .home-slide-emoji { font-size: 92px; right: 34px; }
   .home-shelf-titles h2 { font-size: 20px; }
+  .home-promo-slide { min-height: 250px; padding: 20px; }
+  .home-promo-slide h2 { font-size: 20px; }
+  .home-promo-emoji { font-size: 46px; }
 }
