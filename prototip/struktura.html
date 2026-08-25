@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тумбочка — новая структура</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Golos+Text:wght@400;500;600;700&family=Caveat:wght@600&display=swap">
+<style>
+:root{--velvet:#FFEBF2;--surface:#fff;--surface-2:#FFF6F9;--ink:#44112B;--mute:#96617B;--mute2:#BB8AA1;
+ --line:rgba(196,64,116,.18);--line-soft:rgba(196,64,116,.10);--candy:#FF4D8D;--candy-deep:#E8397A;
+ --marker:#FFD84D;--marker-ink:#3d2c04;--dark:#1B0A12;--dark2:#2A1220;--sage:#3E8A67;
+ --r-s:10px;--r-m:18px;--r-l:26px;--shadow:0 18px 44px rgba(200,60,120,.13)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--velvet);color:var(--ink);font-family:"Golos Text",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.disp{font-family:Oranienbaum,Georgia,serif;font-weight:400}
+.hand{font-family:Caveat,cursive}
+
+/* шапка */
+header{position:sticky;top:0;z-index:20;background:rgba(255,235,242,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.hd{display:flex;align-items:center;gap:22px;padding:13px 0}
+.logo{font-family:Oranienbaum,Georgia,serif;font-size:25px}
+.logo b{color:var(--candy-deep);font-weight:400}
+nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14.5px}
+nav a{color:var(--mute);text-decoration:none}
+nav a:hover,nav a.on{color:var(--candy-deep)}
+.hd .sp{flex-grow:1}
+.mini{background:var(--candy);color:#fff;border:0;border-radius:99px;padding:9px 16px;font-weight:600;font-size:14px;cursor:pointer}
+
+/* герой с видео */
+.hero{position:relative;margin-top:16px;border-radius:var(--r-l);overflow:hidden;background:var(--dark)}
+.hero .bg{position:absolute;inset:0;opacity:.5}
+.hero .bg img{width:100%;height:100%;object-fit:cover}
+.hero-in{position:relative;padding:clamp(34px,6vw,72px) clamp(20px,4vw,54px);max-width:660px;color:#fff}
+.hero h1{font-size:clamp(34px,5.4vw,58px);line-height:1.02;margin:8px 0 12px}
+.hero p{color:#E8CFDC;max-width:46ch}
+.hero .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.b1{background:var(--candy);color:#fff;border:0;border-radius:99px;padding:14px 24px;font-weight:600;cursor:pointer}
+.b2{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:14px 22px;cursor:pointer}
+.vtag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+ border-radius:99px;padding:5px 12px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:#FF4D6A;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+section{margin-top:52px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.shead h2{font-family:Oranienbaum,Georgia,serif;font-weight:400;font-size:clamp(26px,3.4vw,36px);margin:0}
+.shead .all{margin-left:auto;font-size:14px;color:var(--candy-deep);text-decoration:none}
+.ssub{color:var(--mute);margin:0 0 20px;max-width:66ch}
+
+/* LAB */
+.lab{background:var(--dark);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,42px)}
+.lab h2{color:#fff}
+.lab .ssub{color:#C7A9B8}
+.lab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.meas{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-m);padding:18px;display:flex;flex-direction:column;gap:6px}
+.meas .num{font-family:Oranienbaum,Georgia,serif;font-size:42px;line-height:1;color:#FFD84D}
+.meas .lbl{font-size:13px;color:#C7A9B8}
+.meas .hum{font-size:14px}
+.lab-note{margin-top:16px;font-size:13.5px;color:#B191A2}
+
+/* видеокарточки */
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vid{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-m);overflow:hidden;box-shadow:var(--shadow);cursor:pointer}
+.vid .ph{position:relative;aspect-ratio:16/10;background:#2A1220}
+.vid .ph img{width:100%;height:100%;object-fit:cover;opacity:.9}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;
+ background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.play::after{content:"";border-left:15px solid var(--candy-deep);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.dur{position:absolute;right:9px;bottom:9px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;padding:2px 7px;border-radius:5px}
+.vid .tx{padding:13px 14px 15px}
+.vid .tx b{display:block;font-size:14.5px;line-height:1.35}
+.vid .tx span{display:block;font-size:13px;color:var(--mute);margin-top:5px}
+
+/* рейтинги */
+.rats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rat{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-m);padding:17px 18px;display:flex;flex-direction:column;gap:6px}
+.rat b{font-size:16px}
+.rat span{font-size:13.5px;color:var(--mute)}
+.rat .n{font-size:12px;color:var(--candy-deep);font-weight:600}
+
+/* сравнения */
+.cmps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp{background:linear-gradient(135deg,var(--surface-2),#FFE0EB);border:1px solid var(--line-soft);border-radius:var(--r-m);padding:20px;display:flex;flex-direction:column;gap:10px}
+.cmp .vs{display:flex;align-items:center;gap:12px}
+.cmp .side{flex:1;background:#fff;border-radius:var(--r-s);padding:11px;font-size:14px;font-weight:600;text-align:center}
+.cmp .x{font-family:Oranienbaum,Georgia,serif;color:var(--candy-deep);font-size:20px}
+
+/* гайды */
+.gds{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gd{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-m);padding:16px;display:flex;flex-direction:column;gap:7px}
+.gd b{font-size:15px;line-height:1.3}
+.gd span{font-size:13px;color:var(--mute)}
+
+/* подборщик */
+.ai{background:linear-gradient(135deg,#FF4D8D,#B01F58);color:#fff;border-radius:var(--r-l);padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.ai h2{color:#fff;font-family:Oranienbaum,Georgia,serif;font-weight:400;font-size:clamp(26px,3.4vw,36px);margin:0 0 8px}
+.ai p{color:#FFE3ED;margin:0}
+.aibox{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:var(--r-m);padding:18px;display:flex;flex-direction:column;gap:9px}
+.aibox .q{font-size:14px;color:#FFE3ED}
+.aibox .opt{background:rgba(255,255,255,.9);color:var(--ink);border-radius:var(--r-s);padding:11px 13px;font-size:14px;font-weight:600}
+
+/* каталог и бренды */
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.cat{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-m);padding:14px 12px;text-align:center;font-size:13.5px;font-weight:600}
+.cat span{display:block;font-size:12px;color:var(--mute2);font-weight:400;margin-top:3px}
+.brands{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.br{background:var(--surface-2);border:1px dashed var(--line);border-radius:var(--r-m);padding:20px 10px;text-align:center;color:var(--mute2);font-weight:600}
+
+.note{background:var(--marker);color:var(--marker-ink);border-radius:6px;padding:11px 15px;font-family:Caveat,cursive;font-size:20px;display:inline-block;transform:rotate(-.8deg)}
+footer{margin-top:60px;background:var(--dark);color:#E8CFDC;border-radius:var(--r-l) var(--r-l) 0 0;padding:34px 0 24px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:20px}
+footer b{color:#fff;display:block;margin-bottom:8px}
+footer a{color:#C7A9B8;text-decoration:none;display:block;font-size:14px;margin-bottom:6px}
+.badge{position:fixed;right:14px;bottom:14px;background:var(--marker);color:var(--marker-ink);font-size:12.5px;font-weight:700;
+ padding:8px 13px;border-radius:99px;box-shadow:0 10px 24px rgba(0,0,0,.2);z-index:30}
+@media (max-width:1000px){.vids,.gds{grid-template-columns:repeat(2,1fr)}.lab-grid,.rats{grid-template-columns:1fr}.cats{grid-template-columns:repeat(3,1fr)}
+ .brands{grid-template-columns:repeat(3,1fr)}.cmps{grid-template-columns:1fr}.ai{grid-template-columns:1fr}footer .cols{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.vids,.gds{grid-template-columns:1fr}nav{display:none}}
+</style>
+</head>
+<body>
+<div class="badge">макет структуры</div>
+
+<header><div class="wrap hd">
+  <span class="logo">Тумбочка<b>.</b></span>
+  <nav>
+    <a href="#katalog">Каталог</a><a href="#lab" class="on">LAB</a><a href="#obzory">Обзоры</a>
+    <a href="#reitingi">Рейтинги</a><a href="#sravneniya">Сравнения</a><a href="#gaidy">Гайды</a><a href="#brendy">Бренды</a>
+  </nav>
+  <span class="sp"></span>
+  <button class="mini">Корзина</button>
+</div></header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="bg"><img src="img/zone2.jpg" alt=""></div>
+    <div class="hero-in">
+      <span class="vtag"><span class="dot"></span>видео · мы всё меряем сами</span>
+      <h1 class="disp">Единственный магазин, который включает товар до тебя</h1>
+      <p>Замеряем громкость, время работы и материал. Снимаем на видео, публикуем цифры и методику. Если шумит — так и пишем.</p>
+      <div class="btns">
+        <button class="b1">Подобрать за 3 вопроса</button>
+        <button class="b2">Смотреть замеры →</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="lab">
+    <div class="lab">
+      <div class="shead"><h2 class="disp">Тумбочка LAB</h2><a class="all" href="#">все замеры →</a></div>
+      <p class="ssub">Каждый товар проходит один и тот же путь: заряжаем, включаем, меряем, снимаем. Цифры публикуем вместе с методикой — расстояние, режим, комната.</p>
+      <div class="lab-grid">
+        <div class="meas"><span class="num">42 дБ</span><span class="lbl">громкость на 30 см</span><span class="hum">Тише шёпота. За стеной не слышно</span></div>
+        <div class="meas"><span class="num">2 ч 40</span><span class="lbl">работа на среднем режиме</span><span class="hum">Заряжается за 1 ч 20</span></div>
+        <div class="meas"><span class="num">100%</span><span class="lbl">силикон, без запаха</span><span class="hum">Не липнет, шов не чувствуется</span></div>
+      </div>
+      <p class="lab-note">Заявлено производителем: «бесшумный». Наш замер: 42 дБ — это действительно тихо. А вот у соседней модели заявлено то же, а вышло 63 дБ.</p>
+    </div>
+  </section>
+
+  <section id="obzory">
+    <div class="shead"><h2 class="disp">Видеообзоры</h2><a class="all" href="#">все обзоры →</a></div>
+    <p class="ssub">Достаём из коробки, включаем, меряем при вас. Начали с того, что покупают чаще всего.</p>
+    <div class="vids">
+      <div class="vid"><div class="ph"><img src="img/p0-a.jpg" alt=""><span class="play"></span><span class="dur">6:12</span></div>
+        <div class="tx"><b>Вибратор с подогревом и пультом</b><span>15 002 заказа за год · замер: 51 дБ</span></div></div>
+      <div class="vid"><div class="ph"><img src="img/p1-a.jpg" alt=""><span class="play"></span><span class="dur">4:48</span></div>
+        <div class="tx"><b>Вакуумное виброяйцо</b><span>3 032 заказа · замер: 44 дБ</span></div></div>
+      <div class="vid"><div class="ph"><img src="img/p2-a.jpg" alt=""><span class="play"></span><span class="dur">5:20</span></div>
+        <div class="tx"><b>Мини-вибратор пуля</b><span>для первого раза · замер: 39 дБ</span></div></div>
+      <div class="vid"><div class="ph"><img src="img/p3-a.jpg" alt=""><span class="play"></span><span class="dur">7:05</span></div>
+        <div class="tx"><b>Массажёр простаты с приложением</b><span>1 428 заказов · замер: 47 дБ</span></div></div>
+    </div>
+  </section>
+
+  <section id="reitingi">
+    <div class="shead"><h2 class="disp">Рейтинги</h2><a class="all" href="#">все подборки →</a></div>
+    <p class="ssub">Собраны по нашим продажам и отзывам, а не по чужим спискам.</p>
+    <div class="rats">
+      <div class="rat"><span class="n">по замерам</span><b>Самые тихие</b><span>7 моделей ниже 45 дБ</span></div>
+      <div class="rat"><span class="n">по цене</span><b>Лучшие до 3 000 ₽</b><span>что берут чаще всего</span></div>
+      <div class="rat"><span class="n">для новичка</span><b>Первая покупка</b><span>маленькое и не пугает</span></div>
+      <div class="rat"><span class="n">для пары</span><b>На двоих</b><span>с пультом и приложением</span></div>
+      <div class="rat"><span class="n">для него</span><b>Мужская полка</b><span>треть наших покупателей</span></div>
+      <div class="rat"><span class="n">по автономности</span><b>Дольше всех держат заряд</b><span>от 2,5 часов</span></div>
+    </div>
+  </section>
+
+  <section id="sravneniya">
+    <div class="shead"><h2 class="disp">Сравнения</h2><a class="all" href="#">все сравнения →</a></div>
+    <p class="ssub">Два товара на одном столе, один и тот же протокол замеров.</p>
+    <div class="cmps">
+      <div class="cmp"><div class="vs"><span class="side">Вакуум</span><span class="x disp">против</span><span class="side">Вибрация</span></div>
+        <span style="font-size:14px;color:var(--mute)">Что именно чувствуется по-разному и кому что подходит</span></div>
+      <div class="cmp"><div class="vs"><span class="side">Пульт</span><span class="x disp">против</span><span class="side">Приложение</span></div>
+        <span style="font-size:14px;color:var(--mute)">Что удобнее вдвоём и что чаще ломается</span></div>
+    </div>
+  </section>
+
+  <section id="gaidy">
+    <div class="shead"><h2 class="disp">Гайды</h2><a class="all" href="#">все гайды →</a></div>
+    <div class="gds">
+      <div class="gd"><b>Как выбрать первый</b><span>без терминов, за пять минут</span></div>
+      <div class="gd"><b>Что значит «тихий»</b><span>децибелы человеческим языком</span></div>
+      <div class="gd"><b>Материалы</b><span>силикон, ABS, TPE — в чём разница</span></div>
+      <div class="gd"><b>Уход и хранение</b><span>чтобы прослужило дольше года</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="ai">
+      <div>
+        <h2>Что положить в тумбочку?</h2>
+        <p>Три вопроса без единого термина — и мы сузим сотню позиций до трёх твоих. Ответ придёт в Telegram.</p>
+      </div>
+      <div class="aibox">
+        <span class="q">Вопрос 1 из 3</span>
+        <span class="opt">Себе</span><span class="opt">В подарок подруге</span><span class="opt">Нам двоим</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="katalog">
+    <div class="shead"><h2 class="disp">Каталог</h2><a class="all" href="#">весь каталог →</a></div>
+    <div class="cats">
+      <div class="cat">Вибраторы<span>44 позиции</span></div>
+      <div class="cat">Вакуумные<span>18</span></div>
+      <div class="cat">Для пар<span>21</span></div>
+      <div class="cat">Анальные<span>12</span></div>
+      <div class="cat">Для него<span>15</span></div>
+      <div class="cat">Косметика<span>8</span></div>
+    </div>
+  </section>
+
+  <section id="brendy">
+    <div class="shead"><h2 class="disp">Бренды</h2></div>
+    <p class="ssub">Раздел откроется после закупки — раньше показывать нечего.</p>
+    <div class="brands">
+      <div class="br">Satisfyer</div><div class="br">Womanizer</div><div class="br">We-Vibe</div>
+      <div class="br">Lelo</div><div class="br">наш бренд</div>
+    </div>
+    <p style="margin-top:14px"><span class="note">чужие бренды рисовать нейросетью нельзя — только настоящие фото</span></p>
+  </section>
+
+</div>
+
+<footer><div class="wrap cols">
+  <div><b>Тумбочка</b><span style="font-size:14px;color:#C7A9B8">Магазин, который меряет то, что продаёт. Анонимная доставка, живой человек в чате.</span></div>
+  <div><b>Читать</b><a href="#lab">LAB и замеры</a><a href="#obzory">Видеообзоры</a><a href="#reitingi">Рейтинги</a><a href="#gaidy">Гайды</a></div>
+  <div><b>Купить</b><a href="#katalog">Каталог</a><a href="#">Корзина</a><a href="#">Доставка</a><a href="#">Оплата</a></div>
+  <div><b>Мы</b><a href="https://t.me/elimurbot">Telegram-бот</a><a href="#">Канал</a><a href="#">Wildberries</a><a href="#">Партнёрам</a></div>
+</div></footer>
+</body>
+</html>
