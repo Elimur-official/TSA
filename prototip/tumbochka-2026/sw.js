@@ -4,7 +4,7 @@
    Обновление: поднять VERSION — на activate старые кеши tmb-* удаляются. */
 'use strict';
 
-var VERSION = 'v5';
+var VERSION = 'v7';
 var SHELL_CACHE = 'tmb-shell-' + VERSION;
 var MEDIA_CACHE = 'tmb-media-' + VERSION;
 

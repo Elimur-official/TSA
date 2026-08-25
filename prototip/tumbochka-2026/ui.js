@@ -44,12 +44,100 @@
     card.setAttribute('data-id', item.id);
 
     var phWrap = el('div', 'pcard-ph');
-    var img = doc.createElement('img');
-    img.src = '../img/' + item.ph + '.jpg';
-    img.alt = item.t;
-    img.loading = 'lazy';
-    img.width = 300; img.height = 400;
-    phWrap.appendChild(img);
+    /* Галерея фото (G14): свайп по ракурсам внутри карточки, как на маркетплейсах.
+       Строится всегда, но листается только в вертикальных сетках — родитель
+       display:grid даёт классу pcard-swipe включить скролл и точки (в
+       горизонтальных полках карточка остаётся статичной, первое фото). */
+    var gallery = item.gallery && item.gallery.length > 1 ? item.gallery.slice(0, 4) : null;
+    if (gallery) {
+      var gal = el('div', 'pcard-gal');
+      gallery.forEach(function (name, i) {
+        var slide = doc.createElement('img');
+        /* первое фото — сразу; остальные ждут первого свайпа (data-src) */
+        if (i === 0) slide.src = '../img/' + name + '.jpg';
+        else slide.setAttribute('data-src', '../img/' + name + '.jpg');
+        slide.alt = i === 0 ? item.t : item.t + ', фото ' + (i + 1);
+        slide.loading = 'lazy';
+        slide.width = 300; slide.height = 400;
+        gal.appendChild(slide);
+      });
+      phWrap.appendChild(gal);
+
+      var hydrated = false;
+      function hydrate() { /* догрузить скрытые ракурсы один раз */
+        if (hydrated) return;
+        hydrated = true;
+        var lazy = gal.querySelectorAll('img[data-src]');
+        for (var k = 0; k < lazy.length; k++) {
+          lazy[k].src = lazy[k].getAttribute('data-src');
+          lazy[k].removeAttribute('data-src');
+        }
+      }
+
+      var dots = el('div', 'pcard-dots');
+      var dotEls = gallery.map(function (_, i) {
+        var d = el('button', 'pcard-dot' + (i === 0 ? ' on' : ''));
+        d.setAttribute('aria-label', 'Фото ' + (i + 1) + ' из ' + gallery.length);
+        d.addEventListener('click', function (ev) {
+          ev.stopPropagation(); /* точка листает, а не открывает товар */
+          hydrate();
+          gal.scrollTo({ left: i * gal.clientWidth, behavior: 'smooth' });
+        });
+        dots.appendChild(d);
+        return d;
+      });
+      phWrap.appendChild(dots);
+
+      /* Включение свайпа не привязано к кадру вставки: IntersectionObserver
+         срабатывает, когда карточка реально в DOM и подъезжает к вьюпорту —
+         в том числе у вставленных позже (фрагмент, пагинация ленты). Первый
+         жест по фото — страховка, если наблюдателя нет или он не успел. */
+      var swipeDecided = false;
+      var io = null;
+      function decideSwipe() {
+        if (swipeDecided || !card.isConnected || !card.parentElement) return;
+        swipeDecided = true;
+        if (io) { io.disconnect(); io = null; }
+        if (root.getComputedStyle(card.parentElement).display === 'grid') {
+          card.classList.add('pcard-swipe');
+        }
+      }
+      if (typeof root.IntersectionObserver === 'function') {
+        io = new root.IntersectionObserver(function () { decideSwipe(); }, { rootMargin: '200px' });
+        io.observe(card);
+      } else if (root.requestAnimationFrame) {
+        root.requestAnimationFrame(decideSwipe);
+      }
+
+      function wake() { decideSwipe(); hydrate(); }
+      gal.addEventListener('touchstart', wake, { passive: true });
+      gal.addEventListener('pointerdown', wake, { passive: true });
+      var ticking = false;
+      gal.addEventListener('scroll', function () {
+        hydrate();
+        if (ticking) return;
+        ticking = true;
+        root.requestAnimationFrame(function () {
+          ticking = false;
+          var idx = Math.round(gal.scrollLeft / Math.max(gal.clientWidth, 1));
+          for (var k = 0; k < dotEls.length; k++) dotEls[k].classList.toggle('on', k === idx);
+        });
+      }, { passive: true });
+
+      if (root.requestAnimationFrame) {
+        root.requestAnimationFrame(function () {
+          var p = card.parentElement;
+          if (p && root.getComputedStyle(p).display === 'grid') card.classList.add('pcard-swipe');
+        });
+      }
+    } else {
+      var img = doc.createElement('img');
+      img.src = '../img/' + item.ph + '.jpg';
+      img.alt = item.t;
+      img.loading = 'lazy';
+      img.width = 300; img.height = 400;
+      phWrap.appendChild(img);
+    }
     if (item.badge) {
       phWrap.appendChild(el('span', 'pcard-badge' + (item.badge === 'Хит' ? ' hit' : ''), item.badge));
     }
