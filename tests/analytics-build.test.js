@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const html = fs.readFileSync(
-  path.join(__dirname, "..", "_site", "elimur", "index.html"),
+  path.join(__dirname, "..", "site", "elimur", "index.html"),
   "utf8"
 );
 

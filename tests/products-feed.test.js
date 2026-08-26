@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const feed = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "..", "_site", "products.json"), "utf8")
+  fs.readFileSync(path.join(__dirname, "..", "site", "products.json"), "utf8")
 );
 
 test("feed ids match the product files in src/content/products/, sorted by id", () => {

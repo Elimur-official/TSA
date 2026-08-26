@@ -6,7 +6,7 @@ const SITE_URL = require("../src/_data/site.json").baseUrl;
 const ESC = SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 function read(...parts) {
-  return fs.readFileSync(path.join(__dirname, "..", "_site", ...parts), "utf8");
+  return fs.readFileSync(path.join(__dirname, "..", "site", ...parts), "utf8");
 }
 
 test("root page instantly redirects to the Tumbochka shop via meta refresh, JS and a visible link", () => {

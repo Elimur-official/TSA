@@ -6,7 +6,7 @@ const SITE_URL = require("../src/_data/site.json").baseUrl;
 const ESC = SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 function read(...parts) {
-  return fs.readFileSync(path.join(__dirname, "..", "_site", ...parts), "utf8");
+  return fs.readFileSync(path.join(__dirname, "..", "site", ...parts), "utf8");
 }
 
 test("every key page has a non-empty, distinct meta description", () => {

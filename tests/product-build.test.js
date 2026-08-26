@@ -5,7 +5,7 @@ const path = require("node:path");
 
 function readProductPage(id) {
   return fs.readFileSync(
-    path.join(__dirname, "..", "_site", "product", String(id), "index.html"),
+    path.join(__dirname, "..", "site", "product", String(id), "index.html"),
     "utf8"
   );
 }

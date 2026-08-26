@@ -1,4 +1,5 @@
 node_modules/
 _site/
+/site/
 scripts/.venv/
 scripts/__pycache__/

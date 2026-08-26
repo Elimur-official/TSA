@@ -9,7 +9,7 @@ const css = fs.readFileSync(
 );
 
 const productHtml = fs.readFileSync(
-  path.join(__dirname, "..", "_site", "product", "1", "index.html"),
+  path.join(__dirname, "..", "site", "product", "1", "index.html"),
   "utf8"
 );
 
