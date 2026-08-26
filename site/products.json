@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Вибратор «Полночь»",
+    "description": "Тихий мотор и мягкий силикон, 5 уровней мощности.",
+    "price": 3890,
+    "oldPrice": 4580,
+    "category": "Вибраторы",
+    "image": "https://tumbochka.com/images/products/placeholder.jpg",
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "name": "Массажёр «Шёлк»",
+    "description": "Продуманная эргономика, водонепроницаемый корпус.",
+    "price": 4590,
+    "oldPrice": 5400,
+    "category": "Массажёры",
+    "image": "https://tumbochka.com/images/products/placeholder.jpg",
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "name": "Смазка «Гладь»",
+    "description": "На водной основе, гипоаллергенно.",
+    "price": 690,
+    "oldPrice": 810,
+    "category": "Смазки",
+    "image": "https://tumbochka.com/images/products/placeholder.jpg",
+    "inStock": true
+  }
+]

@@ -1,0 +1,190 @@
+/* css/katalog.css — стили экрана «katalog». Классы — с префиксом .katalog-… .
+ * Палитра — только токены styles.css (+ color-mix от них). */
+
+/* ── плитки категорий: пастельные «конфеты» с эмодзи ── */
+.katalog-tiles-head { padding: 8px 14px 4px; }
+.katalog-tiles-head h1 { font-size: 22px; }
+.katalog-tiles-head p {
+  color: var(--muted); font-size: 13px; font-weight: 600; margin-top: 4px;
+}
+.katalog-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 14px;
+}
+.katalog-tile {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  border-radius: var(--r-l);
+  padding: 16px;
+  min-height: 128px;
+  text-align: left;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.katalog-tile:active { transform: scale(0.95); }
+.katalog-tile--pink { background: color-mix(in oklab, var(--pink) 14%, white); }
+.katalog-tile--sun { background: color-mix(in oklab, var(--sun) 26%, white); }
+.katalog-tile--cobalt { background: color-mix(in oklab, var(--cobalt) 12%, white); }
+.katalog-tile--green { background: color-mix(in oklab, var(--green) 16%, white); }
+.katalog-tile--orange { background: color-mix(in oklab, var(--orange) 16%, white); }
+.katalog-tile-emoji {
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  background: var(--surface);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(36, 26, 46, 0.1);
+}
+.katalog-tile-name { font-size: 14.5px; font-weight: 800; line-height: 1.2; }
+.katalog-tile-count { color: var(--muted); font-size: 12px; font-weight: 700; }
+
+/* ── шапка выдачи ── */
+.katalog-head { padding: 8px 14px 0; }
+.katalog-head h1 { font-size: 22px; overflow-wrap: anywhere; }
+.katalog-count {
+  color: var(--muted); font-size: 12.5px; font-weight: 700; margin-top: 3px;
+}
+
+/* ── сортировка + кнопка фильтров ── */
+.katalog-controls {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 14px;
+  position: sticky; top: var(--topbar-h, 88px); /* под липкой шапкой-поиском */
+  z-index: 30;
+  background: var(--bg);
+}
+.katalog-sort {
+  flex: 1;
+  display: flex; gap: 2px;
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.katalog-sort::-webkit-scrollbar { display: none; }
+.katalog-sort-btn {
+  flex: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700; font-size: 12.5px;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s;
+}
+.katalog-sort-btn.on { background: var(--pink); color: #fff; }
+.katalog-fbtn {
+  flex: none;
+  display: flex; align-items: center; gap: 6px;
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 11px 14px;
+  font-weight: 800; font-size: 12.5px;
+  box-shadow: var(--shadow);
+}
+.katalog-fbtn:active { transform: scale(0.95); }
+.katalog-fbtn-n {
+  min-width: 18px; height: 18px;
+  background: var(--pink); color: #fff;
+  border-radius: 999px;
+  font-size: 11px; line-height: 18px; text-align: center;
+  padding: 0 4px;
+}
+
+/* ── сетка выдачи ── */
+.katalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 14px;
+}
+.katalog-more { height: 40px; }
+
+/* ── пустая выдача ── */
+.katalog-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 56px 24px 40px;
+}
+.katalog-empty-emoji { font-size: 44px; }
+.katalog-empty h2 { font-size: 19px; margin: 14px 0 8px; }
+.katalog-empty p {
+  color: var(--muted); font-size: 13.5px; line-height: 1.55; max-width: 300px;
+}
+.katalog-reset {
+  margin-top: 18px;
+  background: var(--pink); color: #fff;
+  font-weight: 800; font-size: 14px;
+  padding: 13px 26px;
+  border-radius: var(--r-m);
+  box-shadow: 0 6px 18px rgba(255, 77, 136, 0.35);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.katalog-reset:active { transform: scale(0.95); }
+
+/* ── шторка фильтров ── */
+.katalog-sheet { padding-bottom: 4px; }
+.katalog-sheet-title { font-size: 19px; margin-bottom: 4px; }
+.katalog-sheet-h {
+  font-family: var(--font-text);
+  font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 16px 0 8px;
+}
+.katalog-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.katalog-chip {
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-weight: 700; font-size: 13px;
+  transition: background 0.15s, color 0.15s, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.katalog-chip:active { transform: scale(0.93); }
+.katalog-chip.on { background: var(--pink); color: #fff; }
+.katalog-price { display: flex; align-items: center; gap: 10px; }
+.katalog-price input {
+  flex: 1; min-width: 0;
+  background: var(--bg);
+  border: 0; outline: none;
+  border-radius: var(--r-m);
+  padding: 13px 14px;
+  font-size: 15px; font-weight: 700;
+  color: var(--text);
+}
+.katalog-price input:focus { outline: 2px solid var(--pink); }
+.katalog-price-dash { color: var(--muted); font-weight: 700; }
+.katalog-sheet-actions {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 20px;
+}
+.katalog-sheet-reset {
+  flex: none;
+  color: var(--muted); font-weight: 700; font-size: 14px;
+  padding: 13px 14px;
+}
+.katalog-sheet-show {
+  flex: 1;
+  background: var(--pink); color: #fff;
+  font-weight: 800; font-size: 15px;
+  padding: 15px;
+  border-radius: var(--r-m);
+  box-shadow: 0 6px 18px rgba(255, 77, 136, 0.35);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s;
+}
+.katalog-sheet-show:active { transform: scale(0.97); }
+.katalog-sheet-show:disabled { opacity: 0.45; cursor: default; }
+
+/* ── планшет 600–1023: 3 колонки ── */
+@media (min-width: 600px) {
+  .katalog-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .katalog-tiles { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── десктоп ≥1024: 4 колонки ── */
+@media (min-width: 1024px) {
+  .katalog-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .katalog-tiles { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .katalog-tile { min-height: 140px; }
+}
