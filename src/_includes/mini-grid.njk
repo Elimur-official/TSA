@@ -1,9 +1,0 @@
-<div class="mini-grid">
-  {% for item in miniItems %}
-  <a class="mini-card" href="/product/{{ item.id }}/">
-    <img src="{{ item.image }}" alt="" loading="lazy">
-    <span class="mini-card__name">{{ item.name }}</span>
-    <span class="mini-card__price">{{ item.price }} ₽</span>
-  </a>
-  {% endfor %}
-</div>
