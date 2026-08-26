@@ -3,6 +3,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const yaml = require("js-yaml");
+const SITE_URL = require("../src/_data/site.json").baseUrl;
+const ESC = SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 test("CMS config is valid YAML with expected collections", () => {
   const raw = fs.readFileSync(
@@ -87,12 +89,12 @@ test("pages link the favicon and carry og tags", () => {
   assert.match(home, /property="og:title"/);
   const productPage = fs.readFileSync(path.join(__dirname, "..", "_site", "product", "1", "index.html"), "utf8");
   assert.match(productPage, /property="og:title" content="Вибратор «Полночь» — elimur"/);
-  assert.match(productPage, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/products\/placeholder\.jpg"/);
+  assert.match(productPage, new RegExp(`property="og:image" content="${ESC}/images/products/placeholder\\.jpg"`));
 });
 
 test("home page falls back to the raster default og:image, not the SVG placeholder", () => {
   const home = fs.readFileSync(path.join(__dirname, "..", "_site", "elimur", "index.html"), "utf8");
-  assert.match(home, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/og-default\.png"/);
+  assert.match(home, new RegExp(`property="og:image" content="${ESC}/images/og-default\\.png"`));
   assert.match(home, /property="og:image:width" content="1200"/);
   assert.match(home, /property="og:image:height" content="630"/);
 });

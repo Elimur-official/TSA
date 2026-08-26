@@ -2,6 +2,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const SITE_URL = require("../src/_data/site.json").baseUrl;
+const ESC = SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 function read(...parts) {
   return fs.readFileSync(path.join(__dirname, "..", "_site", ...parts), "utf8");
@@ -41,7 +43,7 @@ test("robots.txt is published and points to the sitemap", () => {
   const robots = read("robots.txt");
   assert.match(robots, /User-agent: \*/);
   assert.match(robots, /Allow: \//);
-  assert.match(robots, /Sitemap: https:\/\/effulgent-smakager-3d5066\.netlify\.app\/sitemap\.xml/);
+  assert.match(robots, new RegExp(`Sitemap: ${ESC}/sitemap\\.xml`));
 });
 
 test("sitemap.xml lists key pages with absolute URLs", () => {
@@ -49,12 +51,12 @@ test("sitemap.xml lists key pages with absolute URLs", () => {
   assert.match(sitemap, /<\?xml version="1\.0" encoding="UTF-8"\?>/);
   assert.match(sitemap, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
   for (const url of [
-    "https://effulgent-smakager-3d5066.netlify.app/about/",
-    "https://effulgent-smakager-3d5066.netlify.app/product/1/",
-    "https://effulgent-smakager-3d5066.netlify.app/product/2/",
-    "https://effulgent-smakager-3d5066.netlify.app/product/3/",
-    "https://effulgent-smakager-3d5066.netlify.app/anonymity/",
-    "https://effulgent-smakager-3d5066.netlify.app/articles/s-chego-nachat/",
+    `${SITE_URL}/about/`,
+    `${SITE_URL}/product/1/`,
+    `${SITE_URL}/product/2/`,
+    `${SITE_URL}/product/3/`,
+    `${SITE_URL}/anonymity/`,
+    `${SITE_URL}/articles/s-chego-nachat/`,
   ]) {
     assert.ok(sitemap.includes(`<loc>${url}</loc>`), `sitemap must list ${url}`);
   }

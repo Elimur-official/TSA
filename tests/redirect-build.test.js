@@ -2,6 +2,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const SITE_URL = require("../src/_data/site.json").baseUrl;
+const ESC = SITE_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 function read(...parts) {
   return fs.readFileSync(path.join(__dirname, "..", "_site", ...parts), "utf8");
@@ -35,12 +37,12 @@ test("root redirect page is marked noindex and stays out of the sitemap", () => 
   const sitemap = read("sitemap.xml");
   assert.doesNotMatch(
     sitemap,
-    /<loc>https:\/\/effulgent-smakager-3d5066\.netlify\.app\/<\/loc>/,
+    new RegExp(`<loc>${ESC}/</loc>`),
     "the redirect page must not appear in the sitemap as its own URL"
   );
   assert.match(
     sitemap,
-    /<loc>https:\/\/effulgent-smakager-3d5066\.netlify\.app\/elimur\/<\/loc>/,
+    new RegExp(`<loc>${ESC}/elimur/</loc>`),
     "/elimur/ must still be listed in the sitemap"
   );
 });
