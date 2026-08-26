@@ -1,4 +1,5 @@
-/* views/home.js — экран «#/»: крупная мини-презентация (первый экран),
+/* views/home.js — экран «#/»: мозаика-презентация (первый экран: большой
+ * баннер «Кто мы» + два поменьше в ряд, без свайпа и точек — таск 12),
  * чипсы категорий, полки по намерению с мем-подписями, баннер-карусель
  * «Глаза разбежались» (после полок) и бесконечная лента порциями по 20.
  * Карточки — только через TMB.ui.productCard. Регистрация — самовызовом.
@@ -95,20 +96,26 @@
     return sec;
   }
 
-  /* ── мини-презентация «Тумбочки» (G09): нас ещё не знают — знакомимся.
-   * Обложка — зона «дерзко», слайды про страхи — тихо и по-взрослому. */
+  /* ── мозаика-презентация «Тумбочки» (G09/G16): нас ещё не знают — знакомимся.
+   * Разметка владельца (таск 12): большой баннер «Кто мы» во всю ширину,
+   * под ним два поменьше в ряд; свайпа и точек нет, тап по всей плитке.
+   * Обложка — зона «дерзко», плитки про страхи — тихо и по-взрослому. */
   var PROMO = [
     {
       cls: 'home-promo-slide--cover', emoji: '🗝️', tag: 'Кто мы',
       title: 'Тумбочка — магазин, где не стыдно',
       text: 'Выбирай спокойно: без осуждения и лишних глаз. Всё для взрослых — и всё по-честному.',
+      go: function () {
+        var s = doc.querySelector('.home-shelves');
+        if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      },
     },
     {
       emoji: '📦', tag: 'Анонимность',
       title: 'Коробка без надписей',
       /* формулировка сверена с экраном анонимности — он авторитет */
       text: 'На этикетке — имя получателя и адрес, о содержимом ни слова.',
-      btn: 'Как это устроено', hash: '#/anonimnost',
+      btn: 'Как это устроено', href: '#/anonimnost',
     },
     {
       emoji: '🛡️', tag: 'Безопасность',
@@ -120,46 +127,30 @@
 
   function promo() {
     var sec = el('section', 'home-promo');
-    var row = el('div', 'home-promo-row');
+    var grid = el('div', 'home-promo-grid');
     PROMO.forEach(function (s) {
-      var slide = el('article', 'home-promo-slide' + (s.cls ? ' ' + s.cls : ''));
-      slide.innerHTML =
+      var tile;
+      if (s.href) {
+        /* вся плитка — ссылка: хеш уводит роутером, politika — страницей */
+        tile = el('a', 'home-promo-slide' + (s.cls ? ' ' + s.cls : ''));
+        tile.href = s.href;
+      } else {
+        tile = el('article', 'home-promo-slide' + (s.cls ? ' ' + s.cls : ''));
+        tile.tabIndex = 0;
+        tile.setAttribute('role', 'button');
+        tile.addEventListener('click', s.go);
+        tile.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); s.go(); }
+        });
+      }
+      tile.innerHTML =
         '<span class="home-promo-tag">' + s.tag + '</span>' +
         '<span class="home-promo-emoji">' + s.emoji + '</span>' +
-        '<h2>' + s.title + '</h2><p>' + s.text + '</p>';
-      if (s.hash) {
-        var b = el('button', 'home-promo-btn', s.btn);
-        b.addEventListener('click', function () { TMB.router.go(s.hash); });
-        slide.appendChild(b);
-      } else if (s.href) {
-        var a = el('a', 'home-promo-btn', s.btn);
-        a.href = s.href;
-        slide.appendChild(a);
-      }
-      row.appendChild(slide);
+        '<h2>' + s.title + '</h2><p>' + s.text + '</p>' +
+        (s.btn ? '<span class="home-promo-btn">' + s.btn + '</span>' : '');
+      grid.appendChild(tile);
     });
-    sec.appendChild(row);
-
-    var dots = el('div', 'home-promo-dots');
-    function step() {
-      var first = row.firstElementChild;
-      return first ? first.offsetWidth + 10 : 1; /* 10 = gap из css */
-    }
-    PROMO.forEach(function (_, i) {
-      var d = el('button', 'home-dot' + (i === 0 ? ' on' : ''));
-      d.setAttribute('aria-label', 'Слайд ' + (i + 1));
-      d.addEventListener('click', function () {
-        row.scrollTo({ left: i * step(), behavior: 'smooth' });
-      });
-      dots.appendChild(d);
-    });
-    row.addEventListener('scroll', function () {
-      var i = Math.round(row.scrollLeft / step());
-      for (var j = 0; j < dots.children.length; j++) {
-        dots.children[j].classList.toggle('on', j === i);
-      }
-    }, { passive: true });
-    sec.appendChild(dots);
+    sec.appendChild(grid);
     return sec;
   }
 

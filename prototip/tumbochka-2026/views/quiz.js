@@ -126,10 +126,21 @@
     if (cb) cb(fallback());
   }
 
+  /* Внутри Telegram с reply-кнопки подборка уходит боту одним sendData;
+   * иначе — прежний путь копирования (история 16, R13i). */
+  function canSend() {
+    return !!(TMB.tg && TMB.tg.canSendData());
+  }
+
+  /* абсолютный адрес магазина — из него бот собирает ссылки на карточки */
+  function baseUrl() {
+    return root.location.origin + root.location.pathname;
+  }
+
   /* текст подборки для буфера и Telegram-бота: у каждого товара — своя
    * абсолютная ссылка на карточку, получатель открывает её сразу */
   function pickText(items) {
-    var base = root.location.origin + root.location.pathname;
+    var base = baseUrl();
     var lines = ['Моя подборка из Тумбочки 🖤', ''];
     items.forEach(function (it, i) {
       lines.push((i + 1) + '. ' + it.t + ' — ' + TMB.ui.price(it.n).replace(/\u00A0/g, ' '));
@@ -254,8 +265,22 @@
     });
     actions.appendChild(allBtn);
 
-    var tgBtn = el('button', 'quiz-tg', 'Отправить подборку себе в Telegram');
+    var sending = false;
+    var tgBtn = el('button', 'quiz-tg',
+      canSend() ? 'Отправить подборку себе в Telegram' : 'Скопировать и открыть чат');
     tgBtn.addEventListener('click', function () {
+      if (sending) return; /* второй тап не шлёт вторую подборку */
+      if (canSend()) {
+        sending = true;
+        tgBtn.disabled = true;
+        var payload = TMB.tgLogic.kvizPayload(
+          items.map(function (it) { return { id: it.id, t: it.t, n: it.n }; }),
+          baseUrl()
+        );
+        if (TMB.tg.send(payload)) return; /* Telegram закрывает приложение */
+        sending = false;                  /* не ушло — прежний путь */
+        tgBtn.disabled = false;
+      }
       copyText(pickText(items), function (ok) {
         TMB.ui.toast(ok ? 'Скопировали — вставь в чат боту' : 'Не скопировалось, но бот уже открыт');
       });

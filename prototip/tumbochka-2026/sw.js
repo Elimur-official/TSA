@@ -4,7 +4,7 @@
    Обновление: поднять VERSION — на activate старые кеши tmb-* удаляются. */
 'use strict';
 
-var VERSION = 'v7';
+var VERSION = 'v9';
 var SHELL_CACHE = 'tmb-shell-' + VERSION;
 var MEDIA_CACHE = 'tmb-media-' + VERSION;
 
@@ -15,6 +15,7 @@ var SHELL = [
   './store.js',
   './router.js',
   './ui.js',
+  './tg.js',
   './views/home.js',
   './views/katalog.js',
   './views/tovar.js',

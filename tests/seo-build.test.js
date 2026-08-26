@@ -9,7 +9,7 @@ function read(...parts) {
 
 test("every key page has a non-empty, distinct meta description", () => {
   const pages = {
-    "index.html": null,
+    "elimur/index.html": null,
     "about/index.html": null,
     "faq/index.html": null,
     "reviews/index.html": null,
@@ -49,7 +49,6 @@ test("sitemap.xml lists key pages with absolute URLs", () => {
   assert.match(sitemap, /<\?xml version="1\.0" encoding="UTF-8"\?>/);
   assert.match(sitemap, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
   for (const url of [
-    "https://effulgent-smakager-3d5066.netlify.app/",
     "https://effulgent-smakager-3d5066.netlify.app/about/",
     "https://effulgent-smakager-3d5066.netlify.app/product/1/",
     "https://effulgent-smakager-3d5066.netlify.app/product/2/",
@@ -64,6 +63,6 @@ test("sitemap.xml lists key pages with absolute URLs", () => {
 });
 
 test("yandex-verification meta tag renders only when a real code is configured", () => {
-  const home = read("index.html");
+  const home = read("elimur", "index.html");
   assert.doesNotMatch(home, /name="yandex-verification"/, "must stay absent until a real code is set in site.json");
 });

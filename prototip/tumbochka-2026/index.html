@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <!-- Telegram WebApp SDK — строго первым: адаптер tg.js спрашивает только его.
+       Вне Telegram скрипт безвреден (interfaces.md, решение 1 спецификации). -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Тумбочка — магазин для взрослых</title>
@@ -131,6 +134,7 @@
   <script src="store.js"></script>
   <script src="router.js"></script>
   <script src="ui.js"></script>
+  <script src="tg.js"></script>
   <script src="views/home.js"></script>
   <script src="views/katalog.js"></script>
   <script src="views/tovar.js"></script>
@@ -146,6 +150,18 @@
     'use strict';
     var TMB = window.TMB;
     var doc = document;
+
+    /* ── Telegram: развернуть, покрасить шапку, подставить имя и ник ──
+       Всё через адаптер TMB.tg — снаружи Telegram каждый вызов молча ничего
+       не делает. Цвета берём из токенов styles.css, а не из темы Telegram. */
+    function token(name) {
+      return getComputedStyle(doc.documentElement).getPropertyValue(name).trim();
+    }
+    var panelColor = token('--bg'); /* фон верхней панели магазина = фон страницы */
+    TMB.tg.init({ headerColor: panelColor, bgColor: panelColor });
+    /* имя и ник — только пустые поля, один раз (R10i). id пользователя
+       магазин не читает и не хранит: адаптер его не отдаёт. */
+    TMB.tgLogic.fillProfile(TMB.store, TMB.tg.user());
 
     /* ── заставка: один раз за сессию ── */
     var splash = doc.getElementById('splash');
@@ -226,6 +242,9 @@
       navBtns.forEach(function (b) {
         b.classList.toggle('active', b.dataset.route === active);
       });
+      /* кнопка «назад» Telegram: везде кроме главной, тап = router.back() */
+      if (base === '#/') TMB.tg.back.hide();
+      else TMB.tg.back.show(function () { TMB.router.back(); });
     };
 
     /* ── бейдж корзины: живёт от store.subscribe ── */

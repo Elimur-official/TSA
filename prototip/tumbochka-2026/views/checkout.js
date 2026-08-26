@@ -130,6 +130,13 @@
     return null;
   }
 
+  /* Внутри Telegram и запуск с reply-кнопки — заказ уходит боту одним
+     sendData. Иначе (меню, ссылка, обычный браузер) — прежний путь:
+     текст в буфер + открыть чат (истории 9 и 10, R08i/R08i.1). */
+  function canSend() {
+    return !!(TMB.tg && TMB.tg.canSendData());
+  }
+
   /* копирование: clipboard → скрытая textarea; cb(true|false) */
   function copyText(text, cb) {
     function fallback() {
@@ -357,7 +364,8 @@
         '<span>Итого</span><b>' + TMB.ui.price(total) + '</b>'));
       body.appendChild(el('p', 'checkout-quiet',
         'Заказ уйдёт менеджеру в Telegram. Он подтвердит состав, доставку и оплату в чате.'));
-      var send = el('button', 'checkout-send', 'Отправить заказ');
+      var send = el('button', 'checkout-send',
+        canSend() ? 'Отправить заказ' : 'Скопировать и открыть чат');
       send.addEventListener('click', function () {
         if (sending) return; /* двойной тап не создаёт второй заказ */
         var msg = checkStep(1, getDraft()) || checkStep(2, getDraft()) || checkStep(3, getDraft());
@@ -381,15 +389,16 @@
         pay: d.pay,
         comment: d.comment || '',
       });
-      var text = orderText({
+      var order = {
         num: saved.num,
         items: saved.items,
+        total: total,
         name: saved.name,
         contact: saved.contact,
         delivery: delivery,
         pay: saved.pay,
         comment: saved.comment,
-      });
+      };
       /* заказанное уходит из корзины; галочки-исключения чистим от этих id */
       rows.forEach(function (r) { TMB.store.cart.remove(r.id); });
       var ids = rows.map(function (r) { return r.id; });
@@ -398,11 +407,32 @@
       });
       TMB.store.profile.set({ cartOff: off });
 
+      /* Порядок один: заказ уже в истории (orders.add выше) — что бы ни
+         случилось с отправкой, он не потерян. Не ушло боту — прежний путь. */
+      if (canSend() && TMB.tg.send(TMB.tgLogic.orderPayload(order))) {
+        paintSent(saved.num); /* Telegram закрывает приложение сразу после */
+        return;
+      }
+
+      var text = orderText(order);
       copyText(text, function (ok) {
         if (!ok) TMB.ui.toast('Не скопировалось — нажмите «Скопировать ещё раз»');
       });
       root.open(TG_URL, '_blank');
       paintDone(saved.num, text);
+    }
+
+    /* ── заказ ушёл боту: приложение закрывается, кнопки отправки больше нет ── */
+    function paintSent(num) {
+      screen.innerHTML = '';
+      var sent = el('div', 'checkout-done');
+      sent.innerHTML =
+        '<div class="checkout-done-emoji">📨</div>' +
+        '<h1>Заказ отправлен</h1>' +
+        '<div class="checkout-done-num">' + esc(num) + '</div>' +
+        '<p>Подтверждение придёт сообщением от бота. Мы напишем вам здесь, ' +
+        'в Telegram.</p>';
+      screen.appendChild(sent);
     }
 
     /* ── экран «Заказ собран» ── */

@@ -58,7 +58,7 @@ test("faq page renders questions and the WB promo block", () => {
 });
 
 test("promo code WB15 is visible on home and faq with a copy button", () => {
-  for (const page of ["index.html", "faq/index.html"]) {
+  for (const page of ["elimur/index.html", "faq/index.html"]) {
     const pageHtml = fs.readFileSync(path.join(__dirname, "..", "_site", page), "utf8");
     assert.match(pageHtml, /WB15/, page);
     assert.match(pageHtml, /data-copy="WB15"/, page);
@@ -72,7 +72,7 @@ test("reviews page shows dates and the WB purchase badge", () => {
 });
 
 test("every page carries the footer with legal details", () => {
-  for (const page of ["index.html", "faq/index.html", "about/index.html", "product/1/index.html"]) {
+  for (const page of ["elimur/index.html", "faq/index.html", "about/index.html", "product/1/index.html"]) {
     const pageHtml = fs.readFileSync(path.join(__dirname, "..", "_site", page), "utf8");
     assert.match(pageHtml, /site-footer/, page);
     assert.match(pageHtml, /324330000025894/, page);
@@ -82,7 +82,7 @@ test("every page carries the footer with legal details", () => {
 });
 
 test("pages link the favicon and carry og tags", () => {
-  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "elimur", "index.html"), "utf8");
   assert.match(home, /rel="icon"[^>]+favicon\.svg/);
   assert.match(home, /property="og:title"/);
   const productPage = fs.readFileSync(path.join(__dirname, "..", "_site", "product", "1", "index.html"), "utf8");
@@ -91,7 +91,7 @@ test("pages link the favicon and carry og tags", () => {
 });
 
 test("home page falls back to the raster default og:image, not the SVG placeholder", () => {
-  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "elimur", "index.html"), "utf8");
   assert.match(home, /property="og:image" content="https:\/\/effulgent-smakager-3d5066\.netlify\.app\/images\/og-default\.png"/);
   assert.match(home, /property="og:image:width" content="1200"/);
   assert.match(home, /property="og:image:height" content="630"/);
@@ -114,7 +114,7 @@ test("anonymity page is built with its four promises", () => {
 });
 
 test("footer anonymity link points to the anonymity page", () => {
-  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "elimur", "index.html"), "utf8");
   assert.match(home, /<a href="\/anonymity\/">Анонимность<\/a>/);
 });
 
@@ -145,7 +145,7 @@ test("admin page loads the identity widget, otherwise nobody can log in", () => 
 });
 
 test("public pages do NOT load the identity widget unconditionally", () => {
-  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "elimur", "index.html"), "utf8");
   assert.doesNotMatch(
     home,
     /<script src="https:\/\/identity\.netlify\.com\/v1\/netlify-identity-widget\.js"><\/script>/,
@@ -154,7 +154,7 @@ test("public pages do NOT load the identity widget unconditionally", () => {
 });
 
 test("public pages lazily load the identity widget only when an invite/recovery/confirmation token is in the URL hash", () => {
-  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "index.html"), "utf8");
+  const home = fs.readFileSync(path.join(__dirname, "..", "_site", "elimur", "index.html"), "utf8");
   assert.match(home, /invite_token/);
   assert.match(home, /recovery_token/);
   assert.match(home, /confirmation_token/);
