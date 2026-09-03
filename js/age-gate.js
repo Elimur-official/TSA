@@ -1,7 +1,13 @@
-const STORAGE_KEY = "elimur_age_confirmed";
+const STORAGE_KEY = "tmb_age_confirmed";
+// Ключ прежнего бренда: читаем, но больше не пишем. Иначе те, кто уже
+// подтвердил возраст, увидели бы заставку 18+ заново.
+const STORAGE_KEY_STARY = "elimur_age_confirmed";
 
 function hasConfirmedAge(storage) {
-  return storage.getItem(STORAGE_KEY) === "yes";
+  return (
+    storage.getItem(STORAGE_KEY) === "yes" ||
+    storage.getItem(STORAGE_KEY_STARY) === "yes"
+  );
 }
 
 function confirmAge(storage) {
@@ -9,7 +15,7 @@ function confirmAge(storage) {
 }
 
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { STORAGE_KEY, hasConfirmedAge, confirmAge };
+  module.exports = { STORAGE_KEY, STORAGE_KEY_STARY, hasConfirmedAge, confirmAge };
 }
 
 if (typeof document !== "undefined") {

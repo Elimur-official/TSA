@@ -1,0 +1,251 @@
+/* css/tovar.css — стили экрана «tovar». Классы — с префиксом .tovar-… .
+ * Палитра — только токены styles.css. Референс: фото во весь верх,
+ * бейдж распродажи с таймером, цена крупно, чипсы выгод, sticky-покупка. */
+
+.tovar { padding-bottom: 84px; }
+
+/* ── фото во весь верх ── */
+.tovar-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--pink-soft);
+  overflow: hidden;
+}
+.tovar-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.tovar-round {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 50%;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tovar-round:active { transform: scale(0.85); }
+.tovar-back { position: absolute; left: 12px; top: 12px; }
+.tovar-photo-acts {
+  position: absolute; right: 12px; top: 12px;
+  display: flex; gap: 8px;
+}
+.tovar-fav { color: rgba(36, 26, 46, 0.35); }
+.tovar-fav.on { color: var(--pink); }
+
+.tovar-sale {
+  position: absolute; left: 12px; bottom: 12px;
+  background: var(--pink); color: #fff;
+  border-radius: var(--r-m);
+  padding: 8px 12px;
+  box-shadow: 0 4px 14px rgba(255, 77, 136, 0.45);
+}
+.tovar-sale b {
+  display: block;
+  font-size: 13px; font-weight: 800; letter-spacing: 0.05em;
+}
+.tovar-sale-timer {
+  display: block; margin-top: 2px;
+  font-size: 11.5px; font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+.tovar-tosim {
+  position: absolute; right: 12px; bottom: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px; font-weight: 700;
+  box-shadow: var(--shadow);
+}
+
+/* ── цена, чипсы, название ── */
+.tovar-body { padding: 14px 14px 0; }
+.tovar-prices { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.tovar-price { color: var(--pink); font-size: 28px; font-weight: 800; }
+.tovar-old { color: var(--muted); font-size: 15px; }
+.tovar-disc {
+  background: var(--pink-soft); color: var(--pink);
+  font-size: 12px; font-weight: 800;
+  padding: 3px 8px; border-radius: 999px;
+}
+
+.tovar-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.tovar-chip {
+  font-size: 12px; font-weight: 700;
+  padding: 6px 10px; border-radius: 999px;
+  color: var(--text);
+}
+.tovar-chip.good { background: color-mix(in oklab, var(--sun) 26%, #fff); }
+.tovar-chip.quiet { background: var(--pink-soft); color: var(--pink); }
+.tovar-chip.anon { background: color-mix(in oklab, var(--cobalt) 12%, #fff); color: var(--cobalt); }
+
+.tovar-title {
+  font-family: var(--font-text);
+  font-size: 18px; font-weight: 800; line-height: 1.35;
+  margin-top: 12px;
+}
+
+/* звёзды: серая подложка + оранжевая заливка по проценту рейтинга */
+.tovar-stars { position: relative; display: inline-flex; line-height: 0; }
+.tovar-stars-base { display: inline-flex; gap: 1px; color: rgba(36, 26, 46, 0.16); }
+.tovar-stars-fill {
+  position: absolute; left: 0; top: 0; height: 100%;
+  display: inline-flex; gap: 1px;
+  overflow: hidden; white-space: nowrap;
+  color: var(--sun);
+}
+.tovar-stars.small svg { width: 12px; height: 12px; }
+
+.tovar-rate {
+  display: flex; align-items: center; gap: 7px;
+  margin-top: 9px; font-size: 13px;
+}
+.tovar-rate-score { font-weight: 800; }
+.tovar-rate-count { color: var(--muted); font-weight: 600; }
+
+.tovar-delivery {
+  margin-top: 14px;
+  background: var(--surface);
+  border-radius: var(--r-m);
+  padding: 13px 14px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13.5px;
+  box-shadow: var(--shadow);
+}
+.tovar-delivery svg { flex: none; color: var(--green); }
+
+.tovar-about-btn {
+  position: relative;
+  display: block; width: 100%;
+  margin-top: 10px;
+  background: var(--surface);
+  border-radius: var(--r-m);
+  padding: 13px 40px 13px 14px;
+  text-align: left;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tovar-about-btn:active { transform: scale(0.98); }
+.tovar-about-btn > span:first-child { display: block; font-size: 15px; font-weight: 800; }
+.tovar-about-sub { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.tovar-about-btn svg {
+  position: absolute; right: 13px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
+
+/* ── шторка «О товаре» ── */
+.tovar-about-head { display: flex; align-items: center; justify-content: space-between; }
+.tovar-about-head h2 { font-size: 19px; }
+.tovar-about-close {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(36, 26, 46, 0.06);
+  border-radius: 50%;
+  font-size: 15px; font-weight: 700; color: var(--muted);
+}
+.tovar-about-name { margin: 6px 0 14px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+.tovar-about-list {
+  display: grid; grid-template-columns: 42% 1fr;
+  row-gap: 13px; column-gap: 12px;
+  font-size: 14px; line-height: 1.4;
+  padding-bottom: 6px;
+}
+.tovar-about-list dt { color: var(--muted); }
+.tovar-about-list dd { font-weight: 600; }
+
+/* ── отзывы ── */
+.tovar-reviews { padding: 0 14px; margin-top: 22px; }
+.tovar-sec-head { display: flex; align-items: center; gap: 8px; }
+.tovar-sec-head h2 { font-size: 18px; }
+.tovar-src {
+  background: rgba(36, 26, 46, 0.06);
+  color: var(--muted);
+  font-size: 11px; font-weight: 700;
+  padding: 4px 9px; border-radius: 999px;
+}
+.tovar-rev-sum {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface);
+  border-radius: var(--r-m);
+  padding: 13px 16px;
+  margin: 12px 0;
+  box-shadow: var(--shadow);
+}
+.tovar-rev-big { font-size: 30px; font-weight: 800; }
+.tovar-rev-sumr { display: flex; flex-direction: column; gap: 3px; font-size: 12.5px; }
+.tovar-rev {
+  background: var(--surface);
+  border-radius: var(--r-m);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+}
+.tovar-rev-head { display: flex; align-items: center; gap: 10px; }
+.tovar-rev-head .tovar-stars { margin-left: auto; }
+.tovar-rev-ava {
+  width: 34px; height: 34px; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  color: #fff; font-size: 14px; font-weight: 800;
+}
+.tovar-rev-ava.a { background: var(--pink); }
+.tovar-rev-ava.b { background: var(--sun); }
+.tovar-rev-ava.c { background: var(--cobalt); }
+.tovar-rev-ava.d { background: var(--green); }
+.tovar-rev-name b { font-size: 14px; }
+.tovar-rev-text { margin-top: 8px; font-size: 13.5px; line-height: 1.5; }
+
+/* ── полки «Похожие» и «С этим берут» ── */
+.tovar-shelf { margin-top: 22px; padding-left: 14px; }
+.tovar-shelf-title { font-size: 18px; margin-bottom: 10px; }
+.tovar-shelf-row {
+  display: flex; gap: 10px;
+  overflow-x: auto;
+  padding: 2px 14px 14px 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tovar-shelf-row::-webkit-scrollbar { display: none; }
+.tovar-shelf-row .pcard { flex: 0 0 150px; }
+
+/* ── sticky-панель покупки ── */
+.tovar-cta {
+  position: fixed; z-index: 45;
+  left: 0; right: 0;
+  bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+  max-width: var(--app-w, 520px); margin: 0 auto;
+  display: flex; gap: 10px;
+  padding: 18px 14px 10px;
+  background: linear-gradient(180deg, transparent, var(--bg) 45%);
+}
+.tovar-buy, .tovar-tocart {
+  flex: 1;
+  color: #fff; font-size: 15px; font-weight: 800;
+  padding: 15px; border-radius: var(--r-m);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tovar-buy {
+  background: var(--orange);
+  box-shadow: 0 6px 18px rgba(255, 122, 61, 0.4);
+}
+.tovar-tocart {
+  background: var(--pink);
+  box-shadow: 0 6px 18px rgba(255, 77, 136, 0.4);
+}
+.tovar-buy:active, .tovar-tocart:active { transform: scale(0.96); }
+
+/* ── «товар уехал» (несуществующий id) ── */
+.tovar-lost {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 64px 24px 40px; min-height: 55vh;
+}
+.tovar-lost-emoji { font-size: 44px; }
+.tovar-lost h1 { font-size: 20px; margin: 16px 0 10px; }
+.tovar-lost p { color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 300px; }
+.tovar-lost-btn {
+  margin-top: 18px;
+  background: var(--pink); color: #fff;
+  font-size: 14px; font-weight: 800;
+  padding: 13px 24px; border-radius: var(--r-m);
+  box-shadow: 0 6px 18px rgba(255, 77, 136, 0.4);
+}
