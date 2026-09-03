@@ -1,0 +1,178 @@
+/* Страницы-ответы: палитра магазина, чтобы читатель не чувствовал перехода
+   между журналом и витриной. Токены повторяют app/tumbochka-2026/styles.css. */
+.otvet-page {
+  --bg: #FFF7F2;
+  --surface: #FFFFFF;
+  --pink: #FF4D88;
+  --pink-soft: #FFE3EE;
+  --text: #241A2E;
+  --muted: #8E8296;
+  --r-m: 16px;
+  --r-l: 24px;
+  --shadow: 0 6px 24px rgba(36, 26, 46, .08);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 16px 16px 48px;
+}
+.otvet-page a { color: var(--pink); }
+.otvet-page .back-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--muted);
+}
+.otvet h1 {
+  font-size: 27px;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin: 4px 0 16px;
+}
+/* Короткий ответ — то, что читают за пять секунд и что цитируют нейросети. */
+.otvet__korotko {
+  background: var(--pink-soft);
+  border-radius: var(--r-l);
+  padding: 18px 18px 20px;
+  margin-bottom: 24px;
+}
+.otvet__metka {
+  display: inline-block;
+  background: var(--pink);
+  color: #fff;
+  font-family: var(--font-heading, 'Unbounded', sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 5px 12px;
+  margin-bottom: 10px;
+}
+.otvet__korotko p { margin: 0; font-size: 17px; line-height: 1.45; font-weight: 500; }
+.otvet__body { font-size: 16px; line-height: 1.6; }
+.otvet__body h2 {
+  font-size: 20px;
+  margin: 28px 0 10px;
+  letter-spacing: -.01em;
+}
+.otvet__body ol, .otvet__body ul { padding-left: 20px; }
+.otvet__body li { margin-bottom: 8px; }
+.otvet__body strong { color: var(--text); }
+.otvet__foto {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0;
+}
+.otvet__foto img {
+  width: 100%;
+  border-radius: var(--r-l);
+  display: block;
+  box-shadow: var(--shadow);
+}
+.otvet__foto figure { margin: 0; }
+.otvet__foto figcaption {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+.otvet__dalshe {
+  background: var(--surface);
+  border-radius: var(--r-l);
+  padding: 20px;
+  margin-top: 32px;
+  box-shadow: var(--shadow);
+}
+.otvet__dalshe h3 { margin: 0 0 6px; font-size: 18px; }
+.otvet__dalshe p { margin: 0 0 12px; color: var(--muted); }
+.otvet__dalshe .btn { margin-right: 8px; margin-bottom: 8px; }
+.otvet-page .btn--primary { background: var(--pink); color: #fff; }
+.otvet-page .btn--ghost { background: transparent; border: 1.5px solid var(--pink-soft); color: var(--pink); }
+.otvet__obnovleno {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 24px;
+}
+
+/* Шапка журнала: та же «Тумбочка», что и в магазине, плюс честная метка 18+. */
+.otvet-shapka {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.otvet-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--text) !important;
+  text-decoration: none;
+  letter-spacing: -.02em;
+}
+.otvet-vozrast {
+  background: var(--pink-soft);
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+body.otvet-page {
+  font-family: 'Manrope', -apple-system, system-ui, sans-serif;
+  max-width: 560px;
+  margin-inline: auto;
+}
+.otvet h1, .otvet__body h2, .otvet__dalshe h3 {
+  font-family: 'Unbounded', 'Arial Black', sans-serif;
+}
+
+/* Кнопки: страницы-ответы не тянут стили старого сайта, поэтому свои. */
+.otvet-page .btn {
+  display: inline-block;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.otvet-page .btn--primary { background: var(--pink); color: #fff !important; }
+.otvet-page .btn--ghost {
+  background: var(--pink-soft);
+  color: var(--pink) !important;
+  border: none;
+}
+
+/* Список ответов и поиск по ним. */
+.spisok__zagolovok { font-family: 'Unbounded', sans-serif; font-size: 30px; margin: 8px 0 6px; letter-spacing: -.02em; }
+.spisok__intro { color: var(--muted); margin: 0 0 18px; line-height: 1.5; }
+.poisk { margin-bottom: 20px; }
+.poisk input {
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 15px 18px;
+  border-radius: 999px;
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+.poisk input::placeholder { color: var(--muted); }
+.spisok { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.spisok__punkt a {
+  display: block;
+  background: var(--surface);
+  border-radius: var(--r-l);
+  padding: 18px;
+  text-decoration: none;
+  color: var(--text) !important;
+  box-shadow: var(--shadow);
+}
+.spisok__punkt h2 { font-family: 'Unbounded', sans-serif; font-size: 17px; margin: 0 0 8px; line-height: 1.25; }
+.spisok__punkt p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.spisok__pusto { background: var(--pink-soft); border-radius: var(--r-l); padding: 20px; margin-top: 16px; }
+.spisok__pusto .btn { margin-top: 12px; }

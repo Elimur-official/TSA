@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
     <loc>https://tumbochka.com/</loc>
     <lastmod>2026-09-03</lastmod>
+  </url><url>
+    <loc>https://tumbochka.com/otvety/</loc>
+    <lastmod>2026-09-03</lastmod>
   </url>
   <url>
     <loc>https://tumbochka.com/articles/s-chego-nachat/</loc>
@@ -25,6 +28,30 @@
   </url>
   <url>
     <loc>https://tumbochka.com/articles/</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://tumbochka.com/otvety/chto-vidit-sotrudnik-pvz/</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://tumbochka.com/otvety/bolno-li-budet/</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://tumbochka.com/otvety/stesnyayus-vskryvat-na-pvz/</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://tumbochka.com/otvety/tovar-ne-rabotaet/</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://tumbochka.com/otvety/kak-podklyuchit-k-telefonu/</loc>
+    <lastmod>2026-09-03</lastmod>
+  </url>
+  <url>
+    <loc>https://tumbochka.com/otvety/proveryayut-li-dokumenty/</loc>
     <lastmod>2026-09-03</lastmod>
   </url>
 </urlset>
